@@ -6,12 +6,12 @@ public class WeaponAttack : MonoBehaviour {
 
     public GameObject weapon;
 
-    private WeaponSound weaponSound;
+    private RandomClip weaponSound;
 
     private Animator weaponAnimator;
 
     void Start() {
-        weaponSound = weapon.GetComponentInChildren<WeaponSound>();
+        weaponSound = weapon.GetComponentInChildren<RandomClip>();
         weaponAnimator = weapon.GetComponentInChildren<Animator>();
     }
 

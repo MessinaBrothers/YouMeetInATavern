@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSound : MonoBehaviour {
+public class RandomClip : MonoBehaviour {
 
     private static System.Random rng = new System.Random();
 
