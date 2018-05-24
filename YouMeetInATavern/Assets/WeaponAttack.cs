@@ -30,4 +30,8 @@ public class WeaponAttack : MonoBehaviour {
     public void EndAttack() {
         hitDetect.enabled = false;
     }
+
+    void OnEnable() {
+        WeaponAnimationScripts.attackEndedEventHandler += EndAttack;
+    }
 }

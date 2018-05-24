@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WeaponAnimationScripts : MonoBehaviour {
 
-    private WeaponAttack attack;
+    public static event AttackEndedEventHandler attackEndedEventHandler;
+    public delegate void AttackEndedEventHandler();
 
     void Start() {
-        attack = GetComponentInParent<WeaponAttack>();
     }
 
     void Update() {
@@ -15,6 +15,6 @@ public class WeaponAnimationScripts : MonoBehaviour {
     }
 
     public void EndAttack() {
-        attack.EndAttack();
+        attackEndedEventHandler.Invoke();
     }
 }
