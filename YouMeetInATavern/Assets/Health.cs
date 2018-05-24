@@ -19,10 +19,16 @@ public class Health : MonoBehaviour {
         // always orient up
         // http://wiki.unity3d.com/index.php?title=CameraFacingBillboard
         transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.up, Camera.main.transform.rotation * Vector3.up);
-
     }
 
-    private void LateUpdate() {
+    void LateUpdate() {
         text.text = string.Format("{0:0.}", current);
     }
+
+    public void Reduce(int amount) {
+        current -= amount;
+        TESTHEALTH = current;
+    }
+
+    public static int TESTHEALTH;
 }

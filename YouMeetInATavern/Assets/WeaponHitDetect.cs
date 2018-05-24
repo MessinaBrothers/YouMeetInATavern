@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class WeaponHitDetect : MonoBehaviour {
 
+    public static event WeaponHitEventHandler weaponHitEventHandler;
+    public delegate void WeaponHitEventHandler(int attackWeaponID, GameObject hitObject);
+
     private new Collider collider;
 
     private List<GameObject> hitObjects;
 
+    private int id;
+
     void Awake() {
+        id = GetComponentInParent<EntityID>().id;
+
         collider = GetComponent<Collider>();
         hitObjects = new List<GameObject>();
     }
 
     void Update() {
-        // allows collisions to trigger when on enable
+        // allows collisions to trigger on enable
         collider.enabled = true;
     }
 
@@ -28,7 +35,7 @@ public class WeaponHitDetect : MonoBehaviour {
         if (enabled == true) {
             if (hitObjects.Contains(other.gameObject) == false) {
                 hitObjects.Add(other.gameObject);
-                print(other.name);
+                weaponHitEventHandler.Invoke(id, other.gameObject);
             }
         }
     }
