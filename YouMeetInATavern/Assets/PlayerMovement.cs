@@ -58,7 +58,6 @@ public class PlayerMovement : MonoBehaviour {
                 isFalling = false;
                 isJumping = false;
             } else {
-                print(hit.point.y + jumpThreshold * 2);
                 if (distance > jumpThreshold * 2) {
                     isFalling = true;
                 }
