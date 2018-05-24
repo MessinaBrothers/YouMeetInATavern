@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public RandomClip jumpClips;
+    public RandomClip landClips, jumpClips;
     
     public float moveSpeed, rotSpeed, jumpSpeed, jumpThreshold;
 
     private Quaternion lookQuat;
     private Rigidbody rb;
 
-    private bool isFalling;
+    private bool isFalling, isJumping;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour {
         if (isFalling == false) {
             if (Input.GetButtonDown("Fire1")) {
                 rb.AddForce(transform.up * jumpSpeed);
+                jumpClips.PlaySound();
+                isJumping = true;
             }
         }
 
@@ -40,19 +42,24 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Fall() {
+        if (isJumping == false) return;
+
         float distance = 0;
         RaycastHit hit;
 
-        Ray downRay = new Ray(transform.position, -Vector3.up);
+        Vector3 origin = transform.position;
+        origin.y += jumpThreshold;
+
+        Ray downRay = new Ray(origin, -Vector3.up);
         if (Physics.Raycast(downRay, out hit)) {
             distance = hit.distance;
-
-            if (isFalling && distance <= jumpThreshold) {
-                print("Landed!");
-                jumpClips.PlaySound();
+            if (isFalling && distance <= jumpThreshold * 2) {
+                //landClips.PlaySound();
                 isFalling = false;
+                isJumping = false;
             } else {
-                if (distance > jumpThreshold) {
+                print(hit.point.y + jumpThreshold * 2);
+                if (distance > jumpThreshold * 2) {
                     isFalling = true;
                 }
             }

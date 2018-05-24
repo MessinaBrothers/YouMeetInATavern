@@ -1367,11 +1367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8175506a23cdf7647b475c7867fecd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClips: {fileID: 1549142895}
+  landClips: {fileID: 1549142895}
+  jumpClips: {fileID: 1549142893}
   moveSpeed: 4
   rotSpeed: 500
   jumpSpeed: 3000
-  jumpThreshold: 0.1
+  jumpThreshold: 0.01
 --- !u!114 &1549142892
 MonoBehaviour:
   m_ObjectHideFlags: 0
