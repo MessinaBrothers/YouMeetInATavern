@@ -1,26 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AttackPlayer : DataUser {
 
-    private SteeringBehavior steering;
+    private NavMeshAgent agent;
 
     private Transform player;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        steering = GetComponent<SteeringBehavior>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update() {
-        // if distance to player is greater that reach distance
-        if ((transform.position - player.position).sqrMagnitude > data.enemyReachDistance * data.enemyReachDistance) {
-            // set the steering behaviour target
-            steering.target = player;
-        } else {
-            steering.target = null;
-        }
+        agent.destination = player.transform.position;
 
         //slowly look at player
         Quaternion lookQuat = Quaternion.LookRotation(player.position - transform.position);

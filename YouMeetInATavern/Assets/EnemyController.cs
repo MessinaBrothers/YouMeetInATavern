@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : DataUser {
 
     private AttackPlayer attackPlayer;
 
+    private NavMeshAgent agent;
     private new Collider collider;
     private Rigidbody rb;
 
@@ -14,10 +16,14 @@ public class EnemyController : MonoBehaviour {
     void Start() {
         attackPlayer = gameObject.AddComponent<AttackPlayer>();
 
+        agent = GetComponent<NavMeshAgent>();
         collider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
 
         id = GetComponentInParent<EntityID>().id;
+
+        agent.speed = data.enemyMoveSpeed;
+        agent.stoppingDistance = data.enemyReachDistance;
     }
 
     void Update() {
@@ -29,6 +35,7 @@ public class EnemyController : MonoBehaviour {
             attackPlayer.enabled = false;
             collider.enabled = false;
             rb.isKinematic = true;
+            agent.enabled = false;
         }
     }
 
