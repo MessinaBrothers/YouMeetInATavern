@@ -5,13 +5,20 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
+    public static event DeathEventHandler deathEventHandler;
+    public delegate void DeathEventHandler(int deadID);
+
     public int max;
     private int current;
+
+    private int id;
 
     private Text text;
 
     void Start() {
         current = max;
+
+        id = GetComponentInParent<EntityID>().id;
 
         text = GetComponentInChildren<Text>();
     }
@@ -34,6 +41,10 @@ public class Health : MonoBehaviour {
         Health hitHealth = hitObject.GetComponentInChildren<Health>();
         if (hitHealth == this) {
             Reduce(1);
+
+            if (current <= 0) {
+                deathEventHandler.Invoke(id);
+            }
         }
     }
 
