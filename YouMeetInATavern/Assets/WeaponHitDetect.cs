@@ -9,6 +9,8 @@ public class WeaponHitDetect : MonoBehaviour {
 
     private new Collider collider;
 
+    // allows one hit per object per enable
+    // to allow new hits, clear the list (usually via Restart)
     private List<GameObject> hitObjects;
 
     private int id;

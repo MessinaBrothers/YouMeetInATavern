@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SteeringBehavior : MonoBehaviour {
-
-    public float moveSpeed;
+public class SteeringBehavior : DataUser {
 
     public Transform target;
 
@@ -15,7 +13,7 @@ public class SteeringBehavior : MonoBehaviour {
     void Update() {
         if (target != null) {
             // move to target
-            transform.Translate((target.position - transform.position).normalized * moveSpeed * Time.deltaTime, Space.World);
+            transform.Translate((target.position - transform.position).normalized * data.enemyMoveSpeed * Time.deltaTime, Space.World);
         }
     }
 }

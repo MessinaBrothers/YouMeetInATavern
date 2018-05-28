@@ -125,10 +125,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4474543303907676}
   - component: {fileID: 54646314339756598}
+  - component: {fileID: 136589164331407198}
+  - component: {fileID: 114884965454806986}
   - component: {fileID: 114609806899917820}
   - component: {fileID: 114647598708312670}
-  - component: {fileID: 114884965454806986}
-  - component: {fileID: 136589164331407198}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607865295516760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.96, y: 0, z: 0}
+  m_LocalPosition: {x: 0.069, y: 0, z: 1.133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4282634023926288}
@@ -378,8 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a43f370dd6891479c9e640df2bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current: 100
-  max: 100
+  max: 3
 --- !u!114 &114262283667361484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,7 +437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ce393527102024288e93da57b5d372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
   target: {fileID: 0}
 --- !u!114 &114647598708312670
 MonoBehaviour:
@@ -451,8 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4e77988929bb145abe9ef76dbf9757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachDistance: 1.5
-  rotSpeed: 500
 --- !u!114 &114695306127479108
 MonoBehaviour:
   m_ObjectHideFlags: 1

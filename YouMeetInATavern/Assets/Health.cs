@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
-    public int current, max;
+    public int max;
+    private int current;
 
     private Text text;
 
@@ -27,8 +28,20 @@ public class Health : MonoBehaviour {
 
     public void Reduce(int amount) {
         current -= amount;
-        TESTHEALTH = current;
     }
 
-    public static int TESTHEALTH;
+    private void Hit(int attackWeaponID, GameObject hitObject) {
+        Health hitHealth = hitObject.GetComponentInChildren<Health>();
+        if (hitHealth == this) {
+            Reduce(1);
+        }
+    }
+
+    void OnEnable() {
+        WeaponHitDetect.weaponHitEventHandler += Hit;
+    }
+
+    void OnDisable() {
+        WeaponHitDetect.weaponHitEventHandler -= Hit;
+    }
 }

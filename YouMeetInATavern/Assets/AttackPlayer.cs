@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPlayer : MonoBehaviour {
-
-    public float reachDistance, rotSpeed;
+public class AttackPlayer : DataUser {
 
     private SteeringBehavior steering;
 
@@ -17,7 +15,7 @@ public class AttackPlayer : MonoBehaviour {
 
     void Update() {
         // if distance to player is greater that reach distance
-        if ((transform.position - player.position).sqrMagnitude > reachDistance * reachDistance) {
+        if ((transform.position - player.position).sqrMagnitude > data.enemyReachDistance * data.enemyReachDistance) {
             // set the steering behaviour target
             steering.target = player;
         } else {
@@ -26,6 +24,6 @@ public class AttackPlayer : MonoBehaviour {
 
         //slowly look at player
         Quaternion lookQuat = Quaternion.LookRotation(player.position - transform.position);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookQuat, rotSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookQuat, data.enemyRotSpeed * Time.deltaTime);
     }
 }

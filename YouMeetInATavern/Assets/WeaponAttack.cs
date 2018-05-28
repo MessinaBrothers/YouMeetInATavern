@@ -18,9 +18,6 @@ public class WeaponAttack : MonoBehaviour {
 
     private bool canAttack;
 
-    //DEBUG
-    private int fireCount;
-
     void Start() {
         id = weapon.GetComponent<EntityID>().id;
 
@@ -34,10 +31,7 @@ public class WeaponAttack : MonoBehaviour {
     }
 
     void Update() {
-        
         if (canAttack == true && Input.GetButtonDown("Fire3")) {
-            fireCount += 1;
-            print(fireCount);
             hitDetect.Restart();
             weaponSound.PlaySound();
             weaponAnimator.SetTrigger("Swing");
@@ -58,7 +52,7 @@ public class WeaponAttack : MonoBehaviour {
             Health hitHealth = hitObject.GetComponentInChildren<Health>();
             if (hitHealth != null) {
                 //print("This weapon hit " + hitObject.name);
-                hitHealth.Reduce(1);
+                //hitHealth.Reduce(1);
             }
         }
     }
