@@ -8,25 +8,23 @@ public class EncounterController : MonoBehaviour {
     public List<string> spawnTimes;
 
     void Start() {
-        string s = "3.51M111L22B3";
-        int start = 0;
-        float spawnTime = float.Parse(s.Substring(start, s.IndexOf("M") - start));
-        print(spawnTime);
-        //int minionCount = int.Parse(
-        start = s.IndexOf("M") + "M".Length;
-        print(ParseMinionCount(s));
-        start = s.IndexOf("L") + "L".Length;
-        print(s.Substring(start, s.IndexOf("B") - start));
-        start = s.IndexOf("B") + "B".Length;
-        print(s.Substring(start, s.Length - start));
+        StartCoroutine(SpawnEnemies());
     }
 
-    void Update() {
-
+    private IEnumerator SpawnEnemies() {
+        for (int i = 0; i < spawnTimes.Count; i++) {
+            float spawnTime = float.Parse(Parse(spawnTimes[i], "", "M"));
+            yield return new WaitForSeconds(spawnTime);
+            int minionCount = int.Parse(Parse(spawnTimes[i], "M", "L"));
+            int lieutenantCount = int.Parse(Parse(spawnTimes[i], "L", "B"));
+            int bossCount = int.Parse(Parse(spawnTimes[i], "B", ""));
+            Debug.LogFormat("Spawning {0} minions, {1} lieutenants, and {2} bosses", minionCount, lieutenantCount, bossCount);
+        }
     }
 
-    private int ParseMinionCount(string s) {
-        int start = s.IndexOf("M") + "M".Length;
-        return int.Parse(s.Substring(start, s.IndexOf("L") - start));
+    private string Parse(string s, string start, string end) {
+        int startIndex = start == "" ? 0 : s.IndexOf(start) + start.Length;
+        int endIndex = end == "" ? s.Length : s.IndexOf(end);
+        return s.Substring(startIndex, endIndex - startIndex);
     }
 }
