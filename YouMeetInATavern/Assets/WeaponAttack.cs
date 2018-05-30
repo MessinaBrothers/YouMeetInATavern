@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour {
 
-    public GameObject weapon;
-
-    public float attackSpeed;
+    public float range;
 
     private RandomClip weaponSound;
     private WeaponHitDetect hitDetect;
@@ -19,11 +17,11 @@ public class WeaponAttack : MonoBehaviour {
     private bool canAttack;
 
     void Start() {
-        id = weapon.GetComponent<EntityID>().id;
+        id = GetComponent<EntityID>().id;
 
-        weaponSound = weapon.GetComponentInChildren<RandomClip>();
-        hitDetect = weapon.GetComponentInChildren<WeaponHitDetect>();
-        weaponAnimator = weapon.GetComponentInChildren<Animator>();
+        weaponSound = GetComponentInChildren<RandomClip>();
+        hitDetect = GetComponentInChildren<WeaponHitDetect>();
+        weaponAnimator = GetComponentInChildren<Animator>();
 
         hitDetect.enabled = false;
 
@@ -31,7 +29,17 @@ public class WeaponAttack : MonoBehaviour {
     }
 
     void Update() {
-        if (canAttack == true && Input.GetButtonDown("Fire3")) {
+        //if (canAttack == true && Input.GetButtonDown("Fire3")) {
+        //    hitDetect.Restart();
+        //    weaponSound.PlaySound();
+        //    weaponAnimator.SetTrigger("Swing");
+
+        //    canAttack = false;
+        //}
+    }
+
+    public void Attack() {
+        if (canAttack == true) {
             hitDetect.Restart();
             weaponSound.PlaySound();
             weaponAnimator.SetTrigger("Swing");
