@@ -44,6 +44,7 @@ public class Health : MonoBehaviour {
 
             if (current <= 0) {
                 deathEventHandler.Invoke(id);
+                Destroy(gameObject);
             }
         }
     }
