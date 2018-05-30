@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 195189120437930584}
   - component: {fileID: 114884965454806986}
   - component: {fileID: 114162048712034110}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyMinion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 65201816759716312}
   - component: {fileID: 23076589226129050}
   - component: {fileID: 114275672973742228}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 114890886708303252}
   - component: {fileID: 82140463648594398}
   - component: {fileID: 114612014232045950}
+  - component: {fileID: 114413892443882232}
   m_Layer: 0
   m_Name: Longsword
   m_TagString: Untagged
@@ -323,7 +324,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607865295516760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: -2}
+  m_LocalPosition: {x: -4.31, y: 0, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4282634023926288}
@@ -830,7 +831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e34fa59eed43e469923083ee919688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1727963943028510}
 --- !u!114 &114262283667361484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -889,6 +889,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &114413892443882232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1727963943028510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830047e8fc88fa9468b61fe8514c88c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1.75
 --- !u!114 &114427112564084702
 MonoBehaviour:
   m_ObjectHideFlags: 1

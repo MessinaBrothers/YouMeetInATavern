@@ -36,6 +36,7 @@ public class WeaponHitDetect : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (enabled == true) {
             if (hitObjects.Contains(other.gameObject) == false) {
+                print(other.gameObject.name);
                 hitObjects.Add(other.gameObject);
                 weaponHitEventHandler.Invoke(id, other.gameObject);
             }

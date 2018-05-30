@@ -20,7 +20,7 @@ public class AttackPlayer : DataUser {
     }
 
     void Update() {
-        if (Vector3.Distance(transform.position, player.position) < weapon.range * weapon.range) {
+        if (Vector3.Distance(transform.position, player.position) < weapon.range) {
             weapon.Attack();
         }
 
