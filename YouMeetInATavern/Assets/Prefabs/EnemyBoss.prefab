@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 114884965454806986}
   - component: {fileID: 114162048712034110}
   m_Layer: 0
-  m_Name: Minion
+  m_Name: EnemyBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 478051137738a4449946147b4ffc98b1, type: 2}
+  - {fileID: 2100000, guid: f9bcd4256fdc56e459997a481e2df778, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
