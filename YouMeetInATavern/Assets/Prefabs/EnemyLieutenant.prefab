@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 82107620647914982}
   - component: {fileID: 114265874570752150}
   - component: {fileID: 114698453337139390}
+  - component: {fileID: 114461086829242530}
   m_Layer: 0
   m_Name: Longsword
   m_TagString: Untagged
@@ -928,6 +929,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e24edb39b1d70c45955738ac220d117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114461086829242530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1728850063237418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42595d1e07eef7b43acf3cdf3cf51bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 057c6e93b3617294e8f1bb4ccdfa4dd0, type: 3}
 --- !u!114 &114695306127479108
 MonoBehaviour:
   m_ObjectHideFlags: 1
