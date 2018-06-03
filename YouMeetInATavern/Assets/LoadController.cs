@@ -6,11 +6,10 @@ public class LoadController : MonoBehaviour {
 
     public GameObject startingWeaponPrefab;
     
-	void Start () {
-        // load the player's weapon icon on game start
-        // in the future: equip the weapon for the player?
+	void Awake () {
+        // load the player's weapon on game start
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        
+        player.GetComponentInChildren<ItemSlot>().EquipItem(Instantiate(startingWeaponPrefab));
 	}
 	
 	void Update () {
