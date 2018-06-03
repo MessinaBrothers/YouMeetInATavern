@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
+
+    public Action<int> spawnEvent;
 
     public GameObject enemyMinion;
 
@@ -37,5 +40,6 @@ public class EnemySpawner : MonoBehaviour {
     private void Spawn() {
         GameObject go = Instantiate(enemyMinion, spawnTransform.position, Quaternion.identity);
         go.transform.parent = enemyParent;
+        spawnEvent(go.GetComponent<EntityID>().id);
     }
 }
