@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour {
 
+    public int damage;
     public float range;
 
     private RandomClip weaponSound;
@@ -55,7 +56,7 @@ public class WeaponAttack : MonoBehaviour {
         }
     }
 
-    private void Hit(int attackWeaponID, GameObject hitObject) {
+    private void Hit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
         if (id == attackWeaponID) {
             Health hitHealth = hitObject.GetComponentInChildren<Health>();
             if (hitHealth != null) {

@@ -901,6 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830047e8fc88fa9468b61fe8514c88c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   range: 1.75
 --- !u!114 &114427112564084702
 MonoBehaviour:
@@ -936,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42595d1e07eef7b43acf3cdf3cf51bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 057c6e93b3617294e8f1bb4ccdfa4dd0, type: 3}
+  icon: {fileID: 0}
 --- !u!114 &114695306127479108
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -37,10 +37,11 @@ public class Health : MonoBehaviour {
         current -= amount;
     }
 
-    private void Hit(int attackWeaponID, GameObject hitObject) {
+    private void Hit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
         Health hitHealth = hitObject.GetComponentInChildren<Health>();
         if (hitHealth == this) {
-            Reduce(1);
+
+            Reduce(weaponObject.GetComponent<WeaponAttack>().damage);
 
             if (current <= 0) {
                 deathEventHandler.Invoke(id);

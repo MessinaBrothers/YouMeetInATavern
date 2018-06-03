@@ -5,8 +5,9 @@ using UnityEngine;
 public class WeaponHitDetect : MonoBehaviour {
 
     public static event WeaponHitEventHandler weaponHitEventHandler;
-    public delegate void WeaponHitEventHandler(int attackWeaponID, GameObject hitObject);
+    public delegate void WeaponHitEventHandler(int attackWeaponID, GameObject weaponObject, GameObject hitObject);
 
+    private GameObject weapon;
     private new Collider collider;
 
     // allows one hit per object per enable
@@ -16,7 +17,9 @@ public class WeaponHitDetect : MonoBehaviour {
     private int id;
 
     void Awake() {
-        id = GetComponentInParent<EntityID>().id;
+        EntityID entityID = GetComponentInParent<EntityID>();
+        weapon = entityID.gameObject;
+        id = entityID.id;
 
         collider = GetComponent<Collider>();
         hitObjects = new List<GameObject>();
@@ -37,7 +40,7 @@ public class WeaponHitDetect : MonoBehaviour {
         if (enabled == true) {
             if (hitObjects.Contains(other.gameObject) == false) {
                 hitObjects.Add(other.gameObject);
-                weaponHitEventHandler.Invoke(id, other.gameObject);
+                weaponHitEventHandler.Invoke(id, weapon, other.gameObject);
             }
         }
     }
