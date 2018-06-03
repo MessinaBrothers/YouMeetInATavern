@@ -5,6 +5,6 @@ using UnityEngine.UI;
 
 public class Icon : MonoBehaviour {
 
-    public Sprite sprite;
+    public Sprite icon;
 
 }

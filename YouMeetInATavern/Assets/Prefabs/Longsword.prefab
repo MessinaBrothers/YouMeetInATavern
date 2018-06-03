@@ -495,4 +495,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42595d1e07eef7b43acf3cdf3cf51bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 057c6e93b3617294e8f1bb4ccdfa4dd0, type: 3}
+  icon: {fileID: 21300000, guid: 057c6e93b3617294e8f1bb4ccdfa4dd0, type: 3}
