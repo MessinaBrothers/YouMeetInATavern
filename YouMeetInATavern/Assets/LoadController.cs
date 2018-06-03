@@ -5,14 +5,16 @@ using UnityEngine;
 public class LoadController : MonoBehaviour {
 
     public GameObject startingWeaponPrefab;
+
+    private bool hasStarted = false;
     
-	void Awake () {
-        // load the player's weapon on game start
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponentInChildren<ItemSlot>().EquipItem(Instantiate(startingWeaponPrefab));
-	}
-	
-	void Update () {
-		
-	}
+    void Update() {
+        if (hasStarted == false) {
+            hasStarted = true;
+
+            // load the player's weapon on game start
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponentInChildren<ItemSlot>().EquipItem(Instantiate(startingWeaponPrefab));
+        }
+    }
 }

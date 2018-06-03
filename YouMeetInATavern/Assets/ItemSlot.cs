@@ -19,8 +19,15 @@ public class ItemSlot : MonoBehaviour {
     }
 
     public void EquipItem(GameObject go) {
+        // for now, destroy the currently-held item
+        if (heldItem != null) {
+            Destroy(heldItem);
+        }
+
         heldItem = go;
         go.transform.parent = gameObject.transform;
+        go.transform.position = transform.position;
+        go.transform.rotation = transform.rotation;
         equipItemEventHandler.Invoke(GetComponentInParent<EntityID>().id, go.GetComponentInChildren<EntityID>().id, go);
     }
 }
