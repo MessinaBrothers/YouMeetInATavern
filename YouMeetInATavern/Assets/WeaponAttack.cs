@@ -49,7 +49,7 @@ public class WeaponAttack : MonoBehaviour {
     }
 
     private void EndAttack(int attackWeaponID) {
-        if (id == attackWeaponID) {
+        if (id == attackWeaponID && hitDetect != null) {
             hitDetect.enabled = false;
             canAttack = true;
         }
