@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour {
 
+    public DebugData debug;
+
     [Header("Enemy")]
     public float enemyMoveSpeed;
     public float enemyRotSpeed;
@@ -34,8 +36,8 @@ public class GameData : MonoBehaviour {
     [Header("Game End")]
     public bool hasWon;
 
-    void Start() {
-
+    void Awake() {
+        
     }
 
 }

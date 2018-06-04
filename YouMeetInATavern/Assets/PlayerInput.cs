@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : DataUser {
+
+    public static event PlayerInteractEventHandler playerInteractEventHandler;
+    public delegate void PlayerInteractEventHandler(GameObject interactable);
 
     public float interactDistance;
 
@@ -15,14 +18,21 @@ public class PlayerInput : MonoBehaviour {
     }
 
     void Update() {
+        if (data.debug.IS_DEBUG) {
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
             Vector3 pos = transform.position;
             pos.y = 1;
             Debug.DrawRay(pos, fwd * interactDistance, Color.green);
+        }
+
         if (Input.GetButtonDown("Fire1")) {
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Vector3 pos = transform.position;
+            pos.y = 1;
             RaycastHit hit;
             if (Physics.Raycast(pos, fwd, out hit, interactDistance)) {
                 print("Player wants to interact with " + hit.collider.name);
+                playerInteractEventHandler.Invoke(hit.collider.gameObject);
             }
         }
         if (Input.GetButtonDown("Fire3")) {
