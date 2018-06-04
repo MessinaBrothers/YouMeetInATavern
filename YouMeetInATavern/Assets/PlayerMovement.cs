@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
         
         // jump
         if (isFalling == false) {
-            if (Input.GetButtonDown("Fire1")) {
+            if (Input.GetButtonDown("Jump")) {
                 rb.AddForce(transform.up * jumpSpeed);
                 jumpClips.PlaySound();
                 isJumping = true;
