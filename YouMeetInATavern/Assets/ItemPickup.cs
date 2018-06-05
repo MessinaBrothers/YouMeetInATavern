@@ -8,14 +8,17 @@ public class ItemPickup : MonoBehaviour {
     public GameObject itemToEquipPrefab;
     public GameObject modelToRemove, glowToRemove;
     public Transform itemPosition;
+    public AudioClip removeSound;
 
     public bool hasItemToPickup;
     public float maxAngle;
 
     private Transform player;
+    private AudioSource audioSource;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = GetComponent<AudioSource>();
         hasItemToPickup = true;
     }
 
@@ -42,6 +45,7 @@ public class ItemPickup : MonoBehaviour {
             player.gameObject.GetComponentInChildren<ItemSlot>().EquipItem(Instantiate(itemToEquipPrefab));
             modelToRemove.SetActive(false);
             glowToRemove.SetActive(false);
+            audioSource.PlayOneShot(removeSound);
         }
     }
 }
