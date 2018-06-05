@@ -7,6 +7,9 @@ public class PlayerInput : DataUser {
     public static event PlayerInteractEventHandler playerInteractEventHandler;
     public delegate void PlayerInteractEventHandler(GameObject interactable);
 
+    public static event PlayerInspectEventHandler playerInspectEventHandler;
+    public delegate void PlayerInspectEventHandler(GameObject inspectable);
+
     public float interactDistance;
 
     private WeaponAttack weapon;
@@ -25,6 +28,7 @@ public class PlayerInput : DataUser {
             Debug.DrawRay(pos, fwd * interactDistance, Color.green);
         }
 
+        // interact
         if (Input.GetButtonDown("Fire1")) {
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
             Vector3 pos = transform.position;
@@ -35,6 +39,20 @@ public class PlayerInput : DataUser {
                 playerInteractEventHandler.Invoke(hit.collider.gameObject);
             }
         }
+
+        // inspect
+        if (Input.GetButtonDown("Fire2")) {
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Vector3 pos = transform.position;
+            pos.y = 1;
+            RaycastHit hit;
+            if (Physics.Raycast(pos, fwd, out hit, interactDistance)) {
+                print("Player wants to inspect " + hit.collider.name);
+                playerInspectEventHandler.Invoke(hit.collider.gameObject);
+            }
+        }
+
+        // attack
         if (Input.GetButtonDown("Fire3")) {
             weapon.Attack();
         }
