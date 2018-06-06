@@ -1115,6 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b553f5a1cafbf0e4fb3fd2e69d4f990a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textSpeed: 1000
   textPanel: {fileID: 1632110664}
   text: {fileID: 614655265}
 --- !u!1001 &872526548
@@ -1211,7 +1212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &964988025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2404,6 +2405,7 @@ GameObject:
   - component: {fileID: 1929058144}
   - component: {fileID: 1929058141}
   - component: {fileID: 1929058143}
+  - component: {fileID: 1929058145}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -2465,6 +2467,17 @@ MonoBehaviour:
   enemyRotSpeed: 500
   enemyReachDistance: 1.5
   hasWon: 0
+--- !u!114 &1929058145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929058140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cb8f65ecf88534ca3b4370c5a21b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1930134648
 Prefab:
   m_ObjectHideFlags: 0

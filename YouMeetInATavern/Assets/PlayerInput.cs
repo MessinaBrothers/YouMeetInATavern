@@ -10,6 +10,9 @@ public class PlayerInput : DataUser {
     public static event PlayerInspectEventHandler playerInspectEventHandler;
     public delegate void PlayerInspectEventHandler(GameObject inspectable);
 
+    public static event TextContinueEventHandler textContinueEventHandler;
+    public delegate void TextContinueEventHandler();
+
     public float interactDistance;
 
     private WeaponAttack weapon;
@@ -26,6 +29,15 @@ public class PlayerInput : DataUser {
             Vector3 pos = transform.position;
             pos.y = 1;
             Debug.DrawRay(pos, fwd * interactDistance, Color.green);
+        }
+
+        // if game is paused
+        if (Time.timeScale == 0) {
+            // inspect
+            if (Input.GetButtonDown("Fire2")) {
+                textContinueEventHandler.Invoke();
+            }
+            return;
         }
 
         // interact

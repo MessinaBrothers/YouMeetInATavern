@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
+        if (Time.timeScale == 0) {
+            return;
+        }
+
         // move player
         float h = moveSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
         float v = moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");
