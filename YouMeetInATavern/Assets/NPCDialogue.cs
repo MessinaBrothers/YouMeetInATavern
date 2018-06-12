@@ -9,6 +9,11 @@ public class NPCDialogue : MonoBehaviour {
     // "Quiet night out, wouldn't ya say?" >Any rumors? >Let's hope it stays that way
     // "This scar? I used to be a soldier." >Are you any good in a fight? >Got any old equipment laying around?
 
+    public static event DialogueEventHandler dialogueEventHandler;
+    public delegate void DialogueEventHandler(GameData.Dialogue dialogue);
+
+    public uint dialogueID;
+
     void Start() {
 
     }
