@@ -36,8 +36,21 @@ public class GameData : MonoBehaviour {
     [Header("Game End")]
     public bool hasWon;
 
+    [Header("Dialogue")]
+    public List<Dialogue> dialogue;
+
     void Awake() {
-        
+        dialogue = new List<Dialogue>();
     }
 
+    public class Dialogue {
+        public uint id;
+        public enum Type {
+            PROMPT, CHOICE
+        }
+        public Type type;
+        public string text;
+        public List<uint> nextDialogues;
+        public string reward;
+    }
 }

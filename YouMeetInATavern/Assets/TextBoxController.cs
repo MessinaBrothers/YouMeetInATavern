@@ -46,11 +46,6 @@ public class TextBoxController : MonoBehaviour {
         PlayerInput.textContinueEventHandler -= Continue;
     }
 
-    private void Continue() {
-        textPanel.SetActive(false);
-        stringToDisplay = "";
-    }
-
     private void DisplayInfo(GameObject go) {
         Inspectable inspectable = go.GetComponent<Inspectable>();
         if (inspectable != null) {
@@ -66,5 +61,10 @@ public class TextBoxController : MonoBehaviour {
             currentDisplay = "";
             text.text = "";
         }
+    }
+
+    private void Continue() {
+        textPanel.SetActive(false);
+        stringToDisplay = "";
     }
 }

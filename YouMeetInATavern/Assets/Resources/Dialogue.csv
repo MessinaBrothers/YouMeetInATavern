@@ -1,0 +1,14 @@
+ID,Type,Text,Next0,Next1,Next2,Reward
+0,Prompt,Halt! Who goes there?,1,2,3,
+1,Choice,Just a merchant…,4,,,
+2,Choice,No one. Bye.,,,,
+3,Choice,The duke’s messenger!,9,,,
+4,Prompt,A merchant of what?,5,6,,
+5,Choice,Baubles for the queen.,7,,,gold=50
+6,Choice,Your death!,8,,,
+7,Prompt,You may enter.,,,,
+8,Prompt,"Guards, Help!",,,,
+9,Prompt,What news from the duke?,10,11,,
+10,Choice,We are at war.,12,,,longsword
+11,Choice,‘Tis for the king’s ears.,12,,,
+12,Prompt,Then enter quickly!,,,,
