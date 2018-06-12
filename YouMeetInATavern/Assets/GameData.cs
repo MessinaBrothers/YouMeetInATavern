@@ -38,34 +38,9 @@ public class GameData : MonoBehaviour {
 
     [Header("Dialogue")]
     public Dictionary<uint, Dialogue> dialogues;
-    public static uint INVALID_UID;
+    public static uint INVALID_UID = 9999999;
 
     void Awake() {
         dialogues = new Dictionary<uint, Dialogue>();
-        INVALID_UID = 9999999;
-    }
-
-    public class Dialogue {
-        public uint id;
-        public enum Type {
-            PROMPT, CHOICE
-        }
-        public Type type;
-        public string text;
-        public List<uint> nextDialogues;
-        public string reward;
-
-        public Dialogue(uint id, Type type, string text, uint next0, uint next1, uint next2, string reward) {
-            this.id = id;
-            this.type = type;
-            this.text = text;
-
-            nextDialogues = new List<uint>();
-            if (next0 != INVALID_UID) nextDialogues.Add(next0);
-            if (next1 != INVALID_UID) nextDialogues.Add(next1);
-            if (next2 != INVALID_UID) nextDialogues.Add(next2);
-
-            this.reward = reward;
-        }
     }
 }

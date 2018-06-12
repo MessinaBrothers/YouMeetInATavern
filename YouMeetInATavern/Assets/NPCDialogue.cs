@@ -10,7 +10,7 @@ public class NPCDialogue : MonoBehaviour {
     // "This scar? I used to be a soldier." >Are you any good in a fight? >Got any old equipment laying around?
 
     public static event DialogueEventHandler dialogueEventHandler;
-    public delegate void DialogueEventHandler(GameData.Dialogue dialogue);
+    public delegate void DialogueEventHandler(Dialogue dialogue);
 
     public uint dialogueID;
 
