@@ -15,18 +15,21 @@ public class PlayerInput : DataUser {
 
     public float interactDistance;
 
+    private Transform player;
     private WeaponAttack weapon;
 
     private int playerID;
 
     void Start() {
-        playerID = GameObject.FindGameObjectWithTag("Player").GetComponent<EntityID>().id;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerID = player.GetComponent<EntityID>().id;
+        gameObject.name = "asdf;";
     }
 
     void Update() {
         if (data.debug.IS_DEBUG) {
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
-            Vector3 pos = transform.position;
+            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
+            Vector3 pos = player.transform.position;
             pos.y = 1;
             Debug.DrawRay(pos, fwd * interactDistance, Color.green);
         }
@@ -42,8 +45,8 @@ public class PlayerInput : DataUser {
 
         // interact
         if (Input.GetButtonDown("Fire1")) {
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
-            Vector3 pos = transform.position;
+            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
+            Vector3 pos = player.transform.position;
             pos.y = 1;
             RaycastHit hit;
             if (Physics.Raycast(pos, fwd, out hit, interactDistance)) {
@@ -54,8 +57,8 @@ public class PlayerInput : DataUser {
 
         // inspect
         if (Input.GetButtonDown("Fire2")) {
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
-            Vector3 pos = transform.position;
+            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
+            Vector3 pos = player.transform.position;
             pos.y = 1;
             RaycastHit hit;
             if (Physics.Raycast(pos, fwd, out hit, interactDistance)) {

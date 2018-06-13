@@ -32,9 +32,5 @@ public class DialogueController : DataUser {
             Dialogue dialogue = new Dialogue(id, type, text, next0, next1, next2, reward);
             data.dialogues.Add(id, dialogue);
         }
-
-        foreach (KeyValuePair<uint, Dialogue> dialogue in data.dialogues) {
-            print(dialogue.ToString());
-        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCDialogue : MonoBehaviour {
+public class NPCDialogue : DataUser {
 
     // "Want something?" >Yes >No
     // "Quiet night out, wouldn't ya say?" >Any rumors? >Let's hope it stays that way
@@ -32,7 +32,7 @@ public class NPCDialogue : MonoBehaviour {
 
     private void Chat(GameObject interactable) {
         if (interactable == gameObject) {
-            print("a;lsdkfads;lfkjadsf");
+            dialogueEventHandler.Invoke(data.dialogues[dialogueID]);
         }
     }
 }
