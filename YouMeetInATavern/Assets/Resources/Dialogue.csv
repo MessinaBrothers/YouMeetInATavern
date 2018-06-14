@@ -21,7 +21,7 @@ ID,Type,Text,Next0,Next1,Next2,Reward,Lock
 19,Prompt,This scar? I used to be a soldier.,20,21,22,,
 20,Choice,Are you any good in a fight?,25,,,,
 21,Choice,Got any old equipment laying around?,26,,,,
-22,Choice,It makes you look distinguished.,,,,,
+22,Choice,"Well, it makes you look distinguished.",,,,,
 23,Prompt,Somebody said they saw old man Tollicker in the market. Only he’s been dead for 20 years!,,,,,
 24,Prompt,Suit yourself.,,,,,
 25,Prompt,"I’m not the soldier I once was. But I can still swing a sword, if need be.",,,,barkeep,

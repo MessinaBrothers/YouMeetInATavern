@@ -26,14 +26,18 @@ public class DialogueController : DataUser {
             Dialogue.Type type = textData[index++].Equals("Prompt") ? Dialogue.Type.PROMPT : Dialogue.Type.CHOICE;
             string text = textData[index++];
             // account for commas in text dialogue e.g. "Guards, help!"
-            if (textData[index].Contains("\"")) text += ',' + textData[index++];
+            if (textData[index].Contains("\"")) {
+                text += ',' + textData[index++];
+                text = text.Substring(1);
+                text = text.Remove(text.Length - 1);
+
+            }
             uint next0 = textData[index].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index++]);
             uint next1 = textData[index].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index++]);
             uint next2 = textData[index].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index++]);
             string reward = textData[index++];
 
             Dialogue dialogue = new Dialogue(id, type, text, next0, next1, next2, reward);
-            print(dialogue);
             data.dialogues.Add(id, dialogue);
         }
     }
