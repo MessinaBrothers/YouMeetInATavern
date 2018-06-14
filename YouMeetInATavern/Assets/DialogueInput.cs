@@ -27,6 +27,10 @@ public class DialogueInput : DataUser {
         TextBoxController.playerDialogueChoiceEventHandler -= HandleInput;
     }
 
+    public void EndDialogue() {
+        endDialogueEventHandler.Invoke();
+    }
+
     private void HandleInput(uint dialogueIndex) {
         Dialogue dialogue = data.dialogues[dialogueIndex];
         // give player rewards
@@ -34,7 +38,7 @@ public class DialogueInput : DataUser {
         if (dialogue.nextDialogues.Count > 0) {
             dialogueEventHandler.Invoke(data.dialogues[dialogue.nextDialogues[0]]);
         } else {
-            endDialogueEventHandler.Invoke();
+            EndDialogue();
         }
     }
 }

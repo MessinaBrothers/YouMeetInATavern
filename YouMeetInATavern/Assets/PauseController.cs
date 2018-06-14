@@ -16,15 +16,15 @@ public class PauseController : MonoBehaviour {
     void OnEnable() {
         PlayerInput.playerInspectEventHandler += PauseGame;
         NPCDialogue.dialogueEventHandler += PauseGame;
-        PlayerInput.textContinueEventHandler += Continue;
-        DialogueInput.endDialogueEventHandler += Continue;
+        PlayerInput.textContinueEventHandler += UnpauseGame;
+        DialogueInput.endDialogueEventHandler += UnpauseGame;
     }
 
     void OnDisable() {
         PlayerInput.playerInspectEventHandler -= PauseGame;
         NPCDialogue.dialogueEventHandler -= PauseGame;
-        PlayerInput.textContinueEventHandler -= Continue;
-        DialogueInput.endDialogueEventHandler -= Continue;
+        PlayerInput.textContinueEventHandler -= UnpauseGame;
+        DialogueInput.endDialogueEventHandler -= UnpauseGame;
     }
 
     private void PauseGame(GameObject go) {
@@ -38,7 +38,7 @@ public class PauseController : MonoBehaviour {
         Time.timeScale = 0;
     }
 
-    private void Continue() {
+    public void UnpauseGame() {
         Time.timeScale = 1;
     }
 }

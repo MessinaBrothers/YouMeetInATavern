@@ -9,6 +9,8 @@ public class TextBoxController : DataUser {
     public static event PlayerDialogueChoiceEventHandler playerDialogueChoiceEventHandler;
     public delegate void PlayerDialogueChoiceEventHandler(uint dialogueIndex);
 
+
+
     public float textSpeed;
 
     public GameObject textPanel;
@@ -143,7 +145,7 @@ public class TextBoxController : DataUser {
         continueButton.gameObject.SetActive(false);
     }
 
-    private void Continue() {
+    public void Continue() {
         textPanel.SetActive(false);
         stringToDisplay = "";
     }

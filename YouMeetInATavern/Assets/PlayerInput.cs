@@ -23,7 +23,6 @@ public class PlayerInput : DataUser {
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerID = player.GetComponent<EntityID>().id;
-        gameObject.name = "asdf;";
     }
 
     void Update() {
