@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : DataUser {
+public class PlayerInput : MyInput {
 
     public static event PlayerInteractEventHandler playerInteractEventHandler;
     public delegate void PlayerInteractEventHandler(GameObject interactable);
@@ -15,35 +16,28 @@ public class PlayerInput : DataUser {
 
     public float interactDistance;
 
-    private Transform player;
+    private GameObject player;
     private WeaponAttack weapon;
 
     private int playerID;
 
     void Start() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         playerID = player.GetComponent<EntityID>().id;
     }
 
-    void Update() {
-        if (data.debug.IS_DEBUG) {
-            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
-            Vector3 pos = player.transform.position;
-            pos.y = 1;
-            Debug.DrawRay(pos, fwd * interactDistance, Color.green);
-        }
-
+    public override void Handle(string input) {
         // if game is paused
         if (Time.timeScale == 0) {
             // inspect
-            if (Input.GetButtonDown("Fire2")) {
+            if (input == "Fire2") {
                 textContinueEventHandler.Invoke();
             }
             return;
         }
 
         // interact
-        if (Input.GetButtonDown("Fire1")) {
+        if (input == "Fire1") {
             Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
             Vector3 pos = player.transform.position;
             pos.y = 1;
@@ -55,7 +49,7 @@ public class PlayerInput : DataUser {
         }
 
         // inspect
-        if (Input.GetButtonDown("Fire2")) {
+        if (input == "Fire2") {
             Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
             Vector3 pos = player.transform.position;
             pos.y = 1;
@@ -67,20 +61,30 @@ public class PlayerInput : DataUser {
         }
 
         // attack
-        if (Input.GetButtonDown("Fire3")) {
+        if (input == "Fire3") {
             weapon.Attack();
         }
     }
 
+    void Update() {
+        if (data.debug.IS_DEBUG) {
+            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
+            Vector3 pos = player.transform.position;
+            pos.y = 1;
+            Debug.DrawRay(pos, fwd * interactDistance, Color.green);
+        }
+    }
+
     void OnEnable() {
-        ItemSlot.equipItemEventHandler += LoadWeapon;
+        ItemSlot.equipItemEventHandler += EquipItem;
     }
 
     void OnDisable() {
-        ItemSlot.equipItemEventHandler -= LoadWeapon;
+        ItemSlot.equipItemEventHandler -= EquipItem;
     }
 
-    private void LoadWeapon(int equipperID, int itemID, GameObject go) {
+    private void EquipItem(int equipperID, int itemID, GameObject go) {
+        print("Loading weapon");
         if (equipperID == playerID) {
             weapon = go.GetComponentInChildren<WeaponAttack>();
         }
