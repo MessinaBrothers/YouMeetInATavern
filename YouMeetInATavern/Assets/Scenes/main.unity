@@ -1130,6 +1130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f9b745237e8d545a818c07f8b7dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axePrefab: {fileID: 1473341421446804, guid: 173fbda3e7a93f540bbf1505f9006e7e, type: 2}
 --- !u!4 &522479648
 Transform:
   m_ObjectHideFlags: 0

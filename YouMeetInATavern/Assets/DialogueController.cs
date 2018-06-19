@@ -32,13 +32,15 @@ public class DialogueController : DataUser {
                 text = text.Remove(text.Length - 1);
 
             }
-            uint next0 = textData[index].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index++]);
-            uint next1 = textData[index].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index++]);
-            uint next2 = textData[index].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index++]);
+            uint next0 = textData[index++].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index-1]);
+            uint next1 = textData[index++].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index-1]);
+            uint next2 = textData[index++].Length == 0 ? GameData.INVALID_UID : uint.Parse(textData[index-1]);
+
             string reward = textData[index++];
 
             Dialogue dialogue = new Dialogue(id, type, text, next0, next1, next2, reward);
             data.dialogues.Add(id, dialogue);
+
         }
     }
 }
