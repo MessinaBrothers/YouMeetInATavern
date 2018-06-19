@@ -8,9 +8,7 @@ public class TextBoxController : DataUser {
 
     public static event PlayerDialogueChoiceEventHandler playerDialogueChoiceEventHandler;
     public delegate void PlayerDialogueChoiceEventHandler(uint dialogueIndex);
-
-
-
+    
     public float textSpeed;
 
     public GameObject textPanel;
@@ -27,6 +25,10 @@ public class TextBoxController : DataUser {
         textPanel.SetActive(false);
         stringToDisplay = "";
         currentDisplay = "";
+
+        foreach (GameObject choiceButton in choiceButtons) {
+            choiceButton.GetComponentInChildren<Text>().text = "";
+        }
     }
 
     void Update() {
