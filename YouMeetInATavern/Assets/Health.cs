@@ -8,6 +8,9 @@ public class Health : MonoBehaviour {
     public static event DeathEventHandler deathEventHandler;
     public delegate void DeathEventHandler(int deadID);
 
+    public float invincibleAfterHitTime;
+    private float invincibleTimer;
+
     public int max;
     private int current;
 
@@ -27,6 +30,10 @@ public class Health : MonoBehaviour {
         // always orient up
         // http://wiki.unity3d.com/index.php?title=CameraFacingBillboard
         transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.up, Camera.main.transform.rotation * Vector3.up);
+
+        if (invincibleTimer > 0) {
+            invincibleTimer -= Time.deltaTime;
+        }
     }
 
     void LateUpdate() {
@@ -38,6 +45,10 @@ public class Health : MonoBehaviour {
     }
 
     private void Hit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
+        if (invincibleTimer > 0) {
+            return;
+        }
+
         Health hitHealth = hitObject.GetComponentInChildren<Health>();
         if (hitHealth == this) {
 
@@ -46,6 +57,8 @@ public class Health : MonoBehaviour {
             if (current <= 0) {
                 deathEventHandler.Invoke(id);
                 Destroy(gameObject);
+            } else {
+                invincibleTimer = invincibleAfterHitTime;
             }
         }
     }
