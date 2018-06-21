@@ -303,6 +303,11 @@ Prefab:
       propertyPath: max
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 114721832850441890, guid: 98b90157df3d30f40b8fca942a413523,
+        type: 2}
+      propertyPath: invincibleAfterHitTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98b90157df3d30f40b8fca942a413523, type: 2}
   m_IsPrefabParent: 0
@@ -2706,9 +2711,12 @@ MonoBehaviour:
   landClips: {fileID: 1549142895}
   jumpClips: {fileID: 1549142893}
   moveSpeed: 4
-  rotSpeed: 500
+  rotSpeed: 600
   jumpSpeed: 3000
   jumpThreshold: 0.01
+  moveVelocityMin: 0.04
+  rotateMin: 0.01
+  velocityReduction: 5
 --- !u!114 &1549142893
 MonoBehaviour:
   m_ObjectHideFlags: 0

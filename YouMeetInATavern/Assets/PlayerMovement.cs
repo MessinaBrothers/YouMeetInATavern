@@ -7,11 +7,14 @@ public class PlayerMovement : MonoBehaviour {
     public RandomClip landClips, jumpClips;
     
     public float moveSpeed, rotSpeed, jumpSpeed, jumpThreshold;
+    public float moveVelocityMin, rotateMin, velocityReduction;
 
     private Quaternion lookQuat;
     private Rigidbody rb;
 
     private bool isFalling, isJumping;
+
+    private Vector3 lastVelocity;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -25,10 +28,26 @@ public class PlayerMovement : MonoBehaviour {
         // move player
         float h = moveSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
         float v = moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");
-        transform.Translate(h, 0, v, Space.World);
+        Vector3 velocity = new Vector3(h, 0, v);
+        // if the velocity is greater than the min speed needed to move
+        if (velocity.sqrMagnitude > moveVelocityMin * moveVelocityMin) {
+            // move the player by its speed
+            transform.Translate(velocity, Space.World);
+            // save the speed
+            lastVelocity = velocity;
+        // if not moving and residual speed remains
+        } else if (lastVelocity.sqrMagnitude > 0.0001f) {
+            // move the player the residual speed
+            transform.Translate(lastVelocity, Space.World);
+            // reduce the residual speed
+            lastVelocity -= lastVelocity * velocityReduction * Time.deltaTime;
+        }
+        //if (velocity.magnitude > moveSpeed) {
+        //    //velocity = velocity.normalized * moveSpeed;
+        //}
 
         // slowly took at forward direction
-        if (h != 0 || v != 0) {
+        if (velocity.sqrMagnitude > rotateMin * rotateMin) {
             lookQuat = Quaternion.LookRotation(new Vector3(h, 0, v));
         }
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookQuat, rotSpeed * Time.deltaTime);
