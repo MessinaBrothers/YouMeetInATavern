@@ -1,0 +1,16 @@
+From Binding of Isaac
+X When hit, invulnerable for a time
+X After stop moving, player character floats forward (momentum)
+X Enemies can be passed through
+No melee enemies - there are projectiles, or touch attacks
+Mom's Knife: Melee attack (weapon moves forward and back)
+Can only attack in four directions
+Can move in all directions
+Attack is independent of movement
+
+From Legend of Zelda LttP
+Hurt by projectiles, or touching enemiesd
+X After attacking, player is immobile for a second
+Enemies are knocked back when hit, and are stunned for a second
+Can maneuver around enemy weapon hitbox
+Enemies move any direction, but mostly attack in 8 directions (N, NE, E, SE, etc)
