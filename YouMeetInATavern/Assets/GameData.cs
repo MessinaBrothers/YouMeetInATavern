@@ -6,6 +6,9 @@ public class GameData : MonoBehaviour {
 
     public DebugData debug;
 
+    [Header("Player")]
+    public bool isAttacking;
+
     [Header("Enemy")]
     public float enemyMoveSpeed;
     public float enemyRotSpeed;

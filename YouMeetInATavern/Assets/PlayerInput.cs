@@ -26,6 +26,25 @@ public class PlayerInput : MyInput {
         playerID = player.GetComponent<EntityID>().id;
     }
 
+    void Update() {
+        if (data.debug.IS_DEBUG) {
+            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
+            Vector3 pos = player.transform.position;
+            pos.y = 1;
+            Debug.DrawRay(pos, fwd * interactDistance, Color.green);
+        }
+        // save the attack data for player movement
+        if (weapon != null) data.isAttacking = !weapon.canAttack;
+    }
+
+    void OnEnable() {
+        ItemSlot.equipItemEventHandler += EquipItem;
+    }
+
+    void OnDisable() {
+        ItemSlot.equipItemEventHandler -= EquipItem;
+    }
+
     public override void Handle(string input) {
         // if game is paused
         if (Time.timeScale == 0) {
@@ -64,23 +83,6 @@ public class PlayerInput : MyInput {
         if (input == "Fire3") {
             weapon.Attack();
         }
-    }
-
-    void Update() {
-        if (data.debug.IS_DEBUG) {
-            Vector3 fwd = player.transform.TransformDirection(Vector3.forward);
-            Vector3 pos = player.transform.position;
-            pos.y = 1;
-            Debug.DrawRay(pos, fwd * interactDistance, Color.green);
-        }
-    }
-
-    void OnEnable() {
-        ItemSlot.equipItemEventHandler += EquipItem;
-    }
-
-    void OnDisable() {
-        ItemSlot.equipItemEventHandler -= EquipItem;
     }
 
     private void EquipItem(int equipperID, int itemID, GameObject go) {

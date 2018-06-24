@@ -15,7 +15,7 @@ public class WeaponAttack : MonoBehaviour {
 
     private int id;
 
-    private bool canAttack;
+    public bool canAttack;
 
     void Start() {
         id = GetComponent<EntityID>().id;

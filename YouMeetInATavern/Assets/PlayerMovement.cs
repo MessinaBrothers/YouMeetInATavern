@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : DataUser {
 
     public RandomClip landClips, jumpClips;
     
@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         if (Time.timeScale == 0) {
+            return;
+        } else if (data.isAttacking) {
+            lastVelocity = Vector3.zero;
             return;
         }
 
