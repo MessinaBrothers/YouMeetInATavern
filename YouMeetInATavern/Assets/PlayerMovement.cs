@@ -20,17 +20,14 @@ public class PlayerMovement : DataUser {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update() {
-        if (Time.timeScale == 0) {
-            return;
-        } else if (data.isAttacking) {
+    public void Move(float h, float v) {
+        if (data.canMove == false) {
             lastVelocity = Vector3.zero;
             return;
         }
 
-        // move player
-        float h = moveSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-        float v = moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");
+        h *= moveSpeed * Time.deltaTime;
+        v *= moveSpeed * Time.deltaTime;
         Vector3 velocity = new Vector3(h, 0, v);
         // if the velocity is greater than the min speed needed to move
         if (velocity.sqrMagnitude > moveVelocityMin * moveVelocityMin) {
@@ -38,7 +35,7 @@ public class PlayerMovement : DataUser {
             transform.Translate(velocity, Space.World);
             // save the speed
             lastVelocity = velocity;
-        // if not moving and residual speed remains
+            // if not moving and residual speed remains
         } else if (lastVelocity.sqrMagnitude > 0.0001f) {
             // move the player the residual speed
             transform.Translate(lastVelocity, Space.World);
@@ -54,14 +51,19 @@ public class PlayerMovement : DataUser {
             lookQuat = Quaternion.LookRotation(new Vector3(h, 0, v));
         }
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookQuat, rotSpeed * Time.deltaTime);
-        
-        // jump
+    }
+
+    public void Jump() {
         if (isFalling == false) {
-            if (Input.GetButtonDown("Jump")) {
-                rb.AddForce(transform.up * jumpSpeed);
-                jumpClips.PlaySound();
-                isJumping = true;
-            }
+            rb.AddForce(transform.up * jumpSpeed);
+            jumpClips.PlaySound();
+            isJumping = true;
+        }
+    }
+
+    void Update() {
+        if (Time.timeScale == 0) {
+            return;
         }
 
         Fall();

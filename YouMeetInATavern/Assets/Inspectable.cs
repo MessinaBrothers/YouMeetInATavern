@@ -16,11 +16,11 @@ public class Inspectable : MonoBehaviour {
     }
 
     void OnEnable() {
-        PlayerInput.playerInspectEventHandler += Inspect;
+        InputPlayer.playerInspectEventHandler += Inspect;
     }
 
     void OnDisable() {
-        PlayerInput.playerInspectEventHandler -= Inspect;
+        InputPlayer.playerInspectEventHandler -= Inspect;
     }
 
     private void Inspect(GameObject inspectable) {

@@ -19,11 +19,11 @@ public class NPCDialogue : DataUser {
     }
 
     void OnEnable() {
-        PlayerInput.playerInteractEventHandler += Chat;
+        InputPlayer.playerInteractEventHandler += Chat;
     }
 
     void OnDisable() {
-        PlayerInput.playerInteractEventHandler -= Chat;
+        InputPlayer.playerInteractEventHandler -= Chat;
     }
 
     private void Chat(GameObject interactable) {

@@ -31,11 +31,11 @@ public class ItemPickup : MonoBehaviour {
     }
 
     void OnEnable() {
-        PlayerInput.playerInteractEventHandler += Pickup;
+        InputPlayer.playerInteractEventHandler += Pickup;
     }
 
     void OnDisable() {
-        PlayerInput.playerInteractEventHandler -= Pickup;
+        InputPlayer.playerInteractEventHandler -= Pickup;
     }
 
     private void Pickup(GameObject interactable) {

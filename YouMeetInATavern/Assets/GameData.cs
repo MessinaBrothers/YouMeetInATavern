@@ -7,7 +7,8 @@ public class GameData : MonoBehaviour {
     public DebugData debug;
 
     [Header("Player")]
-    public bool isAttacking;
+    public bool canMove;
+    public float playerStunTime;
 
     [Header("Enemy")]
     public float enemyMoveSpeed;

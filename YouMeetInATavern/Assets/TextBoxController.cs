@@ -71,19 +71,19 @@ public class TextBoxController : DataUser {
     }
 
     void OnEnable() {
-        PlayerInput.playerInspectEventHandler += DisplayInfo;
+        InputPlayer.playerInspectEventHandler += DisplayInfo;
         NPCDialogue.dialogueEventHandler += DisplayDialogue;
-        DialogueInput.dialogueEventHandler += DisplayDialogue;
-        PlayerInput.textContinueEventHandler += Continue;
-        DialogueInput.endDialogueEventHandler += Continue;
+        InputDialogue.dialogueEventHandler += DisplayDialogue;
+        InputPlayer.textContinueEventHandler += Continue;
+        InputDialogue.endDialogueEventHandler += Continue;
     }
 
     void OnDisable() {
-        PlayerInput.playerInspectEventHandler -= DisplayInfo;
+        InputPlayer.playerInspectEventHandler -= DisplayInfo;
         NPCDialogue.dialogueEventHandler -= DisplayDialogue;
-        DialogueInput.dialogueEventHandler -= DisplayDialogue;
-        PlayerInput.textContinueEventHandler -= Continue;
-        DialogueInput.endDialogueEventHandler -= Continue;
+        InputDialogue.dialogueEventHandler -= DisplayDialogue;
+        InputPlayer.textContinueEventHandler -= Continue;
+        InputDialogue.endDialogueEventHandler -= Continue;
     }
 
     private void ChoiceOnClick(uint i) {

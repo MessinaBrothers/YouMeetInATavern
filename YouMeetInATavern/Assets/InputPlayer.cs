@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MyInput {
+public class InputPlayer : MyInput {
 
     public static event PlayerInteractEventHandler playerInteractEventHandler;
     public delegate void PlayerInteractEventHandler(GameObject interactable);
@@ -18,12 +18,14 @@ public class PlayerInput : MyInput {
 
     private GameObject player;
     private WeaponAttack weapon;
+    private PlayerMovement playerMovement;
 
     private int playerID;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         playerID = player.GetComponent<EntityID>().id;
+        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     void Update() {
@@ -34,7 +36,7 @@ public class PlayerInput : MyInput {
             Debug.DrawRay(pos, fwd * interactDistance, Color.green);
         }
         // save the attack data for player movement
-        if (weapon != null) data.isAttacking = !weapon.canAttack;
+        if (weapon != null) data.canMove = weapon.canAttack;
     }
 
     void OnEnable() {
@@ -83,6 +85,14 @@ public class PlayerInput : MyInput {
         if (input == "Fire3") {
             weapon.Attack();
         }
+
+        if (input == "Jump") {
+            playerMovement.Jump();
+        }
+    }
+
+    public override void Handle(float h, float v) {
+        playerMovement.Move(h, v);
     }
 
     private void EquipItem(int equipperID, int itemID, GameObject go) {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueInput : MyInput {
+public class InputDialogue : MyInput {
 
     public GameObject axePrefab;
 
@@ -24,6 +24,10 @@ public class DialogueInput : MyInput {
     }
 
     public override void Handle(string input) {
+        
+    }
+
+    public override void Handle(float h, float v) {
         
     }
 

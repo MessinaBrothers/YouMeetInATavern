@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-    private DialogueInput dialogueInput;
-    private PlayerInput playerInput;
+    private InputDialogue dialogueInput;
+    private InputPlayer playerInput;
 
     private MyInput currentInput;
 
@@ -14,8 +14,8 @@ public class InputController : MonoBehaviour {
     private bool justSwitched;
 
     void Start() {
-        dialogueInput = GetComponent<DialogueInput>();
-        playerInput = GetComponent<PlayerInput>();
+        dialogueInput = GetComponent<InputDialogue>();
+        playerInput = GetComponent<InputPlayer>();
 
         StartPlayerInput();
 
@@ -37,16 +37,23 @@ public class InputController : MonoBehaviour {
         if (Input.GetButtonDown("Fire3")) {
             currentInput.Handle("Fire3");
         }
+        if (Input.GetButtonDown("Jump")) {
+            currentInput.Handle("Jump");
+        }
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        currentInput.Handle(h, v);
     }
 
     void OnEnable() {
         NPCDialogue.dialogueEventHandler += StartDialogueInput;
-        DialogueInput.endDialogueEventHandler += StartPlayerInput;
+        InputDialogue.endDialogueEventHandler += StartPlayerInput;
     }
 
     void OnDisable() {
         NPCDialogue.dialogueEventHandler -= StartDialogueInput;
-        DialogueInput.endDialogueEventHandler -= StartPlayerInput;
+        InputDialogue.endDialogueEventHandler -= StartPlayerInput;
     }
 
     private void StartDialogueInput(Dialogue dialogue) {

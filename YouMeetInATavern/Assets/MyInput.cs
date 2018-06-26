@@ -6,4 +6,5 @@ public abstract class MyInput : DataUser {
 
     public abstract void Handle(string input);
 
+    public abstract void Handle(float h, float v);
 }

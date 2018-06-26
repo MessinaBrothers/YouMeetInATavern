@@ -1136,6 +1136,7 @@ GameObject:
   - component: {fileID: 522479649}
   - component: {fileID: 522479646}
   - component: {fileID: 522479647}
+  - component: {fileID: 522479650}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -1189,6 +1190,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0386aa0e6da27f54b9f646a5d1aada4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &522479650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 522479645}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797292717aef18740ac04f864b1793db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &524377128
@@ -3636,7 +3648,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: {fileID: 642211459}
-  isAttacking: 0
+  canMove: 0
+  playerStunTime: 0
   enemyMoveSpeed: 2
   enemyRotSpeed: 500
   enemyReachDistance: 1.5
