@@ -9,8 +9,69 @@ Can move in all directions
 Attack is independent of movement
 
 From Legend of Zelda LttP
-Hurt by projectiles, or touching enemiesd
+Hurt by projectiles, or touching enemies
 X After attacking, player is immobile for a second
-Enemies are knocked back when hit, and are stunned for a second
-Can maneuver around enemy weapon hitbox
-Enemies move any direction, but mostly attack in 8 directions (N, NE, E, SE, etc)
+X When enemy is hit, enemy is knocked back and stunned
+When enemy is hit, enemy is stunned and invulnerable for a second
+When player is hit, player is knocked back and stunned
+When player is hit, player is invulnerable
+Player can maneuver around enemy weapon hitbox
+Enemies move any direction, but (mostly) attack in 8 directions (N, NE, E, etc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

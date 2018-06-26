@@ -13,6 +13,9 @@ public class GameData : MonoBehaviour {
     public float enemyMoveSpeed;
     public float enemyRotSpeed;
     public float enemyReachDistance;
+    public float enemyStunTime;
+    public float enemyKnockbackDistance;
+    public float enemyKnockbackSpeed;
 
     // once the boss dies, it's game over
     // alternative: once all enemies have died, you win
