@@ -8,7 +8,7 @@ public class KnockbackAgent : DataUser {
     public static event KockbackDoneEventHandler knockbackDoneEventHandler;
     public delegate void KockbackDoneEventHandler(KnockbackAgent knockback);
 
-    public float time, timer;
+    private float time, timer;
 
     public Vector3 knockbackFromPosition;
 
