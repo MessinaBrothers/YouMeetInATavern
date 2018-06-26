@@ -8,6 +8,9 @@ public class Health : MonoBehaviour {
     public static event DeathEventHandler deathEventHandler;
     public delegate void DeathEventHandler(int deadID);
 
+    public static event ReceiveDamageEventHandler receiveDamageEventHandler;
+    public delegate void ReceiveDamageEventHandler(int id, int damageAmount, GameObject weaponObject);
+
     public float invincibleAfterHitTime;
     private float invincibleTimer;
 
@@ -44,15 +47,18 @@ public class Health : MonoBehaviour {
         current -= amount;
     }
 
-    private void Hit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
+    private void GetHit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
         if (invincibleTimer > 0) {
             return;
         }
 
         Health hitHealth = hitObject.GetComponentInChildren<Health>();
         if (hitHealth == this) {
+            int oldHP = current;
 
             Reduce(weaponObject.GetComponent<WeaponAttack>().damage);
+
+            receiveDamageEventHandler.Invoke(id, oldHP - current, weaponObject);
 
             if (current <= 0) {
                 deathEventHandler.Invoke(id);
@@ -64,10 +70,10 @@ public class Health : MonoBehaviour {
     }
 
     void OnEnable() {
-        WeaponHitDetect.weaponHitEventHandler += Hit;
+        WeaponHitDetect.weaponHitEventHandler += GetHit;
     }
 
     void OnDisable() {
-        WeaponHitDetect.weaponHitEventHandler -= Hit;
+        WeaponHitDetect.weaponHitEventHandler -= GetHit;
     }
 }

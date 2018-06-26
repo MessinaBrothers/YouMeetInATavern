@@ -12,9 +12,9 @@ From Legend of Zelda LttP
 Hurt by projectiles, or touching enemies
 X After attacking, player is immobile for a second
 X When enemy is hit, enemy is knocked back and stunned
-When enemy is hit, enemy is invulnerable for a second
-When player is hit, player is knocked back and stunned
-When player is hit, player is invulnerable
+X When enemy is hit, enemy is invulnerable for a second
+X When player is hit, player is knocked back and stunned
+X When player is hit, player is invulnerable
 Player can maneuver around enemy weapon hitbox
 Enemies move any direction, but (mostly) attack in 8 directions (N, NE, E, etc)
 After finding the player, enemies area always attacking (even if not in range)

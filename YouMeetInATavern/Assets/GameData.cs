@@ -9,6 +9,7 @@ public class GameData : MonoBehaviour {
     [Header("Player")]
     public bool canMove;
     public float playerStunTime;
+    public float playerKnockbackDistance;
 
     [Header("Enemy")]
     public float enemyMoveSpeed;

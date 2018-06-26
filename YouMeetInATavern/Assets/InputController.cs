@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-    private InputDialogue dialogueInput;
-    private InputPlayer playerInput;
+    private int playerID;
+
+    private InputDialogue inputDialogue;
+    private InputPlayer inputPlayer;
+    private InputKnockback inputKnockback;
 
     private MyInput currentInput;
 
@@ -14,8 +17,11 @@ public class InputController : MonoBehaviour {
     private bool justSwitched;
 
     void Start() {
-        dialogueInput = GetComponent<InputDialogue>();
-        playerInput = GetComponent<InputPlayer>();
+        playerID = GameObject.FindGameObjectWithTag("Player").GetComponent<EntityID>().id;
+
+        inputDialogue = GetComponent<InputDialogue>();
+        inputPlayer = GetComponent<InputPlayer>();
+        inputKnockback = GetComponent<InputKnockback>();
 
         StartPlayerInput();
 
@@ -49,22 +55,34 @@ public class InputController : MonoBehaviour {
     void OnEnable() {
         NPCDialogue.dialogueEventHandler += StartDialogueInput;
         InputDialogue.endDialogueEventHandler += StartPlayerInput;
+        InputKnockback.knockbackDoneEventHandler += StartPlayerInput;
+        Health.receiveDamageEventHandler += GetHit;
     }
 
     void OnDisable() {
         NPCDialogue.dialogueEventHandler -= StartDialogueInput;
         InputDialogue.endDialogueEventHandler -= StartPlayerInput;
+        InputKnockback.knockbackDoneEventHandler -= StartPlayerInput;
+        Health.receiveDamageEventHandler -= GetHit;
+    }
+
+    private void GetHit(int id, int damageAmount, GameObject weaponObject) {
+        if (id == playerID) {
+            currentInput = inputKnockback;
+            inputKnockback.Knockback(weaponObject.transform.position);
+            justSwitched = true;
+        }
     }
 
     private void StartDialogueInput(Dialogue dialogue) {
-        currentInput = dialogueInput;
+        currentInput = inputDialogue;
         justSwitched = true;
         //dialogueInput.enabled = true;
         //playerInput.enabled = false;
     }
 
     private void StartPlayerInput() {
-        currentInput = playerInput;
+        currentInput = inputPlayer;
         justSwitched = true;
         //dialogueInput.enabled = false;
         //playerInput.enabled = true;

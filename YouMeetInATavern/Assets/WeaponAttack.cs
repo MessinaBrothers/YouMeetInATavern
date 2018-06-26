@@ -55,24 +55,12 @@ public class WeaponAttack : MonoBehaviour {
             canAttack = true;
         }
     }
-
-    private void Hit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
-        if (id == attackWeaponID) {
-            Health hitHealth = hitObject.GetComponentInChildren<Health>();
-            if (hitHealth != null) {
-                //print("This weapon hit " + hitObject.name);
-                //hitHealth.Reduce(1);
-            }
-        }
-    }
-
+    
     void OnEnable() {
         WeaponAnimationScripts.attackEndedEventHandler += EndAttack;
-        WeaponHitDetect.weaponHitEventHandler += Hit;
     }
 
     void OnDisable() {
         WeaponAnimationScripts.attackEndedEventHandler -= EndAttack;
-        WeaponHitDetect.weaponHitEventHandler -= Hit;
     }
 }

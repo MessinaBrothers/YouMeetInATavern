@@ -39,13 +39,13 @@ public class EnemyController : DataUser {
 
     void OnEnable() {
         Health.deathEventHandler += Die;
-        WeaponHitDetect.weaponHitEventHandler += GetHit;
+        Health.receiveDamageEventHandler += GetHit;
         KnockbackAgent.knockbackDoneEventHandler += FinishKnockback;
     }
 
     void OnDisable() {
         Health.deathEventHandler -= Die;
-        WeaponHitDetect.weaponHitEventHandler -= GetHit;
+        Health.receiveDamageEventHandler -= GetHit;
         KnockbackAgent.knockbackDoneEventHandler -= FinishKnockback;
     }
 
@@ -68,8 +68,8 @@ public class EnemyController : DataUser {
         }
     }
 
-    private void GetHit(int attackWeaponID, GameObject weaponObject, GameObject hitObject) {
-        if (hitObject == gameObject && isDead == false) {
+    private void GetHit(int id, int damageAmount, GameObject weaponObject) {
+        if (this.id == id && isDead == false) {
             knockback.knockbackFromPosition = weaponObject.transform.position;
             attackPlayer.enabled = false;
             knockback.enabled = true;

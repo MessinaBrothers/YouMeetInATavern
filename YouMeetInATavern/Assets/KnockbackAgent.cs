@@ -14,8 +14,6 @@ public class KnockbackAgent : DataUser {
 
     private NavMeshAgent agent;
 
-    private Vector3 knockbackForce;
-
     private float originalAcceleration, originalSpeed;
 
     void Start() {
@@ -40,7 +38,7 @@ public class KnockbackAgent : DataUser {
         originalSpeed = agent.speed;
 
         // calculate the knockback force
-        knockbackForce = gameObject.transform.position - knockbackFromPosition;
+        Vector3 knockbackForce = gameObject.transform.position - knockbackFromPosition;
         knockbackForce = knockbackForce.normalized * data.enemyKnockbackDistance;
         knockbackForce.y = 0;
 
