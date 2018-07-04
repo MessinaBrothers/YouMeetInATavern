@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MyInput : DataUser {
+public abstract class MyInput : MonoBehaviour {
 
     public abstract void Handle(string input);
 

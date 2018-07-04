@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class InputDialogue : MyInput {
 
+    private DataInvestigate data;
+
     public GameObject axePrefab;
 
     public static event DialogueEventHandler dialogueEventHandler;
@@ -16,6 +18,8 @@ public class InputDialogue : MyInput {
     private GameObject player;
 
     void Start() {
+        data = FindObjectOfType<DataInvestigate>();
+
         player = GameObject.FindGameObjectWithTag("Player");
     }
 

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueController : DataUser {
+public class DialogueController : MonoBehaviour {
+
+    DataInvestigate data;
 
     void Start() {
+        data = FindObjectOfType<DataInvestigate>();
+
         ParseCSV("Dialogue");
     }
 
@@ -40,7 +44,6 @@ public class DialogueController : DataUser {
 
             Dialogue dialogue = new Dialogue(id, type, text, next0, next1, next2, reward);
             data.dialogues.Add(id, dialogue);
-
         }
     }
 }

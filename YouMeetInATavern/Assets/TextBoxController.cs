@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextBoxController : DataUser {
+public class TextBoxController : MonoBehaviour {
+
+    private DataInvestigate data;
 
     public static event PlayerDialogueChoiceEventHandler playerDialogueChoiceEventHandler;
     public delegate void PlayerDialogueChoiceEventHandler(uint dialogueIndex);
@@ -22,6 +24,8 @@ public class TextBoxController : DataUser {
     private float displayCharTime, displayCharTimer;
 
     void Start() {
+        data = FindObjectOfType<DataInvestigate>();
+
         textPanel.SetActive(false);
         stringToDisplay = "";
         currentDisplay = "";
@@ -71,30 +75,19 @@ public class TextBoxController : DataUser {
     }
 
     void OnEnable() {
-        InputPlayer.playerInspectEventHandler += DisplayInfo;
         NPCDialogue.dialogueEventHandler += DisplayDialogue;
         InputDialogue.dialogueEventHandler += DisplayDialogue;
-        InputPlayer.textContinueEventHandler += Continue;
         InputDialogue.endDialogueEventHandler += Continue;
     }
 
     void OnDisable() {
-        InputPlayer.playerInspectEventHandler -= DisplayInfo;
         NPCDialogue.dialogueEventHandler -= DisplayDialogue;
         InputDialogue.dialogueEventHandler -= DisplayDialogue;
-        InputPlayer.textContinueEventHandler -= Continue;
         InputDialogue.endDialogueEventHandler -= Continue;
     }
 
     private void ChoiceOnClick(uint i) {
         playerDialogueChoiceEventHandler.Invoke(i);
-    }
-
-    private void DisplayInfo(GameObject go) {
-        Inspectable inspectable = go.GetComponent<Inspectable>();
-        if (inspectable != null) {
-            StartDisplay(inspectable.description);
-        }
     }
 
     private void DisplayDialogue(Dialogue dialogue) {
