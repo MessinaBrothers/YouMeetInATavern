@@ -10,13 +10,10 @@ public class EnemyAnimations : MonoBehaviour {
         id = GetComponentInParent<EntityID>().id;
     }
 
-    void Update() {
-
-    }
-
     private void Die(int id) {
         if (this.id == id) {
             GetComponentInChildren<Animator>().SetInteger("Health", 0);
+            enabled = false;
         }
     }
     

@@ -15,8 +15,8 @@ X When enemy is hit, enemy is knocked back and stunned
 X When enemy is hit, enemy is invulnerable for a second
 X When player is hit, player is knocked back and stunned
 X When player is hit, player is invulnerable
-Player can maneuver around enemy weapon hitbox
 Enemies move any direction, but (mostly) attack in 8 directions (N, NE, E, etc)
+Enemies auto-attack, to allow player to approach enemy safely (in-between attacks)
 After finding the player, enemies area always attacking (even if not in range)
 
 
