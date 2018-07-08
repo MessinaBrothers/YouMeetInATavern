@@ -607,7 +607,7 @@ Prefab:
     - target: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
@@ -649,14 +649,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1955530019785110, guid: 2527652bbfdcff846bfc7cb759bb64b7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114777554799553028, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
-      propertyPath: marginOfError
-      value: 0
+      propertyPath: dialogue
+      value: <1>Sit anywhere you like.<22> The tavern's dead<333> right <>now.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2527652bbfdcff846bfc7cb759bb64b7, type: 2}
