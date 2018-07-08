@@ -607,7 +607,7 @@ Prefab:
     - target: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
@@ -652,7 +652,7 @@ Prefab:
     - target: {fileID: 114777554799553028, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
       propertyPath: dialogue
-      value: <1>Sit anywhere you like.<22>The tavern's absolutely dead<333>right<>now.<1>Can
+      value: <1>Sit anywhere you like.<2>The tavern's absolutely<3>dead<2>right now.<4>Can
         I get you something to drink?
       objectReference: {fileID: 0}
     m_RemovedComponents: []

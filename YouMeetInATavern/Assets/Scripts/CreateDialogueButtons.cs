@@ -21,14 +21,12 @@ public class CreateDialogueButtons : MonoBehaviour {
 
     private int charIndex;
     private string wordsSoFar, currentWord;
+    private int currentKey;
 
     void Start() {
         print(dialogue);
 
         // if the dialogue lacks an index at the start, append one
-        if (dialogue[0] == '>') {
-            dialogue = dialogue.Substring(1);
-        }
         if (dialogue[0] != '<') {
             dialogue = "<>" + dialogue;
         }
@@ -42,7 +40,7 @@ public class CreateDialogueButtons : MonoBehaviour {
                 case '<':
                     // parse the key
                     int endIndex = dialogue.IndexOf('>', charIndex);
-                    int key = endIndex - charIndex > 1 ? int.Parse(dialogue.Substring(charIndex + 1, endIndex - charIndex - 1)) : 0;
+                    currentKey = endIndex - charIndex > 1 ? int.Parse(dialogue.Substring(charIndex + 1, endIndex - charIndex - 1)) : 0;
                     charIndex = endIndex;
 
                     // save the last button width
@@ -55,7 +53,7 @@ public class CreateDialogueButtons : MonoBehaviour {
                     currentWord = "";
 
                     // start a new button
-                    CreateButton(key);
+                    CreateButton(currentKey);
                     break;
                 default:
                     // if we encounter a space, append the last word to words so far
@@ -71,9 +69,14 @@ public class CreateDialogueButtons : MonoBehaviour {
                         float lastWidth = currentButton.GetComponent<RectTransform>().rect.width;
                         float width = GetComponent<RectTransform>().rect.width;
                         if (widthSum + lastWidth + marginOfError > width) {
-                            // set the button text, ignoring the current word
-                            currentButtonText.text = wordsSoFar;
-                            LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+                            // if the button is empty, destroy it
+                            if (wordsSoFar == "") {
+                                Destroy(currentButton);
+                            } else {
+                                // set the button text, ignoring the current word
+                                currentButtonText.text = wordsSoFar;
+                                LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+                            }
 
                             CreateLine();
                         }
@@ -89,22 +92,32 @@ public class CreateDialogueButtons : MonoBehaviour {
         currentButtonText = currentButton.GetComponentInChildren<Text>();
         currentButtonText.text = "";
         currentButton.transform.SetParent(transform, false);
+
+        // set the key
+        currentButton.GetComponent<DialogueButton>().key = key;
     }
 
     private void CreateLine() {
-        string remainingDialogue = dialogue.Substring(charIndex - currentWord.Length).Trim();
-
         // create a new line
         GameObject newLine = Instantiate(linePrefab);
-        newLine.GetComponent<CreateDialogueButtons>().dialogue = remainingDialogue;
 
+        // parse the remaining dialogue
+        string remainingDialogue = dialogue.Substring(charIndex - currentWord.Length + 1).Trim();
+        // append current key to the beginning
+
+        remainingDialogue = "<" + currentKey + ">" + remainingDialogue;
+        // save the dialogue
+        newLine.GetComponent<CreateDialogueButtons>().dialogue = remainingDialogue;
+        
+        // destroy any children of the new line (bug?)
         foreach (Transform child in newLine.transform) {
             Destroy(child.gameObject);
         }
 
+        // set the parent to this gameobject's parent
         newLine.transform.SetParent(transform.parent);
 
-        // nothing more to do here
+        // Disable ourselves; nothing more to do
         enabled = false;
     }
 }
