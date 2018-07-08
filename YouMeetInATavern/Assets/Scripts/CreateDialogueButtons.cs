@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CreateDialogueButtons : MonoBehaviour {
 
-    public GameObject buttonPrefab;
+    public GameObject buttonPrefab, linePrefab;
 
     public string dialogue;
 
@@ -26,6 +26,9 @@ public class CreateDialogueButtons : MonoBehaviour {
         print(dialogue);
 
         // if the dialogue lacks an index at the start, append one
+        if (dialogue[0] == '>') {
+            dialogue = dialogue.Substring(1);
+        }
         if (dialogue[0] != '<') {
             dialogue = "<>" + dialogue;
         }
@@ -40,7 +43,6 @@ public class CreateDialogueButtons : MonoBehaviour {
                     // parse the key
                     int endIndex = dialogue.IndexOf('>', charIndex);
                     int key = endIndex - charIndex > 1 ? int.Parse(dialogue.Substring(charIndex + 1, endIndex - charIndex - 1)) : 0;
-                    Debug.LogFormat("Found key {0} at index {1}", key, charIndex);
                     charIndex = endIndex;
 
                     // save the last button width
@@ -59,8 +61,6 @@ public class CreateDialogueButtons : MonoBehaviour {
                     // if we encounter a space, append the last word to words so far
                     if (c == ' ') {
                         wordsSoFar += " " + currentWord;
-                        wordsSoFar = wordsSoFar.Trim();
-                        print(currentWord);
                         currentWord = "";
                     } else {
                         currentWord += c;
@@ -71,12 +71,11 @@ public class CreateDialogueButtons : MonoBehaviour {
                         float lastWidth = currentButton.GetComponent<RectTransform>().rect.width;
                         float width = GetComponent<RectTransform>().rect.width;
                         if (widthSum + lastWidth + marginOfError > width) {
-                            charIndex = dialogue.Length;
                             // set the button text, ignoring the current word
                             currentButtonText.text = wordsSoFar;
                             LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
 
-                            print(wordsSoFar);
+                            CreateLine();
                         }
                     }
                     break;
@@ -90,5 +89,22 @@ public class CreateDialogueButtons : MonoBehaviour {
         currentButtonText = currentButton.GetComponentInChildren<Text>();
         currentButtonText.text = "";
         currentButton.transform.SetParent(transform, false);
+    }
+
+    private void CreateLine() {
+        string remainingDialogue = dialogue.Substring(charIndex - currentWord.Length).Trim();
+
+        // create a new line
+        GameObject newLine = Instantiate(linePrefab);
+        newLine.GetComponent<CreateDialogueButtons>().dialogue = remainingDialogue;
+
+        foreach (Transform child in newLine.transform) {
+            Destroy(child.gameObject);
+        }
+
+        newLine.transform.SetParent(transform.parent);
+
+        // nothing more to do here
+        enabled = false;
     }
 }

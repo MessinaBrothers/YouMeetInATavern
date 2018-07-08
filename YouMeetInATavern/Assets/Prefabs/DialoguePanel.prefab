@@ -65,7 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 1373941006278852, guid: dd3afbcf5b68d174380a6130b395384e,
     type: 2}
-  dialogue: <1>Sit anywhere you like.<22>The tavern's dead <333>right <>now.
+  linePrefab: {fileID: 1955530019785110}
+  dialogue: <1>Sit anywhere you like.<22> The tavern's dead<333> right <>now.
   marginOfError: 0
 --- !u!114 &114977565717393768
 MonoBehaviour:
