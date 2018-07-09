@@ -19,5 +19,7 @@ public class DialogueButton : MonoBehaviour {
 
     public void BroadcastKey() {
         dialogueEventHandler.Invoke(key);
+
+        //TODO observe the dialogue key somewhere
     }
 }

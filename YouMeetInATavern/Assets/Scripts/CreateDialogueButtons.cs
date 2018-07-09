@@ -24,8 +24,6 @@ public class CreateDialogueButtons : MonoBehaviour {
     private int currentKey;
 
     void Start() {
-        print(dialogue);
-
         // if the dialogue lacks an index at the start, append one
         if (dialogue[0] != '<') {
             dialogue = "<>" + dialogue;
