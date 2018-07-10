@@ -7,6 +7,9 @@ public class IntroduceNPC : MonoBehaviour {
     public static event NPCIntrocedEventHandler npcIntroducedEventHandler;
     public delegate void NPCIntrocedEventHandler(GameObject card);
 
+    public static event EnterTavernModeEventHandler enterTavernModeEventHandler;
+    public delegate void EnterTavernModeEventHandler();
+
     public GameObject cardPrefab;
 
     public Transform offscreenPos, introPos, enterPos;
@@ -23,11 +26,7 @@ public class IntroduceNPC : MonoBehaviour {
     void Start() {
         card = Instantiate(cardPrefab);
 
-        card.transform.position = offscreenPos.position;
-        card.transform.rotation = offscreenPos.rotation;
-        
-        startTransform = offscreenPos;
-        endTransform = introPos;
+        Introduce(card);
     }
 
     void Update() {
@@ -57,12 +56,24 @@ public class IntroduceNPC : MonoBehaviour {
         DialogueButton.dialogueEventHandler -= HandleDialogue;
     }
 
+    public void Introduce(GameObject card) {
+        this.card = card;
+
+        card.transform.position = offscreenPos.position;
+        card.transform.rotation = offscreenPos.rotation;
+
+        startTransform = offscreenPos;
+        endTransform = introPos;
+    }
+
     private void HandleDialogue(int key) {
         if (key == 0) {
             moveIntroTimer = moveIntroTime;
 
             startTransform = introPos;
             endTransform = enterPos;
+
+            enterTavernModeEventHandler.Invoke();
         }
     }
 }
