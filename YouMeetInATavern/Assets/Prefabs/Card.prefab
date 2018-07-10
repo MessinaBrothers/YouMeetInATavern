@@ -837,6 +837,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introductionClip: {fileID: 8300000, guid: f0aab67f210f1d54097f2c67c83057a2, type: 3}
+  greetingClips:
+  - {fileID: 8300000, guid: c624fa151681cc04ca3b0d01dcc52c71, type: 3}
+  - {fileID: 8300000, guid: e9d296bdcd26b0b4ab1efc10868647a5, type: 3}
+  startConversationClips:
+  - {fileID: 8300000, guid: 7775a75c69984454fac18fb7e74daa61, type: 3}
+  - {fileID: 8300000, guid: 2e4f905c7920bdc48b9cd7a9aac339d5, type: 3}
 --- !u!222 &222009664977686948
 CanvasRenderer:
   m_ObjectHideFlags: 1
