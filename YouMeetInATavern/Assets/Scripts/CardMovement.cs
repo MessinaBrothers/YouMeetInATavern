@@ -17,11 +17,11 @@ public class CardMovement : MonoBehaviour {
     }
 
     void OnEnable() {
-        IntroduceNPC.npcIntroducedEventHandler += Move;
+        IntroduceNPC.npcEnteredTavernEventHandler += Move;
     }
 
     void OnDisable() {
-        IntroduceNPC.npcIntroducedEventHandler -= Move;
+        IntroduceNPC.npcEnteredTavernEventHandler -= Move;
     }
 
     private void Move(GameObject card) {

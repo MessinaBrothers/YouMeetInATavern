@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IntroduceNPC : MonoBehaviour {
-    
-    public static event NPCIntrocedEventHandler npcIntroducedEventHandler;
-    public delegate void NPCIntrocedEventHandler(GameObject card);
+
+    public static event NPCEnteredTavernEventHandler npcEnteredTavernEventHandler;
+    public delegate void NPCEnteredTavernEventHandler(GameObject card);
+
+    public static event NPCIntroducedEventHandler npcIntroducedEventHandler;
+    public delegate void NPCIntroducedEventHandler(GameObject card);
 
     public GameObject cardPrefab;
     public Transform offscreenPos, introPos, enterPos;
@@ -20,7 +23,7 @@ public class IntroduceNPC : MonoBehaviour {
     private Transform startTransform, endTransform;
 
     void Start() {
-        data = GameObject.FindObjectOfType<GameData>();
+        data = FindObjectOfType<GameData>();
 
         card = Instantiate(cardPrefab);
 
@@ -28,30 +31,34 @@ public class IntroduceNPC : MonoBehaviour {
     }
 
     void Update() {
-        if (startIntro == true) {
-            startIntro = false;
+        if (data.gameMode == GameData.GameMode.INTRODUCE) {
+            if (startIntro == true) {
+                startIntro = false;
 
-            moveIntroTimer = moveIntroTime;
-        }
+                moveIntroTimer = moveIntroTime;
+            }
 
-        if (moveIntroTimer > 0) {
-            moveIntroTimer -= Time.deltaTime;
-            card.transform.position = Vector3.Slerp(endTransform.position, startTransform.position, moveIntroTimer / moveIntroTime);
-            card.transform.rotation = Quaternion.Slerp(endTransform.rotation, startTransform.rotation, moveIntroTimer / moveIntroTime);
-        }
+            if (moveIntroTimer > 0) {
+                moveIntroTimer -= Time.deltaTime;
+                card.transform.position = Vector3.Slerp(endTransform.position, startTransform.position, moveIntroTimer / moveIntroTime);
+                card.transform.rotation = Quaternion.Slerp(endTransform.rotation, startTransform.rotation, moveIntroTimer / moveIntroTime);
+            }
         
-        if (card.transform.position == enterPos.position) {
-            npcIntroducedEventHandler.Invoke(card);
-            enabled = false;
+            if (card.transform.position == enterPos.position) {
+                npcEnteredTavernEventHandler.Invoke(card);
+                enabled = false;
+            }
         }
     }
 
     void OnEnable() {
         DialogueButton.dialogueEventHandler += HandleDialogue;
+        CardClickable.cardClickedEventHandler += HandleCardClick;
     }
 
     void OnDisable() {
         DialogueButton.dialogueEventHandler -= HandleDialogue;
+        CardClickable.cardClickedEventHandler -= HandleCardClick;
     }
 
     public void Introduce(GameObject card) {
@@ -65,13 +72,20 @@ public class IntroduceNPC : MonoBehaviour {
     }
 
     private void HandleDialogue(int key) {
-        if (key == 0) {
-            moveIntroTimer = moveIntroTime;
+        //if (key == 0) {
+        //    moveIntroTimer = moveIntroTime;
 
-            startTransform = introPos;
-            endTransform = enterPos;
+        //    startTransform = introPos;
+        //    endTransform = enterPos;
 
-            data.gameMode = GameData.GameMode.TAVERN;
+        //    data.gameMode = GameData.GameMode.TAVERN;
+        //}
+    }
+
+    private void HandleCardClick(GameObject card) {
+        if (data.gameMode == GameData.GameMode.INTRODUCE && card == this.card) {
+            card.GetComponent<CardSFX>().PlayIntro();
+            npcIntroducedEventHandler.Invoke(card);
         }
     }
 }

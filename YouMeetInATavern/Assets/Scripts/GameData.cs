@@ -5,11 +5,11 @@ using UnityEngine;
 public class GameData : MonoBehaviour {
 
     public enum GameMode {
-        CONVERSE, TAVERN
+        INTRODUCE, CONVERSE, TAVERN
     }
     public GameMode gameMode;
 
     void Start() {
-        gameMode = GameMode.CONVERSE;
+        gameMode = GameMode.INTRODUCE;
     }
 }
