@@ -3,27 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IntroduceNPC : MonoBehaviour {
-
+    
     public static event NPCIntrocedEventHandler npcIntroducedEventHandler;
     public delegate void NPCIntrocedEventHandler(GameObject card);
 
-    public static event EnterTavernModeEventHandler enterTavernModeEventHandler;
-    public delegate void EnterTavernModeEventHandler();
-
     public GameObject cardPrefab;
-
     public Transform offscreenPos, introPos, enterPos;
 
     public bool startIntro;
-
     public float moveIntroTime;
     private float moveIntroTimer;
 
-    private GameObject card;
+    private GameData data;
 
+    private GameObject card;
     private Transform startTransform, endTransform;
 
     void Start() {
+        data = GameObject.FindObjectOfType<GameData>();
+
         card = Instantiate(cardPrefab);
 
         Introduce(card);
@@ -73,7 +71,7 @@ public class IntroduceNPC : MonoBehaviour {
             startTransform = introPos;
             endTransform = enterPos;
 
-            enterTavernModeEventHandler.Invoke();
+            data.gameMode = GameData.GameMode.TAVERN;
         }
     }
 }

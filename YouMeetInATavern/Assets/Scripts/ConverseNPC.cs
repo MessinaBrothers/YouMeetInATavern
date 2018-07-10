@@ -5,9 +5,11 @@ using UnityEngine;
 public class ConverseNPC : MonoBehaviour {
 
     public Transform conversePos, enterPos;
+
+    private GameData data;
     
     void Start() {
-
+        data = GameObject.FindObjectOfType<GameData>();
     }
 
     void Update() {
@@ -23,6 +25,11 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     private void HandleInput(GameObject card) {
-        card.transform.position = conversePos.position;
+        // only start conversation with card if in tavern mode
+        if (data.gameMode == GameData.GameMode.TAVERN) {
+            card.transform.position = conversePos.position;
+            // set the game mode to converse
+            data.gameMode = GameData.GameMode.CONVERSE;
+        }
     }
 }
