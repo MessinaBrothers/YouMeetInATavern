@@ -44,7 +44,7 @@ public class IntroduceNPC : MonoBehaviour {
         }
         
         if (card.transform.position == enterPos.position) {
-            print("Card is in enter position");
+            npcIntroducedEventHandler.Invoke(card);
             enabled = false;
         }
     }

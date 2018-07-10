@@ -24,7 +24,6 @@ public class DialogueController : MonoBehaviour {
     }
 
     private void HandleDialogue(int key) {
-        print("Handling dialogue with key " + key);
         if (key == 0) {
             dialoguePanel.SetActive(false);
         }
