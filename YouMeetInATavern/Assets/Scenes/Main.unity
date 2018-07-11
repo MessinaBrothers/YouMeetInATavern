@@ -175,6 +175,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1183731708458380, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
   m_IsPrefabParent: 0
@@ -388,6 +392,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393357832}
+--- !u!1001 &410108077
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384269676992386, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1183731708458380, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &737547659
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +747,7 @@ Prefab:
     - target: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,
         type: 2}
@@ -1004,6 +1054,7 @@ GameObject:
   - component: {fileID: 1773317933}
   - component: {fileID: 1773317932}
   - component: {fileID: 1773317931}
+  - component: {fileID: 1773317934}
   m_Layer: 0
   m_Name: NPCController
   m_TagString: Untagged
@@ -1023,7 +1074,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conversePos: {fileID: 800833345}
-  enterPos: {fileID: 22942622}
   moveIntroTime: 1
 --- !u!114 &1773317932
 MonoBehaviour:
@@ -1037,11 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1183731708458380, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
-  offscreenPos: {fileID: 261798280}
-  introPos: {fileID: 1331556516}
-  enterPos: {fileID: 22942622}
   startIntro: 1
-  moveIntroTime: 1
 --- !u!4 &1773317933
 Transform:
   m_ObjectHideFlags: 0
@@ -1059,6 +1105,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773317934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773317930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323c9e5c91dda074b9c9bfc679af72f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offscreenPos: {fileID: 261798280}
+  introPos: {fileID: 1331556516}
 --- !u!224 &1878072263 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,

@@ -56,10 +56,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4384269676992386}
   - component: {fileID: 65465892224296296}
-  - component: {fileID: 114100787359814150}
   - component: {fileID: 114253165434218070}
   - component: {fileID: 114996550463377112}
   - component: {fileID: 82380803568742156}
+  - component: {fileID: 114517145426462636}
+  - component: {fileID: 114324641597551152}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -667,17 +668,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
---- !u!114 &114100787359814150
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183731708458380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323c9e5c91dda074b9c9bfc679af72f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114253165434218070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -687,6 +677,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84f39152be04cee469659f1c0053ae2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114324641597551152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183731708458380}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a50283f089718342be192ad68d06136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -2
+  minY: -2
+  maxX: 2
+  maxY: 2
+  wanderDistance: 0.1
+  speed: 1
+--- !u!114 &114517145426462636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183731708458380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6a2ca1b92abec46be04a1ac025210b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114610866093175088

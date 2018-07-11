@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour {
 
+    public static int DIALOGUE_DEFAULT;
+
     public enum GameMode {
         INTRODUCE, CONVERSE, TAVERN
     }
