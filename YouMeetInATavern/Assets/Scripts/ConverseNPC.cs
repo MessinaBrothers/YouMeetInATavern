@@ -7,7 +7,7 @@ public class ConverseNPC : MonoBehaviour {
     public static event NPCStartedTalkingEventHandler npcStartedTalkingEventHandler;
     public delegate void NPCStartedTalkingEventHandler(GameObject card);
 
-    public Transform conversePos, enterPos;
+    public Transform conversePos;
     private Transform startTransform, endTransform;
 
     public float moveIntroTime;
@@ -43,17 +43,16 @@ public class ConverseNPC : MonoBehaviour {
 
     void OnEnable() {
         CardClickable.cardClickedEventHandler += HandleCardClick;
-        IntroduceNPC.npcIntroducedEventHandler += HandleIntroduction;
+        IntroduceNPC.npcIntroEndEventHandler += HandleIntroduction;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
-        IntroduceNPC.npcIntroducedEventHandler -= HandleIntroduction;
+        IntroduceNPC.npcIntroEndEventHandler -= HandleIntroduction;
     }
 
     private void HandleIntroduction(GameObject card) {
         // go straight from introduction mode into converse mode
-        print("ASDFADSF");
         Converse(card);
     }
 
