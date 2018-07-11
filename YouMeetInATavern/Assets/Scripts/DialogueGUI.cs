@@ -16,11 +16,11 @@ public class DialogueGUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        ConverseNPC.npcStartedTalkingEventHandler += Converse;
+        CardMoveController.npcInConversePosEventHandler += Converse;
     }
 
     void OnDisable() {
-        ConverseNPC.npcStartedTalkingEventHandler -= Converse;
+        CardMoveController.npcInConversePosEventHandler -= Converse;
     }
 
     private void Converse(GameObject card) {

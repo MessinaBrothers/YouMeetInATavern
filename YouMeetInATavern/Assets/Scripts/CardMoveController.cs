@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class CardMoveController : MonoBehaviour {
 
-    public Transform offscreenPos, introPos;
+    public static event NPCInConversePosEventHandler npcInConversePosEventHandler;
+    public delegate void NPCInConversePosEventHandler(GameObject card);
 
-    private CardMove move;
-    private CardWander wander;
+    public Transform offscreenPos, introPos, conversePos, enterTavernPos;
+    private Transform dumbTransform;
+
+    private GameData data;
 
     void Start() {
-        move = gameObject.AddComponent<CardMove>();
-        move.enabled = false;
+        data = FindObjectOfType<GameData>();
 
-        wander = gameObject.AddComponent<CardWander>();
-        wander.SetRange(-2, -2, 2, 2);
-        wander.speed = 1;
-        wander.enabled = false;
+        // we need a new transform to copy the card's initial transform into our start transform
+        GameObject go = new GameObject("CardMoveController_DumbTransform");
+        go.transform.parent = transform;
+        dumbTransform = go.transform;
     }
 
     void Update() {
@@ -24,20 +26,24 @@ public class CardMoveController : MonoBehaviour {
     }
 
     void OnEnable() {
-        CardEnterTavern.npcEnteredTavernEventHandler += Move;
         DialogueButton.dialogueEventHandler += HandleDialogue;
         IntroduceNPC.npcIntroStartEventHandler += Introduce;
+        IntroduceNPC.npcIntroEndEventHandler += Converse;
+        ConverseNPC.npcStartConverseEventHandler += Converse;
     }
 
     void OnDisable() {
-        CardEnterTavern.npcEnteredTavernEventHandler -= Move;
         DialogueButton.dialogueEventHandler -= HandleDialogue;
         IntroduceNPC.npcIntroStartEventHandler -= Introduce;
+        IntroduceNPC.npcIntroEndEventHandler -= Converse;
+        ConverseNPC.npcStartConverseEventHandler -= Converse;
     }
 
     private void HandleDialogue(int key) {
         if (key == GameData.DIALOGUE_DEFAULT) {
-            
+            CardMove move = data.selectedCard.GetComponent<CardMove>();
+            move.enabled = true;
+            move.Set(conversePos, enterTavernPos, 1, Wander);
         }
     }
 
@@ -47,11 +53,31 @@ public class CardMoveController : MonoBehaviour {
         move.Set(offscreenPos, introPos, 1, Wait);
     }
 
-    private void Move(GameObject card) {
+    private void Converse(GameObject card) {
+        print("moving to converse");
+        CardMove move = card.GetComponent<CardMove>();
+        move.enabled = true;
+
+        // copy the card's position and rotation into our startTransform
+        dumbTransform.position = card.transform.position;
+        dumbTransform.rotation = card.transform.rotation;
+
+        move.Set(dumbTransform, conversePos, 1, StartDialogue);
+        
+        // disable wandering
+        card.GetComponent<CardWander>().enabled = false;
+    }
+
+    private void Wander(GameObject card) {
+        card.GetComponent<CardMove>().enabled = false;
         card.GetComponent<CardWander>().enabled = true;
     }
 
     private void Wait(GameObject card) {
 
+    }
+
+    private void StartDialogue(GameObject card) {
+        npcInConversePosEventHandler.Invoke(card);
     }
 }

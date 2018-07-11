@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef7f419a28a794280f6e6ae3dad1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCard: {fileID: 0}
   gameMode: 0
 --- !u!1001 &1092400356
 Prefab:
@@ -1073,8 +1074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafd4dfc14606c249bf0dc36ae8355cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversePos: {fileID: 800833345}
-  moveIntroTime: 1
 --- !u!114 &1773317932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,6 +1117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offscreenPos: {fileID: 261798280}
   introPos: {fileID: 1331556516}
+  conversePos: {fileID: 800833345}
+  enterTavernPos: {fileID: 22942622}
 --- !u!224 &1878072263 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224949730312792050, guid: 2527652bbfdcff846bfc7cb759bb64b7,

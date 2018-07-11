@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class IntroduceNPC : MonoBehaviour {
 
-    public static event NPCIntroducedEventHandler npcIntroEndEventHandler;
-    public delegate void NPCIntroducedEventHandler(GameObject card);
-
     public static event NPCIntroduceEventHandler npcIntroStartEventHandler;
     public delegate void NPCIntroduceEventHandler(GameObject card);
+
+    public static event NPCIntroducedEventHandler npcIntroEndEventHandler;
+    public delegate void NPCIntroducedEventHandler(GameObject card);
 
     public GameObject cardPrefab;
 

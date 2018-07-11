@@ -6,6 +6,8 @@ public class GameData : MonoBehaviour {
 
     public static int DIALOGUE_DEFAULT;
 
+    public GameObject selectedCard;
+
     public enum GameMode {
         INTRODUCE, CONVERSE, TAVERN
     }
