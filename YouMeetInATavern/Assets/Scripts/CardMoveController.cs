@@ -54,7 +54,6 @@ public class CardMoveController : MonoBehaviour {
     }
 
     private void Converse(GameObject card) {
-        print("moving to converse");
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
 

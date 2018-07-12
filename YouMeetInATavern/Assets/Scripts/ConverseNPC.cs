@@ -52,7 +52,6 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     private void Converse(GameObject card) {
-        print("conversing");
         data.gameMode = GameData.GameMode.CONVERSE;
         data.selectedCard = card;
     }
