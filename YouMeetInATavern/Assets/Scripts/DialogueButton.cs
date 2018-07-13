@@ -5,9 +5,9 @@ using UnityEngine;
 public class DialogueButton : MonoBehaviour {
 
     public static event DialogueEventHandler dialogueEventHandler;
-    public delegate void DialogueEventHandler(int key);
+    public delegate void DialogueEventHandler(uint key);
 
-    public int key;
+    public uint key;
 
     void Start() {
 

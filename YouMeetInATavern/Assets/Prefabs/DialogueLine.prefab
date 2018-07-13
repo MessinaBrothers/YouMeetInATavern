@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114496825527690470}
   - component: {fileID: 114777554799553028}
   m_Layer: 5
-  m_Name: DialoguePanel
+  m_Name: DialogueLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1373941006278852, guid: dd3afbcf5b68d174380a6130b395384e,
     type: 2}
   linePrefab: {fileID: 1955530019785110}
-  dialogue: <1>Sit anywhere you like.<22> The tavern's dead<333> right <>now.
+  dialogue: 
   marginOfError: 0
 --- !u!114 &114977565717393768
 MonoBehaviour:

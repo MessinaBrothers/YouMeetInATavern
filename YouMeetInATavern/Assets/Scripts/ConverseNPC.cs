@@ -21,12 +21,14 @@ public class ConverseNPC : MonoBehaviour {
         CardClickable.cardClickedEventHandler += HandleCardClick;
         IntroduceNPC.npcIntroEndEventHandler += HandleIntroduction;
         DialogueButton.dialogueEventHandler += HandleDialogue;
+        EndConverseButton.endConverseEventHandler += Stop;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
         IntroduceNPC.npcIntroEndEventHandler -= HandleIntroduction;
         DialogueButton.dialogueEventHandler -= HandleDialogue;
+        EndConverseButton.endConverseEventHandler -= Stop;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -45,14 +47,16 @@ public class ConverseNPC : MonoBehaviour {
         }
     }
 
-    private void HandleDialogue(int key) {
-        if (key == GameData.DIALOGUE_DEFAULT) {
-            data.gameMode = GameData.GameMode.TAVERN;
-        }
+    private void HandleDialogue(uint key) {
+        
     }
 
     private void Converse(GameObject card) {
         data.gameMode = GameData.GameMode.CONVERSE;
         data.selectedCard = card;
+    }
+
+    private void Stop() {
+        data.gameMode = GameData.GameMode.TAVERN;
     }
 }

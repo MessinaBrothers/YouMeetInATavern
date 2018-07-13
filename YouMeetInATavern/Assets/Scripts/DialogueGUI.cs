@@ -7,7 +7,11 @@ public class DialogueGUI : MonoBehaviour {
 
     public GameObject dialoguePanel;
 
+    private GameData data;
+
     void Start() {
+        data = FindObjectOfType<GameData>();
+
         dialoguePanel.SetActive(false);
     }
 
@@ -24,7 +28,12 @@ public class DialogueGUI : MonoBehaviour {
     }
 
     private void Converse(GameObject card) {
-        //TODO display card's specific dialogue
+        // get the next dialogue text
+        NPC npc = card.GetComponent<NPC>();
+        string text = data.npc_dialogues[npc.npcID][npc.nextDialogueID];
+        // set the panel text
+        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
+        // activate the panel
         dialoguePanel.SetActive(true);
     }
 }

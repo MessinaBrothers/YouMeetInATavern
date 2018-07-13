@@ -26,25 +26,17 @@ public class CardMoveController : MonoBehaviour {
     }
 
     void OnEnable() {
-        DialogueButton.dialogueEventHandler += HandleDialogue;
         IntroduceNPC.npcIntroStartEventHandler += Introduce;
         IntroduceNPC.npcIntroEndEventHandler += Converse;
         ConverseNPC.npcStartConverseEventHandler += Converse;
+        EndConverseButton.endConverseEventHandler += Stop;
     }
 
     void OnDisable() {
-        DialogueButton.dialogueEventHandler -= HandleDialogue;
         IntroduceNPC.npcIntroStartEventHandler -= Introduce;
         IntroduceNPC.npcIntroEndEventHandler -= Converse;
         ConverseNPC.npcStartConverseEventHandler -= Converse;
-    }
-
-    private void HandleDialogue(int key) {
-        if (key == GameData.DIALOGUE_DEFAULT) {
-            CardMove move = data.selectedCard.GetComponent<CardMove>();
-            move.enabled = true;
-            move.Set(conversePos, enterTavernPos, 1, Wander);
-        }
+        EndConverseButton.endConverseEventHandler -= Stop;
     }
 
     private void Introduce(GameObject card) {
@@ -65,6 +57,12 @@ public class CardMoveController : MonoBehaviour {
         
         // disable wandering
         card.GetComponent<CardWander>().enabled = false;
+    }
+
+    private void Stop() {
+        CardMove move = data.selectedCard.GetComponent<CardMove>();
+        move.enabled = true;
+        move.Set(conversePos, enterTavernPos, 1, Wander);
     }
 
     private void Wander(GameObject card) {

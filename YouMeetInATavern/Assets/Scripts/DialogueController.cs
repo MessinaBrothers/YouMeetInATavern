@@ -17,15 +17,21 @@ public class DialogueController : MonoBehaviour {
 
     void OnEnable() {
         DialogueButton.dialogueEventHandler += HandleDialogue;
+        EndConverseButton.endConverseEventHandler += Stop;
     }
 
     void OnDisable() {
         DialogueButton.dialogueEventHandler -= HandleDialogue;
+        EndConverseButton.endConverseEventHandler -= Stop;
     }
 
-    private void HandleDialogue(int key) {
+    private void HandleDialogue(uint key) {
         if (key == 0) {
-            dialoguePanel.SetActive(false);
+            //  dialoguePanel.SetActive(false);
         }
+    }
+
+    private void Stop() {
+        dialoguePanel.SetActive(false);
     }
 }

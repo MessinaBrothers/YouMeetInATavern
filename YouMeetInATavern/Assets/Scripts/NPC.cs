@@ -13,4 +13,6 @@ public class NPC : MonoBehaviour {
     public string sfxIntro;
     public string[] sfxOnClicks, sfxGreetings;
 
+    public uint nextDialogueID;
+
 }
