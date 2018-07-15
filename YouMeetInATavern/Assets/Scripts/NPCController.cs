@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntroduceNPC : MonoBehaviour {
+public class NPCController : MonoBehaviour {
+
+    public static event NPCCreatedEventHandler npcCreatedEventHandler;
+    public delegate void NPCCreatedEventHandler(GameObject card);
 
     public static event NPCIntroduceEventHandler npcIntroStartEventHandler;
     public delegate void NPCIntroduceEventHandler(GameObject card);
@@ -43,9 +46,11 @@ public class IntroduceNPC : MonoBehaviour {
     }
 
     private void HandleCardClick(GameObject card) {
-        if (data.gameMode == GameData.GameMode.INTRODUCE && card == this.card) {
-            card.GetComponent<CardSFX>().PlayIntro();
-            npcIntroEndEventHandler.Invoke(card);
+        if (data.gameMode == GameData.GameMode.INTRODUCE) {
+            if (card.GetComponent<NPC>().isBeingIntroduced == true) {
+                card.GetComponent<CardSFX>().PlayIntro();
+                npcIntroEndEventHandler.Invoke(card);
+            }
         }
     }
 
@@ -59,6 +64,8 @@ public class IntroduceNPC : MonoBehaviour {
         npc.isBeingIntroduced = true;
         // set the next dialogue to be intro dialogue
         npc.nextDialogueID = GameData.DIALOGUE_INTRO;
+
+        npcCreatedEventHandler.Invoke(card);
 
         npcIntroStartEventHandler.Invoke(card);
     }
