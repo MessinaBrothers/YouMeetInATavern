@@ -19,7 +19,7 @@ public class ConverseNPC : MonoBehaviour {
 
     void OnEnable() {
         CardClickable.cardClickedEventHandler += HandleCardClick;
-        IntroduceNPC.npcIntroEndEventHandler += HandleIntroduction;
+        NPCController.npcIntroEndEventHandler += HandleIntroduction;
         DialogueButton.dialogueEventHandler += HandleDialogue;
         InputController.stopConverseEventHandler += Stop;
         InputController.npcLeavesEventHandler += Goodbye;
@@ -27,7 +27,7 @@ public class ConverseNPC : MonoBehaviour {
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
-        IntroduceNPC.npcIntroEndEventHandler -= HandleIntroduction;
+        NPCController.npcIntroEndEventHandler -= HandleIntroduction;
         DialogueButton.dialogueEventHandler -= HandleDialogue;
         InputController.stopConverseEventHandler -= Stop;
         InputController.npcLeavesEventHandler -= Goodbye;
@@ -74,5 +74,11 @@ public class ConverseNPC : MonoBehaviour {
 
         GameObject card = data.selectedCard;
         card.GetComponent<CardSFX>().PlayGoodbye();
+
+        // decrement npc count
+        data.tavernNPCCount -= 1;
+        if (data.tavernNPCCount == 0) {
+            print("End DAY");
+        }
     }
 }

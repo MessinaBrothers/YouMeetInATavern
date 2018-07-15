@@ -11,6 +11,9 @@ public class GameData : MonoBehaviour {
 
     public GameObject selectedCard;
 
+    // how many npcs are in the tavern
+    public uint tavernNPCCount;
+
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<uint, string>> npc_dialogues;
     public Dictionary<uint, Dictionary<uint, string>> npc_questions;
