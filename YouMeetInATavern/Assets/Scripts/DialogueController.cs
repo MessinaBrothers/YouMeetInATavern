@@ -31,7 +31,7 @@ public class DialogueController : MonoBehaviour {
         }
     }
 
-    private void Stop() {
+    private void Stop(GameObject card) {
         dialoguePanel.SetActive(false);
     }
 }

@@ -11,7 +11,7 @@ public class NPC : MonoBehaviour {
     public string imageFileName;
 
     public string sfxIntro;
-    public string[] sfxOnClicks, sfxGreetings;
+    public string[] sfxOnClicks, sfxGreetings, sfxGoodbyes;
 
     public uint nextDialogueID;
 

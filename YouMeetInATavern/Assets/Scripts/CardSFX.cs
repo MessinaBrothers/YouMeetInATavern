@@ -7,6 +7,7 @@ public class CardSFX : MonoBehaviour {
     public AudioClip introductionClip;
     public AudioClip[] greetingClips;
     public AudioClip[] startConversationClips;
+    public AudioClip[] goodbyeClips;
 
     private AudioSource audioSource;
 
@@ -24,7 +25,19 @@ public class CardSFX : MonoBehaviour {
     }
 
     public void PlayGreeting() {
-        audioSource.clip = greetingClips[Random.Range(0, greetingClips.Length)];
+        PlayRandomClip(greetingClips);
+    }
+
+    public void PlayBeginConverse() {
+        PlayRandomClip(startConversationClips);
+    }
+
+    public void PlayGoodbye() {
+        PlayRandomClip(goodbyeClips);
+    }
+
+    private void PlayRandomClip(AudioClip[] clips) {
+        audioSource.clip = clips[Random.Range(0, clips.Length)];
         audioSource.Play();
     }
 }

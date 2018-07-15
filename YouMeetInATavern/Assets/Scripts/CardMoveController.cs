@@ -10,11 +10,7 @@ public class CardMoveController : MonoBehaviour {
     public Transform offscreenPos, introPos, conversePos, enterTavernPos;
     private Transform dumbTransform;
 
-    private GameData data;
-
     void Start() {
-        data = FindObjectOfType<GameData>();
-
         // we need a new transform to copy the card's initial transform into our start transform
         GameObject go = new GameObject("CardMoveController_DumbTransform");
         go.transform.parent = transform;
@@ -59,8 +55,8 @@ public class CardMoveController : MonoBehaviour {
         card.GetComponent<CardWander>().enabled = false;
     }
 
-    private void Stop() {
-        CardMove move = data.selectedCard.GetComponent<CardMove>();
+    private void Stop(GameObject card) {
+        CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
         move.Set(conversePos, enterTavernPos, 1, Wander);
     }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class EndConverseButton : MonoBehaviour {
 
     public static event EndConverseEventHandler endConverseEventHandler;
-    public delegate void EndConverseEventHandler();
+    public delegate void EndConverseEventHandler(GameObject card);
+
+    private GameData data;
     
     void Start() {
-
+        data = FindObjectOfType<GameData>();
     }
 
     void Update() {
@@ -16,6 +18,6 @@ public class EndConverseButton : MonoBehaviour {
     }
 
     public void BroadcastKey() {
-        endConverseEventHandler.Invoke();
+        endConverseEventHandler.Invoke(data.selectedCard);
     }
 }

@@ -686,6 +686,7 @@ MonoBehaviour:
   sfxIntro: 213288
   sfxOnClicks: []
   sfxGreetings: []
+  sfxGoodbyes: []
   nextDialogueID: 0
 --- !u!114 &114253165434218070
 MonoBehaviour:
@@ -879,7 +880,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e9d296bdcd26b0b4ab1efc10868647a5, type: 3}
   startConversationClips:
   - {fileID: 8300000, guid: 7775a75c69984454fac18fb7e74daa61, type: 3}
-  - {fileID: 8300000, guid: 2e4f905c7920bdc48b9cd7a9aac339d5, type: 3}
+  - {fileID: 8300000, guid: b6df58b1f121dbc49813893201809993, type: 3}
+  goodbyeClips:
+  - {fileID: 8300000, guid: 1f4c7be6fffcd1f47aa9c6537f03af02, type: 3}
 --- !u!222 &222009664977686948
 CanvasRenderer:
   m_ObjectHideFlags: 1
