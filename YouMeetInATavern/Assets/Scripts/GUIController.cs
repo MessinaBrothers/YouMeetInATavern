@@ -67,6 +67,6 @@ public class GUIController : MonoBehaviour {
     }
 
     private void UpdateStopConverseButton(bool isIntro) {
-        dialoguePanel.GetComponentInChildren<EndConverseButton>().SetMode(isIntro);
+        dialoguePanel.GetComponentInChildren<QuestionGUIController>().SetMode(isIntro);
     }
 }

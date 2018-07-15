@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class QuestionGUIController : MonoBehaviour {
 
+    public GameObject continueButton, goodbyeButton;
     public GameObject[] questionButtons;
 
     private GameData data;
@@ -48,6 +49,16 @@ public class QuestionGUIController : MonoBehaviour {
                     return;
                 }
             }
+        }
+    }
+
+    public void SetMode(bool isIntro) {
+        if (isIntro) {
+            continueButton.SetActive(true);
+            goodbyeButton.SetActive(false);
+        } else {
+            continueButton.SetActive(false);
+            goodbyeButton.SetActive(true);
         }
     }
 

@@ -7,7 +7,7 @@ public class CardMoveController : MonoBehaviour {
     public static event NPCInConversePosEventHandler npcInConversePosEventHandler;
     public delegate void NPCInConversePosEventHandler(GameObject card);
 
-    public Transform offscreenPos, introPos, conversePos, enterTavernPos;
+    public Transform offscreenPos, introPos, conversePos, enterTavernPos, exitPos;
     private Transform dumbTransform;
 
     private GameData data;
@@ -30,6 +30,7 @@ public class CardMoveController : MonoBehaviour {
         IntroduceNPC.npcIntroEndEventHandler += Converse;
         ConverseNPC.npcStartConverseEventHandler += Converse;
         InputController.stopConverseEventHandler += Stop;
+        InputController.npcLeavesEventHandler += Goodbye;
     }
 
     void OnDisable() {
@@ -37,6 +38,7 @@ public class CardMoveController : MonoBehaviour {
         IntroduceNPC.npcIntroEndEventHandler -= Converse;
         ConverseNPC.npcStartConverseEventHandler -= Converse;
         InputController.stopConverseEventHandler -= Stop;
+        InputController.npcLeavesEventHandler -= Goodbye;
     }
 
     private void Introduce(GameObject card) {
@@ -65,13 +67,23 @@ public class CardMoveController : MonoBehaviour {
         move.Set(conversePos, enterTavernPos, 1, Wander);
     }
 
+    private void Goodbye() {
+        CardMove move = data.selectedCard.GetComponent<CardMove>();
+        move.enabled = true;
+        move.Set(conversePos, exitPos, 1, ExitTavern);
+    }
+
     private void Wander(GameObject card) {
         card.GetComponent<CardMove>().enabled = false;
         card.GetComponent<CardWander>().enabled = true;
     }
 
     private void Wait(GameObject card) {
+        
+    }
 
+    private void ExitTavern(GameObject card) {
+        card.SetActive(false);
     }
 
     private void StartDialogue(GameObject card) {

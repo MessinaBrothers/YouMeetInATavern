@@ -10,6 +10,9 @@ public class InputController : MonoBehaviour {
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler();
 
+    public static event NPCLeavesEventHandler npcLeavesEventHandler;
+    public delegate void NPCLeavesEventHandler();
+
     public static event StartTavernEventHandler startTavernEventHandler;
     public delegate void StartTavernEventHandler();
 
@@ -30,6 +33,11 @@ public class InputController : MonoBehaviour {
 
     public static void HandleStopConverse() {
         stopConverseEventHandler.Invoke();
+        guiController.StopConverse();
+    }
+
+    public static void HandleGoodbye() {
+        npcLeavesEventHandler.Invoke();
         guiController.StopConverse();
     }
 
