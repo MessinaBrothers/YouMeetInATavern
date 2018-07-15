@@ -12,9 +12,7 @@ public class GUIController : MonoBehaviour {
     void Start() {
         data = FindObjectOfType<GameData>();
 
-        dialoguePanel.SetActive(false);
-        dayPanel.SetActive(true);
-        nightPanel.SetActive(false);
+        StartDay();
     }
 
     void Update() {
@@ -43,6 +41,12 @@ public class GUIController : MonoBehaviour {
 
     public void StopConverse() {
         dialoguePanel.SetActive(false);
+    }
+
+    public void StartDay() {
+        dialoguePanel.SetActive(false);
+        dayPanel.SetActive(true);
+        nightPanel.SetActive(false);
     }
 
     public void ContinueDay() {

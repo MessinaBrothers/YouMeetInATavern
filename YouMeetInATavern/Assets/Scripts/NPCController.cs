@@ -40,12 +40,12 @@ public class NPCController : MonoBehaviour {
 
     void OnEnable() {
         CardClickable.cardClickedEventHandler += HandleCardClick;
-        InputController.startTavernEventHandler += StartDay;
+        InputController.startTavernEventHandler += ContinueDay;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
-        InputController.startTavernEventHandler -= StartDay;
+        InputController.startTavernEventHandler -= ContinueDay;
     }
 
     public void RemoveNPCFromTavern(GameObject card) {
@@ -62,7 +62,7 @@ public class NPCController : MonoBehaviour {
         }
     }
 
-    private void StartDay() {
+    private void ContinueDay() {
         startIntro = true;
 
         card = Instantiate(cardPrefab);

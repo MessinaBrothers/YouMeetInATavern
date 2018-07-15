@@ -16,6 +16,9 @@ public class InputController : MonoBehaviour {
     public static event StartTavernEventHandler startTavernEventHandler;
     public delegate void StartTavernEventHandler();
 
+    public static event StartDayEventHandler startDayEventHandler;
+    public delegate void StartDayEventHandler();
+
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
@@ -44,5 +47,10 @@ public class InputController : MonoBehaviour {
     public static void ContinueDay() {
         startTavernEventHandler.Invoke();
         guiController.ContinueDay();
+    }
+
+    public static void StartDay() {
+        startDayEventHandler.Invoke();
+        guiController.StartDay();
     }
 }

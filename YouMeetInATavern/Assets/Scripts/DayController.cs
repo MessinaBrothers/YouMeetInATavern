@@ -16,11 +16,13 @@ public class DayController : MonoBehaviour {
     void OnEnable() {
         NPCController.npcCreatedEventHandler += AddNPC;
         NPCController.npcRemovedEventHandler += RemoveNPC;
+        InputController.startDayEventHandler += NewDay;
     }
 
     void OnDisable() {
         NPCController.npcCreatedEventHandler -= AddNPC;
         NPCController.npcRemovedEventHandler -= RemoveNPC;
+        InputController.startDayEventHandler -= NewDay;
     }
 
     private void AddNPC(GameObject card) {
@@ -37,4 +39,7 @@ public class DayController : MonoBehaviour {
         }
     }
 
+    private void NewDay() {
+        print("increment day count here");
+    }
 }
