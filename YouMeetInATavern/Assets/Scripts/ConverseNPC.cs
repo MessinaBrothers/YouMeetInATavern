@@ -22,6 +22,7 @@ public class ConverseNPC : MonoBehaviour {
         IntroduceNPC.npcIntroEndEventHandler += HandleIntroduction;
         DialogueButton.dialogueEventHandler += HandleDialogue;
         InputController.stopConverseEventHandler += Stop;
+        InputController.npcLeavesEventHandler += Goodbye;
     }
 
     void OnDisable() {
@@ -29,6 +30,7 @@ public class ConverseNPC : MonoBehaviour {
         IntroduceNPC.npcIntroEndEventHandler -= HandleIntroduction;
         DialogueButton.dialogueEventHandler -= HandleDialogue;
         InputController.stopConverseEventHandler -= Stop;
+        InputController.npcLeavesEventHandler -= Goodbye;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -62,13 +64,15 @@ public class ConverseNPC : MonoBehaviour {
 
         data.gameMode = GameData.GameMode.TAVERN;
 
-        // after introduction, change its next dialogue
-        if (card.GetComponent<NPC>().isBeingIntroduced == true) {
-            NPC npc = card.GetComponent<NPC>();
-            npc.isBeingIntroduced = false;
-            npc.nextDialogueID = 1;
-        } else {
-            card.GetComponent<CardSFX>().PlayGoodbye();
-        }
+        NPC npc = card.GetComponent<NPC>();
+        npc.isBeingIntroduced = false;
+        npc.nextDialogueID = 1;
+    }
+
+    private void Goodbye() {
+        data.gameMode = GameData.GameMode.TAVERN;
+
+        GameObject card = data.selectedCard;
+        card.GetComponent<CardSFX>().PlayGoodbye();
     }
 }
