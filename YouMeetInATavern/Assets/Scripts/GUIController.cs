@@ -9,8 +9,6 @@ public class GUIController : MonoBehaviour {
 
     private GameData data;
 
-    private static uint dialogueIDToDisplay;
-
     void Start() {
         data = FindObjectOfType<GameData>();
 
@@ -18,25 +16,24 @@ public class GUIController : MonoBehaviour {
     }
 
     void Update() {
-        if (dialogueIDToDisplay != GameData.DIALOGUE_INVALID) {
-            // TODO update display and questions
-            print("Update GUI text and buttons of key " + dialogueIDToDisplay);
-            dialogueIDToDisplay = GameData.DIALOGUE_INVALID;
-        }
+
     }
 
     void OnEnable() {
         CardMoveController.npcInConversePosEventHandler += Converse;
-        InputController.questionEventHandler += HandleQuestion;
     }
 
     void OnDisable() {
         CardMoveController.npcInConversePosEventHandler -= Converse;
-        InputController.questionEventHandler -= HandleQuestion;
     }
 
-    public static void UpdateGUI(uint dialogueID) {
-        dialogueIDToDisplay = dialogueID;
+    public void UpdateGUI(uint dialogueID) {
+        // TODO update display and questions
+        print("Update GUI text and buttons of key " + dialogueID);
+    }
+
+    public void StopConverse() {
+        dialoguePanel.SetActive(false);
     }
 
     private void Converse(GameObject card) {

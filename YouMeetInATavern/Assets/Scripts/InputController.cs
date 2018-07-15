@@ -7,8 +7,13 @@ public class InputController : MonoBehaviour {
     public static event QuestionEventHandler questionEventHandler;
     public delegate void QuestionEventHandler(uint key);
 
-    void Start() {
+    public static event StopConverseEventHandler stopConverseEventHandler;
+    public delegate void StopConverseEventHandler();
 
+    private static GUIController guiController;
+
+    void Start() {
+        guiController = FindObjectOfType<GUIController>();
     }
 
     void Update() {
@@ -17,6 +22,11 @@ public class InputController : MonoBehaviour {
 
     public static void HandleQuestion(uint key) {
         questionEventHandler.Invoke(key);
-        GUIController.UpdateGUI(key);
+        guiController.UpdateGUI(key);
+    }
+
+    public static void HandleStopConverse() {
+        stopConverseEventHandler.Invoke();
+        guiController.StopConverse();
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class DialogueController : MonoBehaviour {
 
-    public GameObject dialoguePanel;
+    private GameData data;
 
     void Start() {
-
+        data = FindObjectOfType<GameData>();
     }
 
     void Update() {
@@ -16,22 +16,14 @@ public class DialogueController : MonoBehaviour {
     }
 
     void OnEnable() {
-        DialogueButton.dialogueEventHandler += HandleDialogue;
-        EndConverseButton.endConverseEventHandler += Stop;
+        InputController.questionEventHandler += HandleQuestion;
     }
 
     void OnDisable() {
-        DialogueButton.dialogueEventHandler -= HandleDialogue;
-        EndConverseButton.endConverseEventHandler -= Stop;
+        InputController.questionEventHandler -= HandleQuestion;
     }
 
-    private void HandleDialogue(uint key) {
-        if (key == 0) {
-            //  dialoguePanel.SetActive(false);
-        }
-    }
-
-    private void Stop(GameObject card) {
-        dialoguePanel.SetActive(false);
+    public void HandleQuestion(uint key) {
+        data.isDialogueIndexUnlocked[key] = true;
     }
 }

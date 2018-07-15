@@ -21,14 +21,14 @@ public class ConverseNPC : MonoBehaviour {
         CardClickable.cardClickedEventHandler += HandleCardClick;
         IntroduceNPC.npcIntroEndEventHandler += HandleIntroduction;
         DialogueButton.dialogueEventHandler += HandleDialogue;
-        EndConverseButton.endConverseEventHandler += Stop;
+        InputController.stopConverseEventHandler += Stop;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
         IntroduceNPC.npcIntroEndEventHandler -= HandleIntroduction;
         DialogueButton.dialogueEventHandler -= HandleDialogue;
-        EndConverseButton.endConverseEventHandler -= Stop;
+        InputController.stopConverseEventHandler -= Stop;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -57,7 +57,9 @@ public class ConverseNPC : MonoBehaviour {
         data.selectedCard = card;
     }
 
-    private void Stop(GameObject card) {
+    private void Stop() {
+        GameObject card = data.selectedCard;
+
         data.gameMode = GameData.GameMode.TAVERN;
         card.GetComponent<CardSFX>().PlayGoodbye();
 
