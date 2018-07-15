@@ -13,6 +13,7 @@ public class GameData : MonoBehaviour {
 
     // how many npcs are in the tavern
     public uint tavernNPCCount;
+    public uint dayCount;
 
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<uint, string>> npc_dialogues;

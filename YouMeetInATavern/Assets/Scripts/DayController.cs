@@ -40,6 +40,6 @@ public class DayController : MonoBehaviour {
     }
 
     private void NewDay() {
-        print("increment day count here");
+        data.dayCount += 1;
     }
 }
