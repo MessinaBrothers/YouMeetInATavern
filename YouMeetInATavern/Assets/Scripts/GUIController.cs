@@ -28,8 +28,13 @@ public class GUIController : MonoBehaviour {
     }
 
     public void UpdateGUI(uint dialogueID) {
-        // TODO update display and questions
-        print("Update GUI text and buttons of key " + dialogueID);
+        // update dialogue
+        uint npcID = data.selectedCard.GetComponent<NPC>().npcID;
+        UpdateDialogue(npcID, dialogueID);
+        // update questions
+        UpdateQuestions();
+        // activate the panel
+        dialoguePanel.SetActive(true);
     }
 
     public void StopConverse() {
@@ -37,24 +42,21 @@ public class GUIController : MonoBehaviour {
     }
 
     private void Converse(GameObject card) {
-        // set the next dialogue text
-        NPC npc = card.GetComponent<NPC>();
-        SetDialogueText(npc.npcID, npc.nextDialogueID);
-        // set the question texts
-        dialoguePanel.GetComponentInChildren<QuestionController>().LoadQuestions(card);
-        // activate the panel
-        dialoguePanel.SetActive(true);
+        UpdateGUI(card.GetComponent<NPC>().nextDialogueID);
     }
 
     private void HandleQuestion(uint key) {
-
         // set the panel text
         uint npcID = data.selectedCard.GetComponent<NPC>().npcID;
-        SetDialogueText(npcID, key);
+        UpdateDialogue(npcID, key);
     }
 
-    private void SetDialogueText(uint npcID, uint dialogueID) {
+    private void UpdateDialogue(uint npcID, uint dialogueID) {
         string text = data.npc_dialogues[npcID][dialogueID];
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
+    }
+
+    private void UpdateQuestions() {
+        dialoguePanel.GetComponentInChildren<QuestionGUIController>().LoadQuestions(data.selectedCard);
     }
 }

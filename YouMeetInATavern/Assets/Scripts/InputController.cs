@@ -10,7 +10,7 @@ public class InputController : MonoBehaviour {
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler();
 
-    private static GUIController guiController;
+    private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
         guiController = FindObjectOfType<GUIController>();

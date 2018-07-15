@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestionController : MonoBehaviour {
+public class QuestionGUIController : MonoBehaviour {
 
     public GameObject[] questionButtons;
 
@@ -41,13 +41,24 @@ public class QuestionController : MonoBehaviour {
                 buttonIndex += 1;
 
                 // set the button text to the question text
-                button.GetComponentInChildren<Text>().text = kvp.Value;
+                SetQuestionText(button, kvp.Value);
 
-                // what happens when you have more questions than buttons available? ESCAPE
+                // what happens when you have more questions than buttons available? Escape
                 if (buttonIndex >= questionButtons.Length) {
                     return;
                 }
             }
         }
+    }
+
+    private void SetQuestionText(GameObject button, string text) {
+        // set the dialogue id
+        int endIDIndex = text.IndexOf('>');
+        uint key = uint.Parse(text.Substring("<".Length, endIDIndex - "<".Length));
+        button.GetComponent<QuestionButton>().key = key;
+
+        // set the button text
+        string toDisplay = text.Substring(endIDIndex + ">".Length);
+        button.GetComponentInChildren<Text>().text = toDisplay;
     }
 }
