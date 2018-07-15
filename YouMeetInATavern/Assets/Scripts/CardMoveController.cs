@@ -83,7 +83,7 @@ public class CardMoveController : MonoBehaviour {
     }
 
     private void ExitTavern(GameObject card) {
-        card.SetActive(false);
+        FindObjectOfType<NPCController>().RemoveNPCFromTavern(card);
     }
 
     private void StartDialogue(GameObject card) {

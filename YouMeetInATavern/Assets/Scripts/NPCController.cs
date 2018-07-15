@@ -7,6 +7,9 @@ public class NPCController : MonoBehaviour {
     public static event NPCCreatedEventHandler npcCreatedEventHandler;
     public delegate void NPCCreatedEventHandler(GameObject card);
 
+    public static event NPCRemovedEventHandler npcRemovedEventHandler;
+    public delegate void NPCRemovedEventHandler(GameObject card);
+
     public static event NPCIntroduceEventHandler npcIntroStartEventHandler;
     public delegate void NPCIntroduceEventHandler(GameObject card);
 
@@ -43,6 +46,11 @@ public class NPCController : MonoBehaviour {
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
         InputController.startTavernEventHandler -= StartDay;
+    }
+
+    public void RemoveNPCFromTavern(GameObject card) {
+        card.SetActive(false);
+        npcRemovedEventHandler.Invoke(card);
     }
 
     private void HandleCardClick(GameObject card) {
