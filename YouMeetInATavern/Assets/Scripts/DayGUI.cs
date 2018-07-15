@@ -12,7 +12,6 @@ public class DayGUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        print("Enabling DayGUI");
         string toDisplay = "Day " + data.dayCount;
         GetComponentInChildren<Text>().text = toDisplay;
     }

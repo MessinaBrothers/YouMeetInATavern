@@ -11,8 +11,6 @@ public class GUIController : MonoBehaviour {
 
     void Start() {
         data = FindObjectOfType<GameData>();
-
-        StartDay();
     }
 
     void Update() {
