@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputController : MonoBehaviour {
 
     public static event QuestionEventHandler questionEventHandler;
-    public delegate void QuestionEventHandler(uint key);
+    public delegate void QuestionEventHandler(uint key, uint unlockKey);
 
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler();
@@ -20,9 +20,9 @@ public class InputController : MonoBehaviour {
 
     }
 
-    public static void HandleQuestion(uint key) {
-        questionEventHandler.Invoke(key);
-        guiController.UpdateGUI(key);
+    public static void HandleQuestion(uint key, uint unlockKey) {
+        questionEventHandler.Invoke(key, unlockKey);
+        guiController.UpdateGUI(unlockKey);
     }
 
     public static void HandleStopConverse() {

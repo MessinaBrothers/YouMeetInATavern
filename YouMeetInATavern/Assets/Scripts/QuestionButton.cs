@@ -5,8 +5,9 @@ using UnityEngine;
 public class QuestionButton : MonoBehaviour {
 
     public uint key;
+    public uint unlockKey;
 
     public void BroadcastKey() {
-        InputController.HandleQuestion(key);
+        InputController.HandleQuestion(key, unlockKey);
     }
 }

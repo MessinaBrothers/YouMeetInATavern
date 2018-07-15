@@ -23,7 +23,10 @@ public class DialogueController : MonoBehaviour {
         InputController.questionEventHandler -= HandleQuestion;
     }
 
-    public void HandleQuestion(uint key) {
-        data.isDialogueIndexUnlocked[key] = true;
+    public void HandleQuestion(uint key, uint unlockKey) {
+        // unlock the dialogue
+        data.isDialogueIndexUnlocked[unlockKey] = true;
+        // remove the question from the NPC so it never appears again
+        data.npc_questions[data.selectedCard.GetComponent<NPC>().npcID].Remove(key);
     }
 }

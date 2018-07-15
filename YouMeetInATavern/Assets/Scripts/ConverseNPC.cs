@@ -61,13 +61,14 @@ public class ConverseNPC : MonoBehaviour {
         GameObject card = data.selectedCard;
 
         data.gameMode = GameData.GameMode.TAVERN;
-        card.GetComponent<CardSFX>().PlayGoodbye();
 
         // after introduction, change its next dialogue
         if (card.GetComponent<NPC>().isBeingIntroduced == true) {
             NPC npc = card.GetComponent<NPC>();
             npc.isBeingIntroduced = false;
             npc.nextDialogueID = 1;
+        } else {
+            card.GetComponent<CardSFX>().PlayGoodbye();
         }
     }
 }

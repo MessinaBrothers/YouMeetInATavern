@@ -29,10 +29,12 @@ public class GUIController : MonoBehaviour {
 
     public void UpdateGUI(uint dialogueID) {
         // update dialogue
-        uint npcID = data.selectedCard.GetComponent<NPC>().npcID;
-        UpdateDialogue(npcID, dialogueID);
+        NPC npc = data.selectedCard.GetComponent<NPC>();
+        UpdateDialogue(npc.npcID, dialogueID);
         // update questions
         UpdateQuestions();
+        // update Stop Converse button
+        UpdateStopConverseButton(npc.isBeingIntroduced);
         // activate the panel
         dialoguePanel.SetActive(true);
     }
@@ -58,5 +60,9 @@ public class GUIController : MonoBehaviour {
 
     private void UpdateQuestions() {
         dialoguePanel.GetComponentInChildren<QuestionGUIController>().LoadQuestions(data.selectedCard);
+    }
+
+    private void UpdateStopConverseButton(bool isIntro) {
+        dialoguePanel.GetComponentInChildren<EndConverseButton>().SetMode(isIntro);
     }
 }

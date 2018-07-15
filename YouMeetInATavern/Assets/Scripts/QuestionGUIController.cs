@@ -41,7 +41,7 @@ public class QuestionGUIController : MonoBehaviour {
                 buttonIndex += 1;
 
                 // set the button text to the question text
-                SetQuestionText(button, kvp.Value);
+                SetQuestionText(button, kvp.Key, kvp.Value);
 
                 // what happens when you have more questions than buttons available? Escape
                 if (buttonIndex >= questionButtons.Length) {
@@ -51,11 +51,15 @@ public class QuestionGUIController : MonoBehaviour {
         }
     }
 
-    private void SetQuestionText(GameObject button, string text) {
-        // set the dialogue id
+    private void SetQuestionText(GameObject button, uint key, string text) {
+        // set the question id
+        QuestionButton questionButton = button.GetComponent<QuestionButton>();
+        questionButton.key = key;
+
+        // set the unlock dialogue id
         int endIDIndex = text.IndexOf('>');
-        uint key = uint.Parse(text.Substring("<".Length, endIDIndex - "<".Length));
-        button.GetComponent<QuestionButton>().key = key;
+        uint unlockKey = uint.Parse(text.Substring("<".Length, endIDIndex - "<".Length));
+        questionButton.unlockKey = unlockKey;
 
         // set the button text
         string toDisplay = text.Substring(endIDIndex + ">".Length);
