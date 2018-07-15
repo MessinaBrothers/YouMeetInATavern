@@ -15,4 +15,6 @@ public class NPC : MonoBehaviour {
 
     public uint nextDialogueID;
 
+    public bool isBeingIntroduced;
+
 }

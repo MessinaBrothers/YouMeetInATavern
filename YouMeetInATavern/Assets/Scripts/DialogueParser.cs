@@ -13,10 +13,6 @@ public class DialogueParser : MonoBehaviour {
         Parse();
     }
 
-    void Update() {
-
-    }
-
     private void Parse() {
         TextAsset file = (TextAsset)Resources.Load("Dialogue");
         print(file);

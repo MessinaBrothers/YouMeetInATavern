@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695b7055d05b22742b576403588b9a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcID: 1
+  npcID: 0
   cardName: Bartender
   imageFileName: Beastly_Beauty
   sfxIntro: 213288
@@ -688,6 +688,7 @@ MonoBehaviour:
   sfxGreetings: []
   sfxGoodbyes: []
   nextDialogueID: 0
+  isBeingIntroduced: 0
 --- !u!114 &114253165434218070
 MonoBehaviour:
   m_ObjectHideFlags: 1

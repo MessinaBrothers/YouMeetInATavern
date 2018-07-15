@@ -6,14 +6,6 @@ public class DialoguePanel : MonoBehaviour {
 
     public GameObject dialogueLinePrefab;
 
-    void Start() {
-
-    }
-
-    void Update() {
-
-    }
-
     public void SetDialogue(string text) {
         // clear all children
         foreach (Transform child in transform) {

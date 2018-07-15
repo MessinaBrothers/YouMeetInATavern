@@ -22,8 +22,10 @@ public class IntroduceNPC : MonoBehaviour {
         data = FindObjectOfType<GameData>();
 
         card = Instantiate(cardPrefab);
+        NPC npc = card.GetComponent<NPC>();
+        npc.isBeingIntroduced = true;
         // set the next dialogue to be intro dialogue
-        card.GetComponent<NPC>().nextDialogueID = GameData.DIALOGUE_INTRO;
+        npc.nextDialogueID = GameData.DIALOGUE_INTRO;
     }
 
     void Update() {
