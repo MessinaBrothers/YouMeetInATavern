@@ -14,7 +14,7 @@ public class CardMove : MonoBehaviour {
     private float moveTime, moveTimer;
 
     void Start() {
-        moveTimer = 0;
+
     }
 
     void Update() {
@@ -34,7 +34,6 @@ public class CardMove : MonoBehaviour {
         this.endTransform = endTransform;
         moveTime = time;
         this.reachedPosition = reachedPosition;
-
         moveTimer = moveTime;
     }
 }

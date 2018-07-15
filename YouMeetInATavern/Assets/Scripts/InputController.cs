@@ -10,6 +10,9 @@ public class InputController : MonoBehaviour {
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler();
 
+    public static event StartTavernEventHandler startTavernEventHandler;
+    public delegate void StartTavernEventHandler();
+
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
@@ -22,11 +25,16 @@ public class InputController : MonoBehaviour {
 
     public static void HandleQuestion(uint key, uint unlockKey) {
         questionEventHandler.Invoke(key, unlockKey);
-        guiController.UpdateGUI(unlockKey);
+        guiController.UpdateConverseGUI(unlockKey);
     }
 
     public static void HandleStopConverse() {
         stopConverseEventHandler.Invoke();
         guiController.StopConverse();
+    }
+
+    public static void ContinueDay() {
+        startTavernEventHandler.Invoke();
+        guiController.ContinueDay();
     }
 }

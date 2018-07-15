@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GUIController : MonoBehaviour {
 
-    public GameObject dialoguePanel;
+    public GameObject dialoguePanel, dayPanel;
 
     private GameData data;
 
@@ -27,7 +27,7 @@ public class GUIController : MonoBehaviour {
         CardMoveController.npcInConversePosEventHandler -= Converse;
     }
 
-    public void UpdateGUI(uint dialogueID) {
+    public void UpdateConverseGUI(uint dialogueID) {
         // update dialogue
         NPC npc = data.selectedCard.GetComponent<NPC>();
         UpdateDialogue(npc.npcID, dialogueID);
@@ -43,8 +43,12 @@ public class GUIController : MonoBehaviour {
         dialoguePanel.SetActive(false);
     }
 
+    public void ContinueDay() {
+        dayPanel.SetActive(false);
+    }
+
     private void Converse(GameObject card) {
-        UpdateGUI(card.GetComponent<NPC>().nextDialogueID);
+        UpdateConverseGUI(card.GetComponent<NPC>().nextDialogueID);
     }
 
     private void HandleQuestion(uint key) {

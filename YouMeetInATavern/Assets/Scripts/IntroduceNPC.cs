@@ -20,30 +20,26 @@ public class IntroduceNPC : MonoBehaviour {
 
     void Start() {
         data = FindObjectOfType<GameData>();
-
-        card = Instantiate(cardPrefab);
-        NPC npc = card.GetComponent<NPC>();
-        npc.isBeingIntroduced = true;
-        // set the next dialogue to be intro dialogue
-        npc.nextDialogueID = GameData.DIALOGUE_INTRO;
     }
 
     void Update() {
         if (data.gameMode == GameData.GameMode.INTRODUCE) {
             if (startIntro == true) {
                 startIntro = false;
-                
-                npcIntroStartEventHandler.Invoke(card);
+
+                //npcIntroStartEventHandler.Invoke(card);
             }
         }
     }
 
     void OnEnable() {
         CardClickable.cardClickedEventHandler += HandleCardClick;
+        InputController.startTavernEventHandler += StartDay;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
+        InputController.startTavernEventHandler -= StartDay;
     }
 
     private void HandleCardClick(GameObject card) {
@@ -51,5 +47,19 @@ public class IntroduceNPC : MonoBehaviour {
             card.GetComponent<CardSFX>().PlayIntro();
             npcIntroEndEventHandler.Invoke(card);
         }
+    }
+
+    private void StartDay() {
+        startIntro = true;
+
+        card = Instantiate(cardPrefab);
+        // move it anywhere offscreen so it doesn't appear at the beginning
+        card.transform.position = new Vector3(0, 1000, 0);
+        NPC npc = card.GetComponent<NPC>();
+        npc.isBeingIntroduced = true;
+        // set the next dialogue to be intro dialogue
+        npc.nextDialogueID = GameData.DIALOGUE_INTRO;
+
+        npcIntroStartEventHandler.Invoke(card);
     }
 }
