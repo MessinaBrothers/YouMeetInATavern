@@ -26,5 +26,8 @@ public class GameData : MonoBehaviour {
         npc_dialogues = new Dictionary<uint, Dictionary<uint, string>>();
         npc_questions = new Dictionary<uint, Dictionary<uint, string>>();
         isDialogueIndexUnlocked = new bool[1024*2*2];
+
+        // DEBUG
+        isDialogueIndexUnlocked[1] = true;
     }
 }

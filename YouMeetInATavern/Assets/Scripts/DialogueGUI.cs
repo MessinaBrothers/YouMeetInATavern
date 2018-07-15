@@ -33,6 +33,8 @@ public class DialogueGUI : MonoBehaviour {
         string text = data.npc_dialogues[npc.npcID][npc.nextDialogueID];
         // set the panel text
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
+        // set the question textx
+        dialoguePanel.GetComponentInChildren<QuestionController>().LoadQuestions(card);
         // activate the panel
         dialoguePanel.SetActive(true);
     }
