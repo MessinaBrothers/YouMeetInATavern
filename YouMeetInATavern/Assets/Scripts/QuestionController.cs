@@ -19,7 +19,6 @@ public class QuestionController : MonoBehaviour {
         // disable all question buttons
         foreach (GameObject button in questionButtons) {
             button.SetActive(false);
-            print("Asdfadsf");
         }
 
         // ignore unlocked questions if NPC is being introduced

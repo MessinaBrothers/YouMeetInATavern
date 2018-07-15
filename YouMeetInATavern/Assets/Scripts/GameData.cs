@@ -7,6 +7,7 @@ public class GameData : MonoBehaviour {
     public static int DIALOGUE_DEFAULT = -1; //TODO delete
     public static uint DIALOGUE_INTRO = 0;
     public static uint DIALOGUE_GENERIC = 1;
+    public static uint DIALOGUE_INVALID = uint.MaxValue;
 
     public GameObject selectedCard;
 

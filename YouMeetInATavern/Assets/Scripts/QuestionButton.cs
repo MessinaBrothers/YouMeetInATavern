@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class QuestionButton : MonoBehaviour {
 
-    public static event QuestionEventHandler questionEventHandler;
-    public delegate void QuestionEventHandler(uint key);
-
     public uint key;
 
     void Start() {
@@ -18,6 +15,6 @@ public class QuestionButton : MonoBehaviour {
     }
 
     public void BroadcastKey() {
-        questionEventHandler.Invoke(key);
+        InputController.HandleQuestion(key);
     }
 }
