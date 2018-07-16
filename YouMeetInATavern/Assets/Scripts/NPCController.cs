@@ -16,6 +16,9 @@ public class NPCController : MonoBehaviour {
     public static event NPCIntroducedEventHandler npcIntroEndEventHandler;
     public delegate void NPCIntroducedEventHandler(GameObject card);
 
+    public static event NPCStartInTaverneventHandler npcStartInTaverneventHandler;
+    public delegate void NPCStartInTaverneventHandler(GameObject card);
+
     public GameObject cardPrefab;
 
     public bool startIntro;
@@ -23,9 +26,14 @@ public class NPCController : MonoBehaviour {
     private GameData data;
 
     private GameObject card;
+    private Transform cardParent;
 
     void Start() {
         data = FindObjectOfType<GameData>();
+
+        // create parent for cards to go under
+        GameObject go = new GameObject("NPCs");
+        cardParent = go.transform;
     }
 
     void Update() {
@@ -66,10 +74,15 @@ public class NPCController : MonoBehaviour {
     private void ContinueDay() {
         startIntro = true;
 
+        // place already-introduced NPCs in the tavern
+        ActivateNPCs();
+
         card = Instantiate(cardPrefab);
+        card.transform.parent = cardParent;
         // move it anywhere offscreen so it doesn't appear at the beginning
         card.transform.position = new Vector3(0, 1000, 0);
         NPC npc = card.GetComponent<NPC>();
+        card.name = npc.cardName + "NPC";
         npc.isBeingIntroduced = true;
         // set the next dialogue to be intro dialogue
         npc.nextDialogueID = GameData.DIALOGUE_INTRO;
@@ -80,5 +93,17 @@ public class NPCController : MonoBehaviour {
         npcCreatedEventHandler.Invoke(card);
 
         npcIntroStartEventHandler.Invoke(card);
+    }
+
+    private void ActivateNPCs() {
+        foreach (Transform child in cardParent) {
+            GameObject card = child.gameObject;
+            // activate the GameObject
+            card.SetActive(true);
+            // add NPC to npc list
+            data.npcs.Add(card);
+            // broadcast that the NPC has entered the tavern
+            npcStartInTaverneventHandler.Invoke(card);
+        }
     }
 }

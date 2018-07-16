@@ -31,6 +31,7 @@ public class CardMoveController : MonoBehaviour {
         ConverseNPC.npcStartConverseEventHandler += Converse;
         InputController.stopConverseEventHandler += Stop;
         InputController.npcLeavesEventHandler += Goodbye;
+        NPCController.npcStartInTaverneventHandler += PlaceInTavern;
     }
 
     void OnDisable() {
@@ -39,6 +40,7 @@ public class CardMoveController : MonoBehaviour {
         ConverseNPC.npcStartConverseEventHandler -= Converse;
         InputController.stopConverseEventHandler -= Stop;
         InputController.npcLeavesEventHandler -= Goodbye;
+        NPCController.npcStartInTaverneventHandler -= PlaceInTavern;
     }
 
     private void Introduce(GameObject card) {
@@ -71,6 +73,12 @@ public class CardMoveController : MonoBehaviour {
         CardMove move = data.selectedCard.GetComponent<CardMove>();
         move.enabled = true;
         move.Set(conversePos, exitPos, 1, ExitTavern);
+    }
+
+    private void PlaceInTavern(GameObject card) {
+        card.transform.position = enterTavernPos.position;
+        card.transform.rotation = enterTavernPos.rotation;
+        Wander(card);
     }
 
     private void Wander(GameObject card) {
