@@ -26,15 +26,11 @@ public class DayController : MonoBehaviour {
     }
 
     private void AddNPC(GameObject card) {
-        // increment npc count
-        data.tavernNPCCount += 1;
+
     }
 
     private void RemoveNPC(GameObject card) {
-        // decrement npc count
-        data.tavernNPCCount -= 1;
-
-        if (data.tavernNPCCount == 0) {
+        if (data.npcs.Count == 0) {
             guiController.EndDay();
         }
     }

@@ -12,7 +12,7 @@ public class GameData : MonoBehaviour {
     public GameObject selectedCard;
 
     // how many npcs are in the tavern
-    public uint tavernNPCCount;
+    public List<GameObject> npcs;
     public uint dayCount;
 
     [Header("Dialogue")]

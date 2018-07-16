@@ -50,6 +50,7 @@ public class NPCController : MonoBehaviour {
 
     public void RemoveNPCFromTavern(GameObject card) {
         card.SetActive(false);
+        data.npcs.Remove(card);
         npcRemovedEventHandler.Invoke(card);
     }
 
@@ -72,6 +73,9 @@ public class NPCController : MonoBehaviour {
         npc.isBeingIntroduced = true;
         // set the next dialogue to be intro dialogue
         npc.nextDialogueID = GameData.DIALOGUE_INTRO;
+
+        // add NPC to npc list
+        data.npcs.Add(card);
 
         npcCreatedEventHandler.Invoke(card);
 
