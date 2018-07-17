@@ -95,7 +95,7 @@ public class NPCController : MonoBehaviour {
         // move it anywhere offscreen so it doesn't appear at the beginning
         card.transform.position = new Vector3(0, 1000, 0);
         NPC npc = card.GetComponent<NPC>();
-        card.name = npc.cardName + "NPC";
+        card.name = /*npc.cardName + */"NPC";
         npc.isBeingIntroduced = true;
         // set the next dialogue to be intro dialogue
         npc.nextDialogueID = GameData.DIALOGUE_INTRO;

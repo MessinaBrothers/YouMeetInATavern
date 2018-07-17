@@ -6,12 +6,12 @@ public class NPC : MonoBehaviour {
 
     public uint npcID;
 
-    public string cardName;
+    //public string cardName;
 
-    public string imageFileName;
+    //public string imageFileName;
 
-    public string sfxIntro;
-    public string[] sfxOnClicks, sfxGreetings, sfxGoodbyes;
+    //public string sfxIntro;
+    //public string[] sfxOnClicks, sfxGreetings, sfxGoodbyes;
 
     public uint nextDialogueID;
 
