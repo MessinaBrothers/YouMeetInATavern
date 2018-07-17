@@ -25,8 +25,9 @@ public class NPCController : MonoBehaviour {
 
     private GameData data;
 
-    private GameObject card;
     private Transform cardParent;
+
+    private Queue<uint> npcsToIntroduce;
 
     void Start() {
         data = FindObjectOfType<GameData>();
@@ -49,11 +50,13 @@ public class NPCController : MonoBehaviour {
     void OnEnable() {
         CardClickable.cardClickedEventHandler += HandleCardClick;
         InputController.startTavernEventHandler += ContinueDay;
+        InputController.stopConverseEventHandler += IntroduceNextNPC;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
         InputController.startTavernEventHandler -= ContinueDay;
+        InputController.stopConverseEventHandler -= IntroduceNextNPC;
     }
 
     public void RemoveNPCFromTavern(GameObject card) {
@@ -71,13 +74,23 @@ public class NPCController : MonoBehaviour {
         }
     }
 
-    private void ContinueDay() {
-        startIntro = true;
+    private void IntroduceNextNPC() {
+        // if no more NPCs to introduce
+        if (npcsToIntroduce.Count == 0) {
+            // set game to TAVERN mode
+            data.gameMode = GameData.GameMode.TAVERN;
+        } else {
+            // get the next NPC ID
+            uint npcID = npcsToIntroduce.Dequeue();
+            IntroduceNPC(npcID);
+        }
+    }
 
-        // place already-introduced NPCs in the tavern
-        ActivateNPCs();
+    private void IntroduceNPC(uint id) {
+        print("Introducing NPC " + id);
+        data.gameMode = GameData.GameMode.INTRODUCE;
 
-        card = Instantiate(cardPrefab);
+        GameObject card = Instantiate(cardPrefab);
         card.transform.parent = cardParent;
         // move it anywhere offscreen so it doesn't appear at the beginning
         card.transform.position = new Vector3(0, 1000, 0);
@@ -93,6 +106,38 @@ public class NPCController : MonoBehaviour {
         npcCreatedEventHandler.Invoke(card);
 
         npcIntroStartEventHandler.Invoke(card);
+    }
+
+    private void ContinueDay() {
+        startIntro = true;
+
+        // place already-introduced NPCs in the tavern
+        ActivateNPCs();
+
+        // load list of NPCs to introduce
+        if (data.scenario.day_introductions.ContainsKey(data.dayCount)) {
+            npcsToIntroduce = new Queue<uint>(data.scenario.day_introductions[data.dayCount]);
+        }
+
+        // introduce the first NPC, if any
+        IntroduceNextNPC();
+
+        //GameObject card = Instantiate(cardPrefab);
+        //card.transform.parent = cardParent;
+        //// move it anywhere offscreen so it doesn't appear at the beginning
+        //card.transform.position = new Vector3(0, 1000, 0);
+        //NPC npc = card.GetComponent<NPC>();
+        //card.name = npc.cardName + "NPC";
+        //npc.isBeingIntroduced = true;
+        //// set the next dialogue to be intro dialogue
+        //npc.nextDialogueID = GameData.DIALOGUE_INTRO;
+
+        //// add NPC to npc list
+        //data.npcs.Add(card);
+
+        //npcCreatedEventHandler.Invoke(card);
+
+        //npcIntroStartEventHandler.Invoke(card);
     }
 
     private void ActivateNPCs() {

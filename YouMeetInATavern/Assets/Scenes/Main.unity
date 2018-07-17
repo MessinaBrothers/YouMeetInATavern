@@ -1453,7 +1453,6 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   npcs: []
   dayCount: 0
-  currentScenarioID: 0
   isDialogueIndexUnlocked: 
   gameMode: 0
 --- !u!114 &1027258103

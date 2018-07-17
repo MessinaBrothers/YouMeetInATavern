@@ -62,8 +62,6 @@ public class ConverseNPC : MonoBehaviour {
     private void Stop() {
         GameObject card = data.selectedCard;
 
-        data.gameMode = GameData.GameMode.TAVERN;
-
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = false;
         npc.nextDialogueID = 1;

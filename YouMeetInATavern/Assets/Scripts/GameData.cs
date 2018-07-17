@@ -14,7 +14,7 @@ public class GameData : MonoBehaviour {
     public List<GameObject> npcs;
     public uint dayCount;
     public Dictionary<uint, Scenario> scenarios;
-    public uint currentScenarioID;
+    public Scenario scenario;
 
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<uint, string>> npc_dialogues;

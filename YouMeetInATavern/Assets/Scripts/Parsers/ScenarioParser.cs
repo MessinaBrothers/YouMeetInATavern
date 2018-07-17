@@ -29,7 +29,6 @@ public class ScenarioParser : MonoBehaviour {
     }
 
     private void ParseLine(string line) {
-        print(line);
         string[] lineData = line.Split(',');
 
         Scenario scenario = new Scenario();
