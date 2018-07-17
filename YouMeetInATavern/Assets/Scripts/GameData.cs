@@ -11,9 +11,10 @@ public class GameData : MonoBehaviour {
 
     public GameObject selectedCard;
 
-    // how many npcs are in the tavern
     public List<GameObject> npcs;
     public uint dayCount;
+    public Dictionary<uint, Scenario> scenarios;
+    public uint currentScenarioID;
 
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<uint, string>> npc_dialogues;
@@ -27,6 +28,8 @@ public class GameData : MonoBehaviour {
 
     void Start() {
         gameMode = GameMode.INTRODUCE;
+
+        scenarios = new Dictionary<uint, Scenario>();
 
         npc_dialogues = new Dictionary<uint, Dictionary<uint, string>>();
         npc_questions = new Dictionary<uint, Dictionary<uint, string>>();

@@ -6,6 +6,10 @@ public class GameController : MonoBehaviour {
 
     void Start() {
         // always Starts last. See: Edit > Project Settings > Script Execution Order
+
+        // load scenario
+
+        // start the first day
         InputController.StartDay();
     }
 

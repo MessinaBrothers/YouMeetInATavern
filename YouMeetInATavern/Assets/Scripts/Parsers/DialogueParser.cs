@@ -15,7 +15,6 @@ public class DialogueParser : MonoBehaviour {
 
     private void Parse() {
         TextAsset file = (TextAsset)Resources.Load("Dialogue");
-        print(file);
 
         string[] lines = file.text.Split("\n"[0]);
 
@@ -32,7 +31,7 @@ public class DialogueParser : MonoBehaviour {
 
     private void ParseLine(string line) {
         string[] data = line.Split(',');
-
+        
         uint npcID = uint.Parse(data[0]);
         bool isQuestion = int.Parse(data[1]) == 0 ? false : true;
         uint dialogueID = uint.Parse(data[2]);
