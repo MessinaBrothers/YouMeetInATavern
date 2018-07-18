@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCController : MonoBehaviour {
 
@@ -90,12 +91,11 @@ public class NPCController : MonoBehaviour {
         print("Introducing NPC " + id);
         data.gameMode = GameData.GameMode.INTRODUCE;
 
-        GameObject card = Instantiate(cardPrefab);
-        card.transform.parent = cardParent;
+        GameObject card = CreateCard(id);
         // move it anywhere offscreen so it doesn't appear at the beginning
         card.transform.position = new Vector3(0, 1000, 0);
+
         NPC npc = card.GetComponent<NPC>();
-        card.name = /*npc.cardName + */"NPC";
         npc.isBeingIntroduced = true;
         // set the next dialogue to be intro dialogue
         npc.nextDialogueID = GameData.DIALOGUE_INTRO;
@@ -106,6 +106,30 @@ public class NPCController : MonoBehaviour {
         npcCreatedEventHandler.Invoke(card);
 
         npcIntroStartEventHandler.Invoke(card);
+    }
+
+    private GameObject CreateCard(uint npcID) {
+        // get NPC data
+        NPCData npcData = data.npcData[npcID];
+
+        // create the card gameobject
+        GameObject card = Instantiate(cardPrefab);
+        card.name = npcData.name + " NPC";
+        card.transform.parent = cardParent;
+
+        // set the NPC values
+        NPC npc = card.GetComponent<NPC>();
+        npc.npcID = npcID;
+
+        // set the card name
+        card.GetComponentInChildren<Text>().text = npcData.name;
+
+        // set the card image
+        card.GetComponentInChildren<CardImage>().SetImage(Resources.Load<Sprite>("Card Art/" + npcData.imageFile));
+
+        // set the NPC sfx
+
+        return card;
     }
 
     private void ContinueDay() {

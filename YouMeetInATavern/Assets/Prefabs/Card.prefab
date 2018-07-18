@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 224179503616690760}
   - component: {fileID: 222270214795431330}
   - component: {fileID: 114703745355845752}
+  - component: {fileID: 114868621305831896}
   m_Layer: 5
   m_Name: TargetImage
   m_TagString: Untagged
@@ -681,12 +682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcID: 0
-  cardName: Bartender
-  imageFileName: Beastly_Beauty
-  sfxIntro: 213288
-  sfxOnClicks: []
-  sfxGreetings: []
-  sfxGoodbyes: []
   nextDialogueID: 0
   isBeingIntroduced: 0
 --- !u!114 &114253165434218070
@@ -747,7 +742,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b7138e57757fe4b448888a5b2513afdd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -774,7 +769,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e9a601a2796d5e148bab99dcdf7b0aac, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -782,6 +777,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114868621305831896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1335946065140696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90953f5b62d64e4286384e337886f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114874454379495474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -826,7 +832,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bartender
+  m_Text: Name
 --- !u!114 &114955441089837666
 MonoBehaviour:
   m_ObjectHideFlags: 1
