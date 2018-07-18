@@ -29,7 +29,7 @@ public class NPCParser : MonoBehaviour {
     }
 
     private void ParseLine(string line) {
-        string[] lineData = line.Split(',');
+        string[] lineData = line.Trim().Split(',');
 
         NPCData npc = new NPCData();
 

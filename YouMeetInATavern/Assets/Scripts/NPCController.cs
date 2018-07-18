@@ -128,8 +128,25 @@ public class NPCController : MonoBehaviour {
         card.GetComponentInChildren<CardImage>().SetImage(Resources.Load<Sprite>("Card Art/" + npcData.imageFile));
 
         // set the NPC sfx
+        CardSFX sfx = card.GetComponent<CardSFX>();
+        sfx.introductionClip = Resources.Load<AudioClip>("NPC SFX/" + npcData.sfxIntro);
+        sfx.greetingClips = Convert(npcData.sfxOnClicks);
+        sfx.startConversationClips = Convert(npcData.sfxGreetings);
+        print(npcData.sfxGreetings[1]);
+
+        print(sfx.startConversationClips[1]);
+        sfx.goodbyeClips = Convert(npcData.sfxGoodbyes);
 
         return card;
+    }
+
+    // convert array of file locations to an array of audio clips
+    private AudioClip[] Convert(string[] clipLocations) {
+        AudioClip[] clips = new AudioClip[clipLocations.Length];
+        for (int i = 0; i < clipLocations.Length; i++) {
+            clips[i] = Resources.Load<AudioClip>("NPC SFX/" + clipLocations[i]);
+        }
+        return clips;
     }
 
     private void ContinueDay() {
