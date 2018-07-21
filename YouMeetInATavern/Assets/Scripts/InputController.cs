@@ -7,6 +7,9 @@ public class InputController : MonoBehaviour {
     public static event QuestionEventHandler questionEventHandler;
     public delegate void QuestionEventHandler(string key, string unlockKey);
 
+    public static event DialogueEventHandler dialogueEventHandler;
+    public delegate void DialogueEventHandler(string unlockKey);
+
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler();
 
@@ -31,6 +34,12 @@ public class InputController : MonoBehaviour {
 
     public static void HandleQuestion(string key, string unlockKey) {
         questionEventHandler.Invoke(key, unlockKey);
+        guiController.UpdateConverseGUI(unlockKey);
+    }
+
+    public static void HandleDialogue(string unlockKey) {
+        Debug.LogFormat("Handling dialogue of key \"{0}\"", unlockKey);
+        dialogueEventHandler.Invoke(unlockKey);
         guiController.UpdateConverseGUI(unlockKey);
     }
 

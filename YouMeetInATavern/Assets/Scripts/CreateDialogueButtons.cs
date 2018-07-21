@@ -38,7 +38,7 @@ public class CreateDialogueButtons : MonoBehaviour {
                 case '<':
                     // parse the key
                     int endIndex = dialogue.IndexOf('>', charIndex);
-                    currentKey = endIndex - charIndex > 1 ? dialogue.Substring(charIndex + 1, endIndex - charIndex - 1) : GameData.DIALOGUE_DEFAULT;
+                    currentKey = endIndex - charIndex > 1 ? dialogue.Substring(charIndex + 1, endIndex - charIndex - 1) : GameData.DIALOGUE_INVALID;
                     charIndex = endIndex;
 
                     // save the last button width
@@ -92,7 +92,7 @@ public class CreateDialogueButtons : MonoBehaviour {
         currentButton.transform.SetParent(transform, false);
 
         // set the key
-        currentButton.GetComponent<DialogueButton>().key = key;
+        currentButton.GetComponent<DialogueButton>().unlockKey = key;
     }
 
     private void CreateLine() {

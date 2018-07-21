@@ -28,11 +28,12 @@ public class GUIController : MonoBehaviour {
     public void UpdateConverseGUI(string dialogueID) {
         // update dialogue
         NPC npc = data.selectedCard.GetComponent<NPC>();
-        UpdateDialogue(npc.npcID, dialogueID);
+        string text = data.npc_dialogues[npc.npcID][dialogueID];
+        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
         // update questions
-        UpdateQuestions();
+        dialoguePanel.GetComponentInChildren<QuestionGUIController>().LoadQuestions(data.selectedCard);
         // update Stop Converse button
-        UpdateStopConverseButton(npc.isBeingIntroduced);
+        dialoguePanel.GetComponentInChildren<QuestionGUIController>().SetMode(npc.isBeingIntroduced);
         // activate the panel
         dialoguePanel.SetActive(true);
     }
@@ -57,24 +58,5 @@ public class GUIController : MonoBehaviour {
 
     private void Converse(GameObject card) {
         UpdateConverseGUI(card.GetComponent<NPC>().nextDialogueID);
-    }
-
-    private void HandleQuestion(string key) {
-        // set the panel text
-        uint npcID = data.selectedCard.GetComponent<NPC>().npcID;
-        UpdateDialogue(npcID, key);
-    }
-
-    private void UpdateDialogue(uint npcID, string dialogueID) {
-        string text = data.npc_dialogues[npcID][dialogueID];
-        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
-    }
-
-    private void UpdateQuestions() {
-        dialoguePanel.GetComponentInChildren<QuestionGUIController>().LoadQuestions(data.selectedCard);
-    }
-
-    private void UpdateStopConverseButton(bool isIntro) {
-        dialoguePanel.GetComponentInChildren<QuestionGUIController>().SetMode(isIntro);
     }
 }

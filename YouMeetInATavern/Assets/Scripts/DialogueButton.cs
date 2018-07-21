@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class DialogueButton : MonoBehaviour {
 
-    public static event DialogueEventHandler dialogueEventHandler;
-    public delegate void DialogueEventHandler(string key);
-
-    public string key;
+    public string unlockKey;
 
     void Start() {
 
@@ -18,6 +15,7 @@ public class DialogueButton : MonoBehaviour {
     }
 
     public void BroadcastKey() {
-        dialogueEventHandler.Invoke(key);
+        Debug.LogFormat("Handling dialogue of key \"{0}\"", unlockKey);
+        InputController.HandleDialogue(unlockKey);
     }
 }

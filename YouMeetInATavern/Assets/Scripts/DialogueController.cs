@@ -17,10 +17,12 @@ public class DialogueController : MonoBehaviour {
 
     void OnEnable() {
         InputController.questionEventHandler += HandleQuestion;
+        InputController.dialogueEventHandler += HandleDialogue;
     }
 
     void OnDisable() {
         InputController.questionEventHandler -= HandleQuestion;
+        InputController.dialogueEventHandler -= HandleDialogue;
     }
 
     public void HandleQuestion(string key, string unlockKey) {
@@ -28,5 +30,10 @@ public class DialogueController : MonoBehaviour {
         data.unlockedDialogueKeys.Add(unlockKey);
         // remove the question from the NPC so it never appears again
         data.npc_questions[data.selectedCard.GetComponent<NPC>().npcID].Remove(key);
+    }
+
+    public void HandleDialogue(string unlockKey) {
+        // unlock the dialogue
+        data.unlockedDialogueKeys.Add(unlockKey);
     }
 }
