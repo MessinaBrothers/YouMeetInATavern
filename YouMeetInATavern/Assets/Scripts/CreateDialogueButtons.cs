@@ -21,7 +21,7 @@ public class CreateDialogueButtons : MonoBehaviour {
 
     private int charIndex;
     private string wordsSoFar, currentWord;
-    private uint currentKey;
+    private string currentKey;
 
     void Start() {
         // if the dialogue lacks an index at the start, append one
@@ -38,7 +38,7 @@ public class CreateDialogueButtons : MonoBehaviour {
                 case '<':
                     // parse the key
                     int endIndex = dialogue.IndexOf('>', charIndex);
-                    currentKey = endIndex - charIndex > 1 ? uint.Parse(dialogue.Substring(charIndex + 1, endIndex - charIndex - 1)) : 0;
+                    currentKey = endIndex - charIndex > 1 ? dialogue.Substring(charIndex + 1, endIndex - charIndex - 1) : GameData.DIALOGUE_DEFAULT;
                     charIndex = endIndex;
 
                     // save the last button width
@@ -85,7 +85,7 @@ public class CreateDialogueButtons : MonoBehaviour {
         }
     }
 
-    private void CreateButton(uint key) {
+    private void CreateButton(string key) {
         currentButton = Instantiate(buttonPrefab);
         currentButtonText = currentButton.GetComponentInChildren<Text>();
         currentButtonText.text = "";

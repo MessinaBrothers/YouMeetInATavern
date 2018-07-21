@@ -61,7 +61,7 @@ public class NPCController : MonoBehaviour {
     }
 
     public void RemoveNPCFromTavern(GameObject card) {
-        card.SetActive(false);
+        //card.SetActive(false);
         data.npcs.Remove(card);
         npcRemovedEventHandler.Invoke(card);
     }
@@ -88,7 +88,6 @@ public class NPCController : MonoBehaviour {
     }
 
     private void IntroduceNPC(uint id) {
-        print("Introducing NPC " + id);
         data.gameMode = GameData.GameMode.INTRODUCE;
 
         GameObject card = CreateCard(id);
@@ -132,9 +131,7 @@ public class NPCController : MonoBehaviour {
         sfx.introductionClip = Resources.Load<AudioClip>("NPC SFX/" + npcData.sfxIntro);
         sfx.greetingClips = Convert(npcData.sfxOnClicks);
         sfx.startConversationClips = Convert(npcData.sfxGreetings);
-        print(npcData.sfxGreetings[1]);
 
-        print(sfx.startConversationClips[1]);
         sfx.goodbyeClips = Convert(npcData.sfxGoodbyes);
 
         return card;
@@ -162,23 +159,6 @@ public class NPCController : MonoBehaviour {
 
         // introduce the first NPC, if any
         IntroduceNextNPC();
-
-        //GameObject card = Instantiate(cardPrefab);
-        //card.transform.parent = cardParent;
-        //// move it anywhere offscreen so it doesn't appear at the beginning
-        //card.transform.position = new Vector3(0, 1000, 0);
-        //NPC npc = card.GetComponent<NPC>();
-        //card.name = npc.cardName + "NPC";
-        //npc.isBeingIntroduced = true;
-        //// set the next dialogue to be intro dialogue
-        //npc.nextDialogueID = GameData.DIALOGUE_INTRO;
-
-        //// add NPC to npc list
-        //data.npcs.Add(card);
-
-        //npcCreatedEventHandler.Invoke(card);
-
-        //npcIntroStartEventHandler.Invoke(card);
     }
 
     private void ActivateNPCs() {

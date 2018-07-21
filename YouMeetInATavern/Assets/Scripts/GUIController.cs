@@ -25,7 +25,7 @@ public class GUIController : MonoBehaviour {
         CardMoveController.npcInConversePosEventHandler -= Converse;
     }
 
-    public void UpdateConverseGUI(uint dialogueID) {
+    public void UpdateConverseGUI(string dialogueID) {
         // update dialogue
         NPC npc = data.selectedCard.GetComponent<NPC>();
         UpdateDialogue(npc.npcID, dialogueID);
@@ -59,13 +59,13 @@ public class GUIController : MonoBehaviour {
         UpdateConverseGUI(card.GetComponent<NPC>().nextDialogueID);
     }
 
-    private void HandleQuestion(uint key) {
+    private void HandleQuestion(string key) {
         // set the panel text
         uint npcID = data.selectedCard.GetComponent<NPC>().npcID;
         UpdateDialogue(npcID, key);
     }
 
-    private void UpdateDialogue(uint npcID, uint dialogueID) {
+    private void UpdateDialogue(uint npcID, string dialogueID) {
         string text = data.npc_dialogues[npcID][dialogueID];
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
     }

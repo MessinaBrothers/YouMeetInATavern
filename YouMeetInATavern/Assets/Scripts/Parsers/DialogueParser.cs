@@ -34,7 +34,7 @@ public class DialogueParser : MonoBehaviour {
         
         uint npcID = uint.Parse(data[0]);
         bool isQuestion = int.Parse(data[1]) == 0 ? false : true;
-        uint dialogueID = uint.Parse(data[2]);
+        string dialogueID = data[2];
 
         string dialogue = "";
         for (int i = 3; i < data.Length; i++) {
@@ -50,26 +50,26 @@ public class DialogueParser : MonoBehaviour {
         }
     }
 
-    private void SaveQuestion(uint npcID, uint prereqID, string text) {
+    private void SaveQuestion(uint npcID, string prereqID, string text) {
         // get the npc's list of questions
-        Dictionary<uint, string> questions = GetList(npcID, data.npc_questions);
+        Dictionary<string, string> questions = GetList(npcID, data.npc_questions);
         questions.Add(prereqID, text);
     }
 
-    private void SaveDialogue(uint npcID, uint dialogueID, string text) {
+    private void SaveDialogue(uint npcID, string dialogueID, string text) {
         // get the npc's list of dialogues
-        Dictionary<uint, string> dialogues = GetList(npcID, data.npc_dialogues);
+        Dictionary<string, string> dialogues = GetList(npcID, data.npc_dialogues);
         dialogues.Add(dialogueID, text);
     }
 
-    private Dictionary<uint, string> GetList(uint id, Dictionary<uint, Dictionary<uint, string>> listOfLists) {
-        Dictionary<uint, string> list;
+    private Dictionary<string, string> GetList(uint id, Dictionary<uint, Dictionary<string, string>> listOfLists) {
+        Dictionary<string, string> list;
         if (listOfLists.ContainsKey(id) == true) {
             // retrieve the existing list
             list = listOfLists[id];
         } else {
             // create a new list
-            list = new Dictionary<uint, string>();
+            list = new Dictionary<string, string>();
             // add it to the list of lists
             listOfLists.Add(id, list);
         }

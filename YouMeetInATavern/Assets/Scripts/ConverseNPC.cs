@@ -50,7 +50,7 @@ public class ConverseNPC : MonoBehaviour {
         }
     }
 
-    private void HandleDialogue(uint key) {
+    private void HandleDialogue(string key) {
         
     }
 
@@ -64,7 +64,7 @@ public class ConverseNPC : MonoBehaviour {
 
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = false;
-        npc.nextDialogueID = 1;
+        npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
     }
 
     private void Goodbye() {

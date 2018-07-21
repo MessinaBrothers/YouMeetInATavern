@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameData : MonoBehaviour {
-
-    public static int DIALOGUE_DEFAULT = -1; //TODO delete
-    public static uint DIALOGUE_INTRO = 0;
-    public static uint DIALOGUE_GENERIC = 1;
-    public static uint DIALOGUE_INVALID = uint.MaxValue;
+    
+    public static string DIALOGUE_INTRO = "intro";
+    public static string DIALOGUE_DEFAULT = "default";
+    public static string DIALOGUE_INVALID = "";
 
     public GameObject selectedCard;
 
@@ -18,9 +17,9 @@ public class GameData : MonoBehaviour {
     public Dictionary<uint, NPCData> npcData;
 
     [Header("Dialogue")]
-    public Dictionary<uint, Dictionary<uint, string>> npc_dialogues;
-    public Dictionary<uint, Dictionary<uint, string>> npc_questions;
-    public bool[] isDialogueIndexUnlocked;
+    public Dictionary<uint, Dictionary<string, string>> npc_dialogues;
+    public Dictionary<uint, Dictionary<string, string>> npc_questions;
+    public List<string> unlockedDialogueKeys;
 
     public enum GameMode {
         INTRODUCE, CONVERSE, TAVERN
@@ -33,11 +32,11 @@ public class GameData : MonoBehaviour {
         scenarios = new Dictionary<uint, Scenario>();
         npcData = new Dictionary<uint, NPCData>();
 
-        npc_dialogues = new Dictionary<uint, Dictionary<uint, string>>();
-        npc_questions = new Dictionary<uint, Dictionary<uint, string>>();
-        isDialogueIndexUnlocked = new bool[1024*2*2];
+        npc_dialogues = new Dictionary<uint, Dictionary<string, string>>();
+        npc_questions = new Dictionary<uint, Dictionary<string, string>>();
+        unlockedDialogueKeys = new List<string>();
 
         // DEBUG
-        isDialogueIndexUnlocked[1] = true;
+        unlockedDialogueKeys.Add(GameData.DIALOGUE_DEFAULT);
     }
 }

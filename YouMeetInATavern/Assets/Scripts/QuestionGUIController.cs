@@ -28,14 +28,15 @@ public class QuestionGUIController : MonoBehaviour {
         }
 
         // get the list of questions
-        Dictionary<uint, string> questions = data.npc_questions[npc.npcID];
+        Dictionary<string, string> questions = data.npc_questions[npc.npcID];
 
         int buttonIndex = 0;
 
+
         // for each question
-        foreach (KeyValuePair<uint, string> kvp in questions) {
+        foreach (KeyValuePair<string, string> kvp in questions) {
             // if the question is unlocked
-            if (data.isDialogueIndexUnlocked[kvp.Key]) {
+            if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
                 // activate the next button
                 GameObject button = questionButtons[buttonIndex];
                 button.SetActive(true);
@@ -62,14 +63,14 @@ public class QuestionGUIController : MonoBehaviour {
         }
     }
 
-    private void SetQuestionText(GameObject button, uint key, string text) {
+    private void SetQuestionText(GameObject button, string key, string text) {
         // set the question id
         QuestionButton questionButton = button.GetComponent<QuestionButton>();
         questionButton.key = key;
 
         // set the unlock dialogue id
         int endIDIndex = text.IndexOf('>');
-        uint unlockKey = uint.Parse(text.Substring("<".Length, endIDIndex - "<".Length));
+        string unlockKey = text.Substring("<".Length, endIDIndex - "<".Length);
         questionButton.unlockKey = unlockKey;
 
         // set the button text

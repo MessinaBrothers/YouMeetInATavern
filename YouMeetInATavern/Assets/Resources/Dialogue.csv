@@ -1,37 +1,39 @@
 Dialogue ID of 0 is their introduction line,,,
 ID of 1 means unlocked from the beginning,,,
-Is Q means if it’s a question or not,,,
+Q? means if it’s a question or not,,,
 Dialogue can’t use double quotation marks!,,,
+,,,
+,,,
 ID,NPC,,
 0,Bartender,,
 1,Merchant,,
 2,Ranger,,
-3,Rogue,,
+3,Scout,,
 ID,Item,,
 6,Thief’s kit,,
 8,Gold,,
 NPC,Q?,ID,Text
-0,0,0,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
-0,0,1,<>We have wheat ale for two copper. Interested?
-0,1,1,<2>Heard any rumors lately?
-0,0,2,<>Hmm...let’s see. A merchant was robbed a couple of days ago just outside of town. They say it was bandits.
-1,0,0,<>I have traveled for a long while. It’s high time I enjoy some entertainment.
-1,0,1,<>Need something?
-1,1,2,<3>You were robbed?
-1,0,3,"<>Robbed? No, we were attacked! By tiny green creatures, no less. They killed half my guards before taking off with my<8>gold."
-2,0,0,<>I parked my giant panther out front.
-2,0,1,<>The woods are quiet tonight.
-2,1,3,<4>What do you know about tiny green creatures?
-2,0,4,<>You mean kobolds? Pests! You never see them coming. They love to lay traps. And they love gold even more.
-3,0,0,<>The pleasure is mine.
-3,0,1,<>Who do you want killed?
-3,1,4,<5>What can you tell me about kobold traps?
-3,0,5,<>Pretty basic stuff. Any <6>thief’s kit<>would make short work of ‘em.
-3,0,6,"<>I got an extra one, if you need it. Just let me know."
-4,0,0,<>Fine night for a drink.
-4,0,1,<>What d’ya want? I’m off duty.
-4,0,4,<7>Are kobolds a threat to the town?
-4,0,7,<>Kobolds?! Here? The town must be defended at all costs!
-4,1,1,<9>What’s happening in town?
-4,0,9,Nothing! The whole town was quiet today. I hated it!
-1,0,8,"You can’t just have my gold! I can offer you a loan, however."
+0,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
+0,0,default,<>We have wheat ale for two copper. Interested?
+0,1,default,<RUMOR>Heard any rumors lately?
+0,0,RUMOR,<>Hmm...let’s see. A merchant was robbed a couple of days ago just outside of town. They say it was bandits.
+1,0,intro,<>I have traveled for a long while. It’s high time I enjoy some entertainment.
+1,0,default,"<>Need something? Everything’s for sale, for the right <ITEM_GOLD>coin."
+1,1,RUMOR,<MONSTER>You were robbed?
+1,0,MONSTER,"<>Robbed? No, we were attacked! By tiny green creatures, no less. They killed half my guards before taking off with my stock."
+1,0,ITEM_GOLD,"You can’t just have my gold! I can offer you a loan, however."
+2,0,intro,<>I parked my giant panther out front.
+2,0,default,<>The woods are quiet tonight.
+2,1,MONSTER,<KOBOLDS>What do you know about tiny green creatures?
+2,0,KOBOLDS,<>You mean kobolds? Pests! You never see them coming. They love to lay traps. And they love gold even more.
+3,0,intro,<>The pleasure is mine.
+3,0,default,<>Who do you want killed?
+3,1,KOBOLDS,<TRAPS>What can you tell me about kobold traps?
+3,0,TRAPS,<>Pretty basic stuff. Any <ITEM_THIEFSKIT>thief’s kit<>would make short work of ‘em.
+3,0,ITEM_THIEFSKIT,"<>I got an extra one, if you need it. Just let me know."
+4,0,intro,<>Fine night for a drink.
+4,0,default,<>What d’ya want? I’m off duty.
+4,1,KOBOLDS,<TOWN_KOBOLDS>Are kobolds a threat to the town?
+4,0,TOWN_KOBOLDS,<>Kobolds?! Here? The town must be defended at all costs!
+4,1,default,<TOWN_QUIET>What’s happening in town?
+4,0,TOWN_QUIET,Nothing! The whole town was quiet today. I hated it!

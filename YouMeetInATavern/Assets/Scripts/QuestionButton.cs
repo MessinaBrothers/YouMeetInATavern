@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class QuestionButton : MonoBehaviour {
 
-    public uint key;
-    public uint unlockKey;
+    public string key;
+    public string unlockKey;
 
     public void BroadcastKey() {
         InputController.HandleQuestion(key, unlockKey);

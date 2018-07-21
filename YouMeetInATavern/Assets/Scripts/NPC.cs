@@ -13,7 +13,7 @@ public class NPC : MonoBehaviour {
     //public string sfxIntro;
     //public string[] sfxOnClicks, sfxGreetings, sfxGoodbyes;
 
-    public uint nextDialogueID;
+    public string nextDialogueID;
 
     public bool isBeingIntroduced;
 
