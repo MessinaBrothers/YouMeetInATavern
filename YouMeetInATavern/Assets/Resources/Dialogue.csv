@@ -9,30 +9,30 @@ ID,NPC,,
 2,Ranger,,
 3,Scout,,
 NPC,Q?,ID,Text
-0,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
 0,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
+0,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
 0,0,default,<>We have wheat ale for two copper. Interested?
 0,1,default,<RUMOR>Heard any rumors lately?
 0,0,RUMOR,<>Hmm...let’s see. A merchant was robbed a couple of days ago just outside of town. They say it was bandits.
-1,0,intro,<>I have traveled for a long while. It’s high time I enjoy some entertainment.
 1,0,,<>I don’t understand you.
+1,0,intro,<>I have traveled for a long while. It’s high time I enjoy some entertainment.
 1,0,default,"<>Need something? Everything’s for sale, for the right <ITEM_GOLD>coin."
 1,1,RUMOR,<MONSTER>You were robbed?
 1,0,MONSTER,"<>Robbed? No, we were attacked! By tiny green creatures, no less. They killed half my guards before taking off with my stock."
 1,0,ITEM_GOLD,"You can’t just have my gold! I can offer you a loan, however."
-2,0,intro,<>I parked my giant panther out front.
 2,0,,<>Huh?
+2,0,intro,<>I parked my giant panther out front.
 2,0,default,<>The woods are quiet tonight.
 2,1,MONSTER,<KOBOLDS>What do you know about tiny green creatures?
 2,0,KOBOLDS,<>You mean kobolds? Pests! You never see them coming. They love to lay traps. And they love gold even more.
-3,0,intro,<>The pleasure is mine.
 3,0,,<>Come again?
+3,0,intro,<>The pleasure is mine.
 3,0,default,<>Who do you want killed?
 3,1,KOBOLDS,<TRAPS>What can you tell me about kobold traps?
 3,0,TRAPS,<>Pretty basic stuff. Any <ITEM_THIEFSKIT>thief’s kit<>would make short work of ‘em.
 3,0,ITEM_THIEFSKIT,"<>I got an extra one, if you need it. Just let me know."
-4,0,intro,<>Fine night for a drink.
 4,0,,<>What?
+4,0,intro,<>Fine night for a drink.
 4,0,default,<>What d’ya want? I’m off duty.
 4,1,KOBOLDS,<TOWN_KOBOLDS>Are kobolds a threat to the town?
 4,0,TOWN_KOBOLDS,<>Kobolds?! Here? The town must be defended at all costs!
