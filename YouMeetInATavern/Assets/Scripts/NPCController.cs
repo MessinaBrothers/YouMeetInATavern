@@ -20,6 +20,9 @@ public class NPCController : MonoBehaviour {
     public static event NPCStartInTaverneventHandler npcStartInTaverneventHandler;
     public delegate void NPCStartInTaverneventHandler(GameObject card);
 
+    public static event NPCRandomlyLeavesEventHandler npcRandomlyLeavesEventHandler;
+    public delegate void NPCRandomlyLeavesEventHandler(GameObject card);
+
     public GameObject cardPrefab;
 
     public bool startIntro;
@@ -52,26 +55,54 @@ public class NPCController : MonoBehaviour {
         CardClickable.cardClickedEventHandler += HandleCardClick;
         InputController.startTavernEventHandler += ContinueDay;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
+        InputController.npcLeavesEventHandler += Goodbye;
     }
 
     void OnDisable() {
         CardClickable.cardClickedEventHandler -= HandleCardClick;
         InputController.startTavernEventHandler -= ContinueDay;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
+        InputController.npcLeavesEventHandler -= Goodbye;
+    }
+
+    private void Goodbye() {
+        data.gameMode = GameData.GameMode.TAVERN;
+        data.npcs.Remove(data.selectedCard);
+
+        // remove a remaining NPC
+        if (data.npcs.Count > 0) {
+            GameObject rngCard = data.npcs[Random.Range(0, data.npcs.Count)];
+            data.npcs.Remove(rngCard);
+            npcRandomlyLeavesEventHandler.Invoke(rngCard);
+        }
     }
 
     public void RemoveNPCFromTavern(GameObject card) {
         //card.SetActive(false);
-        data.npcs.Remove(card);
         npcRemovedEventHandler.Invoke(card);
     }
 
     private void HandleCardClick(GameObject card) {
-        if (data.gameMode == GameData.GameMode.INTRODUCE) {
-            if (card.GetComponent<NPC>().isBeingIntroduced == true) {
-                card.GetComponent<CardSFX>().PlayIntro();
-                npcIntroEndEventHandler.Invoke(card);
-            }
+        switch (data.gameMode) {
+            case GameData.GameMode.INTRODUCE:
+                if (card.GetComponent<NPC>().isBeingIntroduced == true) {
+                    card.GetComponent<CardSFX>().PlayIntro();
+                    npcIntroEndEventHandler.Invoke(card);
+                    data.gameMode = GameData.GameMode.CONVERSE;
+                    data.selectedCard = card;
+                }
+                break;
+            case GameData.GameMode.CONVERSE:
+                break;
+            case GameData.GameMode.TAVERN:
+                string s = data.npcs.Count + " NPCs in tavern: ";
+                foreach(GameObject npc in data.npcs) {
+                    s += npc.name + ", ";
+                    data.gameMode = GameData.GameMode.CONVERSE;
+                    data.selectedCard = card;
+                }
+                print(s);
+                break;
         }
     }
 

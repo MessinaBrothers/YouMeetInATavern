@@ -32,6 +32,7 @@ public class CardMoveController : MonoBehaviour {
         InputController.stopConverseEventHandler += Stop;
         InputController.npcLeavesEventHandler += Goodbye;
         NPCController.npcStartInTaverneventHandler += PlaceInTavern;
+        NPCController.npcRandomlyLeavesEventHandler += LeaveTavern;
     }
 
     void OnDisable() {
@@ -41,6 +42,7 @@ public class CardMoveController : MonoBehaviour {
         InputController.stopConverseEventHandler -= Stop;
         InputController.npcLeavesEventHandler -= Goodbye;
         NPCController.npcStartInTaverneventHandler -= PlaceInTavern;
+        NPCController.npcRandomlyLeavesEventHandler -= LeaveTavern;
     }
 
     private void Introduce(GameObject card) {
@@ -73,6 +75,20 @@ public class CardMoveController : MonoBehaviour {
         CardMove move = data.selectedCard.GetComponent<CardMove>();
         move.enabled = true;
         move.Set(conversePos, exitPos, 1, ExitTavern);
+    }
+
+    private void LeaveTavern(GameObject card) {
+        CardMove move = card.GetComponent<CardMove>();
+        move.enabled = true;
+
+        // copy the card's position and rotation into our startTransform
+        dumbTransform.position = card.transform.position;
+        dumbTransform.rotation = card.transform.rotation;
+
+        move.Set(dumbTransform, exitPos, 1, ExitTavern);
+
+        // disable wandering
+        card.GetComponent<CardWander>().enabled = false;
     }
 
     private void PlaceInTavern(GameObject card) {

@@ -39,9 +39,8 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     private void HandleCardClick(GameObject card) {
-        // start any conversation with NPC if in tavern mode
         if (data.gameMode == GameData.GameMode.TAVERN) {
-            Converse(card);
+            // if in tavern, start any conversation with NPC
             card.GetComponent<CardSFX>().PlayBeginConverse();
             npcStartConverseEventHandler.Invoke(card);
         } else if (data.gameMode == GameData.GameMode.CONVERSE) {
@@ -55,8 +54,6 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     private void Converse(GameObject card) {
-        data.gameMode = GameData.GameMode.CONVERSE;
-        data.selectedCard = card;
     }
 
     private void Stop() {
@@ -68,8 +65,6 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     private void Goodbye() {
-        data.gameMode = GameData.GameMode.TAVERN;
-
         GameObject card = data.selectedCard;
         card.GetComponent<CardSFX>().PlayGoodbye();
     }
