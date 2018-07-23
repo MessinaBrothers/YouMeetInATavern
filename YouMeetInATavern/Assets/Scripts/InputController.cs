@@ -22,6 +22,9 @@ public class InputController : MonoBehaviour {
     public static event StartDayEventHandler startDayEventHandler;
     public delegate void StartDayEventHandler();
 
+    public static event EndDayEventHandler endDayEventHandler;
+    public delegate void EndDayEventHandler();
+
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
@@ -62,4 +65,24 @@ public class InputController : MonoBehaviour {
         startDayEventHandler.Invoke();
         guiController.StartDay();
     }
+
+    public static void EndDay() {
+        endDayEventHandler.Invoke();
+    }
+
+    public static void ConcludeScenario() {
+        guiController.ConcludeScenario();
+    }
+
+    public static void ConfirmScenario() {
+        print("Confirming choices");
+    }
+
+    // wrapper methods for Unity buttons
+    // since they can't call static methods
+    public void HandleStopConverseWrapper() { HandleStopConverse(); }
+    public void HandleGoodbyeWrapper() { HandleGoodbye(); }
+    public void ContinueDayWrapper() { ContinueDay(); }
+    public void EndDayWrapper() { EndDay(); }
+    public void ConfirmScenarioWrapper() { ConfirmScenario(); }
 }

@@ -17,12 +17,14 @@ public class DayController : MonoBehaviour {
         NPCController.npcCreatedEventHandler += AddNPC;
         NPCController.npcRemovedEventHandler += RemoveNPC;
         InputController.startDayEventHandler += NewDay;
+        InputController.endDayEventHandler += EndDay;
     }
 
     void OnDisable() {
         NPCController.npcCreatedEventHandler -= AddNPC;
         NPCController.npcRemovedEventHandler -= RemoveNPC;
         InputController.startDayEventHandler -= NewDay;
+        InputController.endDayEventHandler -= EndDay;
     }
 
     private void AddNPC(GameObject card) {
@@ -38,5 +40,14 @@ public class DayController : MonoBehaviour {
     private void NewDay() {
         data.gameMode = GameData.GameMode.INTRODUCE;
         data.dayCount += 1;
+    }
+
+    private void EndDay() {
+        if (data.scenario.endsOnDay == data.dayCount) {
+            InputController.ConcludeScenario();
+        } else {
+            InputController.StartDay();
+        }
+
     }
 }

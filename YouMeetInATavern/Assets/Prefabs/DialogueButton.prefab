@@ -70,10 +70,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 55f6ed291e0e3e54d81f6a25928f9786, type: 3}
-    m_FontSize: 32
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f765ea6b3f800d46ad1cca2889eb9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
+  unlockKey: 
 --- !u!222 &222545574227156968
 CanvasRenderer:
   m_ObjectHideFlags: 1

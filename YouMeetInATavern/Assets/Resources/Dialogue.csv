@@ -8,6 +8,7 @@ ID,NPC,,
 1,Merchant,,
 2,Ranger,,
 3,Scout,,
+4,Guard,,
 NPC,Q?,ID,Text
 0,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
 0,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
