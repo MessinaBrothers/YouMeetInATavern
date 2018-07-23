@@ -15,6 +15,7 @@ public class GameData : MonoBehaviour {
     public Dictionary<uint, Scenario> scenarios;
     public Scenario scenario;
     public Dictionary<uint, NPCData> npcData;
+    public Dictionary<string, ItemData> itemData;
 
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<string, string>> npc_dialogues;
@@ -37,6 +38,7 @@ public class GameData : MonoBehaviour {
 
         scenarios = new Dictionary<uint, Scenario>();
         npcData = new Dictionary<uint, NPCData>();
+        itemData = new Dictionary<string, ItemData>();
 
         npc_dialogues = new Dictionary<uint, Dictionary<string, string>>();
         npc_questions = new Dictionary<uint, Dictionary<string, string>>();
