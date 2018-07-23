@@ -26,6 +26,12 @@ public class GameData : MonoBehaviour {
     }
     public GameMode gameMode;
 
+    public enum Location {
+        NONE, ROAD, MOUNTAIN, TOWN, FOREST
+    }
+    [Header("Conclusion")]
+    public Location chosenLocation;
+
     void Start() {
         gameMode = GameMode.INTRODUCE;
 
