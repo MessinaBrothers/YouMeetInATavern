@@ -59,11 +59,8 @@ GameObject:
   - component: {fileID: 114253165434218070}
   - component: {fileID: 114996550463377112}
   - component: {fileID: 82380803568742156}
-  - component: {fileID: 114517145426462636}
-  - component: {fileID: 114324641597551152}
-  - component: {fileID: 114040277640291580}
   m_Layer: 0
-  m_Name: Card
+  m_Name: CardItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361993388716220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 2, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 4741254438283164}
@@ -266,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 1636597955501746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 0.099999994, z: 0.099999994}
+  m_LocalScale: {x: 2, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 4741254438283164}
   m_RootOrder: 1
@@ -279,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 1909699771527668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.045}
-  m_LocalScale: {x: 1, y: 2, z: 0.01}
+  m_LocalScale: {x: 2, y: 2, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4384269676992386}
   m_RootOrder: 1
@@ -324,7 +321,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975554824577468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 2, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4741254438283164}
@@ -338,7 +335,7 @@ Transform:
   m_GameObject: {fileID: 1493335681804824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.99, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 2, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4741254438283164}
   m_RootOrder: 0
@@ -738,20 +735,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Button
---- !u!114 &114040277640291580
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183731708458380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695b7055d05b22742b576403588b9a25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcID: 0
-  nextDialogueID: 0
-  isBeingIntroduced: 0
 --- !u!114 &114253165434218070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -763,23 +746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f39152be04cee469659f1c0053ae2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114324641597551152
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183731708458380}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a50283f089718342be192ad68d06136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minX: -2
-  minY: -2
-  maxX: 2
-  maxY: 2
-  wanderDistance: 0.1
-  speed: 1
 --- !u!114 &114459983648916426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -859,17 +825,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114517145426462636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183731708458380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad6a2ca1b92abec46be04a1ac025210b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114610866093175088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1143,7 +1098,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 20}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224179503616690760
 RectTransform:

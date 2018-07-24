@@ -52,14 +52,14 @@ public class NPCController : MonoBehaviour {
     }
 
     void OnEnable() {
-        CardClickable.cardClickedEventHandler += HandleCardClick;
+        InputController.cardClickedEventHandler += HandleCardClick;
         InputController.startTavernEventHandler += ContinueDay;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
         InputController.npcLeavesEventHandler += Goodbye;
     }
 
     void OnDisable() {
-        CardClickable.cardClickedEventHandler -= HandleCardClick;
+        InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.startTavernEventHandler -= ContinueDay;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
         InputController.npcLeavesEventHandler -= Goodbye;
@@ -83,6 +83,7 @@ public class NPCController : MonoBehaviour {
     }
 
     private void HandleCardClick(GameObject card) {
+        if (card.GetComponent<NPC>() == null) return;
         switch (data.gameMode) {
             case GameData.GameMode.INTRODUCE:
                 if (card.GetComponent<NPC>().isBeingIntroduced == true) {
@@ -95,13 +96,8 @@ public class NPCController : MonoBehaviour {
             case GameData.GameMode.CONVERSE:
                 break;
             case GameData.GameMode.TAVERN:
-                string s = data.npcs.Count + " NPCs in tavern: ";
-                foreach(GameObject npc in data.npcs) {
-                    s += npc.name + ", ";
-                    data.gameMode = GameData.GameMode.CONVERSE;
-                    data.selectedCard = card;
-                }
-                print(s);
+                data.gameMode = GameData.GameMode.CONVERSE;
+                data.selectedCard = card;
                 break;
         }
     }
@@ -121,7 +117,9 @@ public class NPCController : MonoBehaviour {
     private void IntroduceNPC(uint id) {
         data.gameMode = GameData.GameMode.INTRODUCE;
 
-        GameObject card = CreateCard(id);
+        GameObject card = CardFactory.CreateNPCCard(id);
+        card.transform.parent = cardParent;
+
         // move it anywhere offscreen so it doesn't appear at the beginning
         card.transform.position = new Vector3(0, 1000, 0);
 
@@ -136,45 +134,6 @@ public class NPCController : MonoBehaviour {
         npcCreatedEventHandler.Invoke(card);
 
         npcIntroStartEventHandler.Invoke(card);
-    }
-
-    private GameObject CreateCard(uint npcID) {
-        // get NPC data
-        NPCData npcData = data.npcData[npcID];
-
-        // create the card gameobject
-        GameObject card = Instantiate(cardPrefab);
-        card.name = npcData.name + " NPC";
-        card.transform.parent = cardParent;
-
-        // set the NPC values
-        NPC npc = card.GetComponent<NPC>();
-        npc.npcID = npcID;
-
-        // set the card name
-        card.GetComponentInChildren<Text>().text = npcData.name;
-
-        // set the card image
-        card.GetComponentInChildren<CardImage>().SetImage(Resources.Load<Sprite>("Card Art/" + npcData.imageFile));
-
-        // set the NPC sfx
-        CardSFX sfx = card.GetComponent<CardSFX>();
-        sfx.introductionClip = Resources.Load<AudioClip>("NPC SFX/" + npcData.sfxIntro);
-        sfx.greetingClips = Convert(npcData.sfxOnClicks);
-        sfx.startConversationClips = Convert(npcData.sfxGreetings);
-
-        sfx.goodbyeClips = Convert(npcData.sfxGoodbyes);
-
-        return card;
-    }
-
-    // convert array of file locations to an array of audio clips
-    private AudioClip[] Convert(string[] clipLocations) {
-        AudioClip[] clips = new AudioClip[clipLocations.Length];
-        for (int i = 0; i < clipLocations.Length; i++) {
-            clips[i] = Resources.Load<AudioClip>("NPC SFX/" + clipLocations[i]);
-        }
-        return clips;
     }
 
     private void ContinueDay() {

@@ -22,7 +22,7 @@ public class ItemParser : MonoBehaviour {
             if (startParse && lines[i].Length > 0) {
                 ParseLine(lines[i]);
                 // don't start parsing until we've reached the NPC table
-            } else if (lines[i].StartsWith("Name,Image")) {
+            } else if (lines[i].StartsWith("Key,Name")) {
                 startParse = true;
             }
         }
@@ -34,6 +34,7 @@ public class ItemParser : MonoBehaviour {
         ItemData item = new ItemData();
 
         int index = 0;
+        item.key = lineData[index++];
         item.name = lineData[index++];
         item.imageFile = lineData[index++];
 
@@ -42,6 +43,6 @@ public class ItemParser : MonoBehaviour {
         item.sfxOnClicks[1] = lineData[index++];
 
         // save npc data to game data
-        data.itemData.Add(item.name, item);
+        data.itemData.Add(item.key, item);
     }
 }

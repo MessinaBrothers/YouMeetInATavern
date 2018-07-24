@@ -23,7 +23,7 @@ public class GameData : MonoBehaviour {
     public List<string> unlockedDialogueKeys;
 
     public enum GameMode {
-        INTRODUCE, CONVERSE, TAVERN
+        INTRODUCE, CONVERSE, TAVERN, CONCLUDE
     }
     public GameMode gameMode;
 

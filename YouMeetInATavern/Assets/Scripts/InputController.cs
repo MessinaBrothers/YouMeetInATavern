@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
+    public static event CardClickedEventHandler cardClickedEventHandler;
+    public delegate void CardClickedEventHandler(GameObject card);
+
     public static event QuestionEventHandler questionEventHandler;
     public delegate void QuestionEventHandler(string key, string unlockKey);
 
@@ -25,6 +28,9 @@ public class InputController : MonoBehaviour {
     public static event EndDayEventHandler endDayEventHandler;
     public delegate void EndDayEventHandler();
 
+    public static event StartConcludeScenarioEventHandler startConcludeScenarioEventHandler;
+    public delegate void StartConcludeScenarioEventHandler();
+
     public static event ChooseLocationEventHandler chooseLocationEventHandler;
     public delegate void ChooseLocationEventHandler(GameData.Location location);
 
@@ -38,13 +44,16 @@ public class InputController : MonoBehaviour {
 
     }
 
+    public static void HandleCardClick(GameObject card) {
+        cardClickedEventHandler.Invoke(card);
+    }
+
     public static void HandleQuestion(string key, string unlockKey) {
         questionEventHandler.Invoke(key, unlockKey);
         guiController.UpdateConverseGUI(unlockKey);
     }
 
     public static void HandleDialogue(string unlockKey) {
-        Debug.LogFormat("Handling dialogue of key \"{0}\"", unlockKey);
         dialogueEventHandler.Invoke(unlockKey);
         guiController.UpdateConverseGUI(unlockKey);
     }
@@ -74,6 +83,7 @@ public class InputController : MonoBehaviour {
     }
 
     public static void ConcludeScenario() {
+        startConcludeScenarioEventHandler.Invoke();
         guiController.ConcludeScenario();
     }
 

@@ -15,7 +15,6 @@ public class DialogueButton : MonoBehaviour {
     }
 
     public void BroadcastKey() {
-        Debug.LogFormat("Handling dialogue of key \"{0}\"", unlockKey);
         InputController.HandleDialogue(unlockKey);
     }
 }

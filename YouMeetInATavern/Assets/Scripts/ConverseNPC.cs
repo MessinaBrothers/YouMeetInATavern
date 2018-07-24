@@ -18,7 +18,7 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     void OnEnable() {
-        CardClickable.cardClickedEventHandler += HandleCardClick;
+        InputController.cardClickedEventHandler += HandleCardClick;
         NPCController.npcIntroEndEventHandler += HandleIntroduction;
         InputController.dialogueEventHandler += HandleDialogue;
         InputController.stopConverseEventHandler += Stop;
@@ -26,7 +26,7 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     void OnDisable() {
-        CardClickable.cardClickedEventHandler -= HandleCardClick;
+        InputController.cardClickedEventHandler -= HandleCardClick;
         NPCController.npcIntroEndEventHandler -= HandleIntroduction;
         InputController.dialogueEventHandler -= HandleDialogue;
         InputController.stopConverseEventHandler -= Stop;

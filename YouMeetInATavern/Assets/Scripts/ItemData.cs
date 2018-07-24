@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemData {
 
+    public string key;
+
     public string name;
 
     public string imageFile;

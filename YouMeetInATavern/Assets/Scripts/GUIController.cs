@@ -9,6 +9,13 @@ public class GUIController : MonoBehaviour {
 
     private GameData data;
 
+    void Awake() {
+        dayPanel.SetActive(false);
+        dialoguePanel.SetActive(false);
+        nightPanel.SetActive(false);
+        concludeScenarioPanel.SetActive(false);
+    }
+
     void Start() {
         data = FindObjectOfType<GameData>();
     }
@@ -39,26 +46,33 @@ public class GUIController : MonoBehaviour {
     }
 
     public void StopConverse() {
-        dialoguePanel.SetActive(false);
+        DeactivateAll();
     }
 
     public void StartDay() {
+        DeactivateAll();
         dayPanel.SetActive(true);
-        dialoguePanel.SetActive(false);
-        nightPanel.SetActive(false);
-        concludeScenarioPanel.SetActive(false);
     }
 
     public void ContinueDay() {
-        dayPanel.SetActive(false);
+        DeactivateAll();
     }
 
     public void EndDay() {
+        DeactivateAll();
         nightPanel.SetActive(true);
     }
 
     public void ConcludeScenario() {
+        DeactivateAll();
         concludeScenarioPanel.SetActive(true);
+    }
+
+    private void DeactivateAll() {
+        dayPanel.SetActive(false);
+        dialoguePanel.SetActive(false);
+        nightPanel.SetActive(false);
+        concludeScenarioPanel.SetActive(false);
     }
 
     private void Converse(GameObject card) {
