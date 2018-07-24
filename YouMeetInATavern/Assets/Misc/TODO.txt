@@ -1,0 +1,20 @@
+Says something when clicked to converse
+After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
+Question Buttons show questions if dialogue has been unlocked
+Pushing a question button unlocks its dialogue
+Introduction: Stop Talking button says "Continue", doesn't play "Goodbye" clip
+Day 1 intro screen (click to continue)
+Goodbye button moves card offscreen and disables it
+NPCController to create NPCs
+When no more NPCs are available, end the day
+After ending the day, start a new day
+GameController starts the first day
+Place already-introduced NPCs in tavern
+Introduce new NPCs, depending on the scenario and day
+Load different NPCs
+Different SFX for NPCs
+After choosing an NPC to talk to, a random NPC leaves the tavern
+Click on default text to trigger a stop-conversation response "(Huh?")
+Click on words of text to unlock items and NPCs
+End scenario screen
+Unlock NPCs to come to your aid
