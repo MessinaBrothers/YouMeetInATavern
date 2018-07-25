@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuraAPI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,8 +63,10 @@ public class ConcludeScenarioController : MonoBehaviour {
                 selectedZoom.Unzoom();
                 // play unselect sound
                 audioSource.PlayOneShot(unselectClip);
-                // move selected choices (first and second)
+                // highlight the card
+                card.GetComponentInChildren<AuraVolume>().enabled = false;
 
+                // move selected choices (first and second)
                 if (selectedItemFirst == card) {
                     // second becomes first
                     selectedItemFirst = selectedItemSecond;
@@ -75,6 +78,8 @@ public class ConcludeScenarioController : MonoBehaviour {
                 selectedZoom.Zoom();
                 // play sound effect
                 card.GetComponent<CardSFX>().PlayGreeting();
+                // highlight the card
+                card.GetComponentInChildren<AuraVolume>().enabled = true;
 
                 if (selectedItemFirst == null) {
                     selectedItemFirst = card;
@@ -83,6 +88,7 @@ public class ConcludeScenarioController : MonoBehaviour {
                 } else {
                     // unzoom first card
                     selectedItemFirst.GetComponent<CardZoom>().Unzoom();
+                    selectedItemFirst.GetComponentInChildren<AuraVolume>().enabled = false;
                     // set second card as first
                     selectedItemFirst = selectedItemSecond;
                     // set selected card as second
