@@ -20,4 +20,3 @@ End scenario screen
 Choose up to two items
 Choose up to two NPCs
 Choose a location
-Unlock NPCs to come to your aid

@@ -22,6 +22,8 @@ public class ConcludeScenarioController : MonoBehaviour {
     public bool isLoad;
 
     void Start() {
+        data = FindObjectOfType<GameData>();
+
         GameObject go = new GameObject("Items");
         itemsParent = go.transform;
         itemsParent.parent = gameObject.transform;
@@ -47,6 +49,8 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void HandleCardClick(GameObject card) {
+        if (data.gameMode != GameData.GameMode.CONCLUDE) return;
+
         CardZoom selectedZoom = card.GetComponent<CardZoom>();
 
         if (card.GetComponent<NPC>() != null) {
@@ -90,8 +94,6 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void Load() {
-        data = FindObjectOfType<GameData>();
-
         data.gameMode = GameData.GameMode.CONCLUDE;
 
         // DEBUG
