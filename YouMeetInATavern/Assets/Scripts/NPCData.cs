@@ -8,6 +8,8 @@ public class NPCData {
 
     public string name;
 
+    public string unlockTag;
+
     public string imageFile;
 
     public string sfxIntro;

@@ -36,6 +36,7 @@ public class NPCParser : MonoBehaviour {
         int index = 0;
         npc.id = uint.Parse(lineData[index++]);
         npc.name = lineData[index++];
+        npc.unlockTag = lineData[index++];
         npc.imageFile = lineData[index++];
         npc.sfxIntro = lineData[index++];
 

@@ -8,16 +8,16 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     public GameObject itemCardPrefab, tavern;
 
-    public GameObject selectedItemFirst, selectedItemSecond;
-
     public Transform itemCenterPos, itemZoomPos, npcCenterPos, npcZoomPos;
-    private Transform itemsParent;
+    private Transform itemsParent, npcsParent;
 
     public AudioClip unselectClip;
 
     private GameData data;
 
     private AudioSource audioSource;
+
+    private SelectCards itemSelection, npcSelection;
 
     //DEBUG
     public bool isLoad;
@@ -29,7 +29,17 @@ public class ConcludeScenarioController : MonoBehaviour {
         itemsParent = go.transform;
         itemsParent.parent = gameObject.transform;
 
+        GameObject go2 = new GameObject("NPCs");
+        npcsParent = go2.transform;
+        npcsParent.parent = gameObject.transform;
+
         audioSource = GetComponent<AudioSource>();
+
+        // card selections
+        itemSelection = gameObject.AddComponent<SelectCards>();
+        itemSelection.unselectClip = unselectClip;
+        npcSelection = gameObject.AddComponent<SelectCards>();
+        npcSelection.unselectClip = unselectClip;
     }
 
     void Update() {
@@ -52,51 +62,11 @@ public class ConcludeScenarioController : MonoBehaviour {
     private void HandleCardClick(GameObject card) {
         if (data.gameMode != GameData.GameMode.CONCLUDE) return;
 
-        CardZoom selectedZoom = card.GetComponent<CardZoom>();
-
         if (card.GetComponent<NPC>() != null) {
-            print("User clicked on an NPC");
+            npcSelection.Select(card);
         } else {
-            // check if card is already selected
-            if (selectedItemFirst == card || selectedItemSecond == card) {
-                // unzoom selected card
-                selectedZoom.Unzoom();
-                // play unselect sound
-                audioSource.PlayOneShot(unselectClip);
-                // highlight the card
-                card.GetComponentInChildren<AuraVolume>().enabled = false;
-
-                // move selected choices (first and second)
-                if (selectedItemFirst == card) {
-                    // second becomes first
-                    selectedItemFirst = selectedItemSecond;
-                }
-                // clear second
-                selectedItemSecond = null;
-            } else {
-                // bring card forward
-                selectedZoom.Zoom();
-                // play sound effect
-                card.GetComponent<CardSFX>().PlayGreeting();
-                // highlight the card
-                card.GetComponentInChildren<AuraVolume>().enabled = true;
-
-                if (selectedItemFirst == null) {
-                    selectedItemFirst = card;
-                } else if (selectedItemSecond == null) {
-                    selectedItemSecond = card;
-                } else {
-                    // unzoom first card
-                    selectedItemFirst.GetComponent<CardZoom>().Unzoom();
-                    selectedItemFirst.GetComponentInChildren<AuraVolume>().enabled = false;
-                    // set second card as first
-                    selectedItemFirst = selectedItemSecond;
-                    // set selected card as second
-                    selectedItemSecond = card;
-                }
-            }
+            itemSelection.Select(card);
         }
-
     }
 
     private void Load() {
@@ -108,6 +78,9 @@ public class ConcludeScenarioController : MonoBehaviour {
         // DEBUG
         foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
             data.unlockedDialogueKeys.Add(kvp.Key);
+        }
+        foreach (KeyValuePair<uint, NPCData> kvp in data.npcData) {
+            data.unlockedDialogueKeys.Add(kvp.Value.unlockTag);
         }
         //data.unlockedDialogueKeys.Add("ITEM_GOLD");
         //data.unlockedDialogueKeys.Add("ITEM_THIEFSKIT");
@@ -121,51 +94,63 @@ public class ConcludeScenarioController : MonoBehaviour {
                 // create the card
                 GameObject card = CreateItemCard(kvp.Key);
                 // add a zoom script
-                AddZoom(card, x, itemCenterPos, itemZoomPos);
+                GameObject cardParent = AddZoom(card, x, itemCenterPos, itemZoomPos);
+                // set the parent
+                cardParent.transform.parent = itemsParent;
                 // offset x for the next card
                 x += xOffset;
             }
         }
+
+        xOffset = 2f;
+        x = 0;
+
         // NPCs
-        //foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-        //    if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
-        //        // create the card
-        //        GameObject card = CreateItemCard(kvp.Key);
-        //        // add a zoom script
-        //        AddZoom(card, x, itemCenterPos, itemZoomPos);
-        //        // offset x for the next card
-        //        x += xOffset;
-        //    }
-        //}
+        foreach (KeyValuePair<uint, NPCData> kvp in data.npcData) {
+            if (data.unlockedDialogueKeys.Contains(kvp.Value.unlockTag)) {
+                // create the card
+                GameObject card = CreateNPCCard(kvp.Key);
+                // add a zoom script
+                GameObject cardParent = AddZoom(card, x, npcCenterPos, npcZoomPos);
+                // set the parent
+                cardParent.transform.parent = npcsParent;
+                // offset x for the next card
+                x += xOffset;
+            }
+        }
     }
 
     private GameObject CreateItemCard(string key) {
         GameObject card = CardFactory.CreateItemCard(key);
-        card.transform.position = itemCenterPos.position;
-        card.transform.rotation = itemCenterPos.rotation;
-
-        card.transform.parent = itemsParent;
-
         return card;
     }
 
-    private CardZoom AddZoom(GameObject card, float x, Transform centerTransform, Transform zoomTransform) {
+    private GameObject CreateNPCCard(uint key) {
+        GameObject card = CardFactory.CreateNPCCard(key);
+        return card;
+    }
+
+    private GameObject AddZoom(GameObject card, float x, Transform centerTransform, Transform zoomTransform) {
         GameObject cardParent = new GameObject(card.name + " Parent");
         card.transform.parent = cardParent.transform;
 
-        // create zoom positions
+        // create default position
         GameObject defaultPos = new GameObject("DefaultPos");
         defaultPos.transform.position = new Vector3(
             centerTransform.position.x + x,
             centerTransform.position.y,
             centerTransform.position.z
             );
+        defaultPos.transform.rotation = centerTransform.rotation;
+
+        // create zoom position
         GameObject zoomPos = new GameObject("ZoomPos");
         zoomPos.transform.position = new Vector3(
             centerTransform.position.x + x,
             zoomTransform.position.y,
             zoomTransform.position.z
             );
+        zoomPos.transform.rotation = zoomTransform.rotation;
 
         // set the parents
         defaultPos.transform.parent = cardParent.transform;
@@ -178,7 +163,8 @@ public class ConcludeScenarioController : MonoBehaviour {
 
         // start the position at its default
         card.transform.position = defaultPos.transform.position;
+        card.transform.rotation = defaultPos.transform.rotation;
 
-        return zoom;
+        return cardParent;
     }
 }
