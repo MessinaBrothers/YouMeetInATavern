@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class ConcludeScenarioController : MonoBehaviour {
 
-    public GameObject itemCardPrefab;
+    public GameObject itemCardPrefab, tavern;
 
     public GameObject selectedItemFirst, selectedItemSecond;
 
-    public Transform itemCenterPos, itemZoomPos;
+    public Transform itemCenterPos, itemZoomPos, npcCenterPos, npcZoomPos;
     private Transform itemsParent;
 
     public AudioClip unselectClip;
@@ -102,6 +102,9 @@ public class ConcludeScenarioController : MonoBehaviour {
     private void Load() {
         data.gameMode = GameData.GameMode.CONCLUDE;
 
+        // hide the tavern
+        tavern.gameObject.SetActive(false);
+
         // DEBUG
         foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
             data.unlockedDialogueKeys.Add(kvp.Key);
@@ -112,42 +115,70 @@ public class ConcludeScenarioController : MonoBehaviour {
         float xOffset = 2.5f;
         float x = 0;
 
+        // ITEMS
         foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
             if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
                 // create the card
-                GameObject card = CardFactory.CreateItemCard(kvp.Key);
-                card.transform.position = itemCenterPos.position;
-                card.transform.rotation = itemCenterPos.rotation;
-
-                GameObject cardParent = new GameObject(card.name + " Parent");
-                card.transform.parent = cardParent.transform;
-
-                // create zoom positions
-                GameObject defaultPos = new GameObject("DefaultPos");
-                defaultPos.transform.position = new Vector3(
-                    itemCenterPos.position.x + x,
-                    itemCenterPos.position.y,
-                    itemCenterPos.position.z
-                    );
-                defaultPos.transform.parent = cardParent.transform;
-                GameObject zoomPos = new GameObject("ZoomPos");
-                zoomPos.transform.position = new Vector3(
-                    itemCenterPos.position.x + x,
-                    itemZoomPos.position.y,
-                    itemZoomPos.position.z
-                    );
-                zoomPos.transform.parent = cardParent.transform;
-
-                // add zoom script
-                CardZoom zoom = card.AddComponent<CardZoom>();
-                zoom.defaultPos = defaultPos;
-                zoom.zoomPos = zoomPos;
-
-                // start the position at its default
-                card.transform.position = defaultPos.transform.position;
-
+                GameObject card = CreateItemCard(kvp.Key);
+                // add a zoom script
+                AddZoom(card, x, itemCenterPos, itemZoomPos);
+                // offset x for the next card
                 x += xOffset;
             }
         }
+        // NPCs
+        //foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+        //    if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
+        //        // create the card
+        //        GameObject card = CreateItemCard(kvp.Key);
+        //        // add a zoom script
+        //        AddZoom(card, x, itemCenterPos, itemZoomPos);
+        //        // offset x for the next card
+        //        x += xOffset;
+        //    }
+        //}
+    }
+
+    private GameObject CreateItemCard(string key) {
+        GameObject card = CardFactory.CreateItemCard(key);
+        card.transform.position = itemCenterPos.position;
+        card.transform.rotation = itemCenterPos.rotation;
+
+        card.transform.parent = itemsParent;
+
+        return card;
+    }
+
+    private CardZoom AddZoom(GameObject card, float x, Transform centerTransform, Transform zoomTransform) {
+        GameObject cardParent = new GameObject(card.name + " Parent");
+        card.transform.parent = cardParent.transform;
+
+        // create zoom positions
+        GameObject defaultPos = new GameObject("DefaultPos");
+        defaultPos.transform.position = new Vector3(
+            centerTransform.position.x + x,
+            centerTransform.position.y,
+            centerTransform.position.z
+            );
+        GameObject zoomPos = new GameObject("ZoomPos");
+        zoomPos.transform.position = new Vector3(
+            centerTransform.position.x + x,
+            zoomTransform.position.y,
+            zoomTransform.position.z
+            );
+
+        // set the parents
+        defaultPos.transform.parent = cardParent.transform;
+        zoomPos.transform.parent = cardParent.transform;
+
+        // add zoom script
+        CardZoom zoom = card.AddComponent<CardZoom>();
+        zoom.defaultPos = defaultPos;
+        zoom.zoomPos = zoomPos;
+
+        // start the position at its default
+        card.transform.position = defaultPos.transform.position;
+
+        return zoom;
     }
 }

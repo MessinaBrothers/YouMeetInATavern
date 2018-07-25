@@ -14,8 +14,7 @@ public class ScenarioParser : MonoBehaviour {
 
     private void Parse() {
         TextAsset file = (TextAsset)Resources.Load("Scenarios");
-
-        string[] lines = file.text.Split("\n"[0]);
+        string[] lines = file.text.Split('\n');
 
         bool startParse = false;
         for (int i = 0; i < lines.Length; i++) {
@@ -37,9 +36,6 @@ public class ScenarioParser : MonoBehaviour {
         scenario.id = uint.Parse(lineData[index++]);
         scenario.name = lineData[index++];
         scenario.endsOnDay = uint.Parse(lineData[index++]);
-
-        // save scenario to game data
-        data.scenarios.Add(scenario.id, scenario);
 
         // parse NPCs to introduce
         uint day = 1;
@@ -66,5 +62,8 @@ public class ScenarioParser : MonoBehaviour {
             // increment the day
             day += 1;
         }
+
+        // save scenario to game data
+        data.scenarios.Add(scenario.id, scenario);
     }
 }

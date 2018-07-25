@@ -20,7 +20,7 @@ NPC,Q?,ID,Text
 1,0,default,"<>Need something? Everything’s for sale, for the right <ITEM_GOLD>coin."
 1,1,RUMOR,<MONSTER>You were robbed?
 1,0,MONSTER,"<>Robbed? No, we were attacked! By tiny green creatures, no less. They killed half my guards before taking off with my stock."
-1,0,ITEM_GOLD,"You can’t just have my gold! I can offer you a loan, however."
+1,0,ITEM_GOLD,"<>You can’t just have my gold! I can offer you a loan, however."
 2,0,,<>Huh?
 2,0,intro,<>I parked my giant panther out front.
 2,0,default,<>The woods are quiet tonight.
@@ -34,8 +34,12 @@ NPC,Q?,ID,Text
 3,0,ITEM_THIEFSKIT,"<>I got an extra one, if you need it. Just let me know."
 4,0,,<>What?
 4,0,intro,<>Fine night for a drink.
-4,0,default,<>What d’ya want? I’m off duty.
+4,0,default,<>What d’ya want? I’m <GUARD_HISTORY>off duty.
 4,1,KOBOLDS,<TOWN_KOBOLDS>Are kobolds a threat to the town?
 4,0,TOWN_KOBOLDS,<>Kobolds?! Here? The town must be defended at all costs!
 4,1,default,<TOWN_QUIET>What’s happening in town?
 4,0,TOWN_QUIET,Nothing! The whole town was quiet today. I hated it!
+4,0,GUARD_HISTORY,<>Not much action in town. It’s nothing like it was in <GUARD_SOLDIER>my soldier days.
+4,0,GUARD_SOLDIER,"<>Aye, I was quite the fighter, too. But now my knee isn’t what it used to be."
+4,1,GUARD_SOLDIER,<NPC_GUARD>Can you still fight?
+4,0,NPC_GUARD,"<>I can still swing a sword, if that’s what you’re asking. If you need help, just say the word."
