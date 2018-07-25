@@ -21,6 +21,6 @@ public class CardZoom : MonoBehaviour {
     }
     
     public void Unzoom() {
-
+        gameObject.transform.position = defaultPos.transform.position;
     }
 }

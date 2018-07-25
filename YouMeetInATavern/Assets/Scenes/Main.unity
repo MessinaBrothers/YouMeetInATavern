@@ -678,6 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286023539}
   - component: {fileID: 286023540}
+  - component: {fileID: 286023541}
   m_Layer: 0
   m_Name: ConcludeScenario
   m_TagString: Untagged
@@ -713,9 +714,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCardPrefab: {fileID: 1183731708458380, guid: c3821977d11dcfd448b0c31dc7e5d16e,
     type: 2}
+  selectedItemFirst: {fileID: 0}
+  selectedItemSecond: {fileID: 0}
   itemCenterPos: {fileID: 1435243195}
   itemZoomPos: {fileID: 1341013477}
+  unselectClip: {fileID: 8300000, guid: cb23826f9af607b45bb44c733d07a6d3, type: 3}
   isLoad: 0
+--- !u!82 &286023541
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 286023538}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243562538526031438, guid: 0cd6377388f238f48873bf7787742cf2,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!224 &308849574 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224266171319237410, guid: 07cf8ea70505b0e44a7acd168c1210c8,

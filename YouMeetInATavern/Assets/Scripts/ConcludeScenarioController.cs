@@ -7,10 +7,16 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     public GameObject itemCardPrefab;
 
+    public GameObject selectedItemFirst, selectedItemSecond;
+
     public Transform itemCenterPos, itemZoomPos;
     private Transform itemsParent;
 
+    public AudioClip unselectClip;
+
     private GameData data;
+
+    private AudioSource audioSource;
 
     //DEBUG
     public bool isLoad;
@@ -19,6 +25,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         GameObject go = new GameObject("Items");
         itemsParent = go.transform;
         itemsParent.parent = gameObject.transform;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -39,14 +47,44 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void HandleCardClick(GameObject card) {
-        card.GetComponent<CardSFX>().PlayGreeting();
+        CardZoom selectedZoom = card.GetComponent<CardZoom>();
 
         if (card.GetComponent<NPC>() != null) {
             print("User clicked on an NPC");
         } else {
-            // bring card forward
-            card.GetComponent<CardZoom>().Zoom();
+            // check if card is already selected
+            if (selectedItemFirst == card || selectedItemSecond == card) {
+                // unzoom selected card
+                selectedZoom.Unzoom();
+                // play unselect sound
+                audioSource.PlayOneShot(unselectClip);
+                // move selected choices (first and second)
 
+                if (selectedItemFirst == card) {
+                    // second becomes first
+                    selectedItemFirst = selectedItemSecond;
+                }
+                // clear second
+                selectedItemSecond = null;
+            } else {
+                // bring card forward
+                selectedZoom.Zoom();
+                // play sound effect
+                card.GetComponent<CardSFX>().PlayGreeting();
+
+                if (selectedItemFirst == null) {
+                    selectedItemFirst = card;
+                } else if (selectedItemSecond == null) {
+                    selectedItemSecond = card;
+                } else {
+                    // unzoom first card
+                    selectedItemFirst.GetComponent<CardZoom>().Unzoom();
+                    // set second card as first
+                    selectedItemFirst = selectedItemSecond;
+                    // set selected card as second
+                    selectedItemSecond = card;
+                }
+            }
         }
 
     }
@@ -56,8 +94,12 @@ public class ConcludeScenarioController : MonoBehaviour {
 
         data.gameMode = GameData.GameMode.CONCLUDE;
 
-        data.unlockedDialogueKeys.Add("ITEM_GOLD");
-        data.unlockedDialogueKeys.Add("ITEM_THIEFSKIT");
+        // DEBUG
+        foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
+            data.unlockedDialogueKeys.Add(kvp.Key);
+        }
+        //data.unlockedDialogueKeys.Add("ITEM_GOLD");
+        //data.unlockedDialogueKeys.Add("ITEM_THIEFSKIT");
 
         float xOffset = 2.5f;
         float x = 0;

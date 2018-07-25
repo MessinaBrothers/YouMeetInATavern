@@ -17,4 +17,7 @@ After choosing an NPC to talk to, a random NPC leaves the tavern
 Click on default text to trigger a stop-conversation response "(Huh?")
 Click on words of text to unlock items and NPCs
 End scenario screen
+Choose up to two items
+Choose up to two NPCs
+Choose a location
 Unlock NPCs to come to your aid
