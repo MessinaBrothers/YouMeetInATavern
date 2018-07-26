@@ -31,7 +31,7 @@ public class NPCController : MonoBehaviour {
 
     private Transform cardParent;
 
-    private Queue<uint> npcsToIntroduce;
+    private Queue<string> npcsToIntroduce;
 
     void Start() {
         data = FindObjectOfType<GameData>();
@@ -109,12 +109,12 @@ public class NPCController : MonoBehaviour {
             data.gameMode = GameData.GameMode.TAVERN;
         } else {
             // get the next NPC ID
-            uint npcID = npcsToIntroduce.Dequeue();
+            string npcID = npcsToIntroduce.Dequeue();
             IntroduceNPC(npcID);
         }
     }
 
-    private void IntroduceNPC(uint id) {
+    private void IntroduceNPC(string id) {
         data.gameMode = GameData.GameMode.INTRODUCE;
 
         GameObject card = CardFactory.CreateNPCCard(id);
@@ -144,7 +144,7 @@ public class NPCController : MonoBehaviour {
 
         // load list of NPCs to introduce
         if (data.scenario.day_introductions.ContainsKey(data.dayCount)) {
-            npcsToIntroduce = new Queue<uint>(data.scenario.day_introductions[data.dayCount]);
+            npcsToIntroduce = new Queue<string>(data.scenario.day_introductions[data.dayCount]);
         }
 
         // introduce the first NPC, if any

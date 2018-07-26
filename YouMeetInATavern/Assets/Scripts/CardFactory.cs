@@ -18,9 +18,9 @@ public class CardFactory : MonoBehaviour {
         itemCardPrefabWrapper = itemCardPrefab;
     }
 
-    public static GameObject CreateNPCCard(uint npcID) {
+    public static GameObject CreateNPCCard(string key) {
         // get NPC data
-        NPCData npcData = data.npcData[npcID];
+        NPCData npcData = data.npcData[key];
 
         // create the card gameobject
         GameObject card = Instantiate(npcCardPrefabWrapper);
@@ -28,7 +28,7 @@ public class CardFactory : MonoBehaviour {
 
         // set the NPC values
         NPC npc = card.GetComponent<NPC>();
-        npc.npcID = npcID;
+        npc.npcID = key;
 
         // set the card name
         card.GetComponentInChildren<Text>().text = npcData.name;

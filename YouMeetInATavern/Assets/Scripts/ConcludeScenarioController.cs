@@ -75,8 +75,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
             data.unlockedDialogueKeys.Add(kvp.Key);
         }
-        foreach (KeyValuePair<uint, NPCData> kvp in data.npcData) {
-            data.unlockedDialogueKeys.Add(kvp.Value.unlockTag);
+        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+            data.unlockedDialogueKeys.Add(kvp.Key);
         }
         //data.unlockedDialogueKeys.Add("ITEM_GOLD");
         //data.unlockedDialogueKeys.Add("ITEM_THIEFSKIT");
@@ -102,8 +102,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         x = 0;
 
         // NPCs
-        foreach (KeyValuePair<uint, NPCData> kvp in data.npcData) {
-            if (data.unlockedDialogueKeys.Contains(kvp.Value.unlockTag)) {
+        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+            if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
                 // create the card
                 GameObject card = CreateNPCCard(kvp.Key);
                 // add a zoom script
@@ -121,7 +121,7 @@ public class ConcludeScenarioController : MonoBehaviour {
         return card;
     }
 
-    private GameObject CreateNPCCard(uint key) {
+    private GameObject CreateNPCCard(string key) {
         GameObject card = CardFactory.CreateNPCCard(key);
         return card;
     }

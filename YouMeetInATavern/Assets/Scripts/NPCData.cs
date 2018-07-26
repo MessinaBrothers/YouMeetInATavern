@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCData {
-
-    public uint id;
-
+    
     public string name;
 
     public string unlockTag;

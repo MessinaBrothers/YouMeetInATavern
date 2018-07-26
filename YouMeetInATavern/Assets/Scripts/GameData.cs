@@ -15,13 +15,13 @@ public class GameData : MonoBehaviour {
     public uint dayCount;
     public Dictionary<uint, Scenario> scenarios;
     public Scenario scenario;
-    public Dictionary<uint, NPCData> npcData;
+    public Dictionary<string, NPCData> npcData;
     public Dictionary<string, ItemData> itemData;
     public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
 
     [Header("Dialogue")]
-    public Dictionary<uint, Dictionary<string, string>> npc_dialogues;
-    public Dictionary<uint, Dictionary<string, string>> npc_questions;
+    public Dictionary<string, Dictionary<string, string>> npc_dialogues;
+    public Dictionary<string, Dictionary<string, string>> npc_questions;
     public List<string> unlockedDialogueKeys;
 
     public enum GameMode {
@@ -40,12 +40,12 @@ public class GameData : MonoBehaviour {
         gameMode = GameMode.INTRODUCE;
 
         scenarios = new Dictionary<uint, Scenario>();
-        npcData = new Dictionary<uint, NPCData>();
+        npcData = new Dictionary<string, NPCData>();
         itemData = new Dictionary<string, ItemData>();
         scenarioResultsData = new Dictionary<uint, List<ScenarioResult>>();
 
-        npc_dialogues = new Dictionary<uint, Dictionary<string, string>>();
-        npc_questions = new Dictionary<uint, Dictionary<string, string>>();
+        npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
+        npc_questions = new Dictionary<string, Dictionary<string, string>>();
         unlockedDialogueKeys = new List<string>();
 
         // DEBUG

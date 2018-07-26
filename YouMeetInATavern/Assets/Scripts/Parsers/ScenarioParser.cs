@@ -43,11 +43,11 @@ public class ScenarioParser : MonoBehaviour {
             if (lineData[i].Trim().Length == 0) continue;
             
             // get existing list of NPCs to introduce (or create one)
-            List<uint> npcsToIntroduce;
+            List<string> npcsToIntroduce;
             if (scenario.day_introductions.ContainsKey(day)) {
                 npcsToIntroduce = scenario.day_introductions[day];
             } else {
-                npcsToIntroduce = new List<uint>();
+                npcsToIntroduce = new List<string>();
                 scenario.day_introductions.Add(day, npcsToIntroduce);
             }
 
@@ -56,7 +56,7 @@ public class ScenarioParser : MonoBehaviour {
 
             // for each NPC id, add it to the list of NPCs for the day
             for (int j = 0; j < npcIDs.Length; j++) {
-                npcsToIntroduce.Add(uint.Parse(npcIDs[j]));
+                npcsToIntroduce.Add(npcIDs[j]);
             }
 
             // increment the day

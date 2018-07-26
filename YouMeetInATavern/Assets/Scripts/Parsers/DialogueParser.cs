@@ -32,7 +32,7 @@ public class DialogueParser : MonoBehaviour {
     private void ParseLine(string line) {
         string[] data = line.Split(',');
         
-        uint npcID = uint.Parse(data[0]);
+        string npcID = data[0];
         bool isQuestion = int.Parse(data[1]) == 0 ? false : true;
         string dialogueID = data[2];
 
@@ -51,19 +51,19 @@ public class DialogueParser : MonoBehaviour {
         }
     }
 
-    private void SaveQuestion(uint npcID, string prereqID, string text) {
+    private void SaveQuestion(string npcID, string prereqID, string text) {
         // get the npc's list of questions
         Dictionary<string, string> questions = GetList(npcID, data.npc_questions);
         questions.Add(prereqID, text);
     }
 
-    private void SaveDialogue(uint npcID, string dialogueID, string text) {
+    private void SaveDialogue(string npcID, string dialogueID, string text) {
         // get the npc's list of dialogues
         Dictionary<string, string> dialogues = GetList(npcID, data.npc_dialogues);
         dialogues.Add(dialogueID, text);
     }
 
-    private Dictionary<string, string> GetList(uint id, Dictionary<uint, Dictionary<string, string>> listOfLists) {
+    private Dictionary<string, string> GetList(string id, Dictionary<string, Dictionary<string, string>> listOfLists) {
         Dictionary<string, string> list;
         if (listOfLists.ContainsKey(id) == true) {
             // retrieve the existing list

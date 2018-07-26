@@ -22,7 +22,7 @@ public class NPCParser : MonoBehaviour {
             if (startParse && lines[i].Length > 0) {
                 ParseLine(lines[i]);
             // don't start parsing until we've reached the NPC table
-            } else if (lines[i].StartsWith("ID,Name")) {
+            } else if (lines[i].StartsWith("Unlock Tag,Name")) {
                 startParse = true;
             }
         }
@@ -34,9 +34,8 @@ public class NPCParser : MonoBehaviour {
         NPCData npc = new NPCData();
 
         int index = 0;
-        npc.id = uint.Parse(lineData[index++]);
-        npc.name = lineData[index++];
         npc.unlockTag = lineData[index++];
+        npc.name = lineData[index++];
         npc.imageFile = lineData[index++];
         npc.sfxIntro = lineData[index++];
 
@@ -52,6 +51,6 @@ public class NPCParser : MonoBehaviour {
         npc.sfxGreetings[1] = lineData[index++];
 
         // save npc data to game data
-        data.npcData.Add(npc.id, npc);
+        data.npcData.Add(npc.unlockTag, npc);
     }
 }

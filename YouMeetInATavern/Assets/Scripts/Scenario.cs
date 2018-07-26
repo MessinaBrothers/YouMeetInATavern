@@ -10,10 +10,10 @@ public class Scenario {
 
     public uint endsOnDay;
 
-    public Dictionary<uint, List<uint>> day_introductions;
+    public Dictionary<uint, List<string>> day_introductions;
 
     public Scenario() {
-        day_introductions = new Dictionary<uint, List<uint>>();
+        day_introductions = new Dictionary<uint, List<string>>();
     }
 
 }
