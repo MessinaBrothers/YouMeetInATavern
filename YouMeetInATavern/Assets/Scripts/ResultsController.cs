@@ -36,8 +36,13 @@ public class ResultsController : MonoBehaviour {
 
             if (isUnlocked) {
                 // result is unlocked!
+                // parse the reward
+                int endIndex = result.description.IndexOf('>');
+                string reward = result.description.Substring(1, endIndex - 1);
+                print("Reward: " + reward);
+                string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
                 // save the results
-                data.resultsDialogue = result.description;
+                data.resultsDialogue = dialogue;
                 return;
             }
 
