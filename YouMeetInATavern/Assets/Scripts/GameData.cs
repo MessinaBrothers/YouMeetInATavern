@@ -7,6 +7,7 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_INTRO = "intro";
     public static string DIALOGUE_DEFAULT = "default";
     public static string DIALOGUE_INVALID = "";
+    public static char PARSER_DELIMITER = '-';
 
     public GameObject selectedCard;
 
@@ -16,6 +17,7 @@ public class GameData : MonoBehaviour {
     public Scenario scenario;
     public Dictionary<uint, NPCData> npcData;
     public Dictionary<string, ItemData> itemData;
+    public Dictionary<uint, Dictionary<string, string>> scenarioResultsData;
 
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<string, string>> npc_dialogues;
@@ -39,6 +41,7 @@ public class GameData : MonoBehaviour {
         scenarios = new Dictionary<uint, Scenario>();
         npcData = new Dictionary<uint, NPCData>();
         itemData = new Dictionary<string, ItemData>();
+        scenarioResultsData = new Dictionary<uint, Dictionary<string, string>>();
 
         npc_dialogues = new Dictionary<uint, Dictionary<string, string>>();
         npc_questions = new Dictionary<uint, Dictionary<string, string>>();

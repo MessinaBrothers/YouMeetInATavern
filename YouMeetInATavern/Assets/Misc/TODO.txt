@@ -20,3 +20,5 @@ End scenario screen
 Choose up to two items
 Choose up to two NPCs
 Choose a location
+Create scenario results
+Confirm selections and see results

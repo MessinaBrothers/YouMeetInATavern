@@ -38,9 +38,10 @@ public class DialogueParser : MonoBehaviour {
 
         string dialogue = "";
         for (int i = 3; i < data.Length; i++) {
-            dialogue += data[i];
+            dialogue += data[i] + ",";
         }
         dialogue = dialogue.Replace("\"", "");
+        dialogue = dialogue.Substring(0, dialogue.Length - ",".Length);
 
         //Debug.LogFormat("NPC={0}, Q={1}, ID={2}, \"{3}\"", npcID, isQuestion, dialogueID, dialogue);
         if (isQuestion == true) {

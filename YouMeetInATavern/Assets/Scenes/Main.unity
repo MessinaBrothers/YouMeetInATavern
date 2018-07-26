@@ -4634,6 +4634,7 @@ GameObject:
   - component: {fileID: 2101470029}
   - component: {fileID: 2101470031}
   - component: {fileID: 2101470032}
+  - component: {fileID: 2101470033}
   m_Layer: 0
   m_Name: Parsers
   m_TagString: Untagged
@@ -4696,6 +4697,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 139307904cfcb9646aca851d35e949b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2101470033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2101470027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c439fe591c979a84db7f9231f4c22813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2103271621
