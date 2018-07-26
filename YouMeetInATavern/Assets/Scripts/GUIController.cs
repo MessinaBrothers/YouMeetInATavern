@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GUIController : MonoBehaviour {
 
-    public GameObject dialoguePanel, dayPanel, nightPanel, concludeScenarioPanel;
+    public GameObject dialoguePanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
 
     private GameData data;
 
@@ -68,11 +68,17 @@ public class GUIController : MonoBehaviour {
         concludeScenarioPanel.SetActive(true);
     }
 
+    public void ConfirmScenario() {
+        DeactivateAll();
+        resultsPanel.SetActive(true);
+    }
+
     private void DeactivateAll() {
         dayPanel.SetActive(false);
         dialoguePanel.SetActive(false);
         nightPanel.SetActive(false);
         concludeScenarioPanel.SetActive(false);
+        resultsPanel.SetActive(false);
     }
 
     private void Converse(GameObject card) {

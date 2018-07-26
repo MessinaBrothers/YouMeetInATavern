@@ -34,6 +34,9 @@ public class InputController : MonoBehaviour {
     public static event ChooseLocationEventHandler chooseLocationEventHandler;
     public delegate void ChooseLocationEventHandler(GameData.Location location);
 
+    public static event ConfirmScenarioChoicesEventHandler confirmScenarioChoicesEventHandler;
+    public delegate void ConfirmScenarioChoicesEventHandler();
+
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
@@ -87,12 +90,17 @@ public class InputController : MonoBehaviour {
         guiController.ConcludeScenario();
     }
 
-    public static void ConfirmScenario() {
-        print("Confirming choices");
-    }
-
     public void ChooseLocation(GameData.Location location) {
         chooseLocationEventHandler.Invoke(location);
+    }
+
+    public static void ConfirmScenario() {
+        confirmScenarioChoicesEventHandler.Invoke();
+        guiController.ConfirmScenario();
+    }
+
+    public static void EndResults() {
+        print("Ending results");
     }
 
     // wrapper methods for Unity buttons
@@ -102,4 +110,5 @@ public class InputController : MonoBehaviour {
     public void ContinueDayWrapper() { ContinueDay(); }
     public void EndDayWrapper() { EndDay(); }
     public void ConfirmScenarioWrapper() { ConfirmScenario(); }
+    public void EndResultsWrapper() { EndResults(); }
 }
