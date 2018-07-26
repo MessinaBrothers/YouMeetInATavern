@@ -17,7 +17,7 @@ public class GameData : MonoBehaviour {
     public Scenario scenario;
     public Dictionary<uint, NPCData> npcData;
     public Dictionary<string, ItemData> itemData;
-    public Dictionary<uint, Dictionary<string, string>> scenarioResultsData;
+    public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
 
     [Header("Dialogue")]
     public Dictionary<uint, Dictionary<string, string>> npc_dialogues;
@@ -34,6 +34,7 @@ public class GameData : MonoBehaviour {
     }
     [Header("Conclusion")]
     public Location chosenLocation;
+    public string resultsDialogue;
 
     void Start() {
         gameMode = GameMode.INTRODUCE;
@@ -41,7 +42,7 @@ public class GameData : MonoBehaviour {
         scenarios = new Dictionary<uint, Scenario>();
         npcData = new Dictionary<uint, NPCData>();
         itemData = new Dictionary<string, ItemData>();
-        scenarioResultsData = new Dictionary<uint, Dictionary<string, string>>();
+        scenarioResultsData = new Dictionary<uint, List<ScenarioResult>>();
 
         npc_dialogues = new Dictionary<uint, Dictionary<string, string>>();
         npc_questions = new Dictionary<uint, Dictionary<string, string>>();

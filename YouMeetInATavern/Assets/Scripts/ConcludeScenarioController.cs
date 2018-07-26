@@ -15,8 +15,6 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     private GameData data;
 
-    private AudioSource audioSource;
-
     private SelectCards itemSelection, npcSelection;
 
     //DEBUG
@@ -32,8 +30,6 @@ public class ConcludeScenarioController : MonoBehaviour {
         GameObject go2 = new GameObject("NPCs");
         npcsParent = go2.transform;
         npcsParent.parent = gameObject.transform;
-
-        audioSource = GetComponent<AudioSource>();
 
         // card selections
         itemSelection = gameObject.AddComponent<SelectCards>();

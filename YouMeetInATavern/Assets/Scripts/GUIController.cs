@@ -71,6 +71,7 @@ public class GUIController : MonoBehaviour {
     public void ConfirmScenario() {
         DeactivateAll();
         resultsPanel.SetActive(true);
+        resultsPanel.GetComponentInChildren<UnityEngine.UI.Text>().text = data.resultsDialogue;
     }
 
     private void DeactivateAll() {

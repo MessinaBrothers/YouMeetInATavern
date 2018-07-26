@@ -2681,6 +2681,7 @@ GameObject:
   - component: {fileID: 1027258103}
   - component: {fileID: 1027258099}
   - component: {fileID: 1027258105}
+  - component: {fileID: 1027258106}
   - component: {fileID: 1027258102}
   m_Layer: 0
   m_Name: Main
@@ -2733,6 +2734,7 @@ MonoBehaviour:
   unlockedDialogueKeys: []
   gameMode: 0
   chosenLocation: 0
+  resultsDialogue: 
 --- !u!114 &1027258102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2779,6 +2781,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cefcddb1f1dac240bd695cd1fa2b8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1027258106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1027258098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06226f659def11a48af80ec8ae3ff2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1092400356

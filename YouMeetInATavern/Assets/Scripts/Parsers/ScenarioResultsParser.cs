@@ -50,14 +50,14 @@ public class ScenarioResultsParser : MonoBehaviour {
         scenario.description = description;
 
         // save results to game data
-        Dictionary<string, string> results;
+        List<ScenarioResult> results;
         if (data.scenarioResultsData.ContainsKey(scenario.scenarioKey)) {
             results = data.scenarioResultsData[scenario.scenarioKey];
         } else {
-            results = new Dictionary<string, string>();
+            results = new List<ScenarioResult>();
             data.scenarioResultsData.Add(scenario.scenarioKey, results);
         }
-        results.Add(unlocks, scenario.description);
+        results.Add(scenario);
 
         //Debug.LogFormat("Saved scenario results with key [{0}], unlocks of [{1}], and description of [{2}]", scenario.scenarioKey, unlocks, scenario.description);
     }
