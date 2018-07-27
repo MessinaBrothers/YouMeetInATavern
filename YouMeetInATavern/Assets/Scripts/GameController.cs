@@ -36,6 +36,8 @@ public class GameController : MonoBehaviour {
         data.scenario = data.scenarios[nextScenarioIndex];
         nextScenarioIndex += 1;
 
+        data.dayCount = 0;
+
         InputController.StartDay();
     }
 }
