@@ -11,7 +11,7 @@ public class GameData : MonoBehaviour {
 
     public GameObject selectedCard;
 
-    public List<GameObject> npcs;
+    public List<GameObject> npcsInTavern;
     public uint dayCount;
     public Dictionary<uint, Scenario> scenarios;
     public Scenario scenario;
@@ -20,6 +20,7 @@ public class GameData : MonoBehaviour {
     public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
 
     [Header("Dialogue")]
+    public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
     public Dictionary<string, Dictionary<string, string>> npc_questions;
     public List<string> unlockedDialogueKeys;
@@ -30,7 +31,7 @@ public class GameData : MonoBehaviour {
     public GameMode gameMode;
 
     public enum Location {
-        NONE, ROAD, MOUNTAIN, TOWN, FOREST
+        NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST
     }
     [Header("Conclusion")]
     public Location chosenLocation;

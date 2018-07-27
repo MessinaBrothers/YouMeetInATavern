@@ -10,4 +10,6 @@ public class ScenarioResult {
 
     public string description;
 
+    public string nextDialoguesKey;
+
 }

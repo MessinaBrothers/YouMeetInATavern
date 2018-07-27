@@ -21,7 +21,7 @@ public class ResultsController : MonoBehaviour {
 
     private void DisplayResults() {
         // add location to unlocks (HACK)
-        data.unlockedDialogueKeys.Add("LOCATION_" + data.chosenLocation);
+        data.unlockedDialogueKeys.Add(data.chosenLocation.ToString());
         // set dialogue based on selections
         SetResultsDescription();
         // handle rewards, if any

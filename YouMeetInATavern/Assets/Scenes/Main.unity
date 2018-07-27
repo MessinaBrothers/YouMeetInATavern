@@ -2731,6 +2731,7 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   npcs: []
   dayCount: 0
+  nextDialogueIntroKey: 
   unlockedDialogueKeys: []
   gameMode: 0
   chosenLocation: 0

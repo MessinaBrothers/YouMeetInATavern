@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour {
+
+    public static event GameInitializedEventHandler gameInitializedEventHandler;
+    public delegate void GameInitializedEventHandler();
 
     public static event CardClickedEventHandler cardClickedEventHandler;
     public delegate void CardClickedEventHandler(GameObject card);
@@ -37,6 +41,9 @@ public class InputController : MonoBehaviour {
     public static event ConfirmScenarioChoicesEventHandler confirmScenarioChoicesEventHandler;
     public delegate void ConfirmScenarioChoicesEventHandler();
 
+    public static event EndResultsEventHandler endResultsEventHandler;
+    public delegate void EndResultsEventHandler();
+
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
@@ -45,6 +52,10 @@ public class InputController : MonoBehaviour {
 
     void Update() {
 
+    }
+
+    public static void GameInitialized() {
+        gameInitializedEventHandler.Invoke();
     }
 
     public static void HandleCardClick(GameObject card) {
@@ -100,7 +111,7 @@ public class InputController : MonoBehaviour {
     }
 
     public static void EndResults() {
-        print("Ending results");
+        endResultsEventHandler.Invoke();
     }
 
     // wrapper methods for Unity buttons

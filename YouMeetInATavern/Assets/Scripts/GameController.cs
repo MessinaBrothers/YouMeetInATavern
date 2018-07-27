@@ -11,6 +11,10 @@ public class GameController : MonoBehaviour {
         // load scenario
         GameData data = FindObjectOfType<GameData>();
         data.scenario = data.scenarios[0];
+        
+        data.nextDialogueIntroKey = GameData.DIALOGUE_INTRO;
+
+        InputController.GameInitialized();
 
         // start the first day
         InputController.StartDay();

@@ -14,14 +14,14 @@ public class DayController : MonoBehaviour {
     }
 
     void OnEnable() {
-        NPCController.npcCreatedEventHandler += AddNPC;
+        NPCController.npcEnteredTavernEventHandler += AddNPC;
         NPCController.npcRemovedEventHandler += RemoveNPC;
         InputController.startDayEventHandler += NewDay;
         InputController.endDayEventHandler += EndDay;
     }
 
     void OnDisable() {
-        NPCController.npcCreatedEventHandler -= AddNPC;
+        NPCController.npcEnteredTavernEventHandler -= AddNPC;
         NPCController.npcRemovedEventHandler -= RemoveNPC;
         InputController.startDayEventHandler -= NewDay;
         InputController.endDayEventHandler -= EndDay;
@@ -32,7 +32,7 @@ public class DayController : MonoBehaviour {
     }
 
     private void RemoveNPC(GameObject card) {
-        if (data.npcs.Count == 0) {
+        if (data.npcsInTavern.Count == 0) {
             guiController.EndDay();
         }
     }

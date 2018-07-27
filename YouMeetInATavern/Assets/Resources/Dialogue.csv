@@ -15,6 +15,10 @@ NPC_BARTENDER,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty s
 NPC_BARTENDER,0,default,<>We have wheat ale for two copper. Interested?
 NPC_BARTENDER,1,default,<RUMOR>Heard any rumors lately?
 NPC_BARTENDER,0,RUMOR,<>Hmm...let’s see. A merchant was robbed a couple of days ago just outside of town. They say it was bandits.
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_CORRECT,<>Well done on the Kobold situation! Your next order is on the house!
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_MISSING,"<>Those Kobolds were tough. Most of them made it out, but they’ll probably be back. And soon."
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_BARTENDER,<>Sorry about last night. I’m no good at that kind of stuff!
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_WRONG,"<>Did you hear? Kobolds came into town and robbed us blind! They’re gonna be back for more, I just know it."
 NPC_MERCHANT,0,,<>I don’t understand you.
 NPC_MERCHANT,0,intro,<>I have traveled for a long while. It’s high time I enjoy some entertainment.
 NPC_MERCHANT,0,default,"<>Need something? Everything’s for sale, for the right <ITEM_GOLD>coin."
@@ -43,3 +47,7 @@ NPC_GUARD,0,GUARD_HISTORY,<>Not much action in town. It’s nothing like it was 
 NPC_GUARD,0,GUARD_SOLDIER,"<>Aye, I was quite the fighter, too. But now my knee isn’t what it used to be."
 NPC_GUARD,1,GUARD_SOLDIER,<NPC_GUARD>Can you still fight?
 NPC_GUARD,0,NPC_GUARD,"<>I can still swing a sword, if that’s what you’re asking. If you need help, just say the word."
+NPC_ADVENTURER,0,,<>Speak up!
+NPC_ADVENTURER,0,intro,<>Well met!
+NPC_ADVENTURER,0,default,<>So...got any work?
+NPC_ADVENTURER,0,SCENARIO_KOBOLDS_CORRECT,<>I heard you defended the town against kobolds last night. Well done! Nice to know there’s a fellow adventurer in town.

@@ -22,3 +22,4 @@ Choose up to two NPCs
 Choose a location
 Create scenario results
 See results
+Start new scenario

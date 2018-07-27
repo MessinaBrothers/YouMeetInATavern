@@ -28,7 +28,7 @@ public class CardFactory : MonoBehaviour {
 
         // set the NPC values
         NPC npc = card.GetComponent<NPC>();
-        npc.npcID = key;
+        npc.key = key;
 
         // set the card name
         card.GetComponentInChildren<Text>().text = npcData.name;

@@ -28,7 +28,7 @@ public class QuestionGUIController : MonoBehaviour {
         }
 
         // get the list of questions
-        Dictionary<string, string> questions = data.npc_questions[npc.npcID];
+        Dictionary<string, string> questions = data.npc_questions[npc.key];
 
         int buttonIndex = 0;
 

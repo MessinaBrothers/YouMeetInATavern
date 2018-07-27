@@ -35,7 +35,7 @@ public class GUIController : MonoBehaviour {
     public void UpdateConverseGUI(string dialogueID) {
         // update dialogue
         NPC npc = data.selectedCard.GetComponent<NPC>();
-        string text = data.npc_dialogues[npc.npcID][dialogueID];
+        string text = data.npc_dialogues[npc.key][dialogueID];
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
         // update questions
         dialoguePanel.GetComponentInChildren<QuestionGUIController>().LoadQuestions(data.selectedCard);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour {
 
-    public string npcID;
+    public string key;
 
     //public string cardName;
 

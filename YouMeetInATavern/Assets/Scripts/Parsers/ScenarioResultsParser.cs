@@ -35,10 +35,12 @@ public class ScenarioResultsParser : MonoBehaviour {
         int index = 0;
         scenario.scenarioKey = uint.Parse(lineData[index++]);
 
-        // TODO parse unlocks
-        //scenario.unlocks = lineData[index++];
+        // parse unlocks
         string unlocks = lineData[index++];
         scenario.unlocks = new List<string>(unlocks.Split(GameData.PARSER_DELIMITER));
+
+        // parse next dialogues
+        scenario.nextDialoguesKey = lineData[index++];
 
         // parse description
         string description = "";

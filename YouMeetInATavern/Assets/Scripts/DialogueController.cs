@@ -29,7 +29,7 @@ public class DialogueController : MonoBehaviour {
         // unlock the dialogue
         data.unlockedDialogueKeys.Add(unlockKey);
         // remove the question from the NPC so it never appears again
-        data.npc_questions[data.selectedCard.GetComponent<NPC>().npcID].Remove(key);
+        data.npc_questions[data.selectedCard.GetComponent<NPC>().key].Remove(key);
     }
 
     public void HandleDialogue(string unlockKey) {
