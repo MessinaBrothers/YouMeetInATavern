@@ -203,7 +203,9 @@ public class NPCController : MonoBehaviour {
 
     private void ReintroduceNPCs() {
         foreach (GameObject card in introducedNPCs) {
-            npcsToIntroduce.Enqueue(card.GetComponent<NPC>().key);
+            NPC npc = card.GetComponent<NPC>();
+            npcsToIntroduce.Enqueue(npc.key);
         }
+        introducedNPCs.Clear();
     }
 }
