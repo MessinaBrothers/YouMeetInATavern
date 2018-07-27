@@ -22,33 +22,41 @@ public class ResultsController : MonoBehaviour {
     private void DisplayResults() {
         // add location to unlocks (HACK)
         data.unlockedDialogueKeys.Add(data.chosenLocation.ToString());
+
+        // get the applicable result
+        ScenarioResult result = GetResult();
+
         // set dialogue based on selections
-        SetResultsDescription();
+        SetResultsDescription(result);
+        // set next NPC intro dialogues based on selections
+        data.nextDialogueIntroKey = result.nextDialoguesKey;
         // handle rewards, if any
 
     }
 
-    private void SetResultsDescription() {
+    private ScenarioResult GetResult() {
         // iterate through results list
         for (int i = 0; i < data.scenarioResultsData[data.scenario.id].Count; i++) {
             ScenarioResult result = data.scenarioResultsData[data.scenario.id][i];
-
-            bool isUnlocked = IsUnlocked(result);
-
-            if (isUnlocked) {
+            
+            if (IsUnlocked(result) == true) {
                 // result is unlocked!
-                // parse the reward
-                int endIndex = result.description.IndexOf('>');
-                string reward = result.description.Substring(1, endIndex - 1);
-                print("Reward: " + reward);
-                string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
-                // save the results
-                data.resultsDialogue = dialogue;
-                return;
+                return result;
             }
-
         }
 
+        return null;
+    }
+
+    private void SetResultsDescription(ScenarioResult result) {
+        // parse the reward
+        int endIndex = result.description.IndexOf('>');
+        string reward = result.description.Substring(1, endIndex - 1);
+        print("Reward: " + reward);
+        data.npcsToIntroduce.Enqueue(reward);
+        string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
+        // save the results
+        data.resultsDialogue = dialogue;
     }
 
     // if ANY unlock key does not exist in the unlocked keys, returns false. Otherwise, returns true

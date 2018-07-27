@@ -1,14 +1,8 @@
-Dialogue ID ‘intro’ is their introduction line,,,
-Dialogue ID of ‘default’ means unlocked from the beginning,,,
-Dialogue ID of ‘’ is their response to an invalid dialogue input,,,
-Q? means if it’s a question or not,,,
-Dialogue can’t use double quotation marks!,,,
-ID,NPC,,
-0,Bartender,,
-1,Merchant,,
-2,Ranger,,
-3,Scout,,
-4,Guard,,
+,intro,Introduction line,
+,default,Conversation starter,
+,‘’,Response to invalid dialogue click,
+,Q?,Is it a question?,
+,,NOTE: No double quotation marks!,
 NPC,Q?,ID,Text
 NPC_BARTENDER,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
 NPC_BARTENDER,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
@@ -32,10 +26,11 @@ NPC_RANGER,1,MONSTER,<KOBOLDS>What do you know about tiny green creatures?
 NPC_RANGER,0,KOBOLDS,<>You mean kobolds? Pests! You never see them coming. They love to lay traps. And they love gold even more.
 NPC_SCOUT,0,,<>Come again?
 NPC_SCOUT,0,intro,<>The pleasure is mine.
-NPC_SCOUT,0,default,<>Who do you want killed?
+NPC_SCOUT,0,default,<>Who do you want <NPC_SCOUT>killed?
 NPC_SCOUT,1,KOBOLDS,<TRAPS>What can you tell me about kobold traps?
 NPC_SCOUT,0,TRAPS,<>Pretty basic stuff. Any <ITEM_THIEFSKIT>thief’s kit<>would make short work of ‘em.
 NPC_SCOUT,0,ITEM_THIEFSKIT,"<>I got an extra one, if you need it. Just let me know."
+NPC_SCOUT,0,NPC_SCOUT,"<>Yes, I kill people. My former profession was a rogue. But now I’m a scout. Blame Anthony."
 NPC_GUARD,0,,<>What?
 NPC_GUARD,0,intro,<>Fine night for a drink.
 NPC_GUARD,0,default,<>What d’ya want? I’m <GUARD_HISTORY>off duty.

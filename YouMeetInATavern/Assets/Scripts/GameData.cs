@@ -12,6 +12,7 @@ public class GameData : MonoBehaviour {
     public GameObject selectedCard;
 
     public List<GameObject> npcsInTavern;
+    public Queue<string> npcsToIntroduce;
     public uint dayCount;
     public Dictionary<uint, Scenario> scenarios;
     public Scenario scenario;
@@ -39,7 +40,8 @@ public class GameData : MonoBehaviour {
 
     void Start() {
         gameMode = GameMode.INTRODUCE;
-
+        
+        npcsToIntroduce = new Queue<string>();
         scenarios = new Dictionary<uint, Scenario>();
         npcData = new Dictionary<string, NPCData>();
         itemData = new Dictionary<string, ItemData>();
