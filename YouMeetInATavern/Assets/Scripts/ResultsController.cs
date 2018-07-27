@@ -25,6 +25,7 @@ public class ResultsController : MonoBehaviour {
         // set dialogue based on selections
         SetResultsDescription();
         // handle rewards, if any
+
     }
 
     private void SetResultsDescription() {

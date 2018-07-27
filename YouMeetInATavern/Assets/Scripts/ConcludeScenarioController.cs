@@ -72,14 +72,12 @@ public class ConcludeScenarioController : MonoBehaviour {
         tavern.gameObject.SetActive(false);
 
         // DEBUG
-        foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
-            data.unlockedDialogueKeys.Add(kvp.Key);
-        }
-        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-            data.unlockedDialogueKeys.Add(kvp.Key);
-        }
-        //data.unlockedDialogueKeys.Add("ITEM_GOLD");
-        //data.unlockedDialogueKeys.Add("ITEM_THIEFSKIT");
+        //foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
+        //    data.unlockedDialogueKeys.Add(kvp.Key);
+        //}
+        //foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+        //    data.unlockedDialogueKeys.Add(kvp.Key);
+        //}
 
         float xOffset = 2.5f;
         float x = 0;

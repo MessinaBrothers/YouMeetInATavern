@@ -1,26 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    private GameData data;
+
+    private uint nextScenarioIndex;
+
     void Start() {
         // always Starts last. See: Edit > Project Settings > Script Execution Order
         print("Game initialized. Loading scenario...");
 
+        data = FindObjectOfType<GameData>();
+
         // load scenario
-        GameData data = FindObjectOfType<GameData>();
-        data.scenario = data.scenarios[0];
+        nextScenarioIndex = 0;
+        NextScenario();
         
         data.nextDialogueIntroKey = GameData.DIALOGUE_INTRO;
 
         InputController.GameInitialized();
-
-        // start the first day
-        InputController.StartDay();
     }
 
-    void Update() {
+    void OnEnable() {
+        InputController.endResultsEventHandler += NextScenario;
+    }
 
+    void OnDisable() {
+        InputController.endResultsEventHandler -=  NextScenario;
+    }
+
+    private void NextScenario() {
+        data.scenario = data.scenarios[nextScenarioIndex];
+        nextScenarioIndex += 1;
+
+        InputController.StartDay();
     }
 }
