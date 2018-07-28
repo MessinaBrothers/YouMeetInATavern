@@ -120,29 +120,18 @@ public class NPCController : MonoBehaviour {
     }
 
     private void IntroduceNextNPC() {
-        // if no more NPCs to introduce
-        if (data.npcsToIntroduce.Count == 0) {
-            // set game to TAVERN mode
-            data.gameMode = GameData.GameMode.TAVERN;
+        // check for NPCs to reintroduce, then new NPCs
+        if (data.npcsToReintroduce.Count > 0) {
+            IntroduceNPC(data.npcsToReintroduce.Dequeue());
+        } else if (data.npcsToIntroduce.Count > 0) {
+            IntroduceNPC(data.npcsToIntroduce.Dequeue());
         } else {
-            // get the next NPC ID
-            string npcID = data.npcsToIntroduce.Dequeue();
-            IntroduceNPC(npcID);
+            data.gameMode = GameData.GameMode.TAVERN;
         }
     }
 
-    private void IntroduceNPC(string npcKey) {
+    private void IntroduceNPC(GameObject card) {
         data.gameMode = GameData.GameMode.INTRODUCE;
-
-        GameObject card = null;
-
-        // find the corresponding card GameObject
-        foreach (Transform child in cardParent) {
-            if (npcKey == child.gameObject.GetComponent<NPC>().key) {
-                card = child.gameObject;
-                break;
-            }
-        }
 
         card.SetActive(true);
 
@@ -155,7 +144,7 @@ public class NPCController : MonoBehaviour {
         npc.isBeingIntroduced = true;
 
         // set the next dialogue. If the NPC has dialogue specific to the last scenario result, use it
-        if (data.npc_dialogues[npcKey].ContainsKey(data.nextDialogueIntroKey)) {
+        if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
             npc.nextDialogueID = data.nextDialogueIntroKey;
         } else {
             // otherwise, use the default into dialogue
@@ -167,6 +156,16 @@ public class NPCController : MonoBehaviour {
 
         npcEnteredTavernEventHandler.Invoke(card);
         npcIntroStartEventHandler.Invoke(card);
+    }
+
+    private void IntroduceNPC(string npcKey) {
+        // find the corresponding card GameObject
+        foreach (Transform child in cardParent) {
+            if (npcKey == child.gameObject.GetComponent<NPC>().key) {
+                IntroduceNPC(child.gameObject);
+                break;
+            }
+        }
     }
 
     private void ContinueDay() {
@@ -205,6 +204,25 @@ public class NPCController : MonoBehaviour {
         /// e.g. Bartender after bringing her along on a quest
         /// Quest rewards i.e. Adventurer are added elsewhere
         /// All other already-introduced NPCs should just appear in the bar
+        /// 
+
+        List<GameObject> previousNPCs = new List<GameObject>(introducedNPCs);
+
+        introducedNPCs.Clear();
+
+        foreach (GameObject card in previousNPCs) {
+            NPC npc = card.GetComponent<NPC>();
+            // if NPC has a special dialogue
+            if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
+                // set their next dialogue
+                npc.nextDialogueID = data.nextDialogueIntroKey;
+                // reintroduce them
+                data.npcsToReintroduce.Enqueue(card);
+            } else {
+                // if no specific dialogue, restart in tavern as an already-introdced NPC
+                introducedNPCs.Add(card);
+            }
+        }
         
         //foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
         //    string npcKey = kvp.Key;
@@ -217,11 +235,5 @@ public class NPCController : MonoBehaviour {
         //        npc.nextDialogueID = GameData.DIALOGUE_INTRO;
         //    }
         //}
-
-        foreach (GameObject card in introducedNPCs) {
-            NPC npc = card.GetComponent<NPC>();
-            data.npcsToIntroduce.Enqueue(npc.key);
-        }
-        introducedNPCs.Clear();
     }
 }
