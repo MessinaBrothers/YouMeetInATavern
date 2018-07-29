@@ -42,15 +42,7 @@ public class ConcludeScenarioController : MonoBehaviour {
         // DEBUG
         if (isLoad == true) {
             isLoad = false;
-
-            foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
-                data.unlockedDialogueKeys.Add(kvp.Key);
-            }
-            foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-                data.unlockedDialogueKeys.Add(kvp.Key);
-            }
-
-            InputController.ConcludeScenario();
+            InputController.DEBUGConcludeScenario();
         }
     }
 

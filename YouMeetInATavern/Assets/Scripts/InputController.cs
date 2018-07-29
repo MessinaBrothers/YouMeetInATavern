@@ -51,7 +51,10 @@ public class InputController : MonoBehaviour {
     }
 
     void Update() {
-
+        //DEBUG CONTROLS
+        if (Input.GetKeyDown(KeyCode.F1)) {
+            DEBUGConcludeScenario();
+        }
     }
 
     public static void GameInitialized() {
@@ -94,6 +97,17 @@ public class InputController : MonoBehaviour {
 
     public static void EndDay() {
         endDayEventHandler.Invoke();
+    }
+
+    public static void DEBUGConcludeScenario() {
+        GameData data = FindObjectOfType<GameData>();
+        foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
+            data.unlockedDialogueKeys.Add(kvp.Key);
+        }
+        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+            data.unlockedDialogueKeys.Add(kvp.Key);
+        }
+        ConcludeScenario();
     }
 
     public static void ConcludeScenario() {
