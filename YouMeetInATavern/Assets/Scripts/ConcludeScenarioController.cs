@@ -39,8 +39,17 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     void Update() {
+        // DEBUG
         if (isLoad == true) {
             isLoad = false;
+
+            foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
+                data.unlockedDialogueKeys.Add(kvp.Key);
+            }
+            foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+                data.unlockedDialogueKeys.Add(kvp.Key);
+            }
+
             InputController.ConcludeScenario();
         }
     }
@@ -48,11 +57,13 @@ public class ConcludeScenarioController : MonoBehaviour {
     void OnEnable() {
         InputController.startConcludeScenarioEventHandler += Load;
         InputController.cardClickedEventHandler += HandleCardClick;
+        InputController.confirmScenarioChoicesEventHandler += ResetTavern;
     }
 
     void OnDisable() {
         InputController.startConcludeScenarioEventHandler -= Load;
         InputController.cardClickedEventHandler -= HandleCardClick;
+        InputController.confirmScenarioChoicesEventHandler -= ResetTavern;
     }
 
     private void HandleCardClick(GameObject card) {
@@ -65,20 +76,22 @@ public class ConcludeScenarioController : MonoBehaviour {
         }
     }
 
+    private void ResetTavern() {
+        foreach (Transform child in itemsParent.transform) {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in npcsParent.transform) {
+            Destroy(child.gameObject);
+        }
+        tavern.SetActive(true);
+    }
+
     private void Load() {
         data.gameMode = GameData.GameMode.CONCLUDE;
 
         // hide the tavern
         tavern.gameObject.SetActive(false);
-
-        // DEBUG
-        //foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
-        //    data.unlockedDialogueKeys.Add(kvp.Key);
-        //}
-        //foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-        //    data.unlockedDialogueKeys.Add(kvp.Key);
-        //}
-
+        
         float xOffset = 2.5f;
         float x = 0;
 
