@@ -23,3 +23,6 @@ Choose a location
 Create scenario results
 See results
 Start new scenario
+Redo scenario
+Highlight key words (clickable)
+Disable non-key word dialogue

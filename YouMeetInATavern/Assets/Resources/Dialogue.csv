@@ -1,27 +1,30 @@
 ,intro,Introduction line,
 ,default,Conversation starter,
 ,‘’,Response to invalid dialogue click,
+,,,
 ,Q?,Is it a question?,
 ,,NOTE: No double quotation marks!,
 NPC,Q?,ID,Text
 NPC_BARTENDER,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
-NPC_BARTENDER,0,intro,<>Nice to meet you! Sit anywhere you like. It’s pretty slow right now.
-NPC_BARTENDER,0,default,<NPC_BARTENDER>Wish I could see the world like you. <>Anyway...we have <ITEM_ALE>wheat ale for two copper. <>Interested?
-NPC_BARTENDER,1,default,<RUMOR>Heard any rumors lately?
-NPC_BARTENDER,0,RUMOR,<>Hmm...let’s see. A merchant was robbed a couple of days ago just outside of town. They say it was bandits.
+NPC_BARTENDER,0,intro,<>Sit anywhere you like. It’s pretty slow right now.
+NPC_BARTENDER,0,default,"Nice to see you! I’m the <NPC_BARTENDER>barkeep.<> If you want some <ITEM_ALE>ale,<> just ask. Or did you want to hear some <DIALOGUE_TOWNROBBED>local gossip?"
 NPC_BARTENDER,0,NPC_BARTENDER,"<>Me? Go out there? Well, I could step out after we close...Okay, let’s do it!"
-NPC_BARTENDER,0,ITEM_ALE,"<>We keep the barrels in the cellar, so it’s nice and cool."
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_CORRECT,<>Well done on the Kobold situation! Your next order is on the house!
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_MISSING,"<>Those Kobolds were tough. Most of them made it out, but they’ll probably be back. And soon."
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_BARTENDER,<>Sorry about last night. I’m no good at that kind of stuff!
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_WRONG,"<>Did you hear? Kobolds came into town and robbed us blind! They’re gonna be back for more, I just know it."
+NPC_BARTENDER,0,ITEM_ALE,"<>On ale, coming right up! We keep the barrels in the cellar, so it’s nice and cool."
+NPC_BARTENDER,0,DIALOGUE_TOWNROBBED,"<>More and more peoples’ houses in town are being robbed in the night. If the Watch doesn’t figure out who it is, there’s gonna be riots in the streets."
+NPC_BARTENDER,1,DIALOGUE_TOWNKOBOLDS,<DIALOGUE_TOWNKOBOLDS>Know anything about kobolds?
+NPC_BARTENDER,0,DIALOGUE_TOWNKOBOLDS,"<>Kobolds? Is that some sort of mixed drink? We only serve <ITEM_ALE>ale <>here, sorry."
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_CORRECT,"<>Heard you put a stop to the burglaries! Kobolds, huh? Don’t know much about those...Anyways, your next order is on the house!"
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_MISSING,<>Heard you went out and tried to stop those robbers. The Town Watch is useless!
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_BARTENDER,<>Sorry about last night. I’m no good at that kind of stuff! You should talk to the Town Watch if you want real help.
+NPC_BARTENDER,0,SCENARIO_KOBOLDS_WRONG,<>Did you hear? Burglars struck the town again! That Town Watch is less than useless!
 NPC_MERCHANT,0,,<>I don’t understand you.
-NPC_MERCHANT,0,intro,<>I have traveled for a long while. It’s high time I enjoy some entertainment.
-NPC_MERCHANT,0,default,"<>Need something? <NPC_MERCHANT>Everything’s for sale, for the right <ITEM_GOLD>coin."
-NPC_MERCHANT,1,RUMOR,<MONSTER>You were robbed?
-NPC_MERCHANT,0,MONSTER,"<>Robbed? No, we were attacked! By tiny green creatures, no less. They killed half my guards before taking off with my stock."
-NPC_MERCHANT,0,ITEM_GOLD,"<>You can’t just have my gold! I can offer you a loan, however."
-NPC_MERCHANT,0,NPC_MERCHANT,"<>You know a potential customer? Not in the tavern, you say? Only you know where they are? Lead the way!"
+NPC_MERCHANT,0,intro,<>The tavern has about as many customers as I had all day – not many! Where’s everyone gone?
+NPC_MERCHANT,0,default,"<>Just a <NPC_MERCHANT>local merchant <>enjoying a drink. I run a stall in the <DIALOGUE_TOWN>market <>outside. If you got something to sell, come to me first. If you got something to buy, even better. We could even work out a <ITEM_GOLD>loan, <>if you’re short on funds."
+NPC_MERCHANT,0,NPC_MERCHANT,"<>If you know of buyers, I’ll follow you to the ends of the earth. Just let me gather my wares first."
+NPC_MERCHANT,0,ITEM_GOLD,"<>Ah, want to borrow some coin? Not a problem. I have some gold to lend right here. You know, for short-term emergencies such as these."
+NPC_MERCHANT,0,DIALOGUE_TOWN,"<>Not much going on, I’m afraid. The market’s been pretty quiet these last couple of days, unfortunately."
+NPC_MERCHANT,1,DIALOGUE_TOWNKOBOLDS,<DIALOGUE_TOWNKOBOLDS>Know anything about kobolds?
+NPC_MERCHANT,0,DIALOGUE_TOWNKOBOLDS,"<>Kobolds?! In town?! But my precious <ITEM_GOLD>gold! <>I have to hide it, quick!"
 NPC_RANGER,0,,<>Huh?
 NPC_RANGER,0,intro,<>I parked my giant panther out front.
 NPC_RANGER,0,default,<>The woods are quiet tonight. <NPC_RANGER>Not much ranging to do. <ITEM_BOW>My arrows are staying in my quiver.
@@ -29,27 +32,35 @@ NPC_RANGER,1,MONSTER,<KOBOLDS>What do you know about tiny green creatures?
 NPC_RANGER,0,KOBOLDS,<>You mean kobolds? Pests! You never see them coming. They love to lay traps. And they love gold even more.
 NPC_RANGER,0,NPC_RANGER,"<>Sure, I’ll follow you. Is it okay if I bring my giant panther?"
 NPC_RANGER,0,ITEM_BOW,"<>You can’t have my bow, but I’ve got a spare for you."
-NPC_SCOUT,0,,<>Come again?
-NPC_SCOUT,0,intro,<>The pleasure is mine.
-NPC_SCOUT,0,default,<>Who do you want <NPC_SCOUT>killed?
-NPC_SCOUT,1,KOBOLDS,<TRAPS>What can you tell me about kobold traps?
-NPC_SCOUT,0,TRAPS,<>Pretty basic stuff. Any <ITEM_THIEFSKIT>thief’s kit<>would make short work of ‘em.
-NPC_SCOUT,0,ITEM_THIEFSKIT,"<>I got an extra one, if you need it. Just let me know."
-NPC_SCOUT,0,NPC_SCOUT,"<>Yes, I kill people. We shouldn’t talk about it here. Find me in the alley later."
-NPC_GUARD,0,,<>What?
-NPC_GUARD,0,intro,<>Fine night for a drink.
-NPC_GUARD,0,default,<>What d’ya want? I’m <GUARD_HISTORY>off duty.
-NPC_GUARD,1,KOBOLDS,<TOWN_KOBOLDS>Are kobolds a threat to the town?
-NPC_GUARD,0,TOWN_KOBOLDS,<>Kobolds?! Here? The town must be defended at all costs!
-NPC_GUARD,1,default,<TOWN_QUIET>What’s happening in town?
-NPC_GUARD,0,TOWN_QUIET,Nothing! The whole town was quiet today. I hated it!
-NPC_GUARD,0,GUARD_HISTORY,<>Not much action in town. It’s nothing like it was in <GUARD_SOLDIER>my soldier days. <ITEM_SWORD>Percy’s staying in her hilt.
-NPC_GUARD,0,GUARD_SOLDIER,"<>Aye, I was quite the fighter, too. But now my knee isn’t what it used to be."
-NPC_GUARD,1,GUARD_SOLDIER,<NPC_GUARD>Can you still fight?
-NPC_GUARD,0,NPC_GUARD,"<>I can still swing a sword, if that’s what you’re asking. If you need help, just say the word."
-NPC_GUARD,0,ITEM_SWORD,"<>You want to borrow Percy? Well, okay, but you give it right back when you’re done!"
+NPC_THIEF,0,,<>Come again?
+NPC_THIEF,0,intro,<>Don’t mind me. Just looking for a corner to settle into. Why are you giving me the side-eye? I haven’t even done anything!
+NPC_THIEF,0,default,<>Lost something? I’m the best<NPC_THIEF>...finder. <>For a price. No one in <DIALOGUE_TOWN>town <>can stop me when I have my <ITEM_THIEVESKIT>thieves’ kit. <>I mean my thieves’ tools. I mean my tools!
+NPC_THIEF,0,NPC_THIEF,"<>Sure, I can...retrieve...something for you. We shouldn’t talk about it here. Find me in the alley out back."
+NPC_THIEF,0,ITEM_THIEVESKIT,"<>Sure, you can have a kit. I got a spare to sell right here, dirt cheap."
+NPC_THIEF,0,DIALOGUE_TOWN,"<>Why’s everyone asking me about robberies? You don’t rob your neighbors! That’s just asking for trouble. I only rob outside of tow...I mean, I would if I was in that sort of work. Hypothetically."
+NPC_THIEF,1,DIALOGUE_TOWNKOBOLDS,<DIALOGUE_TOWNKOBOLDS>Know anything about kobolds?
+NPC_THIEF,0,DIALOGUE_TOWNKOBOLDS,"<>Kobolds? No problem when you’ve got a <ITEM_THIEVESKIT>thieves’ kit. <>Without their traps, they’re helpless."
+NPC_TOWNWATCH,0,,<>What?
+NPC_TOWNWATCH,0,intro,<>Can’t wait to put my boots up. It’s been a rough couple of weeks.
+NPC_TOWNWATCH,0,default,<>I’m between shifts as <NPC_TOWNWATCH>town watch. <>It’s tough work patrolling the entire <DIALOGUE_GREENTRAPS>town <>when all they issue us is a lousy <ITEM_TORCH>torch.
+NPC_TOWNWATCH,0,NPC_TOWNWATCH,"<>Meet me at the keep. I can deputize you, but we’ll have to stick together. It’s dangerous out there."
+NPC_TOWNWATCH,0,ITEM_TORCH,<>You want this torch? Take it. I’ll just grab another from the armory when my break is over. It’s all they ever have!
+NPC_TOWNWATCH,1,DIALOGUE_TOWNROBBED,<DIALOGUE_GREENTRAPS>Robberies in town?
+NPC_TOWNWATCH,0,DIALOGUE_GREENTRAPS,<>The whole town’s up in arms about some robber. Thing is...it’s not just one robber - It’s a whole gang of green guys! We don’t know WHAT they are. They only enter town at night. Don’t believe me? <NPC_TOWNWATCH>Join me in a patrol and I’ll lead you right to ‘em. <>We just can’t catch the little guys due to all the traps they lay out for us.
+NPC_TOWNWATCH,1,DIALOGUE_TOWNKOBOLDS,<DIALOGUE_TOWNKOBOLDS>They’re kobolds!
+NPC_TOWNWATCH,0,DIALOGUE_TOWNKOBOLDS,"<>Well, whatever they are, they’re tricky little things. Our <ITEM_TORCH>torches <>are useless against them! We need <NPC_TOWNWATCH>assistance."
 NPC_ADVENTURER,0,,<>Speak up!
 NPC_ADVENTURER,0,intro,<>Well met!
 NPC_ADVENTURER,0,default,<>So...got any work?
 NPC_ADVENTURER,0,SCENARIO_KOBOLDS_CORRECT,<>I heard you defended the town against kobolds last night. Well done! Nice to know there’s a fellow adventurer in town.
 NPC_ADVENTURER,1,TEST,<>Test result. Shouldn’t show up in game.
+NPC_LOREMASTER,0,,<>Speak up!
+NPC_LOREMASTER,0,intro,"<>Ahh, the ol’ tavern. Looks like a quiet night, too. Perfect for some reading by candlelight."
+NPC_LOREMASTER,0,default,"<>Got a question? I may know a thing or two. <DIALOGUE_TOWN>Townsfolk <>refer to me as the <NPC_LOREMASTER>Loremaster. <>But I just like reading. Now, where did I put those <ITEM_GLASSES>glasses…"
+NPC_LOREMASTER,0,NPC_LOREMASTER,"<>You need my assistance? All right, I’ll come. Maybe we can both learn something."
+NPC_LOREMASTER,0,ITEM_GLASSES,"<>Oh wait, these are my old pair. Where are my new ones...here they are! What’s that? You want the old ones? Here you are."
+NPC_LOREMASTER,0,DIALOGUE_TOWN,"<>Not much of a gossip, sorry. My nose has been buried in my books. Wait, where’d my <ITEM_GLASSES>glasses <>go?"
+NPC_LOREMASTER,1,DIALOGUE_TOWNROBBED,<DIALOGUE_TOWNROBBED>Robberies in town?
+NPC_LOREMASTER,0,DIALOGUE_TOWNROBBED,"<>People can’t stop talking about robberies or some such nonsense. That’s all they ever want do – talk! None of my books have been taken, that’s all I know."
+NPC_LOREMASTER,1,DIALOGUE_GREENTRAPS,"<DIALOGUE_TOWNKOBOLDS>What’s small, green, and lays traps?"
+NPC_LOREMASTER,0,DIALOGUE_TOWNKOBOLDS,"<>Green people? Small? With traps? Hmm...sounds like Kobolds! All they care about is gold. Gold coins, gold silverware, gold jewelry, anything they can get their tiny little hands on. Be careful trying to catch one: their traps can be quite painful. Or so I’ve read."
