@@ -11,6 +11,7 @@ public class CreateDialogueButtons : MonoBehaviour {
 
     public float marginOfError;
 
+    private GameData data;
     private GameObject currentButton;
     private Text currentButtonText;
 
@@ -24,6 +25,7 @@ public class CreateDialogueButtons : MonoBehaviour {
     private string currentKey;
 
     void Start() {
+        data = FindObjectOfType<GameData>();
         // if the dialogue lacks an index at the start, append one
         if (dialogue.Length > 0 && dialogue[0] != '<') {
             dialogue = "<>" + dialogue;
@@ -92,7 +94,7 @@ public class CreateDialogueButtons : MonoBehaviour {
         currentButton.transform.SetParent(transform, false);
 
         // set the key
-        currentButton.GetComponent<DialogueButton>().SetKey(key);
+        currentButton.GetComponent<DialogueButton>().SetKey(data, key);
     }
 
     private void CreateLine() {

@@ -16,14 +16,14 @@ public class DialogueButton : MonoBehaviour {
     }
 
     public void BroadcastKey() {
+        if (key == "") return;
+
         InputController.HandleDialogue(key);
     }
 
-    public void SetKey(string key) {
+    public void SetKey(GameData data, string key) {
         this.key = key;
-
-        GameData data = FindObjectOfType<GameData>();
-
+        
         if (key.Contains("ITEM_")) {
             SetTextColor(data.buttonItemColor);
         } else if (key.Contains("NPC_")) {
