@@ -92,7 +92,7 @@ public class CreateDialogueButtons : MonoBehaviour {
         currentButton.transform.SetParent(transform, false);
 
         // set the key
-        currentButton.GetComponent<DialogueButton>().unlockKey = key;
+        currentButton.GetComponent<DialogueButton>().SetKey(key);
     }
 
     private void CreateLine() {

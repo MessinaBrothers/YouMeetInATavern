@@ -27,6 +27,8 @@ public class GameData : MonoBehaviour {
     public Dictionary<string, Dictionary<string, string>> npc_questions;
     public List<string> unlockedDialogueKeys;
 
+    public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
+
     public enum GameMode {
         INTRODUCE, CONVERSE, TAVERN, CONCLUDE
     }
