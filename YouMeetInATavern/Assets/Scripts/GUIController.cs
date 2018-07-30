@@ -37,10 +37,17 @@ public class GUIController : MonoBehaviour {
         NPC npc = data.selectedCard.GetComponent<NPC>();
         string text = data.npc_dialogues[npc.key][dialogueID];
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
-        // update questions
-        dialoguePanel.GetComponentInChildren<QuestionGUIController>().LoadQuestions(data.selectedCard);
+
+        QuestionGUIController questionGUIController = dialoguePanel.GetComponentInChildren<QuestionGUIController>();
+        if (dialogueID == GameData.DIALOGUE_DEFAULT) {
+            // update questions
+            questionGUIController.LoadQuestions(data.selectedCard);
+        } else {
+            // hide questions
+            questionGUIController.HideQuestions();
+        }
         // update Stop Converse button
-        dialoguePanel.GetComponentInChildren<QuestionGUIController>().SetMode(npc.isBeingIntroduced);
+        questionGUIController.SetMode(npc.isBeingIntroduced);
         // activate the panel
         dialoguePanel.SetActive(true);
     }

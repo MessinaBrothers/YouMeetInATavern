@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +14,11 @@ public class QuestionGUIController : MonoBehaviour {
     void Start() {
         data = FindObjectOfType<GameData>();
     }
-    
+
     public void LoadQuestions(GameObject card) {
         NPC npc = card.GetComponent<NPC>();
 
-        // disable all question buttons
-        foreach (GameObject button in questionButtons) {
-            button.SetActive(false);
-        }
+        HideQuestions();
 
         // ignore unlocked questions if NPC is being introduced
         if (npc.isBeingIntroduced == true) {
@@ -31,8 +29,7 @@ public class QuestionGUIController : MonoBehaviour {
         Dictionary<string, string> questions = data.npc_questions[npc.key];
 
         int buttonIndex = 0;
-
-
+        
         // for each question
         foreach (KeyValuePair<string, string> kvp in questions) {
             // if the question is unlocked
@@ -50,6 +47,13 @@ public class QuestionGUIController : MonoBehaviour {
                     return;
                 }
             }
+        }
+    }
+
+    public void HideQuestions() {
+        // disable all question buttons
+        foreach (GameObject button in questionButtons) {
+            button.SetActive(false);
         }
     }
 
