@@ -18,7 +18,7 @@ public class InputController : MonoBehaviour {
     public delegate void DialogueEventHandler(string unlockKey);
 
     public static event StopConverseEventHandler stopConverseEventHandler;
-    public delegate void StopConverseEventHandler();
+    public delegate void StopConverseEventHandler(GameObject card);
 
     public static event NPCLeavesEventHandler npcLeavesEventHandler;
     public delegate void NPCLeavesEventHandler();
@@ -44,10 +44,12 @@ public class InputController : MonoBehaviour {
     public static event EndResultsEventHandler endResultsEventHandler;
     public delegate void EndResultsEventHandler();
 
+    private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
     void Start() {
         guiController = FindObjectOfType<GUIController>();
+        data = FindObjectOfType<GameData>();
     }
 
     void Update() {
@@ -76,7 +78,7 @@ public class InputController : MonoBehaviour {
     }
 
     public static void HandleStopConverse() {
-        stopConverseEventHandler.Invoke();
+        stopConverseEventHandler.Invoke(data.selectedCard);
         guiController.StopConverse();
     }
 

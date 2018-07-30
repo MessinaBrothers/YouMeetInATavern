@@ -52,8 +52,9 @@ public class ResultsController : MonoBehaviour {
         // parse the reward
         int endIndex = result.description.IndexOf('>');
         string reward = result.description.Substring(1, endIndex - 1);
-        print("Reward: " + reward);
-        data.npcsToIntroduce.Enqueue(reward);
+        if (reward.Length > 0) {
+            data.npcsToIntroduce.Enqueue(reward);
+        }
         string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
         // save the results
         data.resultsDialogue = dialogue;

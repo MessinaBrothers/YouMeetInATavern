@@ -23,6 +23,13 @@ Choose a location
 Create scenario results
 See results
 Start new scenario
-Redo scenario
+Redo scenario: All NPCs have ally, item, and info options built into dialogue
 Highlight key words (clickable)
 Disable non-key word dialogue
+Hide questions after choosing a key word
+BUG: after scenario results and new introductions, stuck in Converse mode
+
+
+
+IDEAS
+Hard mode: No colors for keywords. Clicking on non-keywords results in "Huh?"

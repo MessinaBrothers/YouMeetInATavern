@@ -119,14 +119,20 @@ public class NPCController : MonoBehaviour {
         }
     }
 
-    private void IntroduceNextNPC() {
+    private void IntroduceNextNPC(GameObject lastCard) {
         // check for NPCs to reintroduce, then new NPCs
+        print("Checking NPC introductions...");
         if (data.npcsToReintroduce.Count > 0) {
-            IntroduceNPC(data.npcsToReintroduce.Dequeue());
+            GameObject card = data.npcsToReintroduce.Dequeue();
+            IntroduceNPC(card);
+            print("Reintroducing " + card);
         } else if (data.npcsToIntroduce.Count > 0) {
-            IntroduceNPC(data.npcsToIntroduce.Dequeue());
+            string key = data.npcsToIntroduce.Dequeue();
+            IntroduceNPC(key);
+            print("Introducing " + key);
         } else {
             data.gameMode = GameData.GameMode.TAVERN;
+            print("Entering TAVERN mode");
         }
     }
 
@@ -182,7 +188,7 @@ public class NPCController : MonoBehaviour {
         }
 
         // introduce the first NPC, if any
-        IntroduceNextNPC();
+        IntroduceNextNPC(null);
     }
 
     private void ActivateNPCs() {

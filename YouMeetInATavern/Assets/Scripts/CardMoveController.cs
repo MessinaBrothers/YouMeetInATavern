@@ -65,8 +65,8 @@ public class CardMoveController : MonoBehaviour {
         card.GetComponent<CardWander>().enabled = false;
     }
 
-    private void Stop() {
-        CardMove move = data.selectedCard.GetComponent<CardMove>();
+    private void Stop(GameObject card) {
+        CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
         move.Set(conversePos, enterTavernPos, 1, Wander);
     }
