@@ -7,8 +7,6 @@ public class GameController : MonoBehaviour {
 
     private GameData data;
 
-    private uint nextScenarioIndex;
-
     void Start() {
         // always Starts last. See: Edit > Project Settings > Script Execution Order
         print("Game initialized. Loading scenario...");
@@ -16,8 +14,7 @@ public class GameController : MonoBehaviour {
         data = FindObjectOfType<GameData>();
 
         // load scenario
-        nextScenarioIndex = 0;
-        NextScenario();
+        LoadScenario();
         
         data.nextDialogueIntroKey = GameData.DIALOGUE_INTRO;
 
@@ -25,16 +22,15 @@ public class GameController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.endResultsEventHandler += NextScenario;
+        InputController.endResultsEventHandler += LoadScenario;
     }
 
     void OnDisable() {
-        InputController.endResultsEventHandler -=  NextScenario;
+        InputController.endResultsEventHandler -=  LoadScenario;
     }
 
-    private void NextScenario() {
-        data.scenario = data.scenarios[nextScenarioIndex];
-        nextScenarioIndex += 1;
+    private void LoadScenario() {
+        data.scenario = data.scenarios[data.nextScenarioIndex];
 
         data.dayCount = 0;
 

@@ -21,6 +21,9 @@ public class GameData : MonoBehaviour {
     public Queue<string> npcsToIntroduce;
     public Queue<GameObject> npcsToReintroduce;
 
+    [Header("Scenario")]
+    public uint nextScenarioIndex;
+
     [Header("Dialogue")]
     public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;

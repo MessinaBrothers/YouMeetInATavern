@@ -26,6 +26,11 @@ public class ResultsController : MonoBehaviour {
         // get the applicable result
         ScenarioResult result = GetResult();
 
+        // if CORRECT, increment scenario
+        if (result.nextDialoguesKey.Contains("_CORRECT")) {
+            data.nextScenarioIndex += 1;
+        }
+
         // set dialogue based on selections
         SetResultsDescription(result);
         // set next NPC intro dialogues based on selections

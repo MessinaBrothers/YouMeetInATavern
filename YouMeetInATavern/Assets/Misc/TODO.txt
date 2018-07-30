@@ -28,6 +28,7 @@ Highlight key words (clickable)
 Disable non-key word dialogue
 Hide questions after choosing a key word
 BUG: after scenario results and new introductions, stuck in Converse mode
+Reset scenario: redo last scenario, skip NPC introductions, clear unlock keys
 
 
 
