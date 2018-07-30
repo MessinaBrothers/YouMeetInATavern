@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 114517145426462636}
   - component: {fileID: 114324641597551152}
   - component: {fileID: 114040277640291580}
+  - component: {fileID: 114575725033067402}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -809,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695b7055d05b22742b576403588b9a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcID: 0
+  key: 
   nextDialogueID: 0
   isBeingIntroduced: 0
 --- !u!114 &114148376318991248
@@ -1038,6 +1039,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6a2ca1b92abec46be04a1ac025210b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114575725033067402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183731708458380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0341102bd8745b54ab71d0929b1af0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
 --- !u!114 &114610866093175088
 MonoBehaviour:
   m_ObjectHideFlags: 1

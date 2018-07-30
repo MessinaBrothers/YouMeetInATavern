@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114253165434218070}
   - component: {fileID: 114996550463377112}
   - component: {fileID: 82380803568742156}
+  - component: {fileID: 114522389669984660}
   m_Layer: 0
   m_Name: CardItem
   m_TagString: Untagged
@@ -993,6 +994,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114522389669984660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183731708458380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0341102bd8745b54ab71d0929b1af0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
 --- !u!114 &114610866093175088
 MonoBehaviour:
   m_ObjectHideFlags: 1

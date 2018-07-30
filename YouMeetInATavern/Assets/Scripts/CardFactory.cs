@@ -54,10 +54,9 @@ public class CardFactory : MonoBehaviour {
         // create the card gameobject
         GameObject card = Instantiate(itemCardPrefabWrapper);
         card.name = "Item - " + itemData.name;
-
-        //// set the NPC values
-        //NPC npc = card.GetComponent<NPC>();
-        //npc.npcID = npcID;
+        
+        // set the Item values
+        card.GetComponent<Key>().key = key;
 
         // set the card name
         card.GetComponentInChildren<Text>().text = itemData.name;

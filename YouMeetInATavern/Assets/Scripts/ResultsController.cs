@@ -21,7 +21,7 @@ public class ResultsController : MonoBehaviour {
 
     private void DisplayResults() {
         // add location to unlocks (HACK)
-        data.unlockedDialogueKeys.Add(data.chosenLocation.ToString());
+        data.chosenAnswerKeys.Add(data.chosenLocation.ToString());
 
         // get the applicable result
         ScenarioResult result = GetResult();
@@ -58,7 +58,8 @@ public class ResultsController : MonoBehaviour {
         int endIndex = result.description.IndexOf('>');
         string reward = result.description.Substring(1, endIndex - 1);
         if (reward.Length > 0) {
-            data.npcsToIntroduce.Enqueue(reward);
+            //data.npcsToIntroduce.Enqueue(reward);
+            data.unlockedDialogueKeys.Add(reward);
         }
         string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
         // save the results
@@ -72,7 +73,7 @@ public class ResultsController : MonoBehaviour {
     private bool IsUnlocked(ScenarioResult result) {
         if (result.unlocks[0] != GameData.DIALOGUE_DEFAULT) {
             foreach (string unlock in result.unlocks) {
-                if (data.unlockedDialogueKeys.Contains(unlock) == false) {
+                if (data.chosenAnswerKeys.Contains(unlock) == false) {
                     print("Unlock key of " + unlock + " does not exist!");
                     return false;
                 }
