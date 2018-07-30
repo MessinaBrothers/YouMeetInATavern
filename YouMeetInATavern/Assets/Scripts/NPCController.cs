@@ -185,6 +185,8 @@ public class NPCController : MonoBehaviour {
             foreach (string npcKey in data.scenario.day_introductions[data.dayCount]) {
                 data.npcsToIntroduce.Enqueue(npcKey);
             }
+            // remove introductions so NPCs aren't reintroduced
+            data.scenario.day_introductions.Remove(data.dayCount);
         }
 
         // introduce the first NPC, if any
