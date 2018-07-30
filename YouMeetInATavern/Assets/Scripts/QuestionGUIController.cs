@@ -26,21 +26,21 @@ public class QuestionGUIController : MonoBehaviour {
         }
 
         // get the list of questions
-        Dictionary<string, string> questions = data.npc_questions[npc.key];
+        Dictionary<string, Question> questions = data.npc_questions[npc.key];
 
         int buttonIndex = 0;
         
         // for each question
-        foreach (KeyValuePair<string, string> kvp in questions) {
-            // if the question is unlocked
-            if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
+        foreach (KeyValuePair<string, Question> kvp in questions) {
+            // if the question is unlocked and not already asked
+            if (data.unlockedDialogueKeys.Contains(kvp.Key) && kvp.Value.isAskedByPlayer == false) {
                 // activate the next button
                 GameObject button = questionButtons[buttonIndex];
                 button.SetActive(true);
                 buttonIndex += 1;
 
                 // set the button text to the question text
-                SetQuestionText(button, kvp.Key, kvp.Value);
+                SetQuestionText(button, kvp.Key, kvp.Value.text);
 
                 // what happens when you have more questions than buttons available? Escape
                 if (buttonIndex >= questionButtons.Length) {

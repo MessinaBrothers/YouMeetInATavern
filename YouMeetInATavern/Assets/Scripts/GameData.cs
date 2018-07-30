@@ -27,7 +27,7 @@ public class GameData : MonoBehaviour {
     [Header("Dialogue")]
     public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
-    public Dictionary<string, Dictionary<string, string>> npc_questions;
+    public Dictionary<string, Dictionary<string, Question>> npc_questions;
     public List<string> unlockedDialogueKeys;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
@@ -56,7 +56,7 @@ public class GameData : MonoBehaviour {
         npcsToReintroduce = new Queue<GameObject>();
 
         npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
-        npc_questions = new Dictionary<string, Dictionary<string, string>>();
+        npc_questions = new Dictionary<string, Dictionary<string, Question>>();
         unlockedDialogueKeys = new List<string>();
 
         // DEBUG

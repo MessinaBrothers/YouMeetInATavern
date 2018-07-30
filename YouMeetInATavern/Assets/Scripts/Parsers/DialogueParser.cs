@@ -53,8 +53,14 @@ public class DialogueParser : MonoBehaviour {
 
     private void SaveQuestion(string npcID, string prereqID, string text) {
         // get the npc's list of questions
-        Dictionary<string, string> questions = GetList(npcID, data.npc_questions);
-        questions.Add(prereqID, text);
+        Dictionary<string, Question> questions = GetList(npcID, data.npc_questions);
+
+        Question question = new Question();
+        question.key = prereqID;
+        question.text = text;
+        question.isAskedByPlayer = false;
+
+        questions.Add(prereqID, question);
     }
 
     private void SaveDialogue(string npcID, string dialogueID, string text) {
@@ -71,6 +77,20 @@ public class DialogueParser : MonoBehaviour {
         } else {
             // create a new list
             list = new Dictionary<string, string>();
+            // add it to the list of lists
+            listOfLists.Add(id, list);
+        }
+        return list;
+    }
+
+    private Dictionary<string, V> GetList<V>(string id, Dictionary<string, Dictionary<string, V>> listOfLists) {
+        Dictionary<string, V> list;
+        if (listOfLists.ContainsKey(id) == true) {
+            // retrieve the existing list
+            list = listOfLists[id];
+        } else {
+            // create a new list
+            list = new Dictionary<string, V>();
             // add it to the list of lists
             listOfLists.Add(id, list);
         }
