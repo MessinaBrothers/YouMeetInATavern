@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,5 +63,17 @@ public class GameData : MonoBehaviour {
 
         // DEBUG
         unlockedDialogueKeys.Add(GameData.DIALOGUE_DEFAULT);
+    }
+
+    void OnEnable() {
+        InputController.gameModeChangedEventHandler += ChangeMode;
+    }
+
+    void OnDisable() {
+        InputController.gameModeChangedEventHandler -= ChangeMode;
+    }
+
+    private void ChangeMode(GameMode mode) {
+        gameMode = mode;
     }
 }

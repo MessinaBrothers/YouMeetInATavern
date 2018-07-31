@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,17 +9,11 @@ public class CardMoveController : MonoBehaviour {
     public delegate void NPCInConversePosEventHandler(GameObject card);
 
     public Transform offscreenPos, introPos, conversePos, enterTavernPos, exitPos;
-    private Transform dumbTransform;
 
     private GameData data;
 
     void Start() {
         data = FindObjectOfType<GameData>();
-
-        // we need a new transform to copy the card's initial transform into our start transform
-        GameObject go = new GameObject("CardMoveController_DumbTransform");
-        go.transform.parent = transform;
-        dumbTransform = go.transform;
     }
 
     void Update() {
@@ -33,6 +28,7 @@ public class CardMoveController : MonoBehaviour {
         InputController.npcLeavesEventHandler += Goodbye;
         NPCController.npcStartInTaverneventHandler += PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler += LeaveTavern;
+        InputController.endDayEarlyEventHandler += LeaveTavernAll;
     }
 
     void OnDisable() {
@@ -43,6 +39,7 @@ public class CardMoveController : MonoBehaviour {
         InputController.npcLeavesEventHandler -= Goodbye;
         NPCController.npcStartInTaverneventHandler -= PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler -= LeaveTavern;
+        InputController.endDayEarlyEventHandler -= LeaveTavernAll;
     }
 
     private void Introduce(GameObject card) {
@@ -55,11 +52,7 @@ public class CardMoveController : MonoBehaviour {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
 
-        // copy the card's position and rotation into our startTransform
-        dumbTransform.position = card.transform.position;
-        dumbTransform.rotation = card.transform.rotation;
-
-        move.Set(dumbTransform, conversePos, 1, StartDialogue);
+        move.Set(card.transform, conversePos, 1, StartDialogue);
         
         // disable wandering
         card.GetComponent<CardWander>().enabled = false;
@@ -71,6 +64,12 @@ public class CardMoveController : MonoBehaviour {
         move.Set(conversePos, enterTavernPos, 1, Wander);
     }
 
+    private void LeaveTavernAll() {
+        foreach (GameObject npc in data.npcsInTavern) {
+            LeaveTavern(npc);
+        }
+    }
+
     private void Goodbye() {
         CardMove move = data.selectedCard.GetComponent<CardMove>();
         move.enabled = true;
@@ -80,12 +79,7 @@ public class CardMoveController : MonoBehaviour {
     private void LeaveTavern(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-
-        // copy the card's position and rotation into our startTransform
-        dumbTransform.position = card.transform.position;
-        dumbTransform.rotation = card.transform.rotation;
-
-        move.Set(dumbTransform, exitPos, 1, ExitTavern);
+        move.Set(card.transform, exitPos, 1, ExitTavern);
 
         // disable wandering
         card.GetComponent<CardWander>().enabled = false;
@@ -107,7 +101,8 @@ public class CardMoveController : MonoBehaviour {
     }
 
     private void ExitTavern(GameObject card) {
-        FindObjectOfType<NPCController>().RemoveNPCFromTavern(card);
+        data.npcsInTavern.Remove(card);
+        InputController.npcExitTavern(card);
     }
 
     private void StartDialogue(GameObject card) {

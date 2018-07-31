@@ -79,7 +79,7 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void Load() {
-        data.gameMode = GameData.GameMode.CONCLUDE;
+        InputController.ChangeMode(GameData.GameMode.CONCLUDE);
 
         // hide the tavern
         tavern.gameObject.SetActive(false);

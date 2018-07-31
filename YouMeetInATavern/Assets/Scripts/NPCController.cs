@@ -9,9 +9,6 @@ public class NPCController : MonoBehaviour {
     public static event NPCEnteredTavernEventHandler npcEnteredTavernEventHandler;
     public delegate void NPCEnteredTavernEventHandler(GameObject card);
 
-    public static event NPCRemovedEventHandler npcRemovedEventHandler;
-    public delegate void NPCRemovedEventHandler(GameObject card);
-
     public static event NPCIntroduceEventHandler npcIntroStartEventHandler;
     public delegate void NPCIntroduceEventHandler(GameObject card);
 
@@ -83,20 +80,13 @@ public class NPCController : MonoBehaviour {
     }
 
     private void Goodbye() {
-        data.gameMode = GameData.GameMode.TAVERN;
-        data.npcsInTavern.Remove(data.selectedCard);
+        InputController.ChangeMode(GameData.GameMode.TAVERN);
 
         // remove a remaining NPC
         if (data.npcsInTavern.Count > 0) {
             GameObject rngCard = data.npcsInTavern[UnityEngine.Random.Range(0, data.npcsInTavern.Count)];
-            data.npcsInTavern.Remove(rngCard);
             npcRandomlyLeavesEventHandler.Invoke(rngCard);
         }
-    }
-
-    public void RemoveNPCFromTavern(GameObject card) {
-        //card.SetActive(false);
-        npcRemovedEventHandler.Invoke(card);
     }
 
     private void HandleCardClick(GameObject card) {
@@ -106,14 +96,14 @@ public class NPCController : MonoBehaviour {
                 if (card.GetComponent<NPC>().isBeingIntroduced == true) {
                     card.GetComponent<CardSFX>().PlayIntro();
                     npcIntroEndEventHandler.Invoke(card);
-                    data.gameMode = GameData.GameMode.CONVERSE;
+                    InputController.ChangeMode(GameData.GameMode.CONVERSE);
                     data.selectedCard = card;
                 }
                 break;
             case GameData.GameMode.CONVERSE:
                 break;
             case GameData.GameMode.TAVERN:
-                data.gameMode = GameData.GameMode.CONVERSE;
+                InputController.ChangeMode(GameData.GameMode.CONVERSE);
                 data.selectedCard = card;
                 break;
         }
@@ -121,23 +111,22 @@ public class NPCController : MonoBehaviour {
 
     private void IntroduceNextNPC(GameObject lastCard) {
         // check for NPCs to reintroduce, then new NPCs
-        print("Checking NPC introductions...");
+        //print("Checking NPC introductions...");
         if (data.npcsToReintroduce.Count > 0) {
             GameObject card = data.npcsToReintroduce.Dequeue();
             IntroduceNPC(card);
-            print("Reintroducing " + card);
+            //print("Reintroducing " + card);
         } else if (data.npcsToIntroduce.Count > 0) {
             string key = data.npcsToIntroduce.Dequeue();
             IntroduceNPC(key);
-            print("Introducing " + key);
+            //print("Introducing " + key);
         } else {
-            data.gameMode = GameData.GameMode.TAVERN;
-            print("Entering TAVERN mode");
+            InputController.ChangeMode(GameData.GameMode.TAVERN);
         }
     }
 
     private void IntroduceNPC(GameObject card) {
-        data.gameMode = GameData.GameMode.INTRODUCE;
+        InputController.ChangeMode(GameData.GameMode.INTRODUCE);
 
         card.SetActive(true);
 

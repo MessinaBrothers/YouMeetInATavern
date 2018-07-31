@@ -31,6 +31,10 @@ BUG: after scenario results and new introductions, stuck in Converse mode
 Reset scenario: redo last scenario, skip NPC introductions, clear Q unlock keys
 Correct answer: clear all unlock keys
 BUG: results screen doesn't check for chosen items/NPCs
+Leave Tavern Early button
+BUG? redoing a scenario doesn't clear previous items/NPCs
+Display when event will happen
+Display unlocked items/NPCs (and info?)
 
 
 

@@ -8,6 +8,9 @@ public class InputController : MonoBehaviour {
     public static event GameInitializedEventHandler gameInitializedEventHandler;
     public delegate void GameInitializedEventHandler();
 
+    public static event GameModeChangedEventHandler gameModeChangedEventHandler;
+    public delegate void GameModeChangedEventHandler(GameData.GameMode mode);
+
     public static event CardClickedEventHandler cardClickedEventHandler;
     public delegate void CardClickedEventHandler(GameObject card);
 
@@ -23,11 +26,17 @@ public class InputController : MonoBehaviour {
     public static event NPCLeavesEventHandler npcLeavesEventHandler;
     public delegate void NPCLeavesEventHandler();
 
+    public static event NPCRemovedEventHandler npcLeftTavernEventHandler;
+    public delegate void NPCRemovedEventHandler(GameObject card);
+
     public static event StartTavernEventHandler startTavernEventHandler;
     public delegate void StartTavernEventHandler();
 
     public static event StartDayEventHandler startDayEventHandler;
     public delegate void StartDayEventHandler();
+
+    public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
+    public delegate void EndDayEarlyEventHandler();
 
     public static event EndDayEventHandler endDayEventHandler;
     public delegate void EndDayEventHandler();
@@ -97,6 +106,19 @@ public class InputController : MonoBehaviour {
         guiController.StartDay();
     }
 
+    public static void ChangeMode(GameData.GameMode mode) {
+        gameModeChangedEventHandler.Invoke(mode);
+    }
+
+    public static void LeaveTavernEarly() {
+        endDayEarlyEventHandler.Invoke();
+        guiController.StopConverse();
+    }
+
+    public static void npcExitTavern(GameObject card) {
+        npcLeftTavernEventHandler.Invoke(card);
+    }
+
     public static void EndDay() {
         endDayEventHandler.Invoke();
     }
@@ -135,6 +157,7 @@ public class InputController : MonoBehaviour {
     public void HandleStopConverseWrapper() { HandleStopConverse(); }
     public void HandleGoodbyeWrapper() { HandleGoodbye(); }
     public void ContinueDayWrapper() { ContinueDay(); }
+    public void LeaveTavernEarlyWrapper() { LeaveTavernEarly(); }
     public void EndDayWrapper() { EndDay(); }
     public void ConfirmScenarioWrapper() { ConfirmScenario(); }
     public void EndResultsWrapper() { EndResults(); }
