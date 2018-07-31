@@ -32,9 +32,10 @@ Reset scenario: redo last scenario, skip NPC introductions, clear Q unlock keys
 Correct answer: clear all unlock keys
 BUG: results screen doesn't check for chosen items/NPCs
 Leave Tavern Early button
-BUG? redoing a scenario doesn't clear previous items/NPCs
 Display when event will happen
 Display unlocked items/NPCs (and info?)
+Item cards appear horizontal
+Create a deck of unlocked cards that can be used in the scenario
 
 
 
