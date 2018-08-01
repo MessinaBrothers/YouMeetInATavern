@@ -31,10 +31,10 @@ public class ItemParser : MonoBehaviour {
     private void ParseLine(string line) {
         string[] lineData = line.Trim().Split(',');
 
-        ItemData item = new ItemData();
+        CardData item = new CardData();
 
         int index = 0;
-        item.key = lineData[index++];
+        item.unlockTag = lineData[index++];
         item.name = lineData[index++];
         item.imageFile = lineData[index++];
 
@@ -43,6 +43,6 @@ public class ItemParser : MonoBehaviour {
         item.sfxOnClicks[1] = lineData[index++];
 
         // save npc data to game data
-        data.itemData.Add(item.key, item);
+        data.cardData.Add(item.unlockTag, item);
     }
 }

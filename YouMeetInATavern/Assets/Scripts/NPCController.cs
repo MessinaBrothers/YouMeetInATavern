@@ -71,11 +71,13 @@ public class NPCController : MonoBehaviour {
         cardParent = go.transform;
 
         // create cards for each NPC
-        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-            GameObject card = CardFactory.CreateNPCCard(kvp.Key);
-            card.transform.parent = cardParent;
+        foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
+            if (kvp.Key.StartsWith("NPC_")) {
+                GameObject card = CardFactory.CreateCard(kvp.Key);
+                card.transform.parent = cardParent;
 
-            card.SetActive(false);
+                card.SetActive(false);  
+            }
         }
     }
 

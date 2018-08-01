@@ -31,7 +31,7 @@ public class NPCParser : MonoBehaviour {
     private void ParseLine(string line) {
         string[] lineData = line.Trim().Split(',');
 
-        NPCData npc = new NPCData();
+        CardData npc = new CardData();
 
         int index = 0;
         npc.unlockTag = lineData[index++];
@@ -51,6 +51,6 @@ public class NPCParser : MonoBehaviour {
         npc.sfxGreetings[1] = lineData[index++];
 
         // save npc data to game data
-        data.npcData.Add(npc.unlockTag, npc);
+        data.cardData.Add(npc.unlockTag, npc);
     }
 }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ItemData {
 
-    public string key;
+    //public string name;
 
-    public string name;
+    //public string unlockTag;
 
-    public string imageFile;
+    //public string imageFile;
     
-    public string[] sfxOnClicks;
+
+    //public string[] sfxOnClicks;
 
 }

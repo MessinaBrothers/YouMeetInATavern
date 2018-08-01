@@ -5,12 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LeaveTavernEarlyButton : MonoBehaviour {
-
-    private GameData data;
+    
     private Button button;
 
     void Start() {
-        data = FindObjectOfType<GameData>();
         button = GetComponent<Button>();
         
         button.interactable = false;

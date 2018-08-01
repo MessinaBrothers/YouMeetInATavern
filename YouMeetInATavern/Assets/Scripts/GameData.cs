@@ -13,8 +13,8 @@ public class GameData : MonoBehaviour {
     public uint dayCount;
     public Dictionary<uint, Scenario> scenarios;
     public Scenario scenario;
-    public Dictionary<string, NPCData> npcData;
-    public Dictionary<string, ItemData> itemData;
+    public Dictionary<string, CardData> cardData;
+    //public Dictionary<string, CardData> itemData;
     public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
 
     public GameObject selectedCard;
@@ -49,8 +49,7 @@ public class GameData : MonoBehaviour {
         gameMode = GameMode.INTRODUCE;
         
         scenarios = new Dictionary<uint, Scenario>();
-        npcData = new Dictionary<string, NPCData>();
-        itemData = new Dictionary<string, ItemData>();
+        cardData = new Dictionary<string, CardData>();
         scenarioResultsData = new Dictionary<uint, List<ScenarioResult>>();
 
         npcsToIntroduce = new Queue<string>();
@@ -63,17 +62,5 @@ public class GameData : MonoBehaviour {
 
         // DEBUG
         unlockedDialogueKeys.Add(GameData.DIALOGUE_DEFAULT);
-    }
-
-    void OnEnable() {
-        InputController.gameModeChangedEventHandler += ChangeMode;
-    }
-
-    void OnDisable() {
-        InputController.gameModeChangedEventHandler -= ChangeMode;
-    }
-
-    private void ChangeMode(GameMode mode) {
-        gameMode = mode;
     }
 }

@@ -88,10 +88,10 @@ public class ConcludeScenarioController : MonoBehaviour {
         float x = 0;
 
         // ITEMS
-        foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
-            if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
+        foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
+            if (kvp.Key.StartsWith("ITEM_") && data.unlockedDialogueKeys.Contains(kvp.Key)) {
                 // create the card
-                GameObject card = CreateItemCard(kvp.Key);
+                GameObject card = CardFactory.CreateCard(kvp.Key);
                 // add a zoom script
                 GameObject cardParent = AddZoom(card, x, itemCenterPos, itemZoomPos);
                 // set the parent
@@ -105,10 +105,10 @@ public class ConcludeScenarioController : MonoBehaviour {
         x = 0;
 
         // NPCs
-        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-            if (data.unlockedDialogueKeys.Contains(kvp.Key)) {
+        foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
+            if (kvp.Key.StartsWith("NPC_") && data.unlockedDialogueKeys.Contains(kvp.Key)) {
                 // create the card
-                GameObject card = CreateNPCCard(kvp.Key);
+                GameObject card = CardFactory.CreateCard(kvp.Key);
                 // add a zoom script
                 GameObject cardParent = AddZoom(card, x, npcCenterPos, npcZoomPos);
                 // set the parent
@@ -117,16 +117,6 @@ public class ConcludeScenarioController : MonoBehaviour {
                 x += xOffset;
             }
         }
-    }
-
-    private GameObject CreateItemCard(string key) {
-        GameObject card = CardFactory.CreateItemCard(key);
-        return card;
-    }
-
-    private GameObject CreateNPCCard(string key) {
-        GameObject card = CardFactory.CreateNPCCard(key);
-        return card;
     }
 
     private GameObject AddZoom(GameObject card, float x, Transform centerTransform, Transform zoomTransform) {
