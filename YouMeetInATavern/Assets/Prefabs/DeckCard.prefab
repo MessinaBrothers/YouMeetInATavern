@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33080715533705356}
   - component: {fileID: 65916511991650124}
   - component: {fileID: 23265135574597182}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33551609723255148}
   - component: {fileID: 65660249476842910}
   - component: {fileID: 23909212807325884}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33184364677407776}
   - component: {fileID: 65212277238713374}
   - component: {fileID: 23101101890173398}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 33624639896526198}
   - component: {fileID: 65985545399442238}
   - component: {fileID: 23575287615891852}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4557185867428774}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 33710204179652832}
   - component: {fileID: 65679833619361538}
   - component: {fileID: 23666488240252028}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CardBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 114505998367187768}
   - component: {fileID: 114715599365581070}
   - component: {fileID: 114695126044450630}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DeckCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4034770603923274}
   - component: {fileID: 114696476129812084}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Aura Box Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1848384134166116}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -196,7 +196,7 @@ Transform:
   - {fileID: 4034770603923274}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4472573698006332
 Transform:
   m_ObjectHideFlags: 1

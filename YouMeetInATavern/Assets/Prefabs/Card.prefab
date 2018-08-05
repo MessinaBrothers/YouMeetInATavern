@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223029842606910992}
   - component: {fileID: 114989709802767028}
   - component: {fileID: 114955441089837666}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 222009664977686948}
   - component: {fileID: 114924543131281816}
   - component: {fileID: 114005644568004914}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TextHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 224070457823080104}
   - component: {fileID: 222335004917194172}
   - component: {fileID: 114020164235780752}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 222906867405857022}
   - component: {fileID: 114283701526427986}
   - component: {fileID: 114435231891690628}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TextVertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 222270214795431330}
   - component: {fileID: 114703745355845752}
   - component: {fileID: 114868621305831896}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TargetImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 222361913687846928}
   - component: {fileID: 114610866093175088}
   - component: {fileID: 114874454379495474}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 222224873289208586}
   - component: {fileID: 114459983648916426}
   - component: {fileID: 114483070958817416}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}

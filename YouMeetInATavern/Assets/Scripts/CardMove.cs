@@ -26,7 +26,7 @@ public class CardMove : MonoBehaviour {
             transform.position = Vector3.Slerp(endTransform.position, startTransform.position, moveTimer / moveTime);
             transform.rotation = Quaternion.Slerp(endTransform.rotation, startTransform.rotation, moveTimer / moveTime);
 
-            if (transform.position == endTransform.position) {
+            if (moveTimer <= 0) {
                 //print("Reached position!");
                 reachedPosition(gameObject);
             }

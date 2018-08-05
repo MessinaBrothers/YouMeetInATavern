@@ -24,12 +24,16 @@ public class CreateDialogueButtons : MonoBehaviour {
     private string wordsSoFar, currentWord;
     private string currentKey;
 
+    private RectTransform rectTransform;
+
     void Start() {
         data = FindObjectOfType<GameData>();
         // if the dialogue lacks an index at the start, append one
         if (dialogue.Length > 0 && dialogue[0] != '<') {
             dialogue = "<>" + dialogue;
         }
+        
+        rectTransform = GetComponent<RectTransform>();
     }
 
     void Update() {

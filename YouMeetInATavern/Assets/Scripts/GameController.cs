@@ -23,10 +23,12 @@ public class GameController : MonoBehaviour {
 
     void OnEnable() {
         InputController.endResultsEventHandler += LoadScenario;
+        InputController.gameModeChangedEventHandler += ChangeMode;
     }
 
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
+        InputController.gameModeChangedEventHandler -= ChangeMode;
     }
 
     private void LoadScenario() {
@@ -35,5 +37,9 @@ public class GameController : MonoBehaviour {
         data.dayCount = 0;
 
         InputController.StartDay();
+    }
+
+    private void ChangeMode(GameData.GameMode mode) {
+        data.gameMode = mode;
     }
 }

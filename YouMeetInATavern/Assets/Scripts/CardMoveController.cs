@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardMoveController : MonoBehaviour {
 
@@ -9,6 +11,7 @@ public class CardMoveController : MonoBehaviour {
     public delegate void NPCInConversePosEventHandler(GameObject card);
 
     public Transform offscreenPos, introPos, conversePos, enterTavernPos, exitPos;
+    public Transform previewStartPos, previewEndPos, deckPos;
 
     private GameData data;
 
@@ -29,6 +32,7 @@ public class CardMoveController : MonoBehaviour {
         NPCController.npcStartInTaverneventHandler += PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler += LeaveTavern;
         InputController.endDayEarlyEventHandler += LeaveTavernAll;
+        InputController.dialogueCardCreatedEventHandler += PreviewCard;
     }
 
     void OnDisable() {
@@ -40,6 +44,7 @@ public class CardMoveController : MonoBehaviour {
         NPCController.npcStartInTaverneventHandler -= PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler -= LeaveTavern;
         InputController.endDayEarlyEventHandler -= LeaveTavernAll;
+        InputController.dialogueCardCreatedEventHandler -= PreviewCard;
     }
 
     private void Introduce(GameObject card) {
@@ -56,6 +61,43 @@ public class CardMoveController : MonoBehaviour {
         
         // disable wandering
         card.GetComponent<CardWander>().enabled = false;
+    }
+
+    private void PreviewCard(GameObject card) {
+        CardMove move = card.GetComponent<CardMove>();
+        move.enabled = true;
+
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit hitInfo;
+        //Physics.Raycast(ray, out hitInfo, 100f);//, LayerMask.NameToLayer("DeckPlane"));
+        //previewStartPos.position = hitInfo.point;
+        //print(hitInfo.point);
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        foreach (RaycastHit hit in Physics.RaycastAll(ray)) {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("DeckPlane")) {
+                previewStartPos.position = hit.point;
+            }
+        }
+
+
+        move.Set(previewStartPos, previewEndPos, 0.75f, PreviewWait);
+    }
+
+    private void PreviewWait(GameObject card) {
+        CardMove move = card.GetComponent<CardMove>();
+        move.enabled = true;
+        move.Set(previewEndPos, previewEndPos, .5f, EnterDeck);
+    }
+
+    private void EnterDeck(GameObject card) {
+        CardMove move = card.GetComponent<CardMove>();
+        move.enabled = true;
+        move.Set(previewEndPos, deckPos, 0.5f, EnteredDeck);
+    }
+
+    private void EnteredDeck(GameObject card) {
+        InputController.CardEnteredDeck(card);
     }
 
     private void Stop(GameObject card) {

@@ -20,6 +20,12 @@ public class InputController : MonoBehaviour {
     public static event DialogueEventHandler dialogueEventHandler;
     public delegate void DialogueEventHandler(string unlockKey);
 
+    public static event DialogueCardCreatedEventHandler dialogueCardCreatedEventHandler;
+    public delegate void DialogueCardCreatedEventHandler(GameObject card);
+
+    public static event CardEnteredDeckEventHandler cardEnteredDeckEventHandler;
+    public delegate void CardEnteredDeckEventHandler(GameObject card);
+
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler(GameObject card);
 
@@ -86,6 +92,14 @@ public class InputController : MonoBehaviour {
         guiController.UpdateConverseGUI(unlockKey);
     }
 
+    public static void DialogueCardCreated(GameObject card) {
+        dialogueCardCreatedEventHandler(card);
+    }
+
+    public static void CardEnteredDeck(GameObject card) {
+        cardEnteredDeckEventHandler(card);
+    }
+
     public static void HandleStopConverse() {
         stopConverseEventHandler.Invoke(data.selectedCard);
         guiController.StopConverse();
@@ -125,10 +139,7 @@ public class InputController : MonoBehaviour {
 
     public static void DEBUGConcludeScenario() {
         GameData data = FindObjectOfType<GameData>();
-        foreach (KeyValuePair<string, ItemData> kvp in data.itemData) {
-            data.unlockedDialogueKeys.Add(kvp.Key);
-        }
-        foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
+        foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
             data.unlockedDialogueKeys.Add(kvp.Key);
         }
         ConcludeScenario();
