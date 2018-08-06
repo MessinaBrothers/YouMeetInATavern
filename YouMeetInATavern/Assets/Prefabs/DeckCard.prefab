@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 114505998367187768}
   - component: {fileID: 114715599365581070}
   - component: {fileID: 114695126044450630}
+  - component: {fileID: 114991350663224324}
   m_Layer: 11
   m_Name: DeckCard
   m_TagString: Untagged
@@ -147,7 +148,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4034770603923274}
-  - component: {fileID: 114696476129812084}
   m_Layer: 11
   m_Name: Aura Box Volume
   m_TagString: Untagged
@@ -495,7 +495,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1848384134166116}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.12, y: 2.1, z: 0.13}
@@ -684,114 +684,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
---- !u!114 &114696476129812084
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1972321343154414}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b142c931e4f39c429a012dc68ba0659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeShape:
-    shape: 2
-    fading:
-      falloffExponent: 10
-      xPositiveCubeFade: 0.25
-      xNegativeCubeFade: 0.25
-      yPositiveCubeFade: 0.25
-      yNegativeCubeFade: 0.25
-      zPositiveCubeFade: 0.25
-      zNegativeCubeFade: 0.25
-      angularConeFade: 0.25
-      distanceConeFade: 0.25
-      widthCylinderFade: 0.25
-      yNegativeCylinderFade: 0.25
-      yPositiveCylinderFade: 0.25
-      heightPlaneFade: 1
-      distanceSphereFade: 0.25
-  textureMask:
-    clipComputationBasedOnAlpha: 0
-    clippingThreshold: 0.5
-    enable: 0
-    filterMode: 2
-    texture: {fileID: 0}
-    textureIndex: -1
-    transform:
-      space: 1
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      animatePosition: 0
-      positionSpeed: {x: 0, y: 0, z: 0}
-      animateRotation: 0
-      rotationSpeed: {x: 0, y: 0, z: 0}
-    wrapMode: 2
-  noiseMask:
-    enable: 0
-    speed: 0.125
-    offset: 0
-    transform:
-      space: 0
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      animatePosition: 0
-      positionSpeed: {x: 0, y: 0, z: 0}
-      animateRotation: 0
-      rotationSpeed: {x: 0, y: 0, z: 0}
-  density:
-    injectionParameters:
-      enable: 1
-      strength: 1
-      textureMaskLevelParameters:
-        levelLowThreshold: 0
-        levelHiThreshold: 1
-        outputLowValue: 0
-        outputHiValue: 1
-        contrast: 1
-      noiseMaskLevelParameters:
-        levelLowThreshold: 0
-        levelHiThreshold: 1
-        outputLowValue: 0
-        outputHiValue: 1
-        contrast: 1
-  anisotropy:
-    injectionParameters:
-      enable: 0
-      strength: 0.1
-      textureMaskLevelParameters:
-        levelLowThreshold: 0
-        levelHiThreshold: 1
-        outputLowValue: 0
-        outputHiValue: 1
-        contrast: 1
-      noiseMaskLevelParameters:
-        levelLowThreshold: 0
-        levelHiThreshold: 1
-        outputLowValue: 0
-        outputHiValue: 1
-        contrast: 1
-  color:
-    injectionParameters:
-      enable: 1
-      strength: 19.9
-      textureMaskLevelParameters:
-        levelLowThreshold: 0
-        levelHiThreshold: 1
-        outputLowValue: 0
-        outputHiValue: 1
-        contrast: 1
-      noiseMaskLevelParameters:
-        levelLowThreshold: 0
-        levelHiThreshold: 1
-        outputLowValue: 0
-        outputHiValue: 1
-        contrast: 1
-    color: {r: 0, g: 1, b: 0.966702, a: 1}
-  gizmoColor: {r: 1, g: 0.9082516, b: 0.5, a: 1}
 --- !u!114 &114715599365581070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -837,3 +729,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6df58b1f121dbc49813893201809993, type: 3}
   goodbyeClips:
   - {fileID: 8300000, guid: 1f4c7be6fffcd1f47aa9c6537f03af02, type: 3}
+--- !u!114 &114991350663224324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848384134166116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c251c630625fe248bb891999fda833a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

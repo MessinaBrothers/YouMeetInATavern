@@ -1,5 +1,4 @@
-﻿using AuraAPI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ public class SelectCards : MonoBehaviour {
             // play unselect sound
             audioSource.PlayOneShot(unselectClip);
             // highlight the card
-            card.GetComponentInChildren<AuraVolume>().enabled = false;
+            //card.GetComponentInChildren<AuraVolume>().enabled = false;
 
             // move selected choices (first and second)
             if (selectedFirst == card) {
@@ -45,7 +44,7 @@ public class SelectCards : MonoBehaviour {
             // play sound effect
             card.GetComponent<CardSFX>().PlayGreeting();
             // highlight the card
-            card.GetComponentInChildren<AuraVolume>().enabled = true;
+            //card.GetComponentInChildren<AuraVolume>().enabled = true;
 
             // add key to answers
             data.chosenAnswerKeys.Add(card.GetComponentInChildren<Key>().key);
@@ -57,7 +56,7 @@ public class SelectCards : MonoBehaviour {
             } else {
                 // unzoom first card
                 selectedFirst.GetComponent<CardZoom>().Unzoom();
-                selectedFirst.GetComponentInChildren<AuraVolume>().enabled = false;
+                //selectedFirst.GetComponentInChildren<AuraVolume>().enabled = false;
                 // remove first key from answers
                 data.chosenAnswerKeys.Remove(selectedFirst.GetComponentInChildren<Key>().key);
                 // set second card as first

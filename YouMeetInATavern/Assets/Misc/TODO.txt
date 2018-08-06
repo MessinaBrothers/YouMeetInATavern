@@ -40,7 +40,7 @@ Refactor item cards to be just like NPC cards
 Put Canvas on its own camera (and draw it between MainCamera and HUDCamera)
 On keyword selection, briefly show the card, then move it to the deck
 Deck: on hover, show card aura
-
+Reimport Aura package with ONLY essential scripts and assets
 
 
 IDEAS
