@@ -7,33 +7,66 @@ public class DeckController : MonoBehaviour {
 
     public GameObject cardbackPrefab, cardPrefab;
 
-    public bool addCard;
+    public Transform[] deckCardTransforms, handTransforms;
 
-    public float cardDistance;
-    public float cardRotationMax;
+    private GameObject[] deckCards;
 
-    public int cardCountMax;
+    public float spreadTime;
+    private float spreadTimer;
+    
     private int cardCount;
+
+    private bool isSpreading;
+    
+    [Header("DEBUG")]
+    public bool addCard;
+    public int startWithAddedCards;
 
     void Start() {
         cardCount = 0;
+        spreadTimer = 0;
+
+        isSpreading = false;
+
+        // create deck of cards
+        deckCards = new GameObject[deckCardTransforms.Length];
+        for (int i = 0; i < deckCards.Length; i++) {
+            GameObject card = Instantiate(cardbackPrefab, deckCardTransforms[i]);
+            card.transform.parent = gameObject.transform;
+            // deactivate card
+            card.SetActive(false);
+            // save card
+            deckCards[i] = card;
+        }
+
+        for (int i = 0; i < startWithAddedCards; i++) AddCard(); //DEBUG
     }
 
     void Update() {
-        if (addCard) {
-            addCard = false;
-            AddCard();
+        if (addCard) { addCard = false; AddCard(); } //DEBUG
+
+        if (isSpreading == true) {
+            if (spreadTimer < spreadTime) spreadTimer += Time.deltaTime;
+        } else {
+            if (spreadTimer > 0) spreadTimer -= Time.deltaTime;
+        }
+
+        for (int i = 0; i < deckCards.Length; i++) {
+            deckCards[i].transform.position = Vector3.Lerp(deckCardTransforms[i].position, handTransforms[i].position, spreadTimer / spreadTime);
+            deckCards[i].transform.rotation = Quaternion.Lerp(deckCardTransforms[i].rotation, handTransforms[i].rotation, spreadTimer / spreadTime);
         }
     }
 
     void OnEnable() {
         InputController.dialogueEventHandler += HandleDialogue;
         InputController.cardEnteredDeckEventHandler += EnterDeck;
+        InputController.deckHoverEventHandler += ToggleSpreading;
     }
 
     void OnDisable() {
         InputController.dialogueEventHandler -= HandleDialogue;
         InputController.cardEnteredDeckEventHandler -= EnterDeck;
+        InputController.deckHoverEventHandler -= ToggleSpreading;
     }
 
     private void HandleDialogue(string unlockKey) {
@@ -51,7 +84,7 @@ public class DeckController : MonoBehaviour {
     }
 
     //recursive
-    void MoveToLayer(Transform root, int layer) {
+    private void MoveToLayer(Transform root, int layer) {
         root.gameObject.layer = layer;
         foreach (Transform child in root)
             MoveToLayer(child, layer);
@@ -62,17 +95,14 @@ public class DeckController : MonoBehaviour {
         Destroy(card);
     }
 
+    private void ToggleSpreading(bool isHover) {
+        isSpreading = isHover;
+    }
+
     private void AddCard() {
-        if (cardCount < cardCountMax) {
-            GameObject card = Instantiate(cardbackPrefab);
-            card.transform.parent = gameObject.transform;
-            card.transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y + cardCount * cardDistance,
-                transform.position.z
-                );
-            card.transform.rotation = transform.rotation;
-            card.transform.Rotate(Vector3.forward, UnityEngine.Random.Range(-cardRotationMax, cardRotationMax));
+        if (cardCount < deckCards.Length) {
+            // activate the next card
+            deckCards[cardCount].SetActive(true);
             cardCount += 1;
         }
     }

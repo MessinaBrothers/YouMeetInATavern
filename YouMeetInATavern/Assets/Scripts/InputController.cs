@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
+    // HOVER
+    public static event DeckHoverEventHandler deckHoverEventHandler;
+    public delegate void DeckHoverEventHandler(bool isHover);
+
     public static event GameInitializedEventHandler gameInitializedEventHandler;
     public delegate void GameInitializedEventHandler();
 
@@ -72,6 +76,11 @@ public class InputController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F1)) {
             DEBUGConcludeScenario();
         }
+    }
+
+    // HOVER
+    public static void DeckHover(bool isHover) {
+        deckHoverEventHandler.Invoke(isHover);
     }
 
     public static void GameInitialized() {
