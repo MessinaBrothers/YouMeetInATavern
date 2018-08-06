@@ -17,6 +17,8 @@ public class DeckController : MonoBehaviour {
     private int cardCount;
 
     private bool isSpreading;
+
+    private List<string> alreadyUnlockedKeywords;
     
     [Header("DEBUG")]
     public bool addCard;
@@ -27,6 +29,8 @@ public class DeckController : MonoBehaviour {
         spreadTimer = 0;
 
         isSpreading = false;
+
+        alreadyUnlockedKeywords = new List<string>();
 
         // create deck of cards
         deckCards = new GameObject[deckCardTransforms.Length];
@@ -70,7 +74,9 @@ public class DeckController : MonoBehaviour {
     }
 
     private void HandleDialogue(string unlockKey) {
-        if (unlockKey.StartsWith("NPC_") || unlockKey.StartsWith("ITEM_")) {
+        if (alreadyUnlockedKeywords.Contains(unlockKey) == false && (unlockKey.StartsWith("NPC_") || unlockKey.StartsWith("ITEM_"))) {
+            alreadyUnlockedKeywords.Add(unlockKey);
+
             GameObject card = CardFactory.CreateCard(unlockKey);
 
             // move offscreen
