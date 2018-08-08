@@ -65,12 +65,14 @@ public class DeckController : MonoBehaviour {
         InputController.dialogueEventHandler += HandleDialogue;
         InputController.cardEnteredDeckEventHandler += EnterDeck;
         InputController.deckHoverEventHandler += ToggleSpreading;
+        InputController.deckClickedEventHander += DisplayDeck;
     }
 
     void OnDisable() {
         InputController.dialogueEventHandler -= HandleDialogue;
         InputController.cardEnteredDeckEventHandler -= EnterDeck;
         InputController.deckHoverEventHandler -= ToggleSpreading;
+        InputController.deckClickedEventHander -= DisplayDeck;
     }
 
     private void HandleDialogue(string unlockKey) {
@@ -101,15 +103,19 @@ public class DeckController : MonoBehaviour {
         Destroy(card);
     }
 
-    private void ToggleSpreading(bool isHover) {
-        isSpreading = isHover;
-    }
-
     private void AddCard() {
         if (cardCount < deckCards.Length) {
             // activate the next card
             deckCards[cardCount].SetActive(true);
             cardCount += 1;
         }
+    }
+
+    private void ToggleSpreading(bool isHover) {
+        isSpreading = isHover;
+    }
+
+    private void DisplayDeck() {
+
     }
 }

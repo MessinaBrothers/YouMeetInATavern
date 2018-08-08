@@ -16,9 +16,6 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     private SelectCards itemSelection, npcSelection;
 
-    //DEBUG
-    public bool isLoad;
-
     void Start() {
         data = FindObjectOfType<GameData>();
 
@@ -38,11 +35,7 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     void Update() {
-        // DEBUG
-        if (isLoad == true) {
-            isLoad = false;
-            InputController.DEBUGConcludeScenario();
-        }
+
     }
 
     void OnEnable() {

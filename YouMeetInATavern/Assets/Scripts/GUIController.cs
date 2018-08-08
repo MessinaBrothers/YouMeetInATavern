@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class GUIController : MonoBehaviour {
 
-    public GameObject dialoguePanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
+    public GameObject dialoguePanel, deckPanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
 
     private GameData data;
 
     void Awake() {
-        dayPanel.SetActive(false);
-        dialoguePanel.SetActive(false);
-        nightPanel.SetActive(false);
-        concludeScenarioPanel.SetActive(false);
+        DeactivateAll();
     }
 
     void Start() {
+        // always Starts last. See: Edit > Project Settings > Script Execution Order
+        print("Game initialized. Loading GUI...");
+
         data = FindObjectOfType<GameData>();
+
+        deckPanel.GetComponent<ViewDeckController>().Load(data);
     }
 
     void Update() {
@@ -81,9 +83,16 @@ public class GUIController : MonoBehaviour {
         resultsPanel.GetComponentInChildren<UnityEngine.UI.Text>().text = data.resultsDialogue;
     }
 
+    public void DisplayDeck() {
+        DeactivateAll();
+        deckPanel.GetComponent<ViewDeckController>().Display();
+        deckPanel.SetActive(true);
+    }
+
     private void DeactivateAll() {
-        dayPanel.SetActive(false);
         dialoguePanel.SetActive(false);
+        deckPanel.SetActive(false);
+        dayPanel.SetActive(false);
         nightPanel.SetActive(false);
         concludeScenarioPanel.SetActive(false);
         resultsPanel.SetActive(false);
