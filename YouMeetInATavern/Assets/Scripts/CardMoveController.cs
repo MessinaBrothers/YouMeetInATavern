@@ -12,6 +12,7 @@ public class CardMoveController : MonoBehaviour {
 
     public Transform offscreenPos, introPos, conversePos, enterTavernPos, exitPos;
     public Transform previewStartPos, previewEndPos, deckPos;
+    public Transform deckCardRevealPos, deckCardOffscreenPos;
 
     private GameData data;
 
@@ -45,6 +46,13 @@ public class CardMoveController : MonoBehaviour {
         NPCController.npcRandomlyLeavesEventHandler -= LeaveTavern;
         InputController.endDayEarlyEventHandler -= LeaveTavernAll;
         InputController.dialogueCardCreatedEventHandler -= PreviewCard;
+    }
+
+    // generic move function
+    public static void Move(GameObject card, Transform from, Transform to, float time) {
+        CardMove move = card.GetComponent<CardMove>();
+        move.enabled = true;
+        move.Set(from, to, time, Wait);
     }
 
     private void Introduce(GameObject card) {
@@ -138,7 +146,7 @@ public class CardMoveController : MonoBehaviour {
         card.GetComponent<CardWander>().enabled = true;
     }
 
-    private void Wait(GameObject card) {
+    private static void Wait(GameObject card) {
         
     }
 

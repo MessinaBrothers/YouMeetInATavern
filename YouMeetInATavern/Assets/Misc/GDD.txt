@@ -23,6 +23,10 @@ Combat is easy: system mastery means never getting hit
 
 
 
+IDEAS
+Hard mode: No colors for keywords. Clicking on non-keywords results in "Huh?"
+
+
 
 
 

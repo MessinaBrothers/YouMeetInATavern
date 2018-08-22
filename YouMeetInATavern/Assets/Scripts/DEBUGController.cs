@@ -38,6 +38,7 @@ public class DEBUGController : MonoBehaviour {
             InputController.ConcludeScenario();
         }
         if (Input.GetKeyDown(KeyCode.F3)) {
+            InputController.ContinueDay();
             InputController.DeckClick();
         }
     }

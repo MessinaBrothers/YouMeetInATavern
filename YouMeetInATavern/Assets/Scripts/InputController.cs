@@ -49,6 +49,10 @@ public class InputController : MonoBehaviour {
     public static event DeckClickedEventHandler deckClickedEventHander;
     public delegate void DeckClickedEventHandler();
 
+    // DECK INTERACTIONS
+    public static event DeckCardSelectedEventHandler deckCardSelectedEventHandler;
+    public delegate void DeckCardSelectedEventHandler(CardData cardData, int index);
+
     // DIALOGUE
     public static event QuestionEventHandler questionEventHandler;
     public delegate void QuestionEventHandler(string key, string unlockKey);
@@ -141,6 +145,11 @@ public class InputController : MonoBehaviour {
     public static void DeckClick() {
         deckClickedEventHander.Invoke();
         guiController.DisplayDeck();
+    }
+
+    // DECK INTERACTIONS
+    public static void SelectDeckCard(CardData cardData, int index) {
+        deckCardSelectedEventHandler.Invoke(cardData, index);
     }
 
     // DIALOGUE

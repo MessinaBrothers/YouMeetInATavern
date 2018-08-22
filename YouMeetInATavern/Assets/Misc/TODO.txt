@@ -1,3 +1,6 @@
+                                 You Meet In A Tavern
+						     A Point-and-Click Adventure
+TODO: DECK DISPLAY
 Says something when clicked to converse
 After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
 Question Buttons show questions if dialogue has been unlocked
@@ -41,8 +44,13 @@ Put Canvas on its own camera (and draw it between MainCamera and HUDCamera)
 On keyword selection, briefly show the card, then move it to the deck
 Deck: on hover, show card aura
 Don't show new cards if already unlocked keyword
+-----DECK DISPLAY
 Deck: on click, show current cards
-
-
-IDEAS
-Hard mode: No colors for keywords. Clicking on non-keywords results in "Huh?"
+Left side: list of cards
+List is scrollable
+Player hovers on a card from the list to select it
+Stack of unlocked cards, facing up
+Cards move off the stack (to the right), revealing card underneath
+Cards move onto the stack (from the right)
+On deck list hover, move cards on/off stack until card is found
+-Only unlocked cards can be seen in the deck

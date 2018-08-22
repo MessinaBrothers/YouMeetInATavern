@@ -7,6 +7,8 @@ public class ViewDeckListGUI : MonoBehaviour {
 
     public GameObject ListItemprefab;
 
+    public GameObject content;
+
     private GameData data;
     
     // ordered list for traversal
@@ -22,10 +24,10 @@ public class ViewDeckListGUI : MonoBehaviour {
         for (int i = 0; i < unlockKeys.Count; i++) {
             // create ListItem prefab for each card
             GameObject listItem = Instantiate(ListItemprefab);
-            // add ListItem to ourselves
-            listItem.transform.SetParent(transform);
+            // add ListItem to content
+            listItem.transform.SetParent(content.transform);
             // set ListItem values
-            listItem.GetComponent<DeckListItem>().SetText(data.cardData[unlockKeys[i]].name);
+            listItem.GetComponent<DeckListItem>().Load(data.cardData[unlockKeys[i]], i);
             // disable ListItem
             listItem.SetActive(false);
             // add to list

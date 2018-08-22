@@ -85,17 +85,10 @@ public class DeckController : MonoBehaviour {
             card.transform.position = new Vector3(0, 10, 0);
 
             // apply Deck layer to card
-            MoveToLayer(card.transform, LayerMask.NameToLayer("Deck"));
+            UnityUtility.MoveToLayer(card.transform, LayerMask.NameToLayer("Deck"));
 
             InputController.DialogueCardCreated(card);
         }
-    }
-
-    //recursive
-    private void MoveToLayer(Transform root, int layer) {
-        root.gameObject.layer = layer;
-        foreach (Transform child in root)
-            MoveToLayer(child, layer);
     }
 
     private void EnterDeck(GameObject card) {

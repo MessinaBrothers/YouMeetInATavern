@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class GUIController : MonoBehaviour {
 
-    public GameObject dialoguePanel, deckPanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
-    public GameObject deckCamera;
+    public GameObject hudPanel, dialoguePanel, deckPanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
 
     private GameData data;
 
@@ -57,7 +56,7 @@ public class GUIController : MonoBehaviour {
 
     public void StopConverse() {
         DeactivateAll();
-        deckCamera.SetActive(true);
+        hudPanel.SetActive(true);
     }
 
     public void StartDay() {
@@ -67,7 +66,7 @@ public class GUIController : MonoBehaviour {
 
     public void ContinueDay() {
         DeactivateAll();
-        deckCamera.SetActive(true);
+        hudPanel.SetActive(true);
     }
 
     public void EndDay() {
@@ -93,14 +92,13 @@ public class GUIController : MonoBehaviour {
     }
 
     private void DeactivateAll() {
+        hudPanel.SetActive(false);
         dialoguePanel.SetActive(false);
         deckPanel.SetActive(false);
         dayPanel.SetActive(false);
         nightPanel.SetActive(false);
         concludeScenarioPanel.SetActive(false);
         resultsPanel.SetActive(false);
-
-        deckCamera.SetActive(false);
     }
 
     private void Converse(GameObject card) {

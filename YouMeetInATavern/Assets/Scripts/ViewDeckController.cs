@@ -12,9 +12,11 @@ public class ViewDeckController : MonoBehaviour {
         // load deck list
         GetComponentInChildren<ViewDeckListGUI>().Load(data, unlockKeys);
         // load card list
+        GetComponentInChildren<ViewCardsGUI>().Load(data, unlockKeys);
     }
 
     public void Display() {
         GetComponentInChildren<ViewDeckListGUI>().Display();
+        GetComponentInChildren<ViewCardsGUI>().Display();
     }
 }
