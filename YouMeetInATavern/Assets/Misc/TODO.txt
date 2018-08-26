@@ -54,4 +54,6 @@ Cards move off stack (right), revealing card underneath
 Cards move onto the stack (from the right)
 On deck list hover, move cards on/off stack
 Only unlocked cards can be seen in the deck
--Add card swoosh when moving
+Add card swoosh when moving
+Profiler: Time loading the game
+-Clean up scripts

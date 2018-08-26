@@ -21997,6 +21997,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2142048305}
   - component: {fileID: 2142048304}
+  - component: {fileID: 2142048307}
+  - component: {fileID: 2142048306}
   m_Layer: 0
   m_Name: DEBUG
   m_TagString: Untagged
@@ -22015,7 +22017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba8493344d22764bae8a6b4f5d4c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UNLOCK_ALL_KEYS: 1
+  UNLOCK_ALL_KEYS: 0
   debugPanel: {fileID: 1674353447}
 --- !u!4 &2142048305
 Transform:
@@ -22030,3 +22032,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2142048306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142048303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18d90c4024f1f643b1e2a6318b2ca28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2142048307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142048303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8644d5800377a44185454c1bb246f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
