@@ -50,7 +50,8 @@ Left side: list of cards
 List is scrollable
 Player hovers on a card from the list to select it
 Stack of unlocked cards, facing up
-Cards move off the stack (to the right), revealing card underneath
+Cards move off stack (right), revealing card underneath
 Cards move onto the stack (from the right)
-On deck list hover, move cards on/off stack until card is found
--Only unlocked cards can be seen in the deck
+On deck list hover, move cards on/off stack
+Only unlocked cards can be seen in the deck
+-Add card swoosh when moving

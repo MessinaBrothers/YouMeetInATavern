@@ -19,4 +19,9 @@ public class ViewDeckController : MonoBehaviour {
         GetComponentInChildren<ViewDeckListGUI>().Display();
         GetComponentInChildren<ViewCardsGUI>().Display();
     }
+
+    public void Close() {
+        GetComponentInChildren<ViewDeckListGUI>().Close();
+        GetComponentInChildren<ViewCardsGUI>().Close();
+    }
 }

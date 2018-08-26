@@ -43,13 +43,16 @@ public class InputController : MonoBehaviour {
     public static event CardEnteredDeckEventHandler cardEnteredDeckEventHandler;
     public delegate void CardEnteredDeckEventHandler(GameObject card);
 
+    // DECK INTERACTIONS
     public static event DeckHoverEventHandler deckHoverEventHandler;
     public delegate void DeckHoverEventHandler(bool isHover);
 
     public static event DeckClickedEventHandler deckClickedEventHander;
     public delegate void DeckClickedEventHandler();
 
-    // DECK INTERACTIONS
+    public static event DeckClosedEventHandler deckClosedEventHander;
+    public delegate void DeckClosedEventHandler();
+
     public static event DeckCardSelectedEventHandler deckCardSelectedEventHandler;
     public delegate void DeckCardSelectedEventHandler(CardData cardData, int index);
 
@@ -131,12 +134,14 @@ public class InputController : MonoBehaviour {
     }
 
     public static void DialogueCardCreated(GameObject card) {
-        dialogueCardCreatedEventHandler(card);
+        dialogueCardCreatedEventHandler.Invoke(card);
     }
 
     public static void CardEnteredDeck(GameObject card) {
-        cardEnteredDeckEventHandler(card);
+        cardEnteredDeckEventHandler.Invoke(card);
     }
+
+    // DECK INTERACTIONS
 
     public static void DeckHover(bool isHover) {
         deckHoverEventHandler.Invoke(isHover);
@@ -147,7 +152,11 @@ public class InputController : MonoBehaviour {
         guiController.DisplayDeck();
     }
 
-    // DECK INTERACTIONS
+    public static void DeckClose() {
+        deckClosedEventHander.Invoke();
+        guiController.CloseDeck();
+    }
+
     public static void SelectDeckCard(CardData cardData, int index) {
         deckCardSelectedEventHandler.Invoke(cardData, index);
     }
@@ -200,4 +209,5 @@ public class InputController : MonoBehaviour {
     public void ConfirmScenarioWrapper() { ConfirmScenario(); }
     public void EndResultsWrapper() { EndResults(); }
     public void DeckClickWrapper() { DeckClick(); }
+    public void DeckCloseWrapper() { DeckClose(); }
 }

@@ -6,16 +6,24 @@ public class ViewCardsGUI : MonoBehaviour {
 
     public Transform displayedCardPosition, offscreenCardPosition;
     public float cardOffset, cardMoveSpeed;
+    public AudioClip[] cardFlipClips;
+
+    private GameData data;
+    private AudioSource audioSource;
 
     private GameObject[] deckCards;
+    private string[] cardKeys;
     private Transform[] cardPositions;
+    // what position index the card SHOULD be at
+    // to account for gaps between cards (when not all cards are unlocked)
+    public int[] cardPositionIndexes;
 
     private Transform deckCardsParent;
 
     private int currentCardIndex;
 
     void Start() {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -23,6 +31,13 @@ public class ViewCardsGUI : MonoBehaviour {
     }
 
     public void Load(GameData data, List<string> unlockKeys) {
+        this.data = data;
+        cardKeys = new string[unlockKeys.Count];
+        for (int i = 0; i < cardKeys.Length; i++) {
+            cardKeys[i] = unlockKeys[i];
+        }
+        cardPositionIndexes = new int[unlockKeys.Count];
+        
         deckCardsParent = new GameObject("ViewCardsGUI - DeckCards").transform;
         deckCardsParent.position = displayedCardPosition.position;
 
@@ -33,6 +48,7 @@ public class ViewCardsGUI : MonoBehaviour {
             card.transform.parent = deckCardsParent;
             UnityUtility.MoveToLayer(card.transform, LayerMask.NameToLayer("Deck"));
             deckCards[i] = card;
+            card.SetActive(false);
         }
 
         // create a stack of positions
@@ -57,6 +73,35 @@ public class ViewCardsGUI : MonoBehaviour {
 
     public void Display() {
         currentCardIndex = 0;
+
+        // only show a deck of unlocked cards
+        int nextPositionIndex = 0;
+
+        for (int i = 0; i < cardKeys.Length; i++) {
+            if (data.unlockedDialogueKeys.Contains(cardKeys[i])) {
+                cardPositionIndexes[i] = nextPositionIndex;
+                deckCards[i].transform.position = cardPositions[nextPositionIndex].position;
+                deckCards[i].transform.rotation = cardPositions[nextPositionIndex].rotation;
+                CardMoveController.Move(deckCards[i], cardPositions[nextPositionIndex], cardPositions[nextPositionIndex], 0);
+                deckCards[i].SetActive(true);
+                nextPositionIndex += 1;
+            } else {
+                deckCards[i].SetActive(false);
+            }
+        }
+
+        // reset all card positions
+        deckCardsParent.position = new Vector3(
+            deckCardsParent.position.x,
+            deckCardsParent.position.y,
+            displayedCardPosition.position.z
+            );
+    }
+
+    public void Close() {
+        for (int i = 0; i < cardKeys.Length; i++) {
+            deckCards[i].SetActive(false);
+        }
     }
 
     public void OnEnable() {
@@ -68,16 +113,19 @@ public class ViewCardsGUI : MonoBehaviour {
     }
 
     private void RevealCard(CardData cardData, int index) {
-        print("Now hovering over " + cardData.name + " at index " + index);
+        // play a sound
+        audioSource.PlayOneShot(cardFlipClips[Random.Range(0, cardFlipClips.Length)]);
+
+        //print("Now hovering over " + cardData.name + " at index " + index);
         if (index < currentCardIndex) {
             // move cards back onto stack
             for (int i = index; i < currentCardIndex; i++) {
-                CardMoveController.Move(deckCards[i], offscreenCardPosition, cardPositions[i], cardMoveSpeed);
+                CardMoveController.Move(deckCards[i], offscreenCardPosition, cardPositions[cardPositionIndexes[i]], cardMoveSpeed);
             }
         } else if (index > currentCardIndex) {
             // remove cards off stack
             for (int i = currentCardIndex; i < index; i++) {
-                CardMoveController.Move(deckCards[i], cardPositions[i], offscreenCardPosition, cardMoveSpeed);
+                CardMoveController.Move(deckCards[i], cardPositions[cardPositionIndexes[i]], offscreenCardPosition, cardMoveSpeed);
             }
         } else {
             // hover index is current index. stay put
@@ -89,7 +137,7 @@ public class ViewCardsGUI : MonoBehaviour {
         deckCardsParent.position = new Vector3(
             deckCardsParent.position.x,
             deckCardsParent.position.y,
-            displayedCardPosition.position.z - index * cardOffset
+            displayedCardPosition.position.z - cardPositionIndexes[index] * cardOffset
             );
     }
 }

@@ -10,6 +10,7 @@ public class DeckController : MonoBehaviour {
     public Transform[] deckCardTransforms, handTransforms;
 
     private GameObject[] deckCards;
+    private Transform deckParent;
 
     public float spreadTime;
     private float spreadTimer;
@@ -32,11 +33,14 @@ public class DeckController : MonoBehaviour {
 
         alreadyUnlockedKeywords = new List<string>();
 
+        deckParent = new GameObject("Deck").transform;
+        deckParent.transform.SetParent(transform);
+
         // create deck of cards
         deckCards = new GameObject[deckCardTransforms.Length];
         for (int i = 0; i < deckCards.Length; i++) {
             GameObject card = Instantiate(cardbackPrefab, deckCardTransforms[i]);
-            card.transform.parent = gameObject.transform;
+            card.transform.SetParent(deckParent);
             // deactivate card
             card.SetActive(false);
             // save card

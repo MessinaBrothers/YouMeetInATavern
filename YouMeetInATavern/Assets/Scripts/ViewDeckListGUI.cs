@@ -43,4 +43,11 @@ public class ViewDeckListGUI : MonoBehaviour {
             kvp.Value.SetActive(data.unlockedDialogueKeys.Contains(kvp.Key));
         }
     }
+
+    public void Close() {
+        foreach (KeyValuePair<string, GameObject> kvp in key_listItem) {
+            // activate ListItem if key is unlocked
+            kvp.Value.SetActive(false);
+        }
+    }
 }

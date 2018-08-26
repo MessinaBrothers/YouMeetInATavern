@@ -86,9 +86,13 @@ public class GUIController : MonoBehaviour {
     }
 
     public void DisplayDeck() {
-        DeactivateAll();
         deckPanel.GetComponent<ViewDeckController>().Display();
         deckPanel.SetActive(true);
+    }
+
+    public void CloseDeck() {
+        deckPanel.GetComponent<ViewDeckController>().Close();
+        deckPanel.SetActive(false);
     }
 
     private void DeactivateAll() {
