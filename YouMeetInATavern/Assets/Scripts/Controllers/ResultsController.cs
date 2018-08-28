@@ -74,7 +74,6 @@ public class ResultsController : MonoBehaviour {
         if (result.unlocks[0] != GameData.DIALOGUE_DEFAULT) {
             foreach (string unlock in result.unlocks) {
                 if (data.chosenAnswerKeys.Contains(unlock) == false) {
-                    print("Unlock key of " + unlock + " does not exist!");
                     return false;
                 }
             }

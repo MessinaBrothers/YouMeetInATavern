@@ -7,7 +7,7 @@ public class DEBUGController : MonoBehaviour {
 
     public bool UNLOCK_ALL_KEYS;
 
-    public GameObject debugPanel;
+    public GameObject debugPanel, debugUnlockCardsPanel;
 
     private GameData data;
 
@@ -17,12 +17,16 @@ public class DEBUGController : MonoBehaviour {
         print("PRESS F1 FOR DEBUG COMMANDS");
         
         string s = "***** DEBUG COMMANDS *****";
-        s += "\nF1: show/hide debug panel";
-        s += "\nF2: go to Conclude Scenario";
-        s += "\nF3: show Deck screen";
+        s += "\nF1: Debug panel";
+        s += "\nF2: Conclude scenario";
+        s += "\nF3: Deck screen";
+        s += "\nF4: Unlock cards";
         debugPanel.GetComponentInChildren<Text>().text = s;
 
+        debugUnlockCardsPanel.GetComponentInChildren<DEBUGUnlockCardsGUI>().Load(data);
+
         debugPanel.SetActive(false);
+        debugUnlockCardsPanel.SetActive(false);
     }
 
     void Update() {
@@ -40,6 +44,12 @@ public class DEBUGController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F3)) {
             InputController.ContinueDay();
             InputController.DeckClick();
+        }
+        if (Input.GetKeyDown(KeyCode.F4)) {
+            debugUnlockCardsPanel.SetActive(!debugUnlockCardsPanel.activeSelf);
+            //foreach (Button button in debugUnlockCardsPanel.GetComponentsInChildren<Button>()) {
+            //    button.interactable = true;
+            //}
         }
     }
 

@@ -1,6 +1,6 @@
                                  You Meet In A Tavern
 						     A Point-and-Click Adventure
-TODO: DECK DISPLAY
+TODO: Next Scenario - WITCHES
 Says something when clicked to converse
 After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
 Question Buttons show questions if dialogue has been unlocked
@@ -56,4 +56,14 @@ On deck list hover, move cards on/off stack
 Only unlocked cards can be seen in the deck
 Add card swoosh when moving
 Profiler: Time loading the game
--Clean up scripts
+Clean up scripts
+Mask: art, sfx
+Holy Water: art, sfx
+Robe: art, sfx
+Debug: easily unlock certain cards
+-Bandit: art, sfx, dialog
+-Cleric: art, sfx, dialog
+-Cultist: art, sfx, dialog
+-Scenario Results
+-Reset deck on new scenario
+-No more day countdown

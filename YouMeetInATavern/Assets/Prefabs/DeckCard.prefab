@@ -126,7 +126,6 @@ GameObject:
   - component: {fileID: 4452112594555000}
   - component: {fileID: 114021141104432090}
   - component: {fileID: 114505998367187768}
-  - component: {fileID: 114991350663224324}
   m_Layer: 11
   m_Name: DeckCard
   m_TagString: Untagged
@@ -558,14 +557,3 @@ MonoBehaviour:
   maxY: 2
   wanderDistance: 0.1
   speed: 1
---- !u!114 &114991350663224324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1848384134166116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c251c630625fe248bb891999fda833a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
