@@ -140,11 +140,12 @@ public class NPCController : MonoBehaviour {
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = true;
 
-        // set the next dialogue. If the NPC has dialogue specific to the last scenario result, use it
+        // set the next dialogue
         if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
+            // if the NPC has dialogue specific to LAST result, use it
             npc.nextDialogueID = data.nextDialogueIntroKey;
         } else {
-            // otherwise, use the default into dialogue
+            // otherwise, use the default intro dialogue
             npc.nextDialogueID = GameData.DIALOGUE_INTRO;
         }
 

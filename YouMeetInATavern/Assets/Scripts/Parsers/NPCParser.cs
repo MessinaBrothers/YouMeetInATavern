@@ -19,8 +19,9 @@ public class NPCParser : MonoBehaviour {
 
         bool startParse = false;
         for (int i = 0; i < lines.Length; i++) {
-            if (startParse && lines[i].Length > 0) {
-                ParseLine(lines[i]);
+            if (startParse) {
+                // stop parsing if no data found on a line e.g. if data table is split
+                if (lines[i].StartsWith("NPC_")) ParseLine(lines[i]);
             // don't start parsing until we've reached the NPC table
             } else if (lines[i].StartsWith("Unlock Tag,Name")) {
                 startParse = true;

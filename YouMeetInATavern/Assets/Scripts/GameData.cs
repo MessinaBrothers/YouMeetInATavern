@@ -8,6 +8,7 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_INTRO = "intro";
     public static string DIALOGUE_DEFAULT = "default";
     public static string DIALOGUE_INVALID = "";
+    public static string DIALOGUE_SCENARIO_PREFIX = "SCENARIO_";
     public static char PARSER_DELIMITER = '-';
 
     public uint dayCount;

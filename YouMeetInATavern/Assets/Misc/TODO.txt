@@ -61,9 +61,11 @@ Mask: art, sfx
 Holy Water: art, sfx
 Robe: art, sfx
 Debug: easily unlock certain cards
--Bandit: art, sfx, dialog
--Cleric: art, sfx, dialog
--Cultist: art, sfx, dialog
+Bandit: art, sfx, dialog
+Cleric: art, sfx, dialog
+Cultist: art, sfx, dialog
+DEBUG: F5 restarts the game
+Scenario Data
 -Scenario Results
 -Reset deck on new scenario
 -No more day countdown

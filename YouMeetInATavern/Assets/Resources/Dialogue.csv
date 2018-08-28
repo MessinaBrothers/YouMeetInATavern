@@ -7,16 +7,19 @@
 NPC,Q?,ID,Text
 NPC_BARTENDER,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
 NPC_BARTENDER,0,intro,<>Sit anywhere you like. It’s pretty slow right now.
-NPC_BARTENDER,0,default,"Nice to see you! I’m the <NPC_BARTENDER>barkeep.<> If you want some <ITEM_ALE>ale,<> just ask. Or did you want to hear some <LOCATION_TOWNROBBED>local gossip?"
+NPC_BARTENDER,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO
+NPC_BARTENDER,0,SCENARIO_0,"Nice to see you! I’m the <NPC_BARTENDER>barkeep.<> If you want some <ITEM_ALE>ale,<> just ask. Or did you want to hear some <LOCATION_TOWNROBBED>local gossip?"
+NPC_BARTENDER,0,SCENARIO_1,"Nice to see you! I’m the <NPC_BARTENDER>barkeep.<> If you want some <ITEM_ALE>ale,<> just ask. Or did you want to hear some <LOCATION_FORESTLIGHTS>local gossip?"
 NPC_BARTENDER,0,NPC_BARTENDER,"<>Me? Go out there? Well, I could step out after we close...Okay, let’s do it!"
 NPC_BARTENDER,0,ITEM_ALE,"<>On ale, coming right up! We keep the barrels in the cellar, so it’s nice and cool."
 NPC_BARTENDER,0,LOCATION_TOWNROBBED,"<>More and more peoples’ houses in town are being robbed in the night. If the Watch doesn’t figure out who it is, there’s gonna be riots in the streets."
 NPC_BARTENDER,1,DIALOGUE_TOWNKOBOLDS,<DIALOGUE_TOWNKOBOLDS>Know anything about kobolds?
 NPC_BARTENDER,0,DIALOGUE_TOWNKOBOLDS,"<>Kobolds? Is that some sort of mixed drink? We only serve <ITEM_ALE>ale <>here, sorry."
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_CORRECT,"<>Heard you put a stop to the burglaries! Kobolds, huh? Don’t know much about those...Anyways, your next order is on the house!"
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_MISSING,<>Heard you went out and tried to stop those robbers. The Town Watch is useless!
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_BARTENDER,<>Sorry about last night. I’m no good at that kind of stuff! You should talk to the Town Watch if you want real help.
-NPC_BARTENDER,0,SCENARIO_KOBOLDS_WRONG,<>Did you hear? Burglars struck the town again! That Town Watch is less than useless!
+NPC_BARTENDER,0,LOCATION_FORESTLIGHTS,<>People have seen strange lights in the forest at night. And lately I’ve seen a lot of undesirables in town. Don’t know if it’s related or what.
+NPC_BARTENDER,0,RESULT_0_CORRECT,"<>Heard you put a stop to the burglaries! Kobolds, huh? Don’t know much about those...Anyways, your next order is on the house!"
+NPC_BARTENDER,0,RESULT_0_MISSING,<>Heard you went out and tried to stop those robbers. The Town Watch is useless!
+NPC_BARTENDER,0,RESULT_0_BARTENDER,<>Sorry about last night. I’m no good at that kind of stuff! You should talk to the Town Watch if you want real help.
+NPC_BARTENDER,0,RESULT_0_WRONG,<>Did you hear? Burglars struck the town again! That Town Watch is less than useless!
 NPC_MERCHANT,0,,<>I don’t understand you.
 NPC_MERCHANT,0,intro,<>The tavern has about as many customers as I had all day – not many! Where’s everyone gone?
 NPC_MERCHANT,0,default,"<>Just a <NPC_MERCHANT>local merchant <>enjoying a drink. I run a stall in the <LOCATION_TOWN>market <>outside. If you got something to sell, come to me first. If you got something to buy, even better. We could even work out a <ITEM_GOLD>loan, <>if you’re short on funds."
@@ -64,3 +67,27 @@ NPC_LOREMASTER,1,LOCATION_TOWNROBBED,<LOCATION_TOWNROBBED>Robberies in town?
 NPC_LOREMASTER,0,LOCATION_TOWNROBBED,"<>People can’t stop talking about robberies or some such nonsense. That’s all they ever want do – talk! None of my books have been taken, that’s all I know."
 NPC_LOREMASTER,1,LOCATION_GREENTRAPS,"<DIALOGUE_TOWNKOBOLDS>What’s small, green, and lays traps?"
 NPC_LOREMASTER,0,DIALOGUE_TOWNKOBOLDS,"<>Green people? Small? With traps? Hmm...sounds like Kobolds! All they care about is gold. Gold coins, gold silverware, gold jewelry, anything they can get their tiny little hands on. Be careful trying to catch one: their traps can be quite painful. Or so I’ve read."
+NPC_BANDIT,0,,<>Huh?
+NPC_BANDIT,0,intro,<>I have no time for games! Only beer. No games!
+NPC_BANDIT,0,default,<>My <LOCATION_FOREST>hideout <>is no longer safe. Us <NPC_BANDIT>bandit<>-folk are always on the run. At least I don’t have to wear my <ITEM_MASK>mask <>anymore.
+NPC_BANDIT,0,LOCATION_FOREST,"<>Yes, the forest has weird happenings going on. Chanting at night. Signs of camps in the morning."
+NPC_BANDIT,0,NPC_BANDIT,"<>Sure, I’ll help, if there’s something in it for me. I don’t want no trouble, though."
+NPC_BANDIT,0,ITEM_MASK,"<>Fine, take it. You already know what I look like."
+NPC_BANDIT,1,LOCATION_WITCHES,<DIALOGUE_WITCHES>Know anything about witches?
+NPC_BANDIT,0,DIALOGUE_WITCHES,"<>Witches, huh? Think they got any gold on ‘em?"
+NPC_CLERIC,0,,<>Eh?
+NPC_CLERIC,0,intro,"<>Is someone injured? No? Dang, I was hoping for a sale."
+NPC_CLERIC,0,default,"<><NPC_CLERIC>Cleric <>is the name, <ITEM_HOLYWATER>holy water <> is my game. Everyone in <LOCATION_TOWN>town <>is can vouch for its efficacy."
+NPC_CLERIC,0,LOCATION_TOWN,"<>Town’s been quiet, mostly. Old Missy is complaining about everything, but that’s nothing new. Say, would you like to sample my <ITEM_HOLYWATER>holy water? <>It has electrolytes!"
+NPC_CLERIC,0,NPC_CLERIC,<>Someone’s in trouble? Do you think they’ll need <ITEM_HOLYWATER>holy water?! <>Lead the way!
+NPC_CLERIC,0,ITEM_HOLYWATER,"<>Ah, yes, let me just bless this flask again. You can never be too sure."
+NPC_CLERIC,1,LOCATION_WITCHES,<DIALOGUE_WITCHES>Know anything about witches?
+NPC_CLERIC,0,DIALOGUE_WITCHES,<>Witches! I knew it was witches! They’re weakness: <ITEM_HOLYWATER>HOLY WATER! <>Everything’s coming up Cleric!
+NPC_CULTIST,0,,<>Huh?
+NPC_CULTIST,0,intro,"<>Lousy master turning on us. What was I thinking following a guy like that...Oh, hello! Didn’t see you there."
+NPC_CULTIST,0,default,<>The <LOCATION_WITCHES>forest <>isn’t what it used to be. It’s all blood this and boil that. The heyday of the <ITEM_ROBE>Robed <><NPC_CULTIST>Cultists <>is over.
+NPC_CULTIST,0,LOCATION_WITCHES,"<>The forest is full of people nowadays. And they’re running around...NAKED! Not even some pants, let alone a <ITEM_ROBE>robe!"
+NPC_CULTIST,0,NPC_CULTIST,"<>I shall do as you say, master – I mean, stranger."
+NPC_CULTIST,0,ITEM_ROBE,"<>You know what, take it. I have a dozen at home."
+NPC_CULTIST,1,LOCATION_WITCHES,<DIALOGUE_WITCHES>Know anything about witches?
+NPC_CULTIST,0,DIALOGUE_WITCHES,"<>No thanks, I’m not hungry."
