@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DEBUGController : MonoBehaviour {
@@ -20,7 +21,9 @@ public class DEBUGController : MonoBehaviour {
         s += "\nF1: Debug panel";
         s += "\nF2: Conclude scenario";
         s += "\nF3: Deck screen";
-        s += "\nF4: Unlock cards";
+        s += "\nF4: Toggle mic";
+        s += "\nF5: Restart game";
+        s += "\nF6: Unlock cards";
         debugPanel.GetComponentInChildren<Text>().text = s;
 
         debugUnlockCardsPanel.GetComponentInChildren<DEBUGUnlockCardsGUI>().Load(data);
@@ -46,10 +49,13 @@ public class DEBUGController : MonoBehaviour {
             InputController.DeckClick();
         }
         if (Input.GetKeyDown(KeyCode.F4)) {
+            // Leave blank (F4 is for muting mic!)
+        }
+        if (Input.GetKeyDown(KeyCode.F5)) {
+            SceneManager.LoadScene("Main");
+        }
+        if (Input.GetKeyDown(KeyCode.F6)) {
             debugUnlockCardsPanel.SetActive(!debugUnlockCardsPanel.activeSelf);
-            //foreach (Button button in debugUnlockCardsPanel.GetComponentsInChildren<Button>()) {
-            //    button.interactable = true;
-            //}
         }
     }
 
