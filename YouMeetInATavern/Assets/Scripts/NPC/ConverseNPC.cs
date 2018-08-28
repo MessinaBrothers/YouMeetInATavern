@@ -50,7 +50,7 @@ public class ConverseNPC : MonoBehaviour {
     }
 
     private void HandleDialogue(string key) {
-        
+
     }
 
     private void Converse(GameObject card) {
@@ -59,7 +59,14 @@ public class ConverseNPC : MonoBehaviour {
     private void Stop(GameObject card) {
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = false;
-        npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
+
+        // set the next dialogue
+        if (data.npc_dialogues[npc.key].ContainsKey(GameData.DIALOGUE_SCENARIO_PREFIX + data.scenario.id)) {
+            // if the NPC has dialogue specific to THIS scenario, use it
+            npc.nextDialogueID = GameData.DIALOGUE_SCENARIO_PREFIX + data.scenario.id;
+        } else {
+            npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
+        }
     }
 
     private void Goodbye() {
