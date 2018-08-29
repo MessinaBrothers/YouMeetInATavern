@@ -12,8 +12,11 @@ public class DayGUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        uint daysLeft = data.scenario.endsOnDay - (data.dayCount - 1);
-        string toDisplay = string.Format("{0} Day{1} Left", daysLeft, daysLeft == 1 ? "" : "s");
+        //uint daysLeft = data.scenario.endsOnDay - (data.dayCount - 1);
+        //string toDisplay = string.Format("{0} Day{1} Left", daysLeft, daysLeft == 1 ? "" : "s");
+
+        string toDisplay = string.Format("Day {0}", data.dayCount);
+
         GetComponentInChildren<Text>().text = toDisplay;
     }
 }

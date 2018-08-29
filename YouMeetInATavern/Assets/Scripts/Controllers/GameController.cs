@@ -32,10 +32,13 @@ public class GameController : MonoBehaviour {
     }
 
     private void LoadScenario() {
+        // reset day if this is a new scenario
+        if (data.scenario == null || data.scenario.id != data.nextScenarioIndex) {
+            data.dayCount = 0;
+        }
+        
         data.scenario = data.scenarios[data.nextScenarioIndex];
-
-        data.dayCount = 0;
-
+        
         InputController.StartDay();
     }
 

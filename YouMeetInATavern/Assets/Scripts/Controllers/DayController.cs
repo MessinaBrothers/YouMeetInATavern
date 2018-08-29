@@ -43,11 +43,13 @@ public class DayController : MonoBehaviour {
     }
 
     private void EndDay() {
-        if (data.scenario.endsOnDay == data.dayCount) {
-            InputController.ConcludeScenario();
-        } else {
-            InputController.StartDay();
-        }
-
+        InputController.ConcludeScenario();
+        
+        // End scenario after data.daycount number of days
+        //if (data.scenario.endsOnDay == data.dayCount) {
+        //    InputController.ConcludeScenario();
+        //} else {
+        //    InputController.StartDay();
+        //}
     }
 }
