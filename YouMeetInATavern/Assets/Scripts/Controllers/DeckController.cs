@@ -47,7 +47,12 @@ public class DeckController : MonoBehaviour {
             deckCards[i] = card;
         }
 
-        for (int i = 0; i < startWithAddedCards; i++) AddCard(); //DEBUG
+        // DEBUG
+        for (int i = 0; i < startWithAddedCards; i++) AddCard();
+        GameData data = FindObjectOfType<GameData>();
+        for (int i = 0; i < data.unlockedDialogueKeys.Count - 1; i++) {
+            AddCard();
+        }
     }
 
     void Update() {
@@ -95,6 +100,11 @@ public class DeckController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Adds to the deck GUI
+    /// Original card is destroyed!
+    /// </summary>
+    /// <param name="card"></param>
     private void EnterDeck(GameObject card) {
         AddCard();
         Destroy(card);

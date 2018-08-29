@@ -138,7 +138,9 @@ public class InputController : MonoBehaviour {
     }
 
     public static void CardEnteredDeck(GameObject card) {
-        cardEnteredDeckEventHandler.Invoke(card);
+        if (cardEnteredDeckEventHandler != null) {
+            cardEnteredDeckEventHandler.Invoke(card);
+        }
     }
 
     // DECK INTERACTIONS

@@ -35,6 +35,8 @@ public class DEBUGUnlockCardsGUI : MonoBehaviour {
     }
 
     private void Unlock(string key) {
-        data.unlockedDialogueKeys.Add(key);
+        if (data.unlockedDialogueKeys.Contains(key) == false) {
+            data.unlockedDialogueKeys.Add(key);
+        }
     }
 }

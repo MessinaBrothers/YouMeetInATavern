@@ -24,7 +24,7 @@ public class CreateDialogueButtons : MonoBehaviour {
     private string wordsSoFar, currentWord;
     private string currentKey;
 
-    private RectTransform rectTransform;
+    //private RectTransform rectTransform;
 
     void Start() {
         data = FindObjectOfType<GameData>();
@@ -33,7 +33,7 @@ public class CreateDialogueButtons : MonoBehaviour {
             dialogue = "<>" + dialogue;
         }
         
-        rectTransform = GetComponent<RectTransform>();
+        //rectTransform = GetComponent<RectTransform>();
     }
 
     void Update() {
