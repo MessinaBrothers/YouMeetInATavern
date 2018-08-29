@@ -64,4 +64,14 @@ public class DEBUGController : MonoBehaviour {
             data.unlockedDialogueKeys.Add(kvp.Key);
         }
     }
+
+    public void UnlockScenarioKeys() {
+        // unlock the cards used to beat the scenario
+        uint scenarioID = data.scenario.id;
+        ScenarioResult result = data.scenarioResultsData[scenarioID][0];
+        foreach (string key in result.unlocks) {
+            print("Adding " + key);
+            data.unlockedDialogueKeys.Add(key);
+        }
+    }
 }

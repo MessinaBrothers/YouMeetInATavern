@@ -30,17 +30,17 @@ public class ScenarioResultsParser : MonoBehaviour {
     private void ParseLine(string line) {
         string[] lineData = line.Split(',');
 
-        ScenarioResult scenario = new ScenarioResult();
+        ScenarioResult scenarioResult = new ScenarioResult();
 
         int index = 0;
-        scenario.scenarioKey = uint.Parse(lineData[index++]);
+        scenarioResult.scenarioKey = uint.Parse(lineData[index++]);
 
         // parse unlocks
         string unlocks = lineData[index++];
-        scenario.unlocks = new List<string>(unlocks.Split(GameData.PARSER_DELIMITER));
+        scenarioResult.unlocks = new List<string>(unlocks.Split(GameData.PARSER_DELIMITER));
 
         // parse next dialogues
-        scenario.nextDialoguesKey = lineData[index++];
+        scenarioResult.nextDialoguesKey = lineData[index++];
 
         // parse description
         string description = "";
@@ -49,17 +49,17 @@ public class ScenarioResultsParser : MonoBehaviour {
         }
         description = description.Replace("\"", "");
         description = description.Substring(0, description.Length - ",".Length);
-        scenario.description = description;
+        scenarioResult.description = description;
 
         // save results to game data
         List<ScenarioResult> results;
-        if (data.scenarioResultsData.ContainsKey(scenario.scenarioKey)) {
-            results = data.scenarioResultsData[scenario.scenarioKey];
+        if (data.scenarioResultsData.ContainsKey(scenarioResult.scenarioKey)) {
+            results = data.scenarioResultsData[scenarioResult.scenarioKey];
         } else {
             results = new List<ScenarioResult>();
-            data.scenarioResultsData.Add(scenario.scenarioKey, results);
+            data.scenarioResultsData.Add(scenarioResult.scenarioKey, results);
         }
-        results.Add(scenario);
+        results.Add(scenarioResult);
 
         //Debug.LogFormat("Saved scenario results with key [{0}], unlocks of [{1}], and description of [{2}]", scenario.scenarioKey, unlocks, scenario.description);
     }

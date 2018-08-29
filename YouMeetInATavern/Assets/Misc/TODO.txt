@@ -66,6 +66,6 @@ Cleric: art, sfx, dialog
 Cultist: art, sfx, dialog
 DEBUG: F5 restarts the game
 Scenario Data
--Scenario Results
--Reset deck on new scenario
+Scenario Results
 -No more day countdown
+-Reset deck on new scenario
