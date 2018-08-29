@@ -70,8 +70,9 @@ public class DEBUGController : MonoBehaviour {
         uint scenarioID = data.scenario.id;
         ScenarioResult result = data.scenarioResultsData[scenarioID][0];
         foreach (string key in result.unlocks) {
-            print("Adding " + key);
-            data.unlockedDialogueKeys.Add(key);
+            if (key.StartsWith("LOCATION_") == false) {
+                data.unlockedDialogueKeys.Add(key);
+            }
         }
     }
 }
