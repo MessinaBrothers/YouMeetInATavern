@@ -20,9 +20,6 @@ public class ResultsController : MonoBehaviour {
     }
 
     private void DisplayResults() {
-        // add location to unlocks (HACK)
-        data.chosenAnswerKeys.Add(data.chosenLocation.ToString());
-
         // get the applicable result
         ScenarioResult result = GetResult();
 
@@ -40,11 +37,16 @@ public class ResultsController : MonoBehaviour {
     }
 
     private ScenarioResult GetResult() {
+        // add location to answers
+        List<string> chosenAnswers = new List<string>(data.chosenAnswerKeys) {
+            data.chosenLocation.ToString()
+        };
+
         // iterate through results list
         for (int i = 0; i < data.scenarioResultsData[data.scenario.id].Count; i++) {
             ScenarioResult result = data.scenarioResultsData[data.scenario.id][i];
-            
-            if (IsUnlocked(result) == true) {
+
+            if (IsUnlocked(result, chosenAnswers) == true) {
                 // result is unlocked!
                 return result;
             }
@@ -70,14 +72,18 @@ public class ResultsController : MonoBehaviour {
     // ASSUMES results are in order from most specific to least specific
     // e.g. ITEM_HORSE, NPC_STABLEBOY result is compared before ITEM_HORSE result
     // if above example was reversed, former result would never appear, as latter result would always trigger first
-    private bool IsUnlocked(ScenarioResult result) {
-        if (result.unlocks[0] != GameData.DIALOGUE_DEFAULT) {
-            foreach (string unlock in result.unlocks) {
-                if (data.chosenAnswerKeys.Contains(unlock) == false) {
-                    return false;
-                }
+    private bool IsUnlocked(ScenarioResult result, List<string> chosenAnswers) {
+        // if result is the default result, always return true
+        if (result.unlocks[0] == GameData.DIALOGUE_DEFAULT) {
+            return true;
+        }
+        
+        foreach (string unlockKey in result.unlocks) {
+            if (chosenAnswers.Contains(unlockKey) == false) {
+                return false;
             }
         }
+
         return true;
     }
 }
