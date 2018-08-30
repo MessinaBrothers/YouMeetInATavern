@@ -34,6 +34,8 @@ public class ResultsController : MonoBehaviour {
         data.nextDialogueIntroKey = result.nextDialoguesKey;
         // handle rewards, if any
 
+        // reset answers
+        data.chosenAnswerKeys.Clear();
     }
 
     private ScenarioResult GetResult() {
