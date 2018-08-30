@@ -42,7 +42,7 @@ public class GUIController : MonoBehaviour {
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
 
         QuestionGUIController questionGUIController = dialoguePanel.GetComponentInChildren<QuestionGUIController>();
-        if (dialogueID == GameData.DIALOGUE_DEFAULT) {
+        if (dialogueID == GameData.DIALOGUE_DEFAULT || dialogueID.StartsWith("SCENARIO_")) {
             // update questions
             questionGUIController.LoadQuestions(data.selectedCard);
         } else {
