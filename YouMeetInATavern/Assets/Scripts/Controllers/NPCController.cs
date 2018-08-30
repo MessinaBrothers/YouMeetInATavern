@@ -23,8 +23,6 @@ public class NPCController : MonoBehaviour {
 
     public GameObject cardPrefab;
 
-    public bool startIntro;
-
     private GameData data;
 
     private Transform cardParent;
@@ -39,11 +37,7 @@ public class NPCController : MonoBehaviour {
 
     void Update() {
         if (data.gameMode == GameData.GameMode.INTRODUCE) {
-            if (startIntro == true) {
-                startIntro = false;
 
-                //npcIntroStartEventHandler.Invoke(card);
-            }
         }
     }
 
@@ -167,8 +161,6 @@ public class NPCController : MonoBehaviour {
     }
 
     private void ContinueDay() {
-        startIntro = true;
-
         // place already-introduced NPCs in the tavern
         ActivateNPCs();
 
@@ -199,13 +191,6 @@ public class NPCController : MonoBehaviour {
     }
 
     private void ReintroduceNPCs() {
-        /// TODO
-        /// Reintroduce NPCs that have relevant dialogue
-        /// e.g. Bartender after bringing her along on a quest
-        /// Quest rewards i.e. Adventurer are added elsewhere
-        /// All other already-introduced NPCs should just appear in the bar
-        /// 
-
         List<GameObject> previousNPCs = new List<GameObject>(introducedNPCs);
 
         introducedNPCs.Clear();
@@ -223,17 +208,5 @@ public class NPCController : MonoBehaviour {
                 introducedNPCs.Add(card);
             }
         }
-        
-        //foreach (KeyValuePair<string, NPCData> kvp in data.npcData) {
-        //    string npcKey = kvp.Key;
-        //    NPCData npc = kvp.Value;
-        //    // set the next dialogue. If the NPC has dialogue specific to the last scenario result, use it
-        //    if (data.npc_dialogues[npcKey].ContainsKey(data.nextDialogueIntroKey)) {
-        //        npc.nextDialogueID = data.nextDialogueIntroKey;
-        //    } else {
-        //        // otherwise, use the default into dialogue
-        //        npc.nextDialogueID = GameData.DIALOGUE_INTRO;
-        //    }
-        //}
     }
 }

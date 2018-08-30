@@ -39,7 +39,7 @@ public class ScenarioParser : MonoBehaviour {
 
         // parse NPCs to introduce
         uint day = 1;
-        for (int i = index; i < index + scenario.endsOnDay; i++) {
+        for (int i = index; i < lineData.Length; i++) {
             if (lineData[i].Trim().Length == 0) continue;
             
             // get existing list of NPCs to introduce (or create one)

@@ -13841,7 +13841,7 @@ MonoBehaviour:
   dayCount: 0
   selectedCard: {fileID: 0}
   npcsInTavern: []
-  nextScenarioIndex: 1
+  nextScenarioIndex: 0
   nextDialogueIntroKey: 
   unlockedDialogueKeys: []
   chosenAnswerKeys: []
@@ -21197,7 +21197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1183731708458380, guid: c4e7c4c2932725d4aa82b34c9654c10b, type: 2}
-  startIntro: 0
 --- !u!4 &1773317933
 Transform:
   m_ObjectHideFlags: 0
