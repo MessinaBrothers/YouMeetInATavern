@@ -1,6 +1,6 @@
                                  You Meet In A Tavern
 						     A Point-and-Click Adventure
-TODO: Next Scenario - WITCHES
+TODO: Next Scenario - CARAVAN
 Says something when clicked to converse
 After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
 Question Buttons show questions if dialogue has been unlocked
@@ -57,6 +57,7 @@ Only unlocked cards can be seen in the deck
 Add card swoosh when moving
 Profiler: Time loading the game
 Clean up scripts
+Next Scenario: Witches
 Mask: art, sfx
 Holy Water: art, sfx
 Robe: art, sfx
@@ -71,4 +72,9 @@ No more day countdown
 Bug: NPCs aren't being introduced on Day 2 and onwards
 Bug: Reintroducing an NPC doesn't set next dialog
 Reset NPCs on next scenario
--Reset deck on new scenario
+Reset deck on new scenario
+Next Scenario: Caravan
+Cards: Sword, Ring, Lute, Mercenary, Drunk, Bard
+-Scenario Data
+-Dialogue
+-Scenario Results

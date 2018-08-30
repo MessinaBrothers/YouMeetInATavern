@@ -99,3 +99,31 @@ NPC_CULTIST,0,NPC_CULTIST,"<>I shall do as you say, master – I mean, stranger.
 NPC_CULTIST,0,ITEM_ROBE,"<>You know what, take it. I have a dozen at home."
 NPC_CULTIST,1,LOCATION_WITCHES,<DIALOGUE_WITCHES>Know anything about witches?
 NPC_CULTIST,0,DIALOGUE_WITCHES,"<>No thanks, I’m not hungry."
+NPC_BARD,0,,<>Speak louder!
+NPC_BARD,0,intro,"<>A fine night for drinkin’! Say, you wouldn’t mind if I played a tune or two, would ya?"
+NPC_BARD,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO
+NPC_BARD,0,SCENARIO_2,"<>The <LOCATION_ROAD_2>road <>is calling, but I’m having too much fun playing my <ITEM_LUTE>lute <>right now. A <NPC_BARD>bard <>plays where he can, ya know."
+NPC_BARD,0,LOCATION_ROAD_2,"<>Aye, I just got into town, actually. We were dumb enough to make the journey. Not many caravans are making it these days."
+NPC_BARD,0,NPC_BARD,<>Ya got a gig?! Lead me to ‘em!
+NPC_BARD,0,ITEM_LUTE,"<>Ya can’t have my Betty, but I got a practice lute lying around if ya need it."
+NPC_BARD,1,LOCATION_ROAD_2_BANDITS,<DIALOGUE_2_BANDITS>Know anything about the bandits?
+NPC_BARD,0,DIALOGUE_2_BANDITS,"<>Big. Mean. Fire. I mean, probably? What’s there to know?"
+NPC_DRUNK,0,,<>Wass tha’?
+NPC_DRUNK,0,intro,"<>OoOoh, a tavern, thiss iss? Well, ssince I a’ready her, I gues I can stay an’ ‘ave a drink."
+NPC_DRUNK,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO
+NPC_DRUNK,0,SCENARIO_2,<>GET AWAY FROM ME! * hides <ITEM_RING>ring<>* Let <NPC_DRUNK>me <>drink in peace. I juss came from the <LOCATION_ROAD_2>road.
+NPC_DRUNK,0,LOCATION_ROAD_2,<>Roads? They’re everywhere thesse dayss! Can’t get away from ‘em. Can’t live wit’ ‘em. Yooouuu know how it iss.
+NPC_DRUNK,0,NPC_DRUNK,"<>Hey, if you’re buyin’, I’ll be your friend fer life!"
+NPC_DRUNK,0,ITEM_RING,<>Wha’ ring? What’re talkin’ abou’? *drops ring*
+NPC_DRUNK,1,LOCATION_ROAD_2_BANDITS,<DIALOGUE_2_BANDITS>Know anything about the bandits?
+NPC_DRUNK,0,DIALOGUE_2_BANDITS,<>They took mah daughter! *pukes*
+NPC_MERCENARY,0,,<>What?
+NPC_MERCENARY,0,intro,"<>Finally, a place where I can spend spend my coin."
+NPC_MERCENARY,0,default,"<>I’m a <NPC_MERCENARY>woman-for-hire, <>between <LOCATION_ROAD_GENERIC>caravans <>right now. Anyone can do it, as long as they have a <ITEM_SWORD>sword."
+NPC_MERCENARY,0,SCENARIO_2,"<>I’m a <NPC_MERCENARY>woman-for-hire, <>between <LOCATION_ROAD_2_BANDITS>caravans <>right now. Anyone can do it, as long as they have a <ITEM_SWORD>sword."
+NPC_MERCENARY,0,LOCATION_ROAD_GENERIC,"Yup, gets me outdoors. Fresh air, meet lots of people. What’s not to love?"
+NPC_MERCENARY,0,LOCATION_ROAD_2_BANDITS,"Last caravan for awhile, I think. Too many bandits on the road."
+NPC_MERCENARY,0,NPC_MERCENARY,<>You got a job to do? I’m game.
+NPC_MERCENARY,0,ITEM_SWORD,"<>Sure, you can borrow my sword. Anything, for a price."
+NPC_MERCENARY,1,LOCATION_ROAD_2_BANDITS,<DIALOGUE_2_BANDITS>Know anything about the bandits?
+NPC_MERCENARY,0,DIALOGUE_2_BANDITS,"<>They sure do like to party. Drink, music, the works."
