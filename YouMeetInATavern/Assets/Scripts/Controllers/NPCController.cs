@@ -43,8 +43,9 @@ public class NPCController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameInitializedEventHandler += CreateCards;
-        InputController.cardClickedEventHandler += HandleCardClick;
+        InputController.startNewScenarioEventHandler += ResetNPCs;
         InputController.startTavernEventHandler += ContinueDay;
+        InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
         InputController.npcLeavesEventHandler += Goodbye;
         InputController.endResultsEventHandler += ReintroduceNPCs;
@@ -52,8 +53,9 @@ public class NPCController : MonoBehaviour {
 
     void OnDisable() {
         InputController.gameInitializedEventHandler -= CreateCards;
-        InputController.cardClickedEventHandler -= HandleCardClick;
+        InputController.startNewScenarioEventHandler -= ResetNPCs;
         InputController.startTavernEventHandler -= ContinueDay;
+        InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
         InputController.npcLeavesEventHandler -= Goodbye;
         InputController.endResultsEventHandler -= ReintroduceNPCs;
@@ -73,6 +75,12 @@ public class NPCController : MonoBehaviour {
                 card.SetActive(false);  
             }
         }
+    }
+
+    private void ResetNPCs() {
+        introducedNPCs.Clear();
+        data.npcsToIntroduce.Clear();
+        data.npcsToReintroduce.Clear();
     }
 
     private void Goodbye() {

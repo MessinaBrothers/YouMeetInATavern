@@ -68,6 +68,7 @@ DEBUG: F5 restarts the game
 Scenario Data
 Scenario Results
 No more day countdown
--Bug: NPCs aren't being introduced on Day 2 and onwards
-INSTINCT: Scenario is now reset every night. That has to have something to do with it
+Bug: NPCs aren't being introduced on Day 2 and onwards
+-Bug: Reintroducing an NPC doesn't set next dialog
+-Reset NPCs on next scenario
 -Reset deck on new scenario
