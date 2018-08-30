@@ -75,6 +75,6 @@ Reset NPCs on next scenario
 Reset deck on new scenario
 Next Scenario: Caravan
 Cards: Sword, Ring, Lute, Mercenary, Drunk, Bard
--Scenario Data
--Dialogue
--Scenario Results
+Scenario Data
+Dialogue
+Scenario Results
