@@ -69,6 +69,6 @@ Scenario Data
 Scenario Results
 No more day countdown
 Bug: NPCs aren't being introduced on Day 2 and onwards
--Bug: Reintroducing an NPC doesn't set next dialog
--Reset NPCs on next scenario
+Bug: Reintroducing an NPC doesn't set next dialog
+Reset NPCs on next scenario
 -Reset deck on new scenario

@@ -12,8 +12,8 @@ public class InputController : MonoBehaviour {
     public static event GameModeChangedEventHandler gameModeChangedEventHandler;
     public delegate void GameModeChangedEventHandler(GameData.GameMode mode);
 
-    public static event StartNewScenarioEventHandler startNewScenarioEventHandler;
-    public delegate void StartNewScenarioEventHandler();
+    public static event StartNewScenarioEventHandler newScenarioStartedEventHandler;
+    public delegate void StartNewScenarioEventHandler(GameData data);
 
     public static event StartTavernEventHandler startTavernEventHandler;
     public delegate void StartTavernEventHandler();
@@ -99,7 +99,8 @@ public class InputController : MonoBehaviour {
     }
 
     public static void StartNewScenario() {
-        startNewScenarioEventHandler.Invoke();
+        newScenarioStartedEventHandler.Invoke(data);
+        guiController.StartScenario(data);
     }
 
     public static void ContinueDay() {

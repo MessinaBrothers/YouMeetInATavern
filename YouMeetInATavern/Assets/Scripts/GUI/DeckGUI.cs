@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckController : MonoBehaviour {
+public class DeckGUI : MonoBehaviour {
 
     public GameObject cardbackPrefab, cardPrefab;
 
@@ -25,12 +25,7 @@ public class DeckController : MonoBehaviour {
     public bool addCard;
     public int startWithAddedCards;
 
-    void Start() {
-        cardCount = 0;
-        spreadTimer = 0;
-
-        isSpreading = false;
-
+    public void Load(GameData data) {
         alreadyUnlockedKeywords = new List<string>();
 
         deckParent = new GameObject("Deck").transform;
@@ -49,10 +44,10 @@ public class DeckController : MonoBehaviour {
 
         // DEBUG
         for (int i = 0; i < startWithAddedCards; i++) AddCard();
-        GameData data = FindObjectOfType<GameData>();
-        for (int i = 0; i < data.unlockedDialogueKeys.Count - 1; i++) {
-            AddCard();
-        }
+    }
+
+    void Start() {
+
     }
 
     void Update() {
@@ -82,6 +77,29 @@ public class DeckController : MonoBehaviour {
         InputController.cardEnteredDeckEventHandler -= EnterDeck;
         InputController.deckHoverEventHandler -= ToggleSpreading;
         InputController.deckClickedEventHander -= DisplayDeck;
+    }
+
+    public void ResetDeck(GameData data) {
+        cardCount = 0;
+        spreadTimer = 0;
+
+        isSpreading = false;
+
+        if (alreadyUnlockedKeywords != null) {
+            alreadyUnlockedKeywords.Clear();
+        }
+
+        if (deckCards != null) {
+            foreach (GameObject card in deckCards) {
+                card.SetActive(false);
+            }
+        }
+    }
+
+    public void ReloadDeck(GameData data) {
+        for (int i = cardCount; i < data.unlockedDialogueKeys.Count; i++) {
+            AddCard();
+        }
     }
 
     private void HandleDialogue(string unlockKey) {

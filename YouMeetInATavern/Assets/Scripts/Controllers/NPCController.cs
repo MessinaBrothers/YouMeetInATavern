@@ -43,7 +43,7 @@ public class NPCController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameInitializedEventHandler += CreateCards;
-        InputController.startNewScenarioEventHandler += ResetNPCs;
+        InputController.newScenarioStartedEventHandler += ResetNPCs;
         InputController.startTavernEventHandler += ContinueDay;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
@@ -53,7 +53,7 @@ public class NPCController : MonoBehaviour {
 
     void OnDisable() {
         InputController.gameInitializedEventHandler -= CreateCards;
-        InputController.startNewScenarioEventHandler -= ResetNPCs;
+        InputController.newScenarioStartedEventHandler -= ResetNPCs;
         InputController.startTavernEventHandler -= ContinueDay;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
@@ -77,7 +77,7 @@ public class NPCController : MonoBehaviour {
         }
     }
 
-    private void ResetNPCs() {
+    private void ResetNPCs(GameData data) {
         introducedNPCs.Clear();
         data.npcsToIntroduce.Clear();
         data.npcsToReintroduce.Clear();

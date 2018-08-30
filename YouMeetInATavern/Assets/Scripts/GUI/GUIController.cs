@@ -20,6 +20,7 @@ public class GUIController : MonoBehaviour {
         data = FindObjectOfType<GameData>();
 
         deckPanel.GetComponent<ViewDeckController>().Load(data);
+        hudPanel.GetComponentInChildren<DeckGUI>().Load(data);
     }
 
     void Update() {
@@ -54,6 +55,10 @@ public class GUIController : MonoBehaviour {
         dialoguePanel.SetActive(true);
     }
 
+    public void StartScenario(GameData data) {
+        hudPanel.GetComponentInChildren<DeckGUI>().ResetDeck(data);
+    }
+
     public void StopConverse() {
         DeactivateAll();
         hudPanel.SetActive(true);
@@ -67,6 +72,7 @@ public class GUIController : MonoBehaviour {
     public void ContinueDay() {
         DeactivateAll();
         hudPanel.SetActive(true);
+        hudPanel.GetComponentInChildren<DeckGUI>().ReloadDeck(data);
     }
 
     public void EndDay() {
