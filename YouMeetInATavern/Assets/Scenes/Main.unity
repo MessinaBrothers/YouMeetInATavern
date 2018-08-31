@@ -13842,7 +13842,7 @@ MonoBehaviour:
   dayCount: 0
   selectedCard: {fileID: 0}
   npcsInTavern: []
-  nextScenarioIndex: 2
+  nextScenarioIndex: 3
   nextDialogueIntroKey: 
   unlockedDialogueKeys: []
   chosenAnswerKeys: []

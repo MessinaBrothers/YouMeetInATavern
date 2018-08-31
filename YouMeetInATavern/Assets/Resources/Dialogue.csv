@@ -60,11 +60,6 @@ NPC_TOWNWATCH,1,LOCATION_TOWN_GENERICROBBED,<LOCATION_GREENTRAPS>Robberies in to
 NPC_TOWNWATCH,0,LOCATION_GREENTRAPS,<>The whole town’s up in arms about some robber. Thing is...it’s not just one robber - It’s a whole gang of green guys! We don’t know WHAT they are. They only enter town at night. Don’t believe me? <NPC_TOWNWATCH>Join me in a patrol and I’ll lead you right to ‘em. <>We just can’t catch the little guys due to all the traps they lay out for us.
 NPC_TOWNWATCH,1,DIALOGUE_TOWNKOBOLDS,<DIALOGUE_TOWNKOBOLDS>They’re kobolds!
 NPC_TOWNWATCH,0,DIALOGUE_TOWNKOBOLDS,"<>Well, whatever they are, they’re tricky little things. Our <ITEM_TORCH>torches <>are useless against them! We need <NPC_TOWNWATCH>assistance."
-NPC_ADVENTURER,0,,<>Speak up!
-NPC_ADVENTURER,0,intro,<>Well met!
-NPC_ADVENTURER,0,default,<>So...got any work?
-NPC_ADVENTURER,0,SCENARIO_KOBOLDS_CORRECT,<>I heard you defended the town against kobolds last night. Well done! Nice to know there’s a fellow adventurer in town.
-NPC_ADVENTURER,1,TEST,<>Test result. Shouldn’t show up in game.
 NPC_LOREMASTER,0,,<>Speak up!
 NPC_LOREMASTER,0,intro,"<>Ahh, the ol’ tavern. Looks like a quiet night, too. Perfect for some reading by candlelight."
 NPC_LOREMASTER,0,default,"<>Got a question? I may know a thing or two. <LOCATION_TOWN_GENERIC>Townsfolk <>refer to me as the <NPC_LOREMASTER>Loremaster. <>But I just like reading. Now, where did I put those <ITEM_GLASSES>glasses…"
@@ -130,3 +125,30 @@ NPC_MERCENARY,0,NPC_MERCENARY,<>You got a job to do? I’m game.
 NPC_MERCENARY,0,ITEM_SWORD,"<>Sure, you can borrow my sword. Anything, for a price."
 NPC_MERCENARY,1,LOCATION_ROAD_2_BANDITS,<DIALOGUE_2_BANDITS>Know anything about the bandits?
 NPC_MERCENARY,0,DIALOGUE_2_BANDITS,"<>They sure do like to party. Drink, music, the works."
+NPC_WIZARD,0,,<>I can’t hear you.
+NPC_WIZARD,0,intro,<>Wizard introduction.
+NPC_WIZARD,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO
+NPC_WIZARD,0,SCENARIO_3,<><NPC_WIZARD>Wizard <><ITEM_WAND>Wand <><LOCATION_MOUNTAIN_3>Mountain
+NPC_WIZARD,0,LOCATION_MOUNTAIN_3,<>I was in the mountains.
+NPC_WIZARD,0,NPC_WIZARD,<>I will follow you.
+NPC_WIZARD,0,ITEM_WAND,<>Here is my item.
+NPC_WIZARD,1,LOCATION_MOUNTAIN_3,<DIALOGUE_3_RESPONSE>Know anything?
+NPC_WIZARD,0,DIALOGUE_3_RESPONSE,<>I know some things.
+NPC_NECROMANCER,0,,<>I can’t hear you.
+NPC_NECROMANCER,0,intro,<>Necromancer introduction.
+NPC_NECROMANCER,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO
+NPC_NECROMANCER,0,SCENARIO_3,<><NPC_NECROMANCER> Necromancer <><ITEM_DOLL>Doll <><LOCATION_MOUNTAIN_3>Mountain
+NPC_NECROMANCER,0,LOCATION_MOUNTAIN_3,<>I was in the mountains.
+NPC_NECROMANCER,0,NPC_NECROMANCER,<>I will follow you.
+NPC_NECROMANCER,0,ITEM_DOLL,<>Here is my item.
+NPC_NECROMANCER,1,LOCATION_MOUNTAIN_3,<DIALOGUE_3_RESPONSE>Know anything?
+NPC_NECROMANCER,0,DIALOGUE_3_RESPONSE,<>I know some things.
+NPC_ADVENTURER,0,,<>I can’t hear you.
+NPC_ADVENTURER,0,intro,<>Adventurer introduction.
+NPC_ADVENTURER,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO
+NPC_ADVENTURER,0,SCENARIO_3,<><NPC_ADVENTURER> Adventurer <><ITEM_TENFOOTPOLE>10 foot Pole <><LOCATION_MOUNTAIN_3>Mountain
+NPC_ADVENTURER,0,LOCATION_MOUNTAIN_3,<>I was in the mountains.
+NPC_ADVENTURER,0,NPC_ADVENTURER,<>I will follow you.
+NPC_ADVENTURER,0,ITEM_TENFOOTPOLE,<>Here is my item.
+NPC_ADVENTURER,1,LOCATION_MOUNTAIN_3,<DIALOGUE_3_RESPONSE>Know anything?
+NPC_ADVENTURER,0,DIALOGUE_3_RESPONSE,<>I know some things.

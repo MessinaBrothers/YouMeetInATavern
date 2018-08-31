@@ -1,6 +1,6 @@
                                  You Meet In A Tavern
 						     A Point-and-Click Adventure
-TODO: Next Scenario - CARAVAN
+TODO: Next Scenario - SHIP
 Says something when clicked to converse
 After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
 Question Buttons show questions if dialogue has been unlocked
@@ -74,7 +74,17 @@ Bug: Reintroducing an NPC doesn't set next dialog
 Reset NPCs on next scenario
 Reset deck on new scenario
 Next Scenario: Caravan
-Cards: Sword, Ring, Lute, Mercenary, Drunk, Bard
-Scenario Data
-Dialogue
-Scenario Results
+Caravan Cards: Sword, Ring, Lute, Mercenary, Drunk, Bard
+Caravan Scenario Data
+Caravan Dialogue
+Caravan Scenario Results
+Next Scenario: Dragon
+Dragon Cards: Wand, Doll, Pole, Wizard, Necrom, Adventurer
+Dragon Scenario Data
+Dragon Dialogue
+Dragon Scenario Results
+-Next Scenario: Ship
+-Ship Cards: Wand, Doll, Pole, Wizard, Necrom, Adventurer
+-Ship Scenario Data
+-Ship Dialogue
+-Ship Scenario Results
