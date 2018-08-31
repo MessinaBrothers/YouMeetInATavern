@@ -58,14 +58,14 @@ public class CardMoveController : MonoBehaviour {
     private void Introduce(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(offscreenPos, introPos, 1, Wait);
+        move.Set(offscreenPos, introPos, data.cardIntroductionSpeed, Wait);
     }
 
     private void Converse(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
 
-        move.Set(card.transform, conversePos, 1, StartDialogue);
+        move.Set(card.transform, conversePos, data.cardConverseSpeed, StartDialogue);
         
         // disable wandering
         card.GetComponent<CardWander>().enabled = false;
@@ -89,19 +89,19 @@ public class CardMoveController : MonoBehaviour {
         }
 
 
-        move.Set(previewStartPos, previewEndPos, 0.75f, PreviewWait);
+        move.Set(previewStartPos, previewEndPos, data.cardPreviewSpeed, PreviewWait);
     }
 
     private void PreviewWait(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(previewEndPos, previewEndPos, .5f, EnterDeck);
+        move.Set(previewEndPos, previewEndPos, data.cardPreviewWaitTime, EnterDeck);
     }
 
     private void EnterDeck(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(previewEndPos, deckPos, 0.5f, EnteredDeck);
+        move.Set(previewEndPos, deckPos, data.cardPreviewEnterDeckSpeed, EnteredDeck);
     }
 
     private void EnteredDeck(GameObject card) {
@@ -111,7 +111,7 @@ public class CardMoveController : MonoBehaviour {
     private void Stop(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(conversePos, enterTavernPos, 1, Wander);
+        move.Set(conversePos, enterTavernPos, data.cardEnterTavernSpeed, Wander);
     }
 
     private void LeaveTavernAll() {
@@ -123,13 +123,13 @@ public class CardMoveController : MonoBehaviour {
     private void Goodbye() {
         CardMove move = data.selectedCard.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(conversePos, exitPos, 1, ExitTavern);
+        move.Set(conversePos, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
     }
 
     private void LeaveTavern(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(card.transform, exitPos, 1, ExitTavern);
+        move.Set(card.transform, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
 
         // disable wandering
         card.GetComponent<CardWander>().enabled = false;

@@ -18,10 +18,18 @@ public class GameData : MonoBehaviour {
     //public Dictionary<string, CardData> itemData;
     public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
 
+    [Header("NPCs")]
     public GameObject selectedCard;
     public List<GameObject> npcsInTavern;
     public Queue<string> npcsToIntroduce;
     public Queue<GameObject> npcsToReintroduce;
+    public float cardIntroductionSpeed = 1f;
+    public float cardConverseSpeed = 1f;
+    public float cardEnterTavernSpeed = 1f;
+    public float cardLeaveTavernSpeed = 1f;
+    public float cardPreviewSpeed = 0.75f;
+    public float cardPreviewWaitTime = 0.5f;
+    public float cardPreviewEnterDeckSpeed = 0.5f;
 
     [Header("Scenario")]
     public uint nextScenarioIndex;
@@ -40,7 +48,7 @@ public class GameData : MonoBehaviour {
     public GameMode gameMode;
 
     public enum Location {
-        NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST
+        NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
     }
     [Header("Conclusion")]
     public Location chosenLocation;

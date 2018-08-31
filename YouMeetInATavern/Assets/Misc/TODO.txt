@@ -83,8 +83,12 @@ Dragon Cards: Wand, Doll, Pole, Wizard, Necrom, Adventurer
 Dragon Scenario Data
 Dragon Dialogue
 Dragon Scenario Results
--Next Scenario: Ship
--Ship Cards: Wand, Doll, Pole, Wizard, Necrom, Adventurer
--Ship Scenario Data
--Ship Dialogue
--Ship Scenario Results
+Next Scenario: Ship
+Ship Item Cards: Ship, Spice, Horse, Rose
+Ship NPC Cards: Smuggler, Foreigner, Knight, Princess
+Ship Scenario Data
+Ship Dialogue
+Ship Scenario Results
+-Reformat scenario results data: rows instead of splits
+-If NPC already introduced in a previous scenario, don't introduce them again
+-Post-introduction random scenarios x2

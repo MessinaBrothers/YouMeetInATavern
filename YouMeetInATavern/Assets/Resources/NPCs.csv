@@ -14,9 +14,31 @@ NPC_DRUNK,Drunk,Sack_of_Gnomes,VO_HERO_04_Greetings_01,VO_HERO_04_Time_11,VO_HER
 NPC_BARD,Bard,Russell_the_Bard,VO_CS2_152_Play_01,VO_CS2_152_Death_03,VO_CS2_152_Attack_02,VO_CS2_152_Attack_02,VO_CS2_152_Attack_02,VO_CS2_152_Attack_02,,
 NPC_WIZARD,Wizard,Graves_the_Cleric,VO_EX1_021_Play_01,VO_EX1_021_Death_03,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,,
 NPC_NECROMANCER,Necromancer,Rin__the_First_Disciple,VO_EX1_055_Play_01,VO_EX1_055_Death_03,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,,
-NPC_ADVENTURER,Adventurer,Marin_the_Fox,VO_EX1_044_Play_01,VO_EX1_044_Death_03,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,,
+NPC_ADVENTURER,Adventurer,George_and_Karl,VO_EX1_044_Play_01,VO_EX1_044_Death_03,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,,
+NPC_SMUGGLER,Smuggler,Marin_the_Fox,VO_CS2_161_Play_01,VO_CS2_161_Death_03,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,,
+NPC_FOREIGNER,Foreigner,Sandbinder,VO_CS2_179_Play_01,VO_CS2_179_Death_03,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,,
+NPC_KNIGHT,Knight,Lynessa_Sunsorrow,VO_EX1_008_Play_01,VO_EX1_008_Death_03,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,,
+NPC_PRINCESS,Princess,Swift_Messenger,VO_EX1_004_Play_01,VO_EX1_004_Death_03,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,,
 ,,,,,,,,,,
 Play Sound,Attack Sound,NA,Play,Death,Attack,Attack2,Attack3,Attack4,Female?,Used?
+"One shot, one kill.",I’ll give it a shot.,Beastly_Beauty,VO_CS2_189_Play_01,VO_CS2_189_Death_03,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,f,x
+Is someone injured?,Right away!,Beastly_Beauty,VO_CS2_235_Play_01,VO_CS2_235_Death_03,VO_CS2_235_Attack_02,VO_CS2_235_Attack_02,VO_CS2_235_Attack_02,VO_CS2_235_Attack_02,f,x
+I can taste the mana!,"Ah, what a rush!",Beastly_Beauty,VO_EX1_055_Play_01,VO_EX1_055_Death_03,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,f,x
+HS_SYLVANAS,Sylvanas,Beastly_Beauty,VO_Sylvanas_01_Play_01,VO_Sylvanas_04_Death_04,VO_Sylvanas_02_Attack_02,VO_Sylvanas_02_Attack_02,VO_Sylvanas_02_Attack_02,VO_Sylvanas_02_Attack_02,f,x
+What does the future hold?,I See Your End,Beastly_Beauty,VO_EX1_021_Play_01,VO_EX1_021_Death_03,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,,x
+Give me a quest!,Quest accepted!,Beastly_Beauty,VO_EX1_044_Play_01,VO_EX1_044_Death_03,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,,x
+Pass me that arclight spanner.,"Hey, gimme a minute!",Beastly_Beauty,VO_CS2_147_Play_01,VO_CS2_147_Death_03,VO_CS2_147_Attack_02,VO_CS2_147_Attack_02,VO_CS2_147_Attack_02,VO_CS2_147_Attack_02,f,
+Don’t mess with tusker.,"Suck steel, swine.",Beastly_Beauty,VO_CS2_196_Play_01,VO_CS2_196_Death_03,VO_CS2_196_Attack_02,VO_CS2_196_Attack_02,VO_CS2_196_Attack_02,VO_CS2_196_Attack_02,f,
+I’m flying!,Ah hahahaha!,Beastly_Beauty,VO_CS2_213_Play_01,VO_CS2_213_Death_03,VO_CS2_213_Attack_02,VO_CS2_213_Attack_02,VO_CS2_213_Attack_02,VO_CS2_213_Attack_02,f,
+Is there trouble? (echo),I’m game. (echo),Beastly_Beauty,VO_DREAM_01_Play_01,VO_DREAM_01_Death_03,VO_DREAM_01_Attack_02,VO_DREAM_01_Attack_02,VO_DREAM_01_Attack_02,VO_DREAM_01_Attack_02,f,
+For Narjatar.,Where ssshall I ssstrike?,Beastly_Beauty,VO_DS1_055_Play_01,VO_DS1_055_Death_03,VO_DS1_055_Attack_02,VO_DS1_055_Attack_02,VO_DS1_055_Attack_02,VO_DS1_055_Attack_02,f,
+In the light’s name.,Face da light.,Beastly_Beauty,VO_EX1_001_Play_01,VO_EX1_001_Death_03,VO_EX1_001_Attack_02,VO_EX1_001_Attack_02,VO_EX1_001_Attack_02,VO_EX1_001_Attack_02,f,
+Do you need a blessing?,More training?,Beastly_Beauty,VO_EX1_004_Play_01,VO_EX1_004_Death_03,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,f,x
+The light protects me.,I fight.,Beastly_Beauty,VO_EX1_008_Play_01,VO_EX1_008_Death_03,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,f,x
+I hope you like my invention.,"Oh, if you’re sure.",Beastly_Beauty,VO_EX1_015_Play_01,VO_EX1_015_Death_03,VO_EX1_015_Attack_02,VO_EX1_015_Attack_02,VO_EX1_015_Attack_02,VO_EX1_015_Attack_02,f,
+We must cleanse the sunwell.,Push forward.,Beastly_Beauty,VO_EX1_019_Play_01,VO_EX1_019_Death_03,VO_EX1_019_Attack_02,VO_EX1_019_Attack_02,VO_EX1_019_Attack_02,VO_EX1_019_Attack_02,f,
+For the Crusade!,"Join, or die.",Beastly_Beauty,VO_EX1_020_Play_01,VO_EX1_020_Death_03,VO_EX1_020_Attack_02,VO_EX1_020_Attack_02,VO_EX1_020_Attack_02,VO_EX1_020_Attack_02,f,
+Just me and Mr Bitey.,Yuhhh!,Beastly_Beauty,VO_EX1_025_Play_01,VO_EX1_025_Death_03,VO_EX1_025_Attack_02,VO_EX1_025_Attack_02,VO_EX1_025_Attack_02,VO_EX1_025_Attack_02,f,
 HS_DrBoom,Dr Boom,Beastly_Beauty,GVG_110_DrBoom_Play,GVG_110_DrBoom_Death,GVG_110_DrBoom_Attack,GVG_110_DrBoom_Attack,GVG_110_DrBoom_Attack,GVG_110_DrBoom_Attack,,
 HS_FootSoldier,FootSoldier,Beastly_Beauty,VO_CS1_042_Play_01,VO_CS1_042_Death_03,VO_CS1_042_Attack_02,VO_CS1_042_Attack_02,VO_CS1_042_Attack_02,VO_CS1_042_Attack_02,,
 HS_FLAMEIMP,Flame Imp,Beastly_Beauty,VO_CS2_059_Play_01,VO_CS2_059_Death_03,VO_CS2_059_Attack_02,VO_CS2_059_Attack_02,VO_CS2_059_Attack_02,VO_CS2_059_Attack_02,,
@@ -30,51 +52,34 @@ HS_DIREWOLFRIDER,Wolf Rider,Beastly_Beauty,VO_CS2_124_Play_01,VO_CS2_124_Death_0
 HS_ForTheKing,For the King,Beastly_Beauty,VO_CS2_131_Play_01,VO_CS2_131_Death_03,VO_CS2_131_Attack_02,VO_CS2_131_Attack_02,VO_CS2_131_Attack_02,VO_CS2_131_Attack_02,,
 HS_GameHunter,Game Hunter,Beastly_Beauty,VO_CS2_141_Play_01,VO_CS2_141_Death_03,VO_CS2_141_Attack_02,VO_CS2_141_Attack_02,VO_CS2_141_Attack_02,VO_CS2_141_Attack_02,,
 HS_KOBOLD,Kobold,Beastly_Beauty,VO_CS2_142_Play_01,VO_CS2_142_Death_03,VO_CS2_142_Attack_02,VO_CS2_142_Attack_02,VO_CS2_142_Attack_02,VO_CS2_142_Attack_02,,
-Pass me that arclight spanner.,"Hey, gimme a minute!",Beastly_Beauty,VO_CS2_147_Play_01,VO_CS2_147_Death_03,VO_CS2_147_Attack_02,VO_CS2_147_Attack_02,VO_CS2_147_Attack_02,VO_CS2_147_Attack_02,f,
 HS_DwarfGunner,Dwarf Gunner,Beastly_Beauty,VO_CS2_150_Play_01,VO_CS2_150_Death_03,VO_CS2_150_Attack_02,VO_CS2_150_Attack_02,VO_CS2_150_Attack_02,VO_CS2_150_Attack_02,,
 "Squire, attend me!",To battle!,Beastly_Beauty,VO_CS2_151_Play_01,VO_CS2_151_Death_03,VO_CS2_151_Attack_02,VO_CS2_151_Attack_02,VO_CS2_151_Attack_02,VO_CS2_151_Attack_02,,
 "Ready, sir.","Uh, if you insist.",Beastly_Beauty,VO_CS2_152_Play_01,VO_CS2_152_Death_03,VO_CS2_152_Attack_02,VO_CS2_152_Attack_02,VO_CS2_152_Attack_02,VO_CS2_152_Attack_02,,
 Are you ready for this?,Don’t blink.,Beastly_Beauty,VO_CS2_155_Play_01,VO_CS2_155_Death_03,VO_CS2_155_Attack_02,VO_CS2_155_Attack_02,VO_CS2_155_Attack_02,VO_CS2_155_Attack_02,,
-I hear you got a problem.,"Hehe, problem solved.",Beastly_Beauty,VO_CS2_161_Play_01,VO_CS2_161_Death_03,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,,
+I hear you got a problem.,"Hehe, problem solved.",Beastly_Beauty,VO_CS2_161_Play_01,VO_CS2_161_Death_03,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,VO_CS2_161_Attack_02,,x
 The gates are open!,Farewell.,Beastly_Beauty,VO_CS2_162_Play_01,VO_CS2_162_Death_03,VO_CS2_162_Attack_02,VO_CS2_162_Attack_02,VO_CS2_162_Attack_02,VO_CS2_162_Attack_02,,
-"Taz’dingo! Hehehe, yes.","Jahahahaaa, man!",Beastly_Beauty,VO_CS2_179_Play_01,VO_CS2_179_Death_03,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,,
+"Taz’dingo! Hehehe, yes.","Jahahahaaa, man!",Beastly_Beauty,VO_CS2_179_Play_01,VO_CS2_179_Death_03,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,,x
 HS_INJUREDBLADEMASTER,Injured Blademaster,Beastly_Beauty,VO_CS2_181_Play_01,VO_CS2_181_Death_03,VO_CS2_181_Attack_02,VO_CS2_181_Attack_02,VO_CS2_181_Attack_02,VO_CS2_181_Attack_02,,
 HS_Mobster,Mobster,Beastly_Beauty,VO_CS2_187_Play_01,VO_CS2_187_Death_03,VO_CS2_187_Attack_02,VO_CS2_187_Attack_02,VO_CS2_187_Attack_02,VO_CS2_187_Attack_02,,
 HS_ABUSIVESERGEANT,Sergeant,Beastly_Beauty,VO_CS2_188_Play_01,VO_CS2_188_Death_03,VO_CS2_188_Attack_02,VO_CS2_188_Attack_02,VO_CS2_188_Attack_02,VO_CS2_188_Attack_02,,
-"One shot, one kill.",I’ll give it a shot.,Beastly_Beauty,VO_CS2_189_Play_01,VO_CS2_189_Death_03,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,f,x
-Don’t mess with tusker.,"Suck steel, swine.",Beastly_Beauty,VO_CS2_196_Play_01,VO_CS2_196_Death_03,VO_CS2_196_Attack_02,VO_CS2_196_Attack_02,VO_CS2_196_Attack_02,VO_CS2_196_Attack_02,f,
 HS_Ettin,TwoHeads,Beastly_Beauty,VO_CS2_197_Play_01_MIX,VO_CS2_197_Death_03_MIX,VO_CS2_197_Attack_02_MIX,VO_CS2_197_Attack_02_MIX,VO_CS2_197_Attack_02_MIX,VO_CS2_197_Attack_02_MIX,,
 HS_Ogre,Ogre,Beastly_Beauty,VO_CS2_200_Play_01,VO_CS2_200_Death_03,VO_CS2_200_Attack_02,VO_CS2_200_Attack_02,VO_CS2_200_Attack_02,VO_CS2_200_Attack_02,,
-I’m flying!,Ah hahahaha!,Beastly_Beauty,VO_CS2_213_Play_01,VO_CS2_213_Death_03,VO_CS2_213_Attack_02,VO_CS2_213_Attack_02,VO_CS2_213_Attack_02,VO_CS2_213_Attack_02,f,
 HS_Suffer,Suffer,Beastly_Beauty,VO_CS2_221_Play_01,VO_CS2_221_Death_03,VO_CS2_221_Attack_02,VO_CS2_221_Attack_02,VO_CS2_221_Attack_02,VO_CS2_221_Attack_02,,
 HS_STORMWINDCHAMPION,Champion,Beastly_Beauty,VO_CS2_222_Play_01,VO_CS2_222_Death_03,VO_CS2_222_Attack_02,VO_CS2_222_Attack_02,VO_CS2_222_Attack_02,VO_CS2_222_Attack_02,,
 HS_Frostwolf,Frostwolf,Beastly_Beauty,VO_CS2_226_Play_01,VO_CS2_226_Death_03,VO_CS2_226_Attack_02,VO_CS2_226_Attack_02,VO_CS2_226_Attack_02,VO_CS2_226_Attack_02,,
 HS_YouGottaKidding,HowYouDoing,Beastly_Beauty,VO_CS2_227_Play_01,VO_CS2_227_Death_03,VO_CS2_227_Attack_02,VO_CS2_227_Attack_02,VO_CS2_227_Attack_02,VO_CS2_227_Attack_02,,
-Is someone injured?,Right away!,Beastly_Beauty,VO_CS2_235_Play_01,VO_CS2_235_Death_03,VO_CS2_235_Attack_02,VO_CS2_235_Attack_02,VO_CS2_235_Attack_02,VO_CS2_235_Attack_02,f,x
-Is there trouble? (echo),I’m game. (echo),Beastly_Beauty,VO_DREAM_01_Play_01,VO_DREAM_01_Death_03,VO_DREAM_01_Attack_02,VO_DREAM_01_Attack_02,VO_DREAM_01_Attack_02,VO_DREAM_01_Attack_02,f,
-For Narjatar.,Where ssshall I ssstrike?,Beastly_Beauty,VO_DS1_055_Play_01,VO_DS1_055_Death_03,VO_DS1_055_Attack_02,VO_DS1_055_Attack_02,VO_DS1_055_Attack_02,VO_DS1_055_Attack_02,f,
-In the light’s name.,Face da light.,Beastly_Beauty,VO_EX1_001_Play_01,VO_EX1_001_Death_03,VO_EX1_001_Attack_02,VO_EX1_001_Attack_02,VO_EX1_001_Attack_02,VO_EX1_001_Attack_02,f,
 HS_BLACKKNIGHT,Black Knight,Beastly_Beauty,VO_EX1_002_Play_01,VO_EX1_002_Death_03,VO_EX1_002_Attack_02,VO_EX1_002_Attack_02,VO_EX1_002_Attack_02,VO_EX1_002_Attack_02,,
-Do you need a blessing?,More training?,Beastly_Beauty,VO_EX1_004_Play_01,VO_EX1_004_Death_03,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,f,
 HS_BIGGAMEHUNTER,Big Game Hunter,Beastly_Beauty,VO_EX1_005_Play_01,VO_EX1_005_Death_03,VO_EX1_005_Attack_02,VO_EX1_005_Attack_02,VO_EX1_005_Attack_02,VO_EX1_005_Attack_02,,
 HS_Acolyte,Acolyte,Beastly_Beauty,VO_EX1_007_Play_01,VO_EX1_007_Death_03,VO_EX1_007_Attack_02,VO_EX1_007_Attack_02,VO_EX1_007_Attack_02,VO_EX1_007_Attack_02,,
-The light protects me.,I fight.,Beastly_Beauty,VO_EX1_008_Play_01,VO_EX1_008_Death_03,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,f,
 HS_IsmellBlood,First Kill,Beastly_Beauty,VO_EX1_010_Play_01,VO_EX1_010_Death_03,VO_EX1_010_Attack_02,VO_EX1_010_Attack_02,VO_EX1_010_Attack_02,VO_EX1_010_Attack_02,,
 HS_VOODOODOCTOR,Voodoo Doctor,Beastly_Beauty,VO_EX1_011_Play_01,VO_EX1_011_Death_03,VO_EX1_011_Attack_02,VO_EX1_011_Attack_02,VO_EX1_011_Attack_02,VO_EX1_011_Attack_02,,
 HS_Soulsss,Soulssss,Beastly_Beauty,VO_EX1_012_Play_01,VO_EX1_012_Death_03,VO_EX1_012_Attack_02,VO_EX1_012_Attack_02,VO_EX1_012_Attack_02,VO_EX1_012_Attack_02,,
-I hope you like my invention.,"Oh, if you’re sure.",Beastly_Beauty,VO_EX1_015_Play_01,VO_EX1_015_Death_03,VO_EX1_015_Attack_02,VO_EX1_015_Attack_02,VO_EX1_015_Attack_02,VO_EX1_015_Attack_02,f,
-We must cleanse the sunwell.,Push forward.,Beastly_Beauty,VO_EX1_019_Play_01,VO_EX1_019_Death_03,VO_EX1_019_Attack_02,VO_EX1_019_Attack_02,VO_EX1_019_Attack_02,VO_EX1_019_Attack_02,f,
-For the Crusade!,"Join, or die.",Beastly_Beauty,VO_EX1_020_Play_01,VO_EX1_020_Death_03,VO_EX1_020_Attack_02,VO_EX1_020_Attack_02,VO_EX1_020_Attack_02,VO_EX1_020_Attack_02,f,
-What does the future hold?,I See Your End,Beastly_Beauty,VO_EX1_021_Play_01,VO_EX1_021_Death_03,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,VO_EX1_021_Attack_02,,x
 HS_SILVERMOONGUARDIAN,Silvermoon Guardian,Beastly_Beauty,VO_EX1_023_Play_01,VO_EX1_023_Death_03,VO_EX1_023_Attack_02,VO_EX1_023_Attack_02,VO_EX1_023_Attack_02,VO_EX1_023_Attack_02,,
-Just me and Mr Bitey.,Yuhhh!,Beastly_Beauty,VO_EX1_025_Play_01,VO_EX1_025_Death_03,VO_EX1_025_Attack_02,VO_EX1_025_Attack_02,VO_EX1_025_Attack_02,VO_EX1_025_Attack_02,f,
 I feel icky!,Gimme a big hug!,Beastly_Beauty,VO_EX1_029_Play_01,VO_EX1_029_Death_03,VO_EX1_029_Attack_02,VO_EX1_029_Attack_02,VO_EX1_029_Attack_02,VO_EX1_029_Attack_02,,
 Truth is my shield.,Justice will prevail.,Beastly_Beauty,VO_EX1_032_Play_01,VO_EX1_032_Death_03,VO_EX1_032_Attack_02,VO_EX1_032_Attack_02,VO_EX1_032_Attack_02,VO_EX1_032_Attack_02,,
-Give me a quest!,Quest accepted!,Beastly_Beauty,VO_EX1_044_Play_01,VO_EX1_044_Death_03,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,VO_EX1_044_Attack_02,,x
 Do you call tha’ a weapon? Huh!,Done.,Beastly_Beauty,VO_EX1_046_Play_01,VO_EX1_046_Death_03,VO_EX1_046_Attack_02,VO_EX1_046_Attack_02,VO_EX1_046_Attack_02,VO_EX1_046_Attack_02,,
 Your magic shall not save you.,"Die, mage.",Beastly_Beauty,VO_EX1_048_Play_01,VO_EX1_048_Death_03,VO_EX1_048_Attack_02,VO_EX1_048_Attack_02,VO_EX1_048_Attack_02,VO_EX1_048_Attack_02,,
 "Drink with me, friend.",Challenge accepted.,Beastly_Beauty,VO_EX1_049_Play_01,VO_EX1_049_Death_03,VO_EX1_049_Attack_02,VO_EX1_049_Attack_02,VO_EX1_049_Attack_02,VO_EX1_049_Attack_02,,
-I can taste the mana!,"Ah, what a rush!",Beastly_Beauty,VO_EX1_055_Play_01,VO_EX1_055_Death_03,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,VO_EX1_055_Attack_02,f,x
 "Behold, my mighty invention!",I won’t stand for that!,Beastly_Beauty,VO_EX1_112_Play_01,VO_EX1_112_Death_03,VO_EX1_112_Attack_02,VO_EX1_112_Attack_02,VO_EX1_112_Attack_02,VO_EX1_112_Attack_02,,
 Leeroy Jenkins!,"Time’s up, let’s do this.",Beastly_Beauty,VO_EX1_116_Play_01,VO_EX1_116_Death_03,VO_EX1_116_Attack_02,VO_EX1_116_Attack_02,VO_EX1_116_Attack_02,VO_EX1_116_Attack_02,,
 HS_RAGNAROS,Ragnaros,Beastly_Beauty,VO_EX1_298_Play_01,VO_EX1_298_Trigger_03,VO_EX1_298_Attack_02,VO_EX1_298_Attack_02,VO_EX1_298_Attack_02,VO_EX1_298_Attack_02,,
@@ -99,4 +104,3 @@ HS_WARLOCK,Gul’dan,Beastly_Beauty,VO_HERO_07_Greetings_01,VO_HERO_07_ERROR06_2
 HS_MAGE,Jaina,Beastly_Beauty,VO_HERO_08_Thinking3_69,VO_HERO_08_Thanks_60,VO_HERO_08_ERROR12_86,VO_HERO_08_Start_64,VO_HERO_08_Greetings_56,VO_HERO_08_Thinking2_68,,
 HS_PRIEST,Anduin,Beastly_Beauty,VO_HERO_09_Greetings_01,VO_HERO_09_Time_11,VO_HERO_09_Start_09,VO_HERO_09_Start_09,VO_HERO_09_Thinking1_12,VO_HERO_09_Thinking1_12,,
 HS_Pirate,Pirate,Beastly_Beauty,VO_NEW1_024_Play_01,VO_NEW1_024_Death_03,VO_NEW1_024_Attack_02,VO_NEW1_024_Attack_02,VO_NEW1_024_Attack_02,VO_NEW1_024_Attack_02,,
-HS_SYLVANAS,Sylvanas,Beastly_Beauty,VO_Sylvanas_01_Play_01,VO_Sylvanas_04_Death_04,VO_Sylvanas_02_Attack_02,VO_Sylvanas_02_Attack_02,VO_Sylvanas_02_Attack_02,VO_Sylvanas_02_Attack_02,f,x
