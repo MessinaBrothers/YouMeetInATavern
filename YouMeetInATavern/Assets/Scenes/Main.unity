@@ -13850,7 +13850,7 @@ MonoBehaviour:
   cardPreviewSpeed: 0.75
   cardPreviewWaitTime: 0.5
   cardPreviewEnterDeckSpeed: 0.5
-  nextScenarioIndex: 4
+  nextScenarioIndex: 0
   nextDialogueIntroKey: 
   unlockedDialogueKeys: []
   chosenAnswerKeys: []

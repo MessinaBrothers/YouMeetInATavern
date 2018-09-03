@@ -1,6 +1,6 @@
                                  You Meet In A Tavern
 						     A Point-and-Click Adventure
-TODO: Next Scenario - SHIP
+TODO: Scenario loop
 Says something when clicked to converse
 After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
 Question Buttons show questions if dialogue has been unlocked
@@ -90,5 +90,12 @@ Ship Scenario Data
 Ship Dialogue
 Ship Scenario Results
 -Reformat scenario results data: rows instead of splits
--If NPC already introduced in a previous scenario, don't introduce them again
+-If NPC already introduced in a previous scenario, begin scenario with them already in tavern
 -Post-introduction random scenarios x2
+-Three tavern areas: Bar, Exit, General
+-Bartender never leaves
+-Clock: every talk, a clock counts down to tavern closing. After close, choose cards/location
+-Redo Choose screen: location map, hand of cards
+-Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
+-Flush out / redo Scenarios
+-Tutorial: Explain mechanics, introduce NPCs and locations

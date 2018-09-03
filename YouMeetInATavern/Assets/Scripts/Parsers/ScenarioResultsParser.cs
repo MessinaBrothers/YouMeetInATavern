@@ -21,7 +21,7 @@ public class ScenarioResultsParser : MonoBehaviour {
             if (startParse && lines[i].Length > 0) {
                 ParseLine(lines[i]);
                 // don't start parsing until we've reached the NPC table
-            } else if (lines[i].StartsWith("ID,Unlocks")) {
+            } else if (lines[i].StartsWith("ID,Location")) {
                 startParse = true;
             }
         }
@@ -36,8 +36,14 @@ public class ScenarioResultsParser : MonoBehaviour {
         scenarioResult.scenarioKey = uint.Parse(lineData[index++]);
 
         // parse unlocks
-        string unlocks = lineData[index++];
-        scenarioResult.unlocks = new List<string>(unlocks.Split(GameData.PARSER_DELIMITER));
+        //string unlocks = lineData[index++];
+        //scenarioResult.unlocks = new List<string>(unlocks.Split(GameData.PARSER_DELIMITER));
+        List<string> unlocks = new List<string>();
+        for (int i = 0; i < 5; i++) {
+            if (lineData[index] != "") unlocks.Add(lineData[index]);
+            index += 1;
+        }
+        scenarioResult.unlocks = unlocks;
 
         // parse next dialogues
         scenarioResult.nextDialoguesKey = lineData[index++];
