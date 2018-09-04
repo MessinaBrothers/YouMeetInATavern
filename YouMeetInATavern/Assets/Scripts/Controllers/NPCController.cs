@@ -164,14 +164,42 @@ public class NPCController : MonoBehaviour {
     }
 
     private void ContinueDay() {
+        List<NPC> activeNPCs = new List<NPC>();
+
         // initialize each npc key in this scenario
         foreach (string key in data.scenario.npcs) {
             foreach (GameObject go in data.npcs) {
                 NPC npc = go.GetComponent<NPC>();
                 if (npc.key == key) {
                     Initialize(npc);
+
+                    // set leaving hour
+                    if (npc.key == "NPC_BARTENDER") {
+                        npc.hourLeavesTavern = data.tavernCloseHour;
+                    } else {
+                        // add to shuffle leaving hours
+                        activeNPCs.Add(npc);
+                    }
                 }
             }
+        }
+
+        // set the hour in which the NPCs leave
+        UnityUtility.Shuffle(activeNPCs);
+        int hourLeaving = data.tavernCloseHour;
+        int npcCountLeavingAtOneTime = 2;
+        for (int i = 0; i < activeNPCs.Count; i++) {
+            // if this hour is at max npc capacity
+            if (i % npcCountLeavingAtOneTime == 0) {
+                // decrement the hour
+                hourLeaving -= 1;
+                // reset if at opening hour
+                if (hourLeaving == data.tavernOpenHour) {
+                    hourLeaving = data.tavernCloseHour;
+                }
+            }
+            //Debug.LogFormat("{0} is leaving at {1}", activeNPCs[i].name, hourLeaving);
+            activeNPCs[i].hourLeavesTavern = hourLeaving;
         }
 
         // introduce the first NPC, if any

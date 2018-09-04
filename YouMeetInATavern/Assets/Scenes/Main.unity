@@ -9315,6 +9315,7 @@ MonoBehaviour:
   nightPanel: {fileID: 556712167}
   concludeScenarioPanel: {fileID: 1695240048}
   resultsPanel: {fileID: 1582258182}
+  clockGUI: {fileID: 0}
 --- !u!1 &737982942
 GameObject:
   m_ObjectHideFlags: 0
@@ -16564,7 +16565,7 @@ MonoBehaviour:
   wanderAreasExit:
   - {fileID: 705292098}
   - {fileID: 200376461}
-  nextScenarioIndex: 0
+  nextScenarioIndex: 3
   nextDialogueIntroKey: 
   unlockedDialogueKeys:
   - 

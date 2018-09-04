@@ -10,4 +10,6 @@ public class NPC : Key {
 
     public bool isUnintroduced;
 
+    public int hourLeavesTavern;
+
 }

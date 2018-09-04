@@ -92,8 +92,10 @@ Ship Scenario Results
 Reformat scenario results data: rows instead of splits
 Change NPC introductions for first day only
 Three tavern areas: Bar, Exit, General
--Clock: every talk, a clock counts down to tavern closing. After close, choose cards/location
+Clock: counts down after conversing
+Clock: give NPCs an hour to leave
 -Clock: each NPC leaves at x time
+-Clock: after close, choose cards/location
 -Bartender never leaves
 -Redo Choose screen: location map, hand of cards
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
