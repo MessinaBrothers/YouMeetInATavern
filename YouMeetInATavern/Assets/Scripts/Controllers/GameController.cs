@@ -12,13 +12,13 @@ public class GameController : MonoBehaviour {
         print("Game initialized. Loading scenario...");
 
         data = FindObjectOfType<GameData>();
-
-        // load scenario
-        LoadScenario();
         
         data.nextDialogueIntroKey = GameData.DIALOGUE_INTRO;
 
         InputController.GameInitialized();
+
+        // load scenario
+        LoadScenario();
     }
 
     void OnEnable() {
@@ -35,10 +35,11 @@ public class GameController : MonoBehaviour {
         // reset day if this is a new scenario
         if (data.scenario == null || data.scenario.id != data.nextScenarioIndex) {
             data.dayCount = 0;
+
+            data.scenario = data.scenarios[data.nextScenarioIndex];
+
             InputController.StartNewScenario();
         }
-        
-        data.scenario = data.scenarios[data.nextScenarioIndex];
         
         InputController.StartDay();
     }

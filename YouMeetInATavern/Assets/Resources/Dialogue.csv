@@ -23,6 +23,7 @@ NPC_BARTENDER,0,RESULT_0_MISSING,<>Heard you went out and tried to stop those ro
 NPC_BARTENDER,0,RESULT_0_BARTENDER,<>Sorry about last night. I’m no good at that kind of stuff! You should talk to the Town Watch if you want real help.
 NPC_BARTENDER,0,RESULT_0_WRONG,<>Did you hear? Burglars struck the town again! That Town Watch is less than useless!
 NPC_BARTENDER,0,RESULT_1_WRONG,<>Some townsfolk went missing during the night! What’s going on?!
+NPC_BARTENDER,0,RESULT_5_CORRECT,<>Reintroduce bartender to Scenario 6
 NPC_MERCHANT,0,,<>I don’t understand you.
 NPC_MERCHANT,0,intro,<>The tavern has about as many customers as I had all day – not many! Where’s everyone gone?
 NPC_MERCHANT,0,default,ERROR: NO DIALOGUE FOR THIS SCENARIO

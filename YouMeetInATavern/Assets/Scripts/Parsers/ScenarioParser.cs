@@ -38,31 +38,11 @@ public class ScenarioParser : MonoBehaviour {
         scenario.endsOnDay = uint.Parse(lineData[index++]);
 
         // parse NPCs to introduce
-        uint day = 1;
-        for (int i = index; i < lineData.Length; i++) {
-            if (lineData[i].Trim().Length == 0) continue;
-            
-            // get existing list of NPCs to introduce (or create one)
-            List<string> npcsToIntroduce;
-            if (scenario.day_introductions.ContainsKey(day)) {
-                npcsToIntroduce = scenario.day_introductions[day];
-            } else {
-                npcsToIntroduce = new List<string>();
-                scenario.day_introductions.Add(day, npcsToIntroduce);
-            }
-
-            // split the NPC IDs
-            string[] npcIDs = lineData[i].Split('-');
-
-            // for each NPC id, add it to the list of NPCs for the day
-            for (int j = 0; j < npcIDs.Length; j++) {
-                npcsToIntroduce.Add(npcIDs[j]);
-            }
-
-            // increment the day
-            day += 1;
+        scenario.npcs = new List<string>();
+        foreach (string s in lineData[index++].Split(GameData.PARSER_DELIMITER)) {
+            scenario.npcs.Add(s.Trim());
         }
-
+        
         // save scenario to game data
         data.scenarios.Add(scenario.id, scenario);
     }

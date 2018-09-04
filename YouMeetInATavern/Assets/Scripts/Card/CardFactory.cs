@@ -44,6 +44,7 @@ public class CardFactory : MonoBehaviour {
         // set the NPC values
         NPC npc = card.AddComponent<NPC>();
         npc.key = key;
+        npc.isUnintroduced = true;
 
         // set the NPC sfx
         CardSFX sfx = card.GetComponent<CardSFX>();

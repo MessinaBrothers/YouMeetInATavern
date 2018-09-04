@@ -89,7 +89,8 @@ Ship NPC Cards: Smuggler, Foreigner, Knight, Princess
 Ship Scenario Data
 Ship Dialogue
 Ship Scenario Results
--Reformat scenario results data: rows instead of splits
+Reformat scenario results data: rows instead of splits
+-Change NPC introductions for first day only
 -If NPC already introduced in a previous scenario, begin scenario with them already in tavern
 -Post-introduction random scenarios x2
 -Three tavern areas: Bar, Exit, General

@@ -8,4 +8,6 @@ public class NPC : Key {
 
     public bool isBeingIntroduced;
 
+    public bool isUnintroduced;
+
 }

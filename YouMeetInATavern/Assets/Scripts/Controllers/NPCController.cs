@@ -25,8 +25,6 @@ public class NPCController : MonoBehaviour {
 
     private GameData data;
 
-    private Transform cardParent;
-
     private List<GameObject> introducedNPCs;
 
     void Start() {
@@ -43,28 +41,23 @@ public class NPCController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameInitializedEventHandler += CreateCards;
-        InputController.newScenarioStartedEventHandler += ResetNPCs;
         InputController.startTavernEventHandler += ContinueDay;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
         InputController.npcLeavesEventHandler += Goodbye;
-        InputController.endResultsEventHandler += ReintroduceNPCs;
     }
 
     void OnDisable() {
         InputController.gameInitializedEventHandler -= CreateCards;
-        InputController.newScenarioStartedEventHandler -= ResetNPCs;
         InputController.startTavernEventHandler -= ContinueDay;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
         InputController.npcLeavesEventHandler -= Goodbye;
-        InputController.endResultsEventHandler -= ReintroduceNPCs;
     }
 
     private void CreateCards() {
         // create parent for cards to go under
-        GameObject go = new GameObject("NPCs");
-        cardParent = go.transform;
+        Transform cardParent = new GameObject("NPCs").transform;
 
         // create cards for each NPC
         foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
@@ -72,15 +65,11 @@ public class NPCController : MonoBehaviour {
                 GameObject card = CardFactory.CreateCard(kvp.Key);
                 card.transform.parent = cardParent;
 
+                data.npcs.Add(card);
+
                 card.SetActive(false);  
             }
         }
-    }
-
-    private void ResetNPCs(GameData data) {
-        introducedNPCs.Clear();
-        data.npcsToIntroduce.Clear();
-        data.npcsToReintroduce.Clear();
     }
 
     private void Goodbye() {
@@ -141,6 +130,7 @@ public class NPCController : MonoBehaviour {
 
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = true;
+        npc.isUnintroduced = false;
 
         // set the next dialogue
         if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
@@ -160,61 +150,58 @@ public class NPCController : MonoBehaviour {
 
     private void IntroduceNPC(string npcKey) {
         // find the corresponding card GameObject
-        foreach (Transform child in cardParent) {
-            if (npcKey == child.gameObject.GetComponent<NPC>().key) {
-                IntroduceNPC(child.gameObject);
+        foreach (GameObject go in data.npcs) {
+            NPC npc = go.GetComponent<NPC>();
+            if (npcKey == npc.key) {
+                IntroduceNPC(go);
                 break;
             }
         }
     }
 
     private void ContinueDay() {
-        // place already-introduced NPCs in the tavern
-        ActivateNPCs();
-
-        // load list of NPCs to introduce
-        if (data.scenario.day_introductions.ContainsKey(data.dayCount)) {
-            foreach (string npcKey in data.scenario.day_introductions[data.dayCount]) {
-                data.npcsToIntroduce.Enqueue(npcKey);
+        // initialize each npc key in this scenario
+        foreach (string key in data.scenario.npcs) {
+            foreach (GameObject go in data.npcs) {
+                NPC npc = go.GetComponent<NPC>();
+                if (npc.key == key) {
+                    Initialize(npc);
+                }
             }
-            // remove introductions so NPCs aren't reintroduced
-            data.scenario.day_introductions.Remove(data.dayCount);
         }
 
         // introduce the first NPC, if any
         IntroduceNextNPC(null);
     }
 
-    private void ActivateNPCs() {
-        foreach (GameObject card in introducedNPCs) {
-            // activate the GameObject
-            card.SetActive(true);
-            // add NPC to npc list
-            data.npcsInTavern.Add(card);
-            // broadcast that the NPC has entered the tavern
-            npcStartInTaverneventHandler.Invoke(card);
-
-            npcEnteredTavernEventHandler.Invoke(card);
+    private void Initialize(NPC npc) {
+        // if the NPC has NOT been introduced
+        if (npc.isUnintroduced == true) {
+            // introduce the NPC
+            data.npcsToIntroduce.Enqueue(npc.key);
+            //print("Going to introduce " + npc.key);
+        // if the NPC has something to say about the last scenario result
+        } else if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
+            // set their next dialogue
+            npc.nextDialogueID = data.nextDialogueIntroKey;
+            // reintroduce them
+            data.npcsToReintroduce.Enqueue(npc.gameObject);
+            //print("Going to reintroduce " + npc.key);
+        } else {
+            // activate the NPC in the tavern
+            ActivateNPC(npc.gameObject);
+            //print("Going to activate " + npc.key);
         }
     }
 
-    private void ReintroduceNPCs() {
-        List<GameObject> previousNPCs = new List<GameObject>(introducedNPCs);
+    private void ActivateNPC(GameObject card) {
+        // activate the GameObject
+        card.SetActive(true);
+        // add NPC to npc list
+        data.npcsInTavern.Add(card);
+        // broadcast that the NPC has entered the tavern
+        npcStartInTaverneventHandler.Invoke(card);
 
-        introducedNPCs.Clear();
-
-        foreach (GameObject card in previousNPCs) {
-            NPC npc = card.GetComponent<NPC>();
-            // if NPC has a special dialogue
-            if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
-                // set their next dialogue
-                npc.nextDialogueID = data.nextDialogueIntroKey;
-                // reintroduce them
-                data.npcsToReintroduce.Enqueue(card);
-            } else {
-                // if no specific dialogue, restart in tavern as an already-introdced NPC
-                introducedNPCs.Add(card);
-            }
-        }
+        npcEnteredTavernEventHandler.Invoke(card);
     }
 }

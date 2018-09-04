@@ -13842,11 +13842,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayCount: 0
   selectedCard: {fileID: 0}
+  npcs: []
   npcsInTavern: []
   cardIntroductionSpeed: 1
   cardConverseSpeed: 1
   cardEnterTavernSpeed: 1
-  cardLeaveTavernSpeed: 100
+  cardLeaveTavernSpeed: 1
   cardPreviewSpeed: 0.75
   cardPreviewWaitTime: 0.5
   cardPreviewEnterDeckSpeed: 0.5

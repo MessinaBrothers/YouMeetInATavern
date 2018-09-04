@@ -20,6 +20,7 @@ public class GameData : MonoBehaviour {
 
     [Header("NPCs")]
     public GameObject selectedCard;
+    public List<GameObject> npcs;
     public List<GameObject> npcsInTavern;
     public Queue<string> npcsToIntroduce;
     public Queue<GameObject> npcsToReintroduce;
@@ -61,6 +62,7 @@ public class GameData : MonoBehaviour {
         cardData = new Dictionary<string, CardData>();
         scenarioResultsData = new Dictionary<uint, List<ScenarioResult>>();
 
+        npcs = new List<GameObject>();
         npcsToIntroduce = new Queue<string>();
         npcsToReintroduce = new Queue<GameObject>();
 
