@@ -46,6 +46,14 @@ public class CardFactory : MonoBehaviour {
         npc.key = key;
         npc.isUnintroduced = true;
 
+        // set the NPC wander planes
+        CardWander wander = card.GetComponent<CardWander>();
+        if (npc.key == "NPC_BARTENDER") {
+            wander.quads = data.wanderAreasBartender;
+        } else {
+            wander.quads = data.wanderAreasTavern;
+        }
+
         // set the NPC sfx
         CardSFX sfx = card.GetComponent<CardSFX>();
         sfx.introductionClip = Resources.Load<AudioClip>("Card SFX/" + npcData.sfxIntro);

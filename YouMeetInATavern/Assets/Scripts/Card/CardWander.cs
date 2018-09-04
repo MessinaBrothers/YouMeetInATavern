@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CardWander : MonoBehaviour {
 
+    public Transform[] quads;
+
     public float minX, minY, maxX, maxY;
     public float wanderDistance;
 
@@ -29,10 +31,11 @@ public class CardWander : MonoBehaviour {
         switch (state) {
             case State.PICK_POSITION:
                 // randomly determing a point to wander around
-                wanderPosition = new Vector3(
-                    Random.Range(minX, maxX),
-                    transform.position.y,
-                    Random.Range(minY, maxY));
+                //wanderPosition = new Vector3(
+                //    Random.Range(minX, maxX),
+                //    transform.position.y,
+                //    Random.Range(minY, maxY));
+                wanderPosition = GetRandomPosition(quads);
 
                 // set start and end positions
                 startPos = transform.position;
@@ -74,10 +77,13 @@ public class CardWander : MonoBehaviour {
         timer = waitTime;
     }
 
-    public void SetRange(float minX, float minY, float maxX, float maxY) {
-        this.minX = minX;
-        this.maxX = maxX;
-        this.minY = minY;
-        this.maxY = maxY;
+    private Vector3 GetRandomPosition(Transform[] quads) {
+        Transform quad = quads[Random.Range(0, quads.Length)];
+
+        return new Vector3(
+            quad.position.x + Random.Range(-quad.localScale.x / 2, quad.localScale.x / 2),
+            transform.position.y,
+            quad.position.z + Random.Range(-quad.localScale.y / 2, quad.localScale.y / 2)
+        );
     }
 }

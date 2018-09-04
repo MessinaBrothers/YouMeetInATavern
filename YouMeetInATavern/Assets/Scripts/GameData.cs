@@ -12,6 +12,10 @@ public class GameData : MonoBehaviour {
     public static char PARSER_DELIMITER = '-';
 
     public uint dayCount;
+    /// <summary>
+    /// Scenarios indexed by order they appear in game.
+    /// NOT by scenario index.
+    /// </summary>
     public Dictionary<uint, Scenario> scenarios;
     public Scenario scenario;
     public Dictionary<string, CardData> cardData;
@@ -31,6 +35,11 @@ public class GameData : MonoBehaviour {
     public float cardPreviewSpeed = 0.75f;
     public float cardPreviewWaitTime = 0.5f;
     public float cardPreviewEnterDeckSpeed = 0.5f;
+    
+    [Header("NPC Wander Areas")]
+    public Transform[] wanderAreasBartender;
+    public Transform[] wanderAreasTavern;
+    public Transform[] wanderAreasExit;
 
     [Header("Scenario")]
     public uint nextScenarioIndex;

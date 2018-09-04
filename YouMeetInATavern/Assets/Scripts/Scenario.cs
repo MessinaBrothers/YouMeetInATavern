@@ -7,8 +7,13 @@ public class Scenario {
     public uint id;
 
     public string name;
-
-    public uint endsOnDay;
+    
+    /// <summary>
+    /// Order this scenario appears in game.
+    /// Starts at index 0.
+    /// Index of -1 means random order
+    /// </summary>
+    public uint order;
 
     public List<string> npcs;
 

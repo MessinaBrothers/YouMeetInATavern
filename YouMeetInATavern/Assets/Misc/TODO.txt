@@ -90,12 +90,11 @@ Ship Scenario Data
 Ship Dialogue
 Ship Scenario Results
 Reformat scenario results data: rows instead of splits
--Change NPC introductions for first day only
--If NPC already introduced in a previous scenario, begin scenario with them already in tavern
--Post-introduction random scenarios x2
--Three tavern areas: Bar, Exit, General
+Change NPC introductions for first day only
+Three tavern areas: Bar, Exit, General
 -Bartender never leaves
 -Clock: every talk, a clock counts down to tavern closing. After close, choose cards/location
+-Clock: each NPC leaves at x time
 -Redo Choose screen: location map, hand of cards
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
 -Flush out / redo Scenarios

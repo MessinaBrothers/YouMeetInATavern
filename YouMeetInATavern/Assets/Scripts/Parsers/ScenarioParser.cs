@@ -35,15 +35,17 @@ public class ScenarioParser : MonoBehaviour {
         int index = 0;
         scenario.id = uint.Parse(lineData[index++]);
         scenario.name = lineData[index++];
-        scenario.endsOnDay = uint.Parse(lineData[index++]);
+
+        // parse the order the scenario appears in game
+        scenario.order = uint.Parse(lineData[index++]);
 
         // parse NPCs to introduce
         scenario.npcs = new List<string>();
         foreach (string s in lineData[index++].Split(GameData.PARSER_DELIMITER)) {
             scenario.npcs.Add(s.Trim());
         }
-        
+
         // save scenario to game data
-        data.scenarios.Add(scenario.id, scenario);
+        data.scenarios.Add(scenario.order, scenario);
     }
 }
