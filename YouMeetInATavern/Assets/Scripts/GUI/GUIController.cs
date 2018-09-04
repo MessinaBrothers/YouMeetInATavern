@@ -6,10 +6,12 @@ using UnityEngine;
 public class GUIController : MonoBehaviour {
 
     public GameObject hudPanel, dialoguePanel, deckPanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
+    public ClockGUI clockGUI;
 
     private GameData data;
 
     void Awake() {
+        clockGUI = GetComponentInChildren<ClockGUI>();
         DeactivateAll();
     }
 
@@ -29,10 +31,16 @@ public class GUIController : MonoBehaviour {
 
     void OnEnable() {
         CardMoveController.npcInConversePosEventHandler += Converse;
+        InputController.clockTickedEventHandler += UpdateClock;
     }
 
     void OnDisable() {
         CardMoveController.npcInConversePosEventHandler -= Converse;
+        InputController.clockTickedEventHandler -= UpdateClock;
+    }
+
+    private void UpdateClock(int currentHour) {
+        clockGUI.UpdateText(currentHour);
     }
 
     public void UpdateConverseGUI(string dialogueID) {

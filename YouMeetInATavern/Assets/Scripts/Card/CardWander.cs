@@ -6,9 +6,6 @@ public class CardWander : MonoBehaviour {
 
     public Transform[] quads;
 
-    public float minX, minY, maxX, maxY;
-    public float wanderDistance;
-
     public float speed;
 
     private Vector3 wanderPosition;
@@ -31,10 +28,6 @@ public class CardWander : MonoBehaviour {
         switch (state) {
             case State.PICK_POSITION:
                 // randomly determing a point to wander around
-                //wanderPosition = new Vector3(
-                //    Random.Range(minX, maxX),
-                //    transform.position.y,
-                //    Random.Range(minY, maxY));
                 wanderPosition = GetRandomPosition(quads);
 
                 // set start and end positions

@@ -12,6 +12,12 @@ public class GameData : MonoBehaviour {
     public static char PARSER_DELIMITER = '-';
 
     public uint dayCount;
+
+    [Header("Clock")]
+    public int currentHour;
+    public int tavernOpenHour;
+    public int tavernCloseHour;
+
     /// <summary>
     /// Scenarios indexed by order they appear in game.
     /// NOT by scenario index.

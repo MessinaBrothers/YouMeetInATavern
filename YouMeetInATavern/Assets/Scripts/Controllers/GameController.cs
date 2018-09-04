@@ -42,6 +42,9 @@ public class GameController : MonoBehaviour {
         }
         
         InputController.StartDay();
+
+        data.currentHour = data.tavernOpenHour;
+        InputController.TickClock(data.currentHour);
     }
 
     private void ChangeMode(GameData.GameMode mode) {

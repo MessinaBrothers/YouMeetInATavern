@@ -75,11 +75,15 @@ public class NPCController : MonoBehaviour {
     private void Goodbye() {
         InputController.ChangeMode(GameData.GameMode.TAVERN);
 
-        // remove a remaining NPC
-        if (data.npcsInTavern.Count > 0) {
-            GameObject rngCard = data.npcsInTavern[UnityEngine.Random.Range(0, data.npcsInTavern.Count)];
-            npcRandomlyLeavesEventHandler.Invoke(rngCard);
-        }
+        // increment clock
+        data.currentHour += 1;
+        InputController.TickClock(data.currentHour);
+
+        //// remove a remaining NPC
+        //if (data.npcsInTavern.Count > 0) {
+        //    GameObject rngCard = data.npcsInTavern[UnityEngine.Random.Range(0, data.npcsInTavern.Count)];
+        //    npcRandomlyLeavesEventHandler.Invoke(rngCard);
+        //}
     }
 
     private void HandleCardClick(GameObject card) {

@@ -80,6 +80,9 @@ public class InputController : MonoBehaviour {
     public static event ChooseLocationEventHandler chooseLocationEventHandler;
     public delegate void ChooseLocationEventHandler(GameData.Location location);
 
+    public static event ClockTickedEventHandler clockTickedEventHandler;
+    public delegate void ClockTickedEventHandler(int currentHour);
+
     private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
@@ -207,6 +210,10 @@ public class InputController : MonoBehaviour {
     // MISC
     public void ChooseLocation(GameData.Location location) {
         chooseLocationEventHandler.Invoke(location);
+    }
+
+    public static void TickClock(int currentHour) {
+        clockTickedEventHandler.Invoke(currentHour);
     }
     
     // wrapper methods for Unity buttons
