@@ -24,7 +24,7 @@ public abstract class MyTest : MonoBehaviour {
 
         bool isPassed = true;
 
-        var methods = typeof(ScenariosTest).GetMethods(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var methods = GetType().GetMethods(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         object[] parameters = new Object[0];
         foreach (var method in methods) {
             if (IsUnityMethod(method.Name) == false) {

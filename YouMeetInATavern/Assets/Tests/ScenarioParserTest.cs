@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class ScenariosTest : MyTest {
+public class ScenarioParserTest : MyTest {
 
     private bool Should_ScenariosExist_When_Parse() {
         GameData data = GetComponentInChildren<GameData>();
@@ -17,7 +16,7 @@ public class ScenariosTest : MyTest {
         GameData data = GetComponentInChildren<GameData>();
 
         GetComponentInChildren<ScenarioParser>().Parse(data);
-        
+
         bool isEndScenarios = false;
         for (int i = 0; i < data.scenarios.Length; i++) {
             if (isEndScenarios == true) {

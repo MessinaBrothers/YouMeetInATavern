@@ -17219,6 +17219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213847685}
   - component: {fileID: 1213847686}
+  - component: {fileID: 1213847687}
   - component: {fileID: 1213847684}
   m_Layer: 0
   m_Name: Testers
@@ -17260,6 +17261,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4067d7b65c886174d95101038715a945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1213847687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1213847683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35e28efe2568ac4d919abdbd0b648cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1231322845
