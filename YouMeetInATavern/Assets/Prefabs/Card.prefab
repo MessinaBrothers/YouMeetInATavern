@@ -68,7 +68,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1215172874705306
 GameObject:
   m_ObjectHideFlags: 1
@@ -986,12 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a50283f089718342be192ad68d06136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderPlanes: []
-  minX: -2
-  minY: -2
-  maxX: 2
-  maxY: 2
-  wanderDistance: 0.1
+  quads: []
   speed: 1
 --- !u!114 &114435231891690628
 MonoBehaviour:

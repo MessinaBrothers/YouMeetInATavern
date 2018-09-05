@@ -166,6 +166,10 @@ public class NPCController : MonoBehaviour {
     private void ContinueDay() {
         List<NPC> activeNPCs = new List<NPC>();
 
+        for (int i = 0; i < data.scenarios.Length; i++) {
+            Debug.LogFormat("scenarios[{0}] = {1}", i, data.scenarios[i]);
+        }
+        print(data.scenario);
         // initialize each npc key in this scenario
         foreach (string key in data.scenario.npcs) {
             foreach (GameObject go in data.npcs) {
@@ -195,7 +199,7 @@ public class NPCController : MonoBehaviour {
                 hourLeaving -= 1;
                 // reset if at opening hour
                 if (hourLeaving == data.tavernOpenHour) {
-                    hourLeaving = data.tavernCloseHour;
+                    hourLeaving = data.tavernCloseHour - 1;
                 }
             }
             //Debug.LogFormat("{0} is leaving at {1}", activeNPCs[i].name, hourLeaving);

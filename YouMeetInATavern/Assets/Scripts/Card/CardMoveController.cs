@@ -28,8 +28,8 @@ public class CardMoveController : MonoBehaviour {
         NPCController.npcIntroStartEventHandler += Introduce;
         NPCController.npcIntroEndEventHandler += Converse;
         ConverseNPC.npcStartConverseEventHandler += Converse;
-        InputController.stopConverseEventHandler += Stop;
-        InputController.npcLeavesEventHandler += Goodbye;
+        InputController.stopConverseEventHandler += EnterTavern;
+        InputController.clockTickedEventHandler += Goodbye;
         NPCController.npcStartInTaverneventHandler += PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler += LeaveTavern;
         InputController.endDayEarlyEventHandler += LeaveTavernAll;
@@ -40,8 +40,8 @@ public class CardMoveController : MonoBehaviour {
         NPCController.npcIntroStartEventHandler -= Introduce;
         NPCController.npcIntroEndEventHandler -= Converse;
         ConverseNPC.npcStartConverseEventHandler -= Converse;
-        InputController.stopConverseEventHandler -= Stop;
-        InputController.npcLeavesEventHandler -= Goodbye;
+        InputController.stopConverseEventHandler -= EnterTavern;
+        InputController.clockTickedEventHandler -= Goodbye;
         NPCController.npcStartInTaverneventHandler -= PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler -= LeaveTavern;
         InputController.endDayEarlyEventHandler -= LeaveTavernAll;
@@ -87,8 +87,7 @@ public class CardMoveController : MonoBehaviour {
                 previewStartPos.position = hit.point;
             }
         }
-
-
+        
         move.Set(previewStartPos, previewEndPos, data.cardPreviewSpeed, PreviewWait);
     }
 
@@ -108,7 +107,7 @@ public class CardMoveController : MonoBehaviour {
         InputController.CardEnteredDeck(card);
     }
 
-    private void Stop(GameObject card) {
+    private void EnterTavern(GameObject card) {
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
         move.Set(conversePos, enterTavernPos, data.cardEnterTavernSpeed, Wander);
@@ -120,10 +119,32 @@ public class CardMoveController : MonoBehaviour {
         }
     }
 
-    private void Goodbye() {
-        CardMove move = data.selectedCard.GetComponent<CardMove>();
-        move.enabled = true;
-        move.Set(conversePos, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
+    private void Goodbye(int currentHour) {
+        //if (data.selectedCard == null) return;
+
+        //CardMove move = data.selectedCard.GetComponent<CardMove>();
+        //move.enabled = true;
+
+        //if (data.selectedCard.GetComponent<NPC>().hourLeavesTavern == currentHour) {
+        //    move.Set(conversePos, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
+        //} else {
+        //    move.Set(conversePos, enterTavernPos, data.cardEnterTavernSpeed, Wander);
+        //}
+
+        foreach (GameObject card in data.npcsInTavern) {
+            if (card.GetComponent<NPC>().hourLeavesTavern == currentHour) {
+                CardMove move = card.GetComponent<CardMove>();
+                move.Set(card.transform, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
+                move.enabled = true;
+                // disable wandering
+                card.GetComponent<CardWander>().enabled = false;
+            } else if (card == data.selectedCard) {
+                // return selected card to tavern
+                EnterTavern(card);
+            }
+
+            // TODO set exit areas if currentHour + 1 == card.hourLeavesTavern
+        }
     }
 
     private void LeaveTavern(GameObject card) {

@@ -17,13 +17,6 @@ public class GameData : MonoBehaviour {
     public int currentHour;
     public int tavernOpenHour;
     public int tavernCloseHour;
-
-    /// <summary>
-    /// Scenarios indexed by order they appear in game.
-    /// NOT by scenario index.
-    /// </summary>
-    public Dictionary<uint, Scenario> scenarios;
-    public Scenario scenario;
     public Dictionary<string, CardData> cardData;
     //public Dictionary<string, CardData> itemData;
     public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
@@ -47,6 +40,12 @@ public class GameData : MonoBehaviour {
     public Transform[] wanderAreasTavern;
     public Transform[] wanderAreasExit;
 
+    /// <summary>
+    /// Scenarios indexed by order they appear in game.
+    /// NOT by scenario index.
+    /// </summary>
+    public Scenario[] scenarios;
+    public Scenario scenario;
     [Header("Scenario")]
     public uint nextScenarioIndex;
 
@@ -73,7 +72,6 @@ public class GameData : MonoBehaviour {
     void Start() {
         gameMode = GameMode.INTRODUCE;
         
-        scenarios = new Dictionary<uint, Scenario>();
         cardData = new Dictionary<string, CardData>();
         scenarioResultsData = new Dictionary<uint, List<ScenarioResult>>();
 

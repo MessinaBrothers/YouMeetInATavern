@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class ScenarioParser : MonoBehaviour {
 
-    private GameData data;
-
     void Start() {
-        data = FindObjectOfType<GameData>();
-
-        Parse();
+        Parse(FindObjectOfType<GameData>());
     }
 
-    private void Parse() {
+    public void Parse(GameData data) {
         TextAsset file = (TextAsset)Resources.Load("Scenarios");
         string[] lines = file.text.Split('\n');
+
+        data.scenarios = new Scenario[lines.Length];
 
         bool startParse = false;
         for (int i = 0; i < lines.Length; i++) {
             if (startParse && lines[i].Length > 0) {
-                ParseLine(lines[i]);
+                ParseLine(data, lines[i]);
             // don't start parsing until we've reached the NPC table
             } else if (lines[i].StartsWith("ID,Name")) {
                 startParse = true;
@@ -27,7 +25,7 @@ public class ScenarioParser : MonoBehaviour {
         }
     }
 
-    private void ParseLine(string line) {
+    private void ParseLine(GameData data, string line) {
         string[] lineData = line.Split(',');
 
         Scenario scenario = new Scenario();
@@ -46,6 +44,6 @@ public class ScenarioParser : MonoBehaviour {
         }
 
         // save scenario to game data
-        data.scenarios.Add(scenario.order, scenario);
+        data.scenarios[scenario.order] = scenario;
     }
 }
