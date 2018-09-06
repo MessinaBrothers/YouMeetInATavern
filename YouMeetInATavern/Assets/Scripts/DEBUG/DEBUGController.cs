@@ -42,6 +42,7 @@ public class DEBUGController : MonoBehaviour {
             debugPanel.SetActive(!debugPanel.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.F2)) {
+            data.npcsInTavern.Clear();
             InputController.ConcludeScenario();
         }
         if (Input.GetKeyDown(KeyCode.F3)) {

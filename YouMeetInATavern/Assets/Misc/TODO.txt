@@ -94,7 +94,8 @@ Change NPC introductions for first day only
 Three tavern areas: Bar, Exit, General
 Clock: counts down after conversing
 Clock: give NPCs an hour to leave
--Clock: each NPC leaves at x time
+Clock: each NPC leaves at x time
+Clock: NPC goes to Exit area at x - 1 time
 -Clock: after close, choose cards/location
 -Bartender never leaves
 -Redo Choose screen: location map, hand of cards

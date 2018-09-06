@@ -10,7 +10,8 @@ public class CardMoveController : MonoBehaviour {
     public static event NPCInConversePosEventHandler npcInConversePosEventHandler;
     public delegate void NPCInConversePosEventHandler(GameObject card);
 
-    public Transform offscreenPos, introPos, conversePos, enterTavernPos, exitPos;
+    public Transform offscreenPos, introPos, conversePos, exitPos;
+    public Transform enterBarPos, enterTavernPos, enterExitPos;
     public Transform previewStartPos, previewEndPos, deckPos;
     public Transform deckCardRevealPos, deckCardOffscreenPos;
 
@@ -108,9 +109,28 @@ public class CardMoveController : MonoBehaviour {
     }
 
     private void EnterTavern(GameObject card) {
+        NPC npc = card.GetComponent<NPC>();
+
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
-        move.Set(conversePos, enterTavernPos, data.cardEnterTavernSpeed, Wander);
+
+        // set where to enter the tavern and the NPC wander planes
+        Transform enterPos;
+        CardWander wander = card.GetComponent<CardWander>();
+        wander.enabled = false;
+
+        if (npc.key == "NPC_BARTENDER") {
+            enterPos = enterBarPos;
+            wander.quads = data.wanderAreasBartender;
+        } else if (npc.hourLeavesTavern - 1 == data.currentHour) {
+            enterPos = enterExitPos;
+            wander.quads = data.wanderAreasExit;
+        } else {
+            enterPos = enterTavernPos;
+            wander.quads = data.wanderAreasTavern;
+        }
+
+        move.Set(card.transform, enterPos, data.cardEnterTavernSpeed, Wander);
     }
 
     private void LeaveTavernAll() {
@@ -120,30 +140,18 @@ public class CardMoveController : MonoBehaviour {
     }
 
     private void Goodbye(int currentHour) {
-        //if (data.selectedCard == null) return;
-
-        //CardMove move = data.selectedCard.GetComponent<CardMove>();
-        //move.enabled = true;
-
-        //if (data.selectedCard.GetComponent<NPC>().hourLeavesTavern == currentHour) {
-        //    move.Set(conversePos, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
-        //} else {
-        //    move.Set(conversePos, enterTavernPos, data.cardEnterTavernSpeed, Wander);
-        //}
-
         foreach (GameObject card in data.npcsInTavern) {
-            if (card.GetComponent<NPC>().hourLeavesTavern == currentHour) {
-                CardMove move = card.GetComponent<CardMove>();
-                move.Set(card.transform, exitPos, data.cardLeaveTavernSpeed, ExitTavern);
-                move.enabled = true;
-                // disable wandering
-                card.GetComponent<CardWander>().enabled = false;
+            NPC npc = card.GetComponent<NPC>();
+            if (npc.hourLeavesTavern == currentHour) {
+                LeaveTavern(card);
+            } else if (npc.hourLeavesTavern - 1 == currentHour) {
+                // NPCs about to leave go to exit area
+                EnterTavern(card);
             } else if (card == data.selectedCard) {
                 // return selected card to tavern
                 EnterTavern(card);
             }
 
-            // TODO set exit areas if currentHour + 1 == card.hourLeavesTavern
         }
     }
 

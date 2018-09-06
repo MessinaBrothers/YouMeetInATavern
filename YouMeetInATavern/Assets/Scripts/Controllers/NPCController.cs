@@ -165,11 +165,7 @@ public class NPCController : MonoBehaviour {
 
     private void ContinueDay() {
         List<NPC> activeNPCs = new List<NPC>();
-
-        for (int i = 0; i < data.scenarios.Length; i++) {
-            Debug.LogFormat("scenarios[{0}] = {1}", i, data.scenarios[i]);
-        }
-        print(data.scenario);
+        
         // initialize each npc key in this scenario
         foreach (string key in data.scenario.npcs) {
             foreach (GameObject go in data.npcs) {
