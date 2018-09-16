@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DEBUGController : MonoBehaviour {
 
     public bool UNLOCK_ALL_KEYS;
+    public bool START_CHOOSE_SCENARIO;
 
     public GameObject debugPanel, debugUnlockCardsPanel;
 
@@ -37,13 +38,16 @@ public class DEBUGController : MonoBehaviour {
             UNLOCK_ALL_KEYS = false;
             UnlockAllKeys();
         }
+        if (START_CHOOSE_SCENARIO) {
+            START_CHOOSE_SCENARIO = false;
+            ConcludeScenario();
+        }
 
         if (Input.GetKeyDown(KeyCode.F1)) {
             debugPanel.SetActive(!debugPanel.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.F2)) {
-            data.npcsInTavern.Clear();
-            InputController.ConcludeScenario();
+            ConcludeScenario();
         }
         if (Input.GetKeyDown(KeyCode.F3)) {
             InputController.ContinueDay();
@@ -58,6 +62,12 @@ public class DEBUGController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F6)) {
             debugUnlockCardsPanel.SetActive(!debugUnlockCardsPanel.activeSelf);
         }
+    }
+
+    private void ConcludeScenario() {
+
+        data.npcsInTavern.Clear();
+        InputController.ConcludeScenario();
     }
 
     private void UnlockAllKeys() {

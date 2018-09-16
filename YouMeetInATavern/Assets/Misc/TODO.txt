@@ -1,6 +1,6 @@
                                  You Meet In A Tavern
 						     A Point-and-Click Adventure
-TODO: Scenario loop
+TODO: Select scenario cards
 Says something when clicked to converse
 After introduction, NPC says first normal line (id 1) instead of intro line (id 0)
 Question Buttons show questions if dialogue has been unlocked
@@ -97,7 +97,9 @@ Clock: give NPCs an hour to leave
 Clock: each NPC leaves at x time
 Clock: NPC goes to Exit area at x - 1 time
 Don't clear cards after scenario
--Redo Choose screen: location map, hand of cards
+location map
+-hand of cards
+-choose cards
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
 -Flush out / redo Scenarios
 -Tutorial: Explain mechanics, introduce NPCs and locations
