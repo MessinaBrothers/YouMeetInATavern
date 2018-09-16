@@ -23,6 +23,12 @@ public class HexagonCollider : MonoBehaviour {
         Set(risePosition, riseScale);
     }
 
+    private void OnMouseOver() {
+        if (Input.GetMouseButtonDown(0)) {
+            InputController.ClickHex(id);
+        }
+    }
+
     void OnMouseExit() {
         InputController.HoverExitHex(id);
 

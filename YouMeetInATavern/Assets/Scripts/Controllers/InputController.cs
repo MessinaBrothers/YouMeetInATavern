@@ -83,6 +83,9 @@ public class InputController : MonoBehaviour {
     public static event HoverExitHexEventHandler hoverExitHexEventHandler;
     public delegate void HoverExitHexEventHandler(int id);
 
+    public static event HexClickedEventHandler hexClickedEventHandler;
+    public delegate void HexClickedEventHandler(int id);
+
     // MISC
     public static event ChooseLocationEventHandler chooseLocationEventHandler;
     public delegate void ChooseLocationEventHandler(GameData.Location location);
@@ -222,6 +225,10 @@ public class InputController : MonoBehaviour {
 
     public static void HoverExitHex(int id) {
         hoverExitHexEventHandler.Invoke(id);
+    }
+
+    public static void ClickHex(int id) {
+        hexClickedEventHandler.Invoke(id);
     }
 
     // MISC

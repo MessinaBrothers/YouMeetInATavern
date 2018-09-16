@@ -16773,6 +16773,7 @@ GameObject:
   - component: {fileID: 1027258107}
   - component: {fileID: 1027258108}
   - component: {fileID: 1027258109}
+  - component: {fileID: 1027258110}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -16988,6 +16989,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tavern: {fileID: 1167969854}
+--- !u!114 &1027258110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1027258098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38a76fdf56de264496c9e5dc6dc9fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locations: 03000000000000000500000001000000000000000400000002000000
 --- !u!1 &1069190158
 GameObject:
   m_ObjectHideFlags: 0
