@@ -76,6 +76,13 @@ public class InputController : MonoBehaviour {
     public static event NPCRemovedEventHandler npcLeftTavernEventHandler;
     public delegate void NPCRemovedEventHandler(GameObject card);
 
+    // HEXES
+    public static event HoverOverHexEventHandler hoverOverHexEventHandler;
+    public delegate void HoverOverHexEventHandler(int id);
+
+    public static event HoverExitHexEventHandler hoverExitHexEventHandler;
+    public delegate void HoverExitHexEventHandler(int id);
+
     // MISC
     public static event ChooseLocationEventHandler chooseLocationEventHandler;
     public delegate void ChooseLocationEventHandler(GameData.Location location);
@@ -205,6 +212,16 @@ public class InputController : MonoBehaviour {
 
     public static void npcExitTavern(GameObject card) {
         npcLeftTavernEventHandler.Invoke(card);
+    }
+
+    // HEXES
+
+    public static void HoverOverHex(int id) {
+        hoverOverHexEventHandler.Invoke(id);
+    }
+
+    public static void HoverExitHex(int id) {
+        hoverExitHexEventHandler.Invoke(id);
     }
 
     // MISC
