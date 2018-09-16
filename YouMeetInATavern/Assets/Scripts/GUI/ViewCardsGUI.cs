@@ -78,7 +78,7 @@ public class ViewCardsGUI : MonoBehaviour {
         int nextPositionIndex = 0;
 
         for (int i = 0; i < cardKeys.Length; i++) {
-            if (data.unlockedDialogueKeys.Contains(cardKeys[i])) {
+            if (DeckController.Contains(cardKeys[i])) {
                 cardPositionIndexes[i] = nextPositionIndex;
                 deckCards[i].transform.position = cardPositions[nextPositionIndex].position;
                 deckCards[i].transform.rotation = cardPositions[nextPositionIndex].rotation;

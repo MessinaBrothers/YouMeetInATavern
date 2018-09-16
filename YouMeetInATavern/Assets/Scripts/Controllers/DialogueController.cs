@@ -29,7 +29,7 @@ public class DialogueController : MonoBehaviour {
 
     public void HandleQuestion(string key, string unlockKey) {
         // unlock the dialogue
-        data.unlockedDialogueKeys.Add(unlockKey);
+        DeckController.Add(unlockKey);
         // remove the question from the NPC so it never appears again
         // data.npc_questions[data.selectedCard.GetComponent<NPC>().key].Remove(key);
         // mark the question as asked
@@ -38,7 +38,7 @@ public class DialogueController : MonoBehaviour {
 
     public void HandleDialogue(string unlockKey) {
         // unlock the dialogue
-        data.unlockedDialogueKeys.Add(unlockKey);
+        DeckController.Add(unlockKey);
     }
 
     private void ClearQuestions() {

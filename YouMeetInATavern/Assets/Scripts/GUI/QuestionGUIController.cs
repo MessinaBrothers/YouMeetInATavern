@@ -33,7 +33,7 @@ public class QuestionGUIController : MonoBehaviour {
         // for each question
         foreach (KeyValuePair<string, Question> kvp in questions) {
             // if the question is unlocked and not already asked
-            if (data.unlockedDialogueKeys.Contains(kvp.Key) && kvp.Value.isAskedByPlayer == false) {
+            if (DeckController.Contains(kvp.Key) && kvp.Value.isAskedByPlayer == false) {
                 // activate the next button
                 GameObject button = questionButtons[buttonIndex];
                 button.SetActive(true);

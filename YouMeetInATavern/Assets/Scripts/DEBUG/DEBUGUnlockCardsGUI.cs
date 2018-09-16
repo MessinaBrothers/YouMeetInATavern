@@ -35,8 +35,8 @@ public class DEBUGUnlockCardsGUI : MonoBehaviour {
     }
 
     private void Unlock(string key) {
-        if (data.unlockedDialogueKeys.Contains(key) == false) {
-            data.unlockedDialogueKeys.Add(key);
+        if (DeckController.Contains(key) == false) {
+            DeckController.Add(key);
         }
     }
 }

@@ -62,7 +62,7 @@ public class DEBUGController : MonoBehaviour {
 
     private void UnlockAllKeys() {
         foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
-            data.unlockedDialogueKeys.Add(kvp.Key);
+            DeckController.Add(kvp.Key);
         }
     }
 
@@ -72,7 +72,7 @@ public class DEBUGController : MonoBehaviour {
         ScenarioResult result = data.scenarioResultsData[scenarioID][0];
         foreach (string key in result.unlocks) {
             if (key.StartsWith("LOCATION_") == false) {
-                data.unlockedDialogueKeys.Add(key);
+                DeckController.Add(key);
             }
         }
     }

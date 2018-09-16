@@ -24,7 +24,7 @@ public class ResultsController : MonoBehaviour {
         ScenarioResult result = GetResult();
 
         // if CORRECT, increment scenario
-        if (result.nextDialoguesKey.Contains("_CORRECT")) {
+        if (result.nextDialoguesKey.Contains(GameData.DIALOGUE_SCENARIO_SUCCESS)) {
             data.nextScenarioIndex += 1;
         }
 
@@ -63,7 +63,7 @@ public class ResultsController : MonoBehaviour {
         string reward = result.description.Substring(1, endIndex - 1);
         if (reward.Length > 0) {
             //data.npcsToIntroduce.Enqueue(reward);
-            data.unlockedDialogueKeys.Add(reward);
+            DeckController.Add(reward);
         }
         string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
         // save the results

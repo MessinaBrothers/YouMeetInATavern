@@ -21,7 +21,7 @@ public class CardMove : MonoBehaviour {
 
     void Update() {
         if (moveTimer > 0) {
-            moveTimer -= Time.deltaTime;
+            moveTimer -= Time.deltaTime * GameData.DEBUG_SPEED;
             //Debug.LogFormat("{0:0.000} / {1:0.000} = {2:0.000}", moveTimer, moveTime, moveTimer / moveTime);
             transform.position = Vector3.Slerp(endTransform.position, startTransform.position, moveTimer / moveTime);
             transform.rotation = Quaternion.Slerp(endTransform.rotation, startTransform.rotation, moveTimer / moveTime);

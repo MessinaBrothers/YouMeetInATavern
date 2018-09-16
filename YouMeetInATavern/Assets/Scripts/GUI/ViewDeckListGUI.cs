@@ -40,7 +40,7 @@ public class ViewDeckListGUI : MonoBehaviour {
     public void Display() {
         foreach (KeyValuePair<string, GameObject> kvp in key_listItem) {
             // activate ListItem if key is unlocked
-            kvp.Value.SetActive(data.unlockedDialogueKeys.Contains(kvp.Key));
+            kvp.Value.SetActive(DeckController.Contains(kvp.Key));
         }
     }
 

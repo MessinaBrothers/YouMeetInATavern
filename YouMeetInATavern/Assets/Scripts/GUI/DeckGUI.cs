@@ -97,7 +97,7 @@ public class DeckGUI : MonoBehaviour {
     }
 
     public void ReloadDeck(GameData data) {
-        for (int i = cardCount; i < data.unlockedDialogueKeys.Count; i++) {
+        for (int i = cardCount; i < DeckController.GetCount(); i++) {
             AddCard();
         }
     }

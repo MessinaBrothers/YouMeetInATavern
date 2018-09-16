@@ -81,7 +81,7 @@ public class ConcludeScenarioController : MonoBehaviour {
 
         // ITEMS
         foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
-            if (kvp.Key.StartsWith("ITEM_") && data.unlockedDialogueKeys.Contains(kvp.Key)) {
+            if (kvp.Key.StartsWith("ITEM_") && DeckController.Contains(kvp.Key)) {
                 // create the card
                 GameObject card = CardFactory.CreateCard(kvp.Key);
                 // add a zoom script
@@ -98,7 +98,7 @@ public class ConcludeScenarioController : MonoBehaviour {
 
         // NPCs
         foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
-            if (kvp.Key.StartsWith("NPC_") && data.unlockedDialogueKeys.Contains(kvp.Key)) {
+            if (kvp.Key.StartsWith("NPC_") && DeckController.Contains(kvp.Key)) {
                 // create the card
                 GameObject card = CardFactory.CreateCard(kvp.Key);
                 // add a zoom script

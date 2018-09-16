@@ -9,7 +9,11 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_DEFAULT = "default";
     public static string DIALOGUE_INVALID = "";
     public static string DIALOGUE_SCENARIO_PREFIX = "SCENARIO_";
+    public static string DIALOGUE_SCENARIO_SUCCESS = "_CORRECT";
     public static char PARSER_DELIMITER = '-';
+
+    public float DEBUG_SPEED_EDITOR = 1f;
+    public static float DEBUG_SPEED;
 
     public uint dayCount;
 
@@ -70,6 +74,8 @@ public class GameData : MonoBehaviour {
     public string resultsDialogue;
 
     void Start() {
+        DEBUG_SPEED = DEBUG_SPEED_EDITOR;
+
         gameMode = GameMode.INTRODUCE;
         
         cardData = new Dictionary<string, CardData>();

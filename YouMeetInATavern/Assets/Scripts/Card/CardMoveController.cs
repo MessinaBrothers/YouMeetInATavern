@@ -167,6 +167,7 @@ public class CardMoveController : MonoBehaviour {
     private void PlaceInTavern(GameObject card) {
         card.transform.position = enterTavernPos.position;
         card.transform.rotation = enterTavernPos.rotation;
+        EnterTavern(card);
         Wander(card);
     }
 
