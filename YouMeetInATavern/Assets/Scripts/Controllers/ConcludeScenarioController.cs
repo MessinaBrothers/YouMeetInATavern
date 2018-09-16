@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ConcludeScenarioController : MonoBehaviour {
 
-    public GameObject itemCardPrefab, tavern;
-
     public Transform itemCenterPos, itemZoomPos, npcCenterPos, npcZoomPos;
     private Transform itemsParent, npcsParent;
 
@@ -67,14 +65,10 @@ public class ConcludeScenarioController : MonoBehaviour {
         foreach (Transform child in npcsParent.transform) {
             Destroy(child.gameObject);
         }
-        tavern.SetActive(true);
     }
 
     private void Load() {
         InputController.ChangeMode(GameData.GameMode.CONCLUDE);
-
-        // hide the tavern
-        tavern.gameObject.SetActive(false);
         
         float xOffset = 2.5f;
         float x = 0;

@@ -6870,8 +6870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744a5acd7a21c6847bf0570a06df7d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCardPrefab: {fileID: 1183731708458380, guid: c3821977d11dcfd448b0c31dc7e5d16e,
-    type: 2}
   tavern: {fileID: 1167969854}
   itemCenterPos: {fileID: 1435243195}
   itemZoomPos: {fileID: 1341013477}
@@ -16721,9 +16719,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027258098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc25262d5cc6c04bbf4f948653fbf96, type: 3}
+  m_Script: {fileID: 11500000, guid: fef7465d17d6c654b983d1c727299162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tavern: {fileID: 1167969854}
 --- !u!1 &1069190158
 GameObject:
   m_ObjectHideFlags: 0
@@ -17235,7 +17234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167969855
 Transform:
   m_ObjectHideFlags: 0
