@@ -7,19 +7,31 @@ public class HexController : MonoBehaviour {
 
     public GameObject model;
 
+    public float riseSpeed, lowerSpeed;
     public float lowerY, riseY;
 
     private Vector3 position;
     private int id;
     private bool isFloating;
+    private float currentY;
 
     void Start() {
         id = GetComponentInChildren<HexagonCollider>().id;
         position = model.transform.localPosition;
+        currentY = position.y;
     }
 
     void Update() {
-        position.y = isFloating ? riseY : lowerY;
+        // increase or decrease Y
+        if (isFloating) {
+            currentY += riseSpeed * Time.deltaTime;
+        } else {
+            currentY -= lowerSpeed * Time.deltaTime;
+        }
+        currentY = Mathf.Clamp(currentY, lowerY, riseY);
+
+        // set position
+        position.y = currentY;
         model.transform.localPosition = position;
     }
 

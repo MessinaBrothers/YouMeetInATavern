@@ -205,5 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1586103237822208}
+  riseSpeed: 1
+  lowerSpeed: 0.5
   lowerY: 0
   riseY: 0.2
