@@ -12,7 +12,7 @@ public class HexController : MonoBehaviour {
 
     private Vector3 position;
     private int id;
-    private bool isFloating;
+    private bool isFloating, isChosen;
     private float currentY;
 
     void Start() {
@@ -23,7 +23,7 @@ public class HexController : MonoBehaviour {
 
     void Update() {
         // increase or decrease Y
-        if (isFloating) {
+        if (isFloating || isChosen) {
             currentY += riseSpeed * Time.deltaTime;
         } else {
             currentY -= lowerSpeed * Time.deltaTime;
@@ -38,11 +38,13 @@ public class HexController : MonoBehaviour {
     void OnEnable() {
         InputController.hoverOverHexEventHandler += RiseUp;
         InputController.hoverExitHexEventHandler += Lower;
+        InputController.hexClickedEventHandler += Select;
     }
 
     void OnDisable() {
         InputController.hoverOverHexEventHandler -= RiseUp;
         InputController.hoverExitHexEventHandler -= Lower;
+        InputController.hexClickedEventHandler -= Select;
     }
 
     private void RiseUp(int id) {
@@ -55,5 +57,9 @@ public class HexController : MonoBehaviour {
         if (this.id == id) {
             isFloating = false;
         }
+    }
+
+    private void Select(int id) {
+        isChosen = (this.id == id);
     }
 }
