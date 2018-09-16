@@ -189,6 +189,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  lowerPosition: 0
+  risePosition: 0.2
+  lowerScale: 1
+  riseScale: 2
 --- !u!114 &114881981136683724
 MonoBehaviour:
   m_ObjectHideFlags: 1
