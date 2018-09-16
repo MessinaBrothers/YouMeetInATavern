@@ -200,4 +200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653cf0c7dd670434bbe5f3cfe157c30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFloating: 0
+  model: {fileID: 1586103237822208}
+  lowerY: 0
+  riseY: 0.2

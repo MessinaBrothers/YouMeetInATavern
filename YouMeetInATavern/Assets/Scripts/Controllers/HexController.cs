@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class HexController : MonoBehaviour {
 
-    private int id;
+    public GameObject model;
 
-    public bool isFloating;
+    public float lowerY, riseY;
+
+    private Vector3 position;
+    private int id;
+    private bool isFloating;
 
     void Start() {
         id = GetComponentInChildren<HexagonCollider>().id;
+        position = model.transform.localPosition;
     }
 
     void Update() {
-
+        position.y = isFloating ? riseY : lowerY;
+        model.transform.localPosition = position;
     }
 
     void OnEnable() {
