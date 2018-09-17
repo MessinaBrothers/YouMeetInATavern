@@ -7,11 +7,13 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     public Transform itemCenterPos, itemZoomPos, npcCenterPos, npcZoomPos;
     //private Transform itemsParent, npcsParent;
-    private Transform cardsParent;
 
+    private Transform cardsParent;
     public Transform handPos;
 
     public AudioClip unselectClip;
+
+    public Transform[] handPositions;
 
     private GameData data;
 
@@ -95,11 +97,25 @@ public class ConcludeScenarioController : MonoBehaviour {
     private void Load() {
         InputController.ChangeMode(GameData.GameMode.CONCLUDE);
 
-        foreach (string key in data.unlockedDialogueKeys) {
-            // move the card to the hand position
-            GameObject card = key_card[key];
-            card.transform.position = handPos.position;
-            card.transform.rotation = handPos.rotation;
+        float currentXOffset = -(data.unlockedDialogueKeys.Count - 1) / 2;
+
+        Vector3 cardPosition = handPos.position;
+
+        int numCardsToShow = Mathf.Min((handPositions.Length + 1) / 2, data.unlockedDialogueKeys.Count);
+        int handPositionIndex = (handPositions.Length + 1) / 2 - numCardsToShow;
+
+        for (int i = 0; i < numCardsToShow; i++) {
+            // get the card
+            GameObject card = key_card[data.unlockedDialogueKeys[i]];
+            // get the transform
+            Transform handPosition = handPositions[handPositionIndex];
+            // set the card's rotation
+            card.transform.localRotation = handPosition.rotation;
+            // set the card's position
+            card.transform.localPosition = handPosition.position;
+            // increment the hand position index
+            handPositionIndex += 2;
+            
         }
         
         //float xOffset = 2.5f;
