@@ -117,7 +117,8 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void SelectCard(int id) {
-        
+        GameObject card = cardsInHand[id];
+        card.GetComponent<CardSFX>().PlayGreeting();
     }
 
     private static void Wait(GameObject card) {

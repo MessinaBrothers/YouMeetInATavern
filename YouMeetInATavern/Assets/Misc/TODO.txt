@@ -100,7 +100,7 @@ Don't clear cards after scenario
 location map
 -hand of cards
 -cards raise on hover
--choose cards
+-select cards
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
 -Flush out / redo Scenarios
 -Tutorial: Explain mechanics, introduce NPCs and locations
