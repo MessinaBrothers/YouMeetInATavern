@@ -11,14 +11,12 @@ public class ConcludeScenarioController : MonoBehaviour {
     private Transform cardsParent;
     public Transform handPos;
 
-    public AudioClip unselectClip;
-
-    public Transform[] handPositions;
+    public Transform[] handPositions, selectedPositions;
 
     private GameData data;
 
     private Dictionary<string, GameObject> key_card;
-    private GameObject[] cardsInHand, cardsInHandHighlightPositions;
+    private GameObject[] cardsInHand, cardsInHandHighlightPositions, cardsInSelection;
 
     //private SelectCards itemSelection, npcSelection;
 
@@ -49,6 +47,7 @@ public class ConcludeScenarioController : MonoBehaviour {
         key_card = new Dictionary<string, GameObject>();
         cardsInHand = new GameObject[handPositions.Length];
         cardsInHandHighlightPositions = new GameObject[handPositions.Length];
+        cardsInSelection = new GameObject[selectedPositions.Length];
 
         // set the hand position ids
         for (int i = 0; i < handPositions.Length; i++) {
@@ -64,10 +63,6 @@ public class ConcludeScenarioController : MonoBehaviour {
             // set the highlight position
             cardsInHandHighlightPositions[i] = highlightPos;
         }
-    }
-
-    void Update() {
-
     }
 
     void OnEnable() {
@@ -117,11 +112,47 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void SelectCard(int id) {
-        GameObject card = cardsInHand[id];
-        card.GetComponent<CardSFX>().PlayGreeting();
+        for (int i = 0; i < cardsInSelection.Length; i++) {
+            GameObject selectedCard = cardsInSelection[i];
+            if (selectedCard == null) {
+                GameObject card = cardsInHand[id];
+                card.GetComponent<CardSFX>().PlayGreeting();
+                card.GetComponent<CardMove>().Set(card.transform, selectedPositions[i].transform, data.cardSelectedSpeed, Wait);
+                RemoveCardFromHand(id);
+                cardsInSelection[i] = card;
+                return;
+            }
+        }
     }
 
     private static void Wait(GameObject card) {
+
+    }
+
+    private void RemoveCardFromHand(int id) {
+        for (int i = 0; i < cardsInHand.Length; i++) {
+            GameObject card = cardsInHand[i];
+            if (card != null) {
+                if (i < id) {
+                    cardsInHand[i] = null;
+                    handPositions[i].gameObject.SetActive(false);
+                    cardsInHand[i + 1] = card;
+                    handPositions[i + 1].gameObject.SetActive(true);
+                    card.GetComponent<CardMove>().Set(card.transform, handPositions[i + 1], data.cardHoverSpeed, Wait);
+                    // skip the next card
+                    i += 1;
+                } else if (i == id) {
+                    cardsInHand[i] = null;
+                    handPositions[i].gameObject.SetActive(false);
+                } else {
+                    cardsInHand[i] = null;
+                    handPositions[i].gameObject.SetActive(false);
+                    cardsInHand[i - 1] = card;
+                    handPositions[i - 1].gameObject.SetActive(true);
+                    card.GetComponent<CardMove>().Set(card.transform, handPositions[i - 1], data.cardHoverSpeed, Wait);
+                }
+            }
+        }
 
     }
 

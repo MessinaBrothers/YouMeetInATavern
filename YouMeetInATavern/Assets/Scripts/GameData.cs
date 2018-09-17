@@ -40,6 +40,7 @@ public class GameData : MonoBehaviour {
     public float cardPreviewEnterDeckSpeed = 0.5f;
     public float cardHoverSpeed = 1f;
     public float cardHoverExitSpeed = 3f;
+    public float cardSelectedSpeed = 2f;
     
     [Header("NPC Wander Areas")]
     public Transform[] wanderAreasBartender;
