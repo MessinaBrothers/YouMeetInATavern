@@ -56,6 +56,15 @@ public class InputController : MonoBehaviour {
     public static event CardHandClickedEventHandler cardHandClickedEventHandler;
     public delegate void CardHandClickedEventHandler(int id);
 
+    public static event HoverOverCardSelectedEventHandler hoverOverCardSelectedEventHandler;
+    public delegate void HoverOverCardSelectedEventHandler(int id);
+
+    public static event HoverExitCardSelectedEventHandler hoverExitCardSelectedEventHandler;
+    public delegate void HoverExitCardSelectedEventHandler(int id);
+
+    public static event CardSelectedClickedEventHandler cardSelectedClickedEventHandler;
+    public delegate void CardSelectedClickedEventHandler(int id);
+
     // DECK INTERACTIONS
     public static event DeckHoverEventHandler deckHoverEventHandler;
     public delegate void DeckHoverEventHandler(bool isHover);
@@ -186,6 +195,18 @@ public class InputController : MonoBehaviour {
 
     public static void ClickCardHand(int id) {
         cardHandClickedEventHandler.Invoke(id);
+    }
+
+    public static void HoverOverCardSelected(int id) {
+        hoverOverCardSelectedEventHandler.Invoke(id);
+    }
+
+    public static void HoverExitCardSelected(int id) {
+        hoverExitCardSelectedEventHandler.Invoke(id);
+    }
+
+    public static void ClickCardSelected(int id) {
+        cardSelectedClickedEventHandler.Invoke(id);
     }
 
     // DECK INTERACTIONS

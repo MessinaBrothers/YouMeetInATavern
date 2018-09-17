@@ -63,6 +63,11 @@ public class ConcludeScenarioController : MonoBehaviour {
             // set the highlight position
             cardsInHandHighlightPositions[i] = highlightPos;
         }
+
+        // set the selected position ids
+        for (int i = 0; i < selectedPositions.Length; i++) {
+            selectedPositions[i].GetComponent<CardSelectedCollider>().id = i;
+        }
     }
 
     void OnEnable() {
@@ -73,6 +78,9 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.hoverOverCardHandEventHandler += highlightCard;
         InputController.hoverExitCardHandEventHandler += unhighlightCard;
         InputController.cardHandClickedEventHandler += SelectCard;
+        InputController.hoverOverCardSelectedEventHandler += Dummy;
+        InputController.hoverExitCardSelectedEventHandler += Dummy;
+        InputController.cardSelectedClickedEventHandler += UnselectCard;
     }
 
     void OnDisable() {
@@ -80,10 +88,12 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.startConcludeScenarioEventHandler -= Load;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler -= ResetTavern;
-        InputController.hoverOverCardHandEventHandler -= highlightCard;
-        InputController.hoverExitCardHandEventHandler -= unhighlightCard;
-        InputController.cardHandClickedEventHandler -= SelectCard;
+        InputController.hoverOverCardSelectedEventHandler -= Dummy;
+        InputController.hoverExitCardSelectedEventHandler -= Dummy;
+        InputController.cardSelectedClickedEventHandler -= UnselectCard;
     }
+
+    private void Dummy(int id) { }
 
     private void CreateDeck() {
         // create a card for each card data
@@ -125,6 +135,14 @@ public class ConcludeScenarioController : MonoBehaviour {
         }
     }
 
+    private void UnselectCard(int id) {
+        GameObject card = cardsInSelection[id];
+        if (card != null) {
+            AddCardToHand(card);
+            cardsInSelection[id] = null;
+        }
+    }
+
     private static void Wait(GameObject card) {
 
     }
@@ -153,7 +171,41 @@ public class ConcludeScenarioController : MonoBehaviour {
                 }
             }
         }
+    }
 
+    private void AddCardToHand(GameObject card) {
+        int lastID = -1;
+
+        // move all cards left
+        for (int i = 0; i < cardsInHand.Length; i++) {
+            GameObject existingCard = cardsInHand[i];
+            if (existingCard != null) {
+                cardsInHand[i] = null;
+                handPositions[i].gameObject.SetActive(false);
+                cardsInHand[i - 1] = existingCard;
+                handPositions[i - 1].gameObject.SetActive(true);
+                existingCard.GetComponent<CardMove>().Set(existingCard.transform, handPositions[i - 1], data.cardHoverSpeed, Wait);
+                lastID = i;
+            }
+        }
+
+        // if no cards moved
+        if (lastID == -1) {
+            // lastID is the middle, minus 1
+            lastID = (handPositions.Length - 1) / 2 - 1;
+        }
+
+        // move the card to the last position, plus 1
+        cardsInHand[lastID + 1] = card;
+        handPositions[lastID + 1].gameObject.SetActive(true);
+        card.GetComponent<CardMove>().Set(card.transform, handPositions[lastID + 1], data.cardHoverSpeed, Wait);
+    }
+
+    private int GetHandSize() {
+        int handSize = 0;
+        for (int i = 0; i < cardsInHand.Length; i++)
+            if (cardsInHand[i] != null) handSize += 1;
+        return handSize;
     }
 
     private void HandleCardClick(GameObject card) {

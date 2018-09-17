@@ -8586,6 +8586,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581498705}
+  - component: {fileID: 581498707}
+  - component: {fileID: 581498706}
   m_Layer: 0
   m_Name: GhostCard (1)
   m_TagString: Untagged
@@ -8608,6 +8610,30 @@ Transform:
   m_Father: {fileID: 1415962050}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &581498706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 581498704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf4d1bf727f7c74db65103ee8f09365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+--- !u!65 &581498707
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 581498704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.12, y: 2.1, z: 0.13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &581673438
 GameObject:
   m_ObjectHideFlags: 0
@@ -11224,6 +11250,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 859368624}
+  - component: {fileID: 859368626}
+  - component: {fileID: 859368625}
   m_Layer: 0
   m_Name: GhostCard (2)
   m_TagString: Untagged
@@ -11246,6 +11274,30 @@ Transform:
   m_Father: {fileID: 1415962050}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &859368625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859368623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf4d1bf727f7c74db65103ee8f09365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+--- !u!65 &859368626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859368623}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.12, y: 2.1, z: 0.13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &863037917
 Prefab:
   m_ObjectHideFlags: 0
@@ -17342,6 +17394,7 @@ MonoBehaviour:
   cardPreviewEnterDeckSpeed: 0.5
   cardHoverSpeed: 1
   cardHoverExitSpeed: 3
+  cardSelectedSpeed: 2
   wanderAreasBartender:
   - {fileID: 1430842127}
   - {fileID: 815673780}
@@ -18194,6 +18247,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1232902815}
+  - component: {fileID: 1232902817}
+  - component: {fileID: 1232902816}
   m_Layer: 0
   m_Name: GhostCard
   m_TagString: Untagged
@@ -18216,6 +18271,30 @@ Transform:
   m_Father: {fileID: 1415962050}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1232902816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232902814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf4d1bf727f7c74db65103ee8f09365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+--- !u!65 &1232902817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232902814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.12, y: 2.1, z: 0.13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1237748052
 GameObject:
   m_ObjectHideFlags: 0
@@ -20592,6 +20671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554950763}
+  - component: {fileID: 1554950765}
+  - component: {fileID: 1554950764}
   m_Layer: 0
   m_Name: GhostCard (3)
   m_TagString: Untagged
@@ -20614,6 +20695,30 @@ Transform:
   m_Father: {fileID: 1415962050}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1554950764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1554950762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf4d1bf727f7c74db65103ee8f09365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+--- !u!65 &1554950765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1554950762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.12, y: 2.1, z: 0.13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1561891404
 GameObject:
   m_ObjectHideFlags: 0
