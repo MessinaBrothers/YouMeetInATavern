@@ -99,6 +99,7 @@ Clock: NPC goes to Exit area at x - 1 time
 Don't clear cards after scenario
 location map
 -hand of cards
+-cards raise on hover
 -choose cards
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
 -Flush out / redo Scenarios

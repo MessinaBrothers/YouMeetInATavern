@@ -46,6 +46,16 @@ public class InputController : MonoBehaviour {
     public static event CardEnteredDeckEventHandler cardEnteredDeckEventHandler;
     public delegate void CardEnteredDeckEventHandler(GameObject card);
 
+    // CARD HAND
+    public static event HoverOverCardHandEventHandler hoverOverCardHandEventHandler;
+    public delegate void HoverOverCardHandEventHandler(int id);
+
+    public static event HoverExitCardHandEventHandler hoverExitCardHandEventHandler;
+    public delegate void HoverExitCardHandEventHandler(int id);
+
+    public static event CardHandClickedEventHandler cardHandClickedEventHandler;
+    public delegate void CardHandClickedEventHandler(int id);
+
     // DECK INTERACTIONS
     public static event DeckHoverEventHandler deckHoverEventHandler;
     public delegate void DeckHoverEventHandler(bool isHover);
@@ -162,6 +172,20 @@ public class InputController : MonoBehaviour {
         if (cardEnteredDeckEventHandler != null) {
             cardEnteredDeckEventHandler.Invoke(card);
         }
+    }
+
+    // CARD HAND
+
+    public static void HoverOverCardHand(int id) {
+        hoverOverCardHandEventHandler.Invoke(id);
+    }
+
+    public static void HoverExitCardHand(int id) {
+        hoverExitCardHandEventHandler.Invoke(id);
+    }
+
+    public static void ClickCardHand(int id) {
+        cardHandClickedEventHandler.Invoke(id);
     }
 
     // DECK INTERACTIONS

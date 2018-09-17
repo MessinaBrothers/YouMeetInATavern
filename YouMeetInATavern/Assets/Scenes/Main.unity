@@ -353,6 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 38883918}
   - component: {fileID: 38883925}
+  - component: {fileID: 38883919}
   m_Layer: 0
   m_Name: Card-3
   m_TagString: Untagged
@@ -374,6 +375,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.5}
+--- !u!114 &38883919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38883917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &38883925
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1227,6 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 175017038}
   - component: {fileID: 175017037}
+  - component: {fileID: 175017031}
   m_Layer: 0
   m_Name: Card0
   m_TagString: Untagged
@@ -1234,6 +1248,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &175017031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175017030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &175017037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8407,6 +8433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581673439}
   - component: {fileID: 581673446}
+  - component: {fileID: 581673440}
   m_Layer: 0
   m_Name: Card+4
   m_TagString: Untagged
@@ -8428,6 +8455,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
+--- !u!114 &581673440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 581673438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &581673446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18759,6 +18798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357017576}
   - component: {fileID: 1357017583}
+  - component: {fileID: 1357017577}
   m_Layer: 0
   m_Name: Card+1
   m_TagString: Untagged
@@ -18780,6 +18820,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.5}
+--- !u!114 &1357017577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1357017575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &1357017583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18878,6 +18930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363439269}
   - component: {fileID: 1363439276}
+  - component: {fileID: 1363439270}
   m_Layer: 0
   m_Name: Card+3
   m_TagString: Untagged
@@ -18899,6 +18952,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.5}
+--- !u!114 &1363439270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1363439268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &1363439276
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26469,6 +26534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880243694}
   - component: {fileID: 1880243701}
+  - component: {fileID: 1880243695}
   m_Layer: 0
   m_Name: Card-4
   m_TagString: Untagged
@@ -26490,6 +26556,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
+--- !u!114 &1880243695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1880243693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &1880243701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27345,6 +27423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024346563}
   - component: {fileID: 2024346570}
+  - component: {fileID: 2024346564}
   m_Layer: 0
   m_Name: Card+2
   m_TagString: Untagged
@@ -27366,6 +27445,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
+--- !u!114 &2024346564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2024346562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &2024346570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27869,6 +27960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2071250398}
   - component: {fileID: 2071250405}
+  - component: {fileID: 2071250399}
   m_Layer: 0
   m_Name: Card-2
   m_TagString: Untagged
@@ -27890,6 +27982,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
+--- !u!114 &2071250399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2071250397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &2071250405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28374,6 +28478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2106308980}
   - component: {fileID: 2106308987}
+  - component: {fileID: 2106308981}
   m_Layer: 0
   m_Name: Card-1
   m_TagString: Untagged
@@ -28395,6 +28500,18 @@ Transform:
   m_Father: {fileID: 1262518487}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.5}
+--- !u!114 &2106308981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2106308979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73121537110d147bc589046959c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!65 &2106308987
 BoxCollider:
   m_ObjectHideFlags: 0

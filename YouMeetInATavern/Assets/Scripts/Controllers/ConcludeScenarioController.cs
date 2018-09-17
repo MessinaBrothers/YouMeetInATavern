@@ -18,6 +18,7 @@ public class ConcludeScenarioController : MonoBehaviour {
     private GameData data;
 
     private Dictionary<string, GameObject> key_card;
+    private GameObject[] cardsInHand, cardsInHandHighlightPositions;
 
     //private SelectCards itemSelection, npcSelection;
 
@@ -42,7 +43,27 @@ public class ConcludeScenarioController : MonoBehaviour {
         cardsParent = go.transform;
         cardsParent.parent = gameObject.transform;
 
+        go = new GameObject("Transforms");
+        go.transform.parent = gameObject.transform;
+
         key_card = new Dictionary<string, GameObject>();
+        cardsInHand = new GameObject[handPositions.Length];
+        cardsInHandHighlightPositions = new GameObject[handPositions.Length];
+
+        // set the hand position ids
+        for (int i = 0; i < handPositions.Length; i++) {
+            handPositions[i].GetComponent<CardHandCollider>().id = i;
+            handPositions[i].gameObject.SetActive(false);
+
+            GameObject highlightPos = new GameObject("ConcludeScenarioController_Transform" + i);
+            highlightPos.transform.parent = go.transform;
+            Vector3 position = handPositions[i].position;
+            position.y += 0.50f;
+            highlightPos.transform.position = position;
+            highlightPos.transform.rotation = handPositions[i].rotation;
+            // set the highlight position
+            cardsInHandHighlightPositions[i] = highlightPos;
+        }
     }
 
     void Update() {
@@ -54,6 +75,9 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.startConcludeScenarioEventHandler += Load;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler += ResetTavern;
+        InputController.hoverOverCardHandEventHandler += highlightCard;
+        InputController.hoverExitCardHandEventHandler += unhighlightCard;
+        InputController.cardHandClickedEventHandler += SelectCard;
     }
 
     void OnDisable() {
@@ -61,6 +85,9 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.startConcludeScenarioEventHandler -= Load;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler -= ResetTavern;
+        InputController.hoverOverCardHandEventHandler -= highlightCard;
+        InputController.hoverExitCardHandEventHandler -= unhighlightCard;
+        InputController.cardHandClickedEventHandler -= SelectCard;
     }
 
     private void CreateDeck() {
@@ -74,7 +101,27 @@ public class ConcludeScenarioController : MonoBehaviour {
             card.transform.position = new Vector3(0, -10, 0);
             // add the card to the list
             key_card.Add(kvp.Key, card);
+            // disable the collider
+            card.GetComponent<Collider>().enabled = false;
         }
+    }
+
+    private void highlightCard(int id) {
+        GameObject card = cardsInHand[id];
+        card.GetComponent<CardMove>().Set(handPositions[id], cardsInHandHighlightPositions[id].transform, data.cardHoverSpeed, Wait);
+    }
+
+    private void unhighlightCard(int id) {
+        GameObject card = cardsInHand[id];
+        card.GetComponent<CardMove>().Set(card.transform, handPositions[id], data.cardHoverExitSpeed, Wait);
+    }
+
+    private void SelectCard(int id) {
+        
+    }
+
+    private static void Wait(GameObject card) {
+
     }
 
     private void HandleCardClick(GameObject card) {
@@ -109,13 +156,16 @@ public class ConcludeScenarioController : MonoBehaviour {
             GameObject card = key_card[data.unlockedDialogueKeys[i]];
             // get the transform
             Transform handPosition = handPositions[handPositionIndex];
+            // activate the card hand
+            handPosition.gameObject.SetActive(true);
             // set the card's rotation
             card.transform.localRotation = handPosition.rotation;
             // set the card's position
             card.transform.localPosition = handPosition.position;
+            // add card to list
+            cardsInHand[handPositionIndex] = card;
             // increment the hand position index
             handPositionIndex += 2;
-            
         }
         
         //float xOffset = 2.5f;

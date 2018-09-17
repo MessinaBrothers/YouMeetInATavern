@@ -17,16 +17,16 @@ public class HexagonCollider : MonoBehaviour {
         scale = transform.localScale;
     }
 
-    void OnMouseEnter() {
-        InputController.HoverOverHex(id);
-        
-        Set(risePosition, riseScale);
-    }
-
     private void OnMouseOver() {
         if (Input.GetMouseButtonDown(0)) {
             InputController.ClickHex(id);
         }
+    }
+
+    void OnMouseEnter() {
+        InputController.HoverOverHex(id);
+        
+        Set(risePosition, riseScale);
     }
 
     void OnMouseExit() {
