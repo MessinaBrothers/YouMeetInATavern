@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ConcludeScenarioController : MonoBehaviour {
-
-    public Transform itemCenterPos, itemZoomPos, npcCenterPos, npcZoomPos;
-    //private Transform itemsParent, npcsParent;
-
+    
     private Transform cardsParent;
     public Transform handPos, unusedDeckPos, discardDeckPos;
 
@@ -20,18 +17,9 @@ public class ConcludeScenarioController : MonoBehaviour {
     private GameObject[] cardsInHand, cardsInHandHighlightPositions, cardsInSelection;
     private Queue<GameObject> unusedDeck, discardDeck;
 
-    //private SelectCards itemSelection, npcSelection;
-
     void Start() {
         data = FindObjectOfType<GameData>();
         audioSource = GetComponent<AudioSource>();
-
-        GameObject go = new GameObject("Cards");
-        cardsParent = go.transform;
-        cardsParent.parent = gameObject.transform;
-
-        go = new GameObject("Transforms");
-        go.transform.parent = gameObject.transform;
 
         key_card = new Dictionary<string, GameObject>();
         cardsInHand = new GameObject[handPositions.Length];
@@ -39,6 +27,13 @@ public class ConcludeScenarioController : MonoBehaviour {
         cardsInSelection = new GameObject[selectedPositions.Length];
         unusedDeck = new Queue<GameObject>();
         discardDeck = new Queue<GameObject>();
+
+        GameObject go = new GameObject("Cards");
+        cardsParent = go.transform;
+        cardsParent.parent = gameObject.transform;
+
+        go = new GameObject("Transforms");
+        go.transform.parent = gameObject.transform;
 
         // set the hand position ids
         for (int i = 0; i < handPositions.Length; i++) {
@@ -59,20 +54,6 @@ public class ConcludeScenarioController : MonoBehaviour {
         for (int i = 0; i < selectedPositions.Length; i++) {
             selectedPositions[i].GetComponent<CardSelectedCollider>().id = i;
         }
-
-        //GameObject go = new GameObject("Items");
-        //itemsParent = go.transform;
-        //itemsParent.parent = gameObject.transform;
-
-        //GameObject go2 = new GameObject("NPCs");
-        //npcsParent = go2.transform;
-        //npcsParent.parent = gameObject.transform;
-
-        //// card selections
-        //itemSelection = gameObject.AddComponent<SelectCards>();
-        //itemSelection.unselectClip = unselectClip;
-        //npcSelection = gameObject.AddComponent<SelectCards>();
-        //npcSelection.unselectClip = unselectClip;
     }
 
     void OnEnable() {
@@ -80,8 +61,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.startConcludeScenarioEventHandler += Load;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler += ResetTavern;
-        InputController.hoverOverCardHandEventHandler += highlightCard;
-        InputController.hoverExitCardHandEventHandler += unhighlightCard;
+        InputController.hoverOverCardHandEventHandler += HighlightCard;
+        InputController.hoverExitCardHandEventHandler += UnhighlightCard;
         InputController.cardHandClickedEventHandler += SelectCard;
         InputController.hoverOverCardSelectedEventHandler += Dummy;
         InputController.hoverExitCardSelectedEventHandler += Dummy;
@@ -120,12 +101,12 @@ public class ConcludeScenarioController : MonoBehaviour {
         }
     }
 
-    private void highlightCard(int id) {
+    private void HighlightCard(int id) {
         GameObject card = cardsInHand[id];
         card.GetComponent<CardMove>().Set(handPositions[id], cardsInHandHighlightPositions[id].transform, data.cardHoverSpeed, Wait);
     }
 
-    private void unhighlightCard(int id) {
+    private void UnhighlightCard(int id) {
         GameObject card = cardsInHand[id];
         card.GetComponent<CardMove>().Set(card.transform, handPositions[id], data.cardHoverExitSpeed, Wait);
     }
@@ -283,14 +264,16 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void ResetTavern() {
-        foreach (Transform child in cardsParent.transform) {
-            Destroy(child.gameObject);
+        foreach (GameObject card in key_card.Values) {
+            card.SetActive(false);
         }
     }
 
     private void Load() {
         InputController.ChangeMode(GameData.GameMode.CONCLUDE);
-
+        
+        ResetCards();
+        
         float currentXOffset = -(data.unlockedDialogueKeys.Count - 1) / 2;
 
         Vector3 cardPosition = handPos.position;
@@ -318,40 +301,24 @@ public class ConcludeScenarioController : MonoBehaviour {
             SetPosition(card, unusedDeckPos);
             unusedDeck.Enqueue(card);
         }
-        
-        //float xOffset = 2.5f;
-        //float x = 0;
-
-        //// ITEMS
-        //foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
-        //    if (kvp.Key.StartsWith("ITEM_") && DeckController.Contains(kvp.Key)) {
-        //        // create the card
-        //        GameObject card = CardFactory.CreateCard(kvp.Key);
-        //        // add a zoom script
-        //        GameObject cardParent = AddZoom(card, x, itemCenterPos, itemZoomPos);
-        //        // set the parent
-        //        cardParent.transform.parent = itemsParent;
-        //        // offset x for the next card
-        //        x += xOffset;
-        //    }
-        //}
-
-        //xOffset = 2f;
-        //x = 0;
-
-        //// NPCs
-        //foreach (KeyValuePair<string, CardData> kvp in data.cardData) {
-        //    if (kvp.Key.StartsWith("NPC_") && DeckController.Contains(kvp.Key)) {
-        //        // create the card
-        //        GameObject card = CardFactory.CreateCard(kvp.Key);
-        //        // add a zoom script
-        //        GameObject cardParent = AddZoom(card, x, npcCenterPos, npcZoomPos);
-        //        // set the parent
-        //        cardParent.transform.parent = npcsParent;
-        //        // offset x for the next card
-        //        x += xOffset;
-        //    }
-        //}
+    }
+    
+    private void ResetCards() {
+        unusedDeck.Clear();
+        discardDeck.Clear();
+        for (int i = 0; i < cardsInHand.Length; i++) {
+            cardsInHand[i] = null;
+        }
+        for (int i = 0; i < cardsInSelection.Length; i++) {
+            cardsInSelection[i] = null;
+        }
+        for (int i = 0; i < handPositions.Length; i++) {
+            handPositions[i].gameObject.SetActive(false);
+        }
+        foreach (GameObject card in key_card.Values) {
+            card.SetActive(true);
+            card.GetComponent<CardMove>().Stop();
+        }
     }
 
     private void SetPosition(GameObject card, Transform pos) {
@@ -360,42 +327,4 @@ public class ConcludeScenarioController : MonoBehaviour {
         // set the card's position
         card.transform.localPosition = pos.position;
     }
-
-    //private GameObject AddZoom(GameObject card, float x, Transform centerTransform, Transform zoomTransform) {
-    //    GameObject cardParent = new GameObject(card.name + " Parent");
-    //    card.transform.parent = cardParent.transform;
-
-    //    // create default position
-    //    GameObject defaultPos = new GameObject("DefaultPos");
-    //    defaultPos.transform.position = new Vector3(
-    //        centerTransform.position.x + x,
-    //        centerTransform.position.y,
-    //        centerTransform.position.z
-    //        );
-    //    defaultPos.transform.rotation = centerTransform.rotation;
-
-    //    // create zoom position
-    //    GameObject zoomPos = new GameObject("ZoomPos");
-    //    zoomPos.transform.position = new Vector3(
-    //        centerTransform.position.x + x,
-    //        zoomTransform.position.y,
-    //        zoomTransform.position.z
-    //        );
-    //    zoomPos.transform.rotation = zoomTransform.rotation;
-
-    //    // set the parents
-    //    defaultPos.transform.parent = cardParent.transform;
-    //    zoomPos.transform.parent = cardParent.transform;
-
-    //    // add zoom script
-    //    CardZoom zoom = card.AddComponent<CardZoom>();
-    //    zoom.defaultPos = defaultPos;
-    //    zoom.zoomPos = zoomPos;
-
-    //    // start the position at its default
-    //    card.transform.position = defaultPos.transform.position;
-    //    card.transform.rotation = defaultPos.transform.rotation;
-
-    //    return cardParent;
-    //}
 }

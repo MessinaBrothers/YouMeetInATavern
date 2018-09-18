@@ -42,4 +42,8 @@ public class CardMove : MonoBehaviour {
         this.reachedPosition = reachedPosition;
         moveTimer = moveTime;
     }
+
+    public void Stop() {
+        moveTimer = 0;
+    }
 }
