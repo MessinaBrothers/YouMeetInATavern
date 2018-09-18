@@ -98,9 +98,15 @@ Clock: each NPC leaves at x time
 Clock: NPC goes to Exit area at x - 1 time
 Don't clear cards after scenario
 location map
--hand of cards
--cards raise on hover
--select cards
+hand of cards
+cards raise on hover
+select cards
+SFX
+put all unused cards into their own deck
+After selecting a card, an unused card is drawn
+Deselecting a card when hand is full discards the card
+-Clicking on the unused deck draws a card (if hand is full, discards a card)
+-Clicking on the discard deck draws a card (if hand is full, places a card onto the unused deck)
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
 -Flush out / redo Scenarios
 -Tutorial: Explain mechanics, introduce NPCs and locations

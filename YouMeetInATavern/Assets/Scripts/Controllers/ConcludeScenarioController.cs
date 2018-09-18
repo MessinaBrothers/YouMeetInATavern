@@ -9,33 +9,22 @@ public class ConcludeScenarioController : MonoBehaviour {
     //private Transform itemsParent, npcsParent;
 
     private Transform cardsParent;
-    public Transform handPos;
+    public Transform handPos, unusedDeckPos, discardDeckPos;
 
     public Transform[] handPositions, selectedPositions;
 
     private GameData data;
+    private AudioSource audioSource;
 
     private Dictionary<string, GameObject> key_card;
     private GameObject[] cardsInHand, cardsInHandHighlightPositions, cardsInSelection;
+    private Queue<GameObject> unusedDeck, discardDeck;
 
     //private SelectCards itemSelection, npcSelection;
 
     void Start() {
         data = FindObjectOfType<GameData>();
-
-        //GameObject go = new GameObject("Items");
-        //itemsParent = go.transform;
-        //itemsParent.parent = gameObject.transform;
-
-        //GameObject go2 = new GameObject("NPCs");
-        //npcsParent = go2.transform;
-        //npcsParent.parent = gameObject.transform;
-
-        //// card selections
-        //itemSelection = gameObject.AddComponent<SelectCards>();
-        //itemSelection.unselectClip = unselectClip;
-        //npcSelection = gameObject.AddComponent<SelectCards>();
-        //npcSelection.unselectClip = unselectClip;
+        audioSource = GetComponent<AudioSource>();
 
         GameObject go = new GameObject("Cards");
         cardsParent = go.transform;
@@ -48,6 +37,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         cardsInHand = new GameObject[handPositions.Length];
         cardsInHandHighlightPositions = new GameObject[handPositions.Length];
         cardsInSelection = new GameObject[selectedPositions.Length];
+        unusedDeck = new Queue<GameObject>();
+        discardDeck = new Queue<GameObject>();
 
         // set the hand position ids
         for (int i = 0; i < handPositions.Length; i++) {
@@ -68,6 +59,20 @@ public class ConcludeScenarioController : MonoBehaviour {
         for (int i = 0; i < selectedPositions.Length; i++) {
             selectedPositions[i].GetComponent<CardSelectedCollider>().id = i;
         }
+
+        //GameObject go = new GameObject("Items");
+        //itemsParent = go.transform;
+        //itemsParent.parent = gameObject.transform;
+
+        //GameObject go2 = new GameObject("NPCs");
+        //npcsParent = go2.transform;
+        //npcsParent.parent = gameObject.transform;
+
+        //// card selections
+        //itemSelection = gameObject.AddComponent<SelectCards>();
+        //itemSelection.unselectClip = unselectClip;
+        //npcSelection = gameObject.AddComponent<SelectCards>();
+        //npcSelection.unselectClip = unselectClip;
     }
 
     void OnEnable() {
@@ -81,6 +86,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.hoverOverCardSelectedEventHandler += Dummy;
         InputController.hoverExitCardSelectedEventHandler += Dummy;
         InputController.cardSelectedClickedEventHandler += UnselectCard;
+        InputController.unusedDeckClickedEventHandler += DrawFromUnused;
+        InputController.discardDeckClickedEventHandler += DrawFromDiscard;
     }
 
     void OnDisable() {
@@ -91,6 +98,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.hoverOverCardSelectedEventHandler -= Dummy;
         InputController.hoverExitCardSelectedEventHandler -= Dummy;
         InputController.cardSelectedClickedEventHandler -= UnselectCard;
+        InputController.unusedDeckClickedEventHandler -= DrawFromUnused;
+        InputController.discardDeckClickedEventHandler -= DrawFromDiscard;
     }
 
     private void Dummy(int id) { }
@@ -130,6 +139,14 @@ public class ConcludeScenarioController : MonoBehaviour {
                 card.GetComponent<CardMove>().Set(card.transform, selectedPositions[i].transform, data.cardSelectedSpeed, Wait);
                 RemoveCardFromHand(id);
                 cardsInSelection[i] = card;
+
+                if (unusedDeck.Count > 0) {
+                    AddCardToHand(unusedDeck.Dequeue(), true);
+                } else if (discardDeck.Count > 0) {
+                    AddCardToHand(discardDeck.Dequeue(), false);
+                }
+
+                audioSource.Play();
                 return;
             }
         }
@@ -138,9 +155,50 @@ public class ConcludeScenarioController : MonoBehaviour {
     private void UnselectCard(int id) {
         GameObject card = cardsInSelection[id];
         if (card != null) {
-            AddCardToHand(card);
+            if (IsHandFull() == true) {
+                Discard(card);
+            } else {
+                AddCardToHand(card, true);
+            }
             cardsInSelection[id] = null;
+            audioSource.Play();
         }
+    }
+
+    private void DrawFromUnused() {
+        if (unusedDeck.Count > 0) {
+            if (IsHandFull() == true) {
+                Discard(cardsInHand[0]);
+                RemoveCardFromHand(0);
+            }
+            AddCardToHand(unusedDeck.Dequeue(), true);
+            audioSource.Play();
+        }
+    }
+
+    private void DrawFromDiscard() {
+        if (discardDeck.Count > 0) {
+            if (IsHandFull() == true) {
+                Return(cardsInHand[cardsInHand.Length - 1]);
+                RemoveCardFromHand(cardsInHand.Length - 1);
+            }
+            AddCardToHand(discardDeck.Dequeue(), false);
+            audioSource.Play();
+        }
+    }
+
+    private bool IsHandFull() {
+        return cardsInHand[cardsInHand.Length - 1] != null;
+    }
+
+    private void Discard(GameObject card) {
+        card.GetComponent<CardMove>().Set(card.transform, discardDeckPos, data.cardHoverSpeed, Wait);
+        discardDeck.Enqueue(card);
+    }
+
+    private void Return(GameObject card) {
+        card.GetComponent<CardMove>().Set(card.transform, unusedDeckPos, data.cardHoverSpeed, Wait);
+        unusedDeck.Enqueue(card);
     }
 
     private static void Wait(GameObject card) {
@@ -173,18 +231,23 @@ public class ConcludeScenarioController : MonoBehaviour {
         }
     }
 
-    private void AddCardToHand(GameObject card) {
+    private void AddCardToHand(GameObject card, bool isRight) {
         int lastID = -1;
 
-        // move all cards left
-        for (int i = 0; i < cardsInHand.Length; i++) {
+        int moveCardsBy = isRight ? -1 : +1;
+
+        // move all cards according to isRight
+        int startIndex = isRight ? 0 : cardsInHand.Length - 1;
+        int endIndex = isRight ? cardsInHand.Length : -1;
+        for (int i = startIndex; i != endIndex; i = i - moveCardsBy) {
+            print(i);
             GameObject existingCard = cardsInHand[i];
             if (existingCard != null) {
                 cardsInHand[i] = null;
                 handPositions[i].gameObject.SetActive(false);
-                cardsInHand[i - 1] = existingCard;
-                handPositions[i - 1].gameObject.SetActive(true);
-                existingCard.GetComponent<CardMove>().Set(existingCard.transform, handPositions[i - 1], data.cardHoverSpeed, Wait);
+                cardsInHand[i + moveCardsBy] = existingCard;
+                handPositions[i + moveCardsBy].gameObject.SetActive(true);
+                existingCard.GetComponent<CardMove>().Set(existingCard.transform, handPositions[i + moveCardsBy], data.cardHoverSpeed, Wait);
                 lastID = i;
             }
         }
@@ -194,11 +257,11 @@ public class ConcludeScenarioController : MonoBehaviour {
             // lastID is the middle, minus 1
             lastID = (handPositions.Length - 1) / 2 - 1;
         }
-
+        print(lastID);
         // move the card to the last position, plus 1
-        cardsInHand[lastID + 1] = card;
-        handPositions[lastID + 1].gameObject.SetActive(true);
-        card.GetComponent<CardMove>().Set(card.transform, handPositions[lastID + 1], data.cardHoverSpeed, Wait);
+        cardsInHand[lastID - moveCardsBy] = card;
+        handPositions[lastID - moveCardsBy].gameObject.SetActive(true);
+        card.GetComponent<CardMove>().Set(card.transform, handPositions[lastID - moveCardsBy], data.cardHoverSpeed, Wait);
     }
 
     private int GetHandSize() {
@@ -232,24 +295,28 @@ public class ConcludeScenarioController : MonoBehaviour {
 
         Vector3 cardPosition = handPos.position;
 
+        // create the hand
         int numCardsToShow = Mathf.Min((handPositions.Length + 1) / 2, data.unlockedDialogueKeys.Count);
         int handPositionIndex = (handPositions.Length + 1) / 2 - numCardsToShow;
 
         for (int i = 0; i < numCardsToShow; i++) {
-            // get the card
             GameObject card = key_card[data.unlockedDialogueKeys[i]];
-            // get the transform
+
+            // activate the hand position
             Transform handPosition = handPositions[handPositionIndex];
-            // activate the card hand
             handPosition.gameObject.SetActive(true);
-            // set the card's rotation
-            card.transform.localRotation = handPosition.rotation;
-            // set the card's position
-            card.transform.localPosition = handPosition.position;
-            // add card to list
+            SetPosition(card, handPosition);
+            
             cardsInHand[handPositionIndex] = card;
-            // increment the hand position index
+
             handPositionIndex += 2;
+        }
+
+        // for all other cards, create a deck of unused cards
+        for (int i = numCardsToShow; i < data.unlockedDialogueKeys.Count; i++) {
+            GameObject card = key_card[data.unlockedDialogueKeys[i]];
+            SetPosition(card, unusedDeckPos);
+            unusedDeck.Enqueue(card);
         }
         
         //float xOffset = 2.5f;
@@ -285,6 +352,13 @@ public class ConcludeScenarioController : MonoBehaviour {
         //        x += xOffset;
         //    }
         //}
+    }
+
+    private void SetPosition(GameObject card, Transform pos) {
+        // set the card's rotation
+        card.transform.localRotation = pos.rotation;
+        // set the card's position
+        card.transform.localPosition = pos.position;
     }
 
     //private GameObject AddZoom(GameObject card, float x, Transform centerTransform, Transform zoomTransform) {
