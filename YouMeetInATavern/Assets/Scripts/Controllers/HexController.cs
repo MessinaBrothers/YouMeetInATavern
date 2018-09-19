@@ -8,6 +8,7 @@ public class HexController : MonoBehaviour {
     public GameObject model;
     public AudioClip selectClip;
 
+    public bool isStartsChosen;
     public float riseSpeed, lowerSpeed;
     public float lowerY, riseY;
 
@@ -24,6 +25,12 @@ public class HexController : MonoBehaviour {
         id = GetComponentInChildren<HexagonCollider>().id;
         position = model.transform.localPosition;
         currentY = position.y;
+
+        if (isStartsChosen == true) {
+            isChosen = true;
+            GameData data = FindObjectOfType<GameData>();
+            data.chosenLocation = FindObjectOfType<HexesController>().locations[id];
+        }
     }
 
     void Update() {
@@ -67,6 +74,7 @@ public class HexController : MonoBehaviour {
 
     private void Select(int id) {
         if (this.id == id) {
+            print(gameObject.name);
             audioSource.PlayOneShot(selectClip);
         }
         isChosen = (this.id == id);

@@ -108,7 +108,8 @@ Deselecting a card when hand is full discards the card
 Clicking on the unused deck draws a card (if hand is full, discards a card)
 Clicking on the discard deck draws a card (if hand is full, places a card onto the unused deck)
 After reloading scenario, cards still exist in previous slots (hand, selection)
--Hexes: graphics, sfx
+Hexes: graphics, sfx
+-Confirm scenario choices button
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
 -Flush out / redo Scenarios
 -Tutorial: Explain mechanics, introduce NPCs and locations

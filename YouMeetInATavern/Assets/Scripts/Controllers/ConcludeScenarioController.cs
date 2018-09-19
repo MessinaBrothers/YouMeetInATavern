@@ -121,6 +121,8 @@ public class ConcludeScenarioController : MonoBehaviour {
                 RemoveCardFromHand(id);
                 cardsInSelection[i] = card;
 
+                data.chosenAnswerKeys.Add(card.GetComponent<Key>().key);
+
                 if (unusedDeck.Count > 0) {
                     AddCardToHand(unusedDeck.Dequeue(), true);
                 } else if (discardDeck.Count > 0) {
@@ -143,6 +145,8 @@ public class ConcludeScenarioController : MonoBehaviour {
             }
             cardsInSelection[id] = null;
             audioSource.Play();
+
+            data.chosenAnswerKeys.Remove(card.GetComponent<Key>().key);
         }
     }
 
@@ -221,7 +225,6 @@ public class ConcludeScenarioController : MonoBehaviour {
         int startIndex = isRight ? 0 : cardsInHand.Length - 1;
         int endIndex = isRight ? cardsInHand.Length : -1;
         for (int i = startIndex; i != endIndex; i = i - moveCardsBy) {
-            print(i);
             GameObject existingCard = cardsInHand[i];
             if (existingCard != null) {
                 cardsInHand[i] = null;
@@ -238,7 +241,6 @@ public class ConcludeScenarioController : MonoBehaviour {
             // lastID is the middle, minus 1
             lastID = (handPositions.Length - 1) / 2 - 1;
         }
-        print(lastID);
         // move the card to the last position, plus 1
         cardsInHand[lastID - moveCardsBy] = card;
         handPositions[lastID - moveCardsBy].gameObject.SetActive(true);
