@@ -482,6 +482,11 @@ Prefab:
       propertyPath: id
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114881981136683724, guid: 414cce25c68051d40a13230cf37ff68e,
+        type: 2}
+      propertyPath: selectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 73c34d32b67330c4fa5c10661f7425af, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414cce25c68051d40a13230cf37ff68e, type: 2}
   m_IsPrefabAsset: 0
@@ -7449,6 +7454,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114881981136683724, guid: 414cce25c68051d40a13230cf37ff68e,
+        type: 2}
+      propertyPath: selectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 53ef314425fd61c43b7e6b37d6793bb5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414cce25c68051d40a13230cf37ff68e, type: 2}
   m_IsPrefabAsset: 0
@@ -17367,6 +17377,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114881981136683724, guid: 414cce25c68051d40a13230cf37ff68e,
+        type: 2}
+      propertyPath: selectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b2a37bb0a0ce2c4f80cb90e8b3a4521, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414cce25c68051d40a13230cf37ff68e, type: 2}
   m_IsPrefabAsset: 0
@@ -21158,6 +21173,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114881981136683724, guid: 414cce25c68051d40a13230cf37ff68e,
+        type: 2}
+      propertyPath: selectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e2745356415c9b44a0b3b4e68b7147d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414cce25c68051d40a13230cf37ff68e, type: 2}
   m_IsPrefabAsset: 0
@@ -27284,6 +27304,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114881981136683724, guid: 414cce25c68051d40a13230cf37ff68e,
+        type: 2}
+      propertyPath: selectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8aab2884ff2df1848ae67a2bb20028b3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414cce25c68051d40a13230cf37ff68e, type: 2}
   m_IsPrefabAsset: 0
@@ -29805,8 +29830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba8493344d22764bae8a6b4f5d4c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UNLOCK_ALL_KEYS: 0
-  START_CHOOSE_SCENARIO: 0
+  UNLOCK_ALL_KEYS: 1
+  START_CHOOSE_SCENARIO: 1
   debugPanel: {fileID: 1674353447}
   debugUnlockCardsPanel: {fileID: 548406409}
 --- !u!4 &2142048305

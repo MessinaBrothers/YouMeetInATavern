@@ -6,9 +6,12 @@ using UnityEngine;
 public class HexController : MonoBehaviour {
 
     public GameObject model;
+    public AudioClip selectClip;
 
     public float riseSpeed, lowerSpeed;
     public float lowerY, riseY;
+
+    private AudioSource audioSource;
 
     private Vector3 position;
     private int id;
@@ -16,6 +19,8 @@ public class HexController : MonoBehaviour {
     private float currentY;
 
     void Start() {
+        audioSource = GetComponent<AudioSource>();
+
         id = GetComponentInChildren<HexagonCollider>().id;
         position = model.transform.localPosition;
         currentY = position.y;
@@ -48,7 +53,8 @@ public class HexController : MonoBehaviour {
     }
 
     private void RiseUp(int id) {
-        if (this.id == id) {
+        if (this.id == id && isChosen == false) {
+            audioSource.Play();
             isFloating = true;
         }
     }
@@ -60,6 +66,9 @@ public class HexController : MonoBehaviour {
     }
 
     private void Select(int id) {
+        if (this.id == id) {
+            audioSource.PlayOneShot(selectClip);
+        }
         isChosen = (this.id == id);
     }
 }
