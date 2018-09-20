@@ -110,6 +110,7 @@ Clicking on the discard deck draws a card (if hand is full, places a card onto t
 After reloading scenario, cards still exist in previous slots (hand, selection)
 Hexes: graphics, sfx
 Confirm scenario choices button
--Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
--Flush out / redo Scenarios
+-Main menu
 -Tutorial: Explain mechanics, introduce NPCs and locations
+-Flush out / redo Scenarios
+-Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
