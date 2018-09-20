@@ -121,6 +121,12 @@ public class InputController : MonoBehaviour {
     public static event ClockTickedEventHandler clockTickedEventHandler;
     public delegate void ClockTickedEventHandler(int currentHour);
 
+    public static event FadedOutEventHandler fadedOutEventHandler;
+    public delegate void FadedOutEventHandler();
+
+    public static event FadedInEventHandler fadedInEventHandler;
+    public delegate void FadedInEventHandler();
+
     private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
@@ -304,6 +310,14 @@ public class InputController : MonoBehaviour {
 
     public static void TickClock(int currentHour) {
         clockTickedEventHandler.Invoke(currentHour);
+    }
+
+    public static void FadedOut() {
+        if (fadedOutEventHandler != null) fadedOutEventHandler.Invoke();
+    }
+
+    public static void FadedIn() {
+        if (fadedInEventHandler != null) fadedInEventHandler.Invoke();
     }
     
     // wrapper methods for Unity buttons

@@ -23,18 +23,22 @@ public class FadeImage : MonoBehaviour {
     }
 
     void Update() {
-        if (fadeIn == true || fadeOut == true) {
+        if (timer < fadeTime) {
             timer += Time.deltaTime;
-
             if (fadeIn == true) {
                 SetAlpha(Mathf.Lerp(1, 0, timer / fadeTime));
+                if (timer >= fadeTime) {
+                    fadeIn = false;
+                    InputController.FadedIn();
+                }
             } else if (fadeOut == true) {
                 SetAlpha(Mathf.Lerp(0, 1, timer / fadeTime));
+                if (timer >= fadeTime) {
+                    fadeOut = false;
+                    InputController.FadedOut();
+                }
             }
-            if (timer >= fadeTime) {
-                fadeIn = false;
-                fadeOut = false;
-            }
+
         }
     }
 
