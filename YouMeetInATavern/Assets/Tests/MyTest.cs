@@ -54,8 +54,10 @@ public abstract class MyTest : MonoBehaviour {
     private void SetUp() {
         GameObject go = new GameObject("go");
         go.transform.parent = transform;
-        GameData data = go.AddComponent<GameData>();
-        ScenarioParser scenarioParser = go.AddComponent<ScenarioParser>();
+        //GameData data = 
+        go.AddComponent<GameData>();
+        //ScenarioParser scenarioParser = 
+        go.AddComponent<ScenarioParser>();
     }
 
     private void CleanUp() {

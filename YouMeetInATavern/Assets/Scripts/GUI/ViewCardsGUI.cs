@@ -8,7 +8,7 @@ public class ViewCardsGUI : MonoBehaviour {
     public float cardOffset, cardMoveSpeed;
     public AudioClip[] cardFlipClips;
 
-    private GameData data;
+    //private GameData data;
     private AudioSource audioSource;
 
     private GameObject[] deckCards;
@@ -31,7 +31,7 @@ public class ViewCardsGUI : MonoBehaviour {
     }
 
     public void Load(GameData data, List<string> unlockKeys) {
-        this.data = data;
+        //this.data = data;
         cardKeys = new string[unlockKeys.Count];
         for (int i = 0; i < cardKeys.Length; i++) {
             cardKeys[i] = unlockKeys[i];

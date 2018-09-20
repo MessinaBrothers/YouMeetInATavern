@@ -9,10 +9,10 @@ public class DEBUGUnlockCardsGUI : MonoBehaviour {
     public GameObject itemsPanel, npcsPanel;
     public GameObject buttonPrefab;
 
-    private GameData data;
+    //private GameData data;
 
     internal void Load(GameData data) {
-        this.data = data;
+        //this.data = data;
 
         foreach (string key in data.cardData.Keys) {
             // create a button

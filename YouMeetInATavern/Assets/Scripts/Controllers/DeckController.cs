@@ -8,7 +8,7 @@ public class DeckController : MonoBehaviour {
     private static GameData data;
 
     void Start() {
-        data = GameData.FindObjectOfType<GameData>();
+        data = FindObjectOfType<GameData>();
     }
 
     void OnEnable() {

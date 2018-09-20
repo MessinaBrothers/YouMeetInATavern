@@ -9,7 +9,7 @@ public class ViewDeckListGUI : MonoBehaviour {
 
     public GameObject content;
 
-    private GameData data;
+    //private GameData data;
     
     // ordered list for traversal
     private List<GameObject> listItems;
@@ -17,7 +17,7 @@ public class ViewDeckListGUI : MonoBehaviour {
     private Dictionary<string, GameObject> key_listItem;
     
     public void Load(GameData data, List<string> unlockKeys) {
-        this.data = data;
+        //this.data = data;
         listItems = new List<GameObject>();
         key_listItem = new Dictionary<string, GameObject>();
 
