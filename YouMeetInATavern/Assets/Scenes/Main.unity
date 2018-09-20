@@ -30049,8 +30049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba8493344d22764bae8a6b4f5d4c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UNLOCK_ALL_KEYS: 1
-  START_CHOOSE_SCENARIO: 1
+  UNLOCK_ALL_KEYS: 0
+  START_CHOOSE_SCENARIO: 0
   debugPanel: {fileID: 1674353447}
   debugUnlockCardsPanel: {fileID: 548406409}
 --- !u!4 &2142048305

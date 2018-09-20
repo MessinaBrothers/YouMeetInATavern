@@ -20,7 +20,6 @@ public class DeckController : MonoBehaviour {
     }
 
     private void ResetDeck(GameData data) {
-        print("Resetting deck...");
         data.unlockedDialogueKeys.Clear();
     }
 

@@ -60,7 +60,7 @@ public class GameData : MonoBehaviour {
     public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
     public Dictionary<string, Dictionary<string, Question>> npc_questions;
-    public List<string> unlockedDialogueKeys, chosenAnswerKeys;
+    public HashSet<string> unlockedDialogueKeys, chosenAnswerKeys;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
 
@@ -90,8 +90,8 @@ public class GameData : MonoBehaviour {
 
         npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
         npc_questions = new Dictionary<string, Dictionary<string, Question>>();
-        unlockedDialogueKeys = new List<string>();
-        chosenAnswerKeys = new List<string>();
+        unlockedDialogueKeys = new HashSet<string>();
+        chosenAnswerKeys = new HashSet<string>();
 
         // DEBUG
         unlockedDialogueKeys.Add(GameData.DIALOGUE_DEFAULT);

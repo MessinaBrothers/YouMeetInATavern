@@ -275,17 +275,23 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.ChangeMode(GameData.GameMode.CONCLUDE);
         
         ResetCards();
-        
-        float currentXOffset = -(data.unlockedDialogueKeys.Count - 1) / 2;
 
-        Vector3 cardPosition = handPos.position;
+        // create a list of unlocked cards
+        List<GameObject> cards = new List<GameObject>();
+        foreach (string key in data.unlockedDialogueKeys) {
+            if (key.StartsWith("ITEM_") || key.StartsWith("NPC_")) {
+                GameObject card = key_card[key];
+                card.SetActive(true);
+                cards.Add(card);
+            }
+        }
 
         // create the hand
-        int numCardsToShow = Mathf.Min((handPositions.Length + 1) / 2, data.unlockedDialogueKeys.Count);
+        int numCardsToShow = Mathf.Min((handPositions.Length + 1) / 2, cards.Count);
         int handPositionIndex = (handPositions.Length + 1) / 2 - numCardsToShow;
 
         for (int i = 0; i < numCardsToShow; i++) {
-            GameObject card = key_card[data.unlockedDialogueKeys[i]];
+            GameObject card = cards[i];
 
             // activate the hand position
             Transform handPosition = handPositions[handPositionIndex];
@@ -298,8 +304,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         }
 
         // for all other cards, create a deck of unused cards
-        for (int i = numCardsToShow; i < data.unlockedDialogueKeys.Count; i++) {
-            GameObject card = key_card[data.unlockedDialogueKeys[i]];
+        for (int i = numCardsToShow; i < cards.Count; i++) {
+            GameObject card = cards[i];
             SetPosition(card, unusedDeckPos);
             unusedDeck.Enqueue(card);
         }
@@ -318,7 +324,7 @@ public class ConcludeScenarioController : MonoBehaviour {
             handPositions[i].gameObject.SetActive(false);
         }
         foreach (GameObject card in key_card.Values) {
-            card.SetActive(true);
+            card.SetActive(false);
             card.GetComponent<CardMove>().Stop();
         }
     }

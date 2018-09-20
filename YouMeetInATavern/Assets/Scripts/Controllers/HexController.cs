@@ -74,7 +74,6 @@ public class HexController : MonoBehaviour {
 
     private void Select(int id) {
         if (this.id == id) {
-            print(gameObject.name);
             audioSource.PlayOneShot(selectClip);
         }
         isChosen = (this.id == id);
