@@ -36,6 +36,9 @@ public class InputController : MonoBehaviour {
     public static event EndResultsEventHandler endResultsEventHandler;
     public delegate void EndResultsEventHandler();
 
+    public static event StartGameEventHandler startGameEventHandler;
+    public delegate void StartGameEventHandler();
+
     // CARD INTERACTIONS
     public static event CardClickedEventHandler cardClickedEventHandler;
     public delegate void CardClickedEventHandler(GameObject card);
@@ -173,6 +176,10 @@ public class InputController : MonoBehaviour {
         endResultsEventHandler.Invoke();
     }
 
+    public static void StartGame() {
+        startGameEventHandler.Invoke();
+    }
+
     // CARD INTERACTIONS
 
     public static void HandleCardClick(GameObject card) {
@@ -308,6 +315,7 @@ public class InputController : MonoBehaviour {
     public void EndDayWrapper() { EndDay(); }
     public void ConfirmScenarioWrapper() { ConfirmScenario(); }
     public void EndResultsWrapper() { EndResults(); }
+    public void StartGameWrapper() { StartGame(); }
     public void DeckClickWrapper() { DeckClick(); }
     public void DeckCloseWrapper() { DeckClose(); }
 }

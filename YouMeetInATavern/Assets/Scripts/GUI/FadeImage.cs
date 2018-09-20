@@ -40,11 +40,13 @@ public class FadeImage : MonoBehaviour {
 
     public void FadeIn(float time) {
         fadeIn = true;
+        fadeOut = false;
         BeginFade(1, time);
     }
 
     public void FadeOut(float time) {
         fadeOut = true;
+        fadeIn = false;
         BeginFade(0, time);
     }
 
