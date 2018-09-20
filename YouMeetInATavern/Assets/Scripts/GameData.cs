@@ -73,6 +73,7 @@ public class GameData : MonoBehaviour {
         NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
     }
     [Header("Conclusion")]
+    public Location[] hexIndex_location;
     public Location chosenLocation;
     public string resultsDialogue;
 

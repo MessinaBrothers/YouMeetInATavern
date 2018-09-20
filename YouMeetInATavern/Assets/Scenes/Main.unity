@@ -17716,13 +17716,11 @@ MonoBehaviour:
   - {fileID: 200376461}
   nextScenarioIndex: 2
   nextDialogueIntroKey: 
-  unlockedDialogueKeys:
-  - 
-  chosenAnswerKeys: []
   buttonItemColor: {r: 0.9411765, g: 0.89411765, b: 0.25882354, a: 1}
   buttonNPCColor: {r: 0, g: 0.5647059, b: 0.69803923, a: 1}
   buttonLocationColor: {r: 0, g: 0.61960787, b: 0.4509804, a: 1}
   gameMode: 0
+  hexIndex_location: 03000000000000000500000001000000000000000400000002000000
   chosenLocation: 0
   resultsDialogue: 
 --- !u!114 &1027258102

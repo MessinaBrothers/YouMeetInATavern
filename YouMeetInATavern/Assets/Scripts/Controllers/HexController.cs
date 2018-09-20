@@ -29,7 +29,7 @@ public class HexController : MonoBehaviour {
         if (isStartsChosen == true) {
             isChosen = true;
             GameData data = FindObjectOfType<GameData>();
-            data.chosenLocation = FindObjectOfType<HexesController>().locations[id];
+            data.chosenLocation = data.hexIndex_location[id];
         }
     }
 

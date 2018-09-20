@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class HexesController : MonoBehaviour {
 
-    public GameData.Location[] locations;
-
     private GameData data;
 
     void Start() {
@@ -26,6 +24,6 @@ public class HexesController : MonoBehaviour {
     }
 
     private void SetLocation(int id) {
-        data.chosenLocation = locations[id];
+        data.chosenLocation = data.hexIndex_location[id];
     }
 }
