@@ -42,6 +42,14 @@ public class FadeImage : MonoBehaviour {
         }
     }
 
+    public void FadeIn() {
+        FadeIn(fadeTime);
+    }
+
+    public void FadeOut() {
+        FadeOut(fadeTime);
+    }
+
     public void FadeIn(float time) {
         fadeIn = true;
         fadeOut = false;

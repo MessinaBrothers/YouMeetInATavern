@@ -41,7 +41,8 @@ public class NPCController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameInitializedEventHandler += CreateCards;
-        InputController.startTavernEventHandler += ContinueDay;
+        InputController.startTavernEventHandler += LoadNPCs;
+        InputController.introduceNPCsEventHandler += IntroduceNPCs;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
         InputController.npcLeavesEventHandler += Goodbye;
@@ -49,7 +50,8 @@ public class NPCController : MonoBehaviour {
 
     void OnDisable() {
         InputController.gameInitializedEventHandler -= CreateCards;
-        InputController.startTavernEventHandler -= ContinueDay;
+        InputController.startTavernEventHandler -= LoadNPCs;
+        InputController.introduceNPCsEventHandler -= IntroduceNPCs;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
         InputController.npcLeavesEventHandler -= Goodbye;
@@ -163,7 +165,7 @@ public class NPCController : MonoBehaviour {
         }
     }
 
-    private void ContinueDay() {
+    private void LoadNPCs() {
         List<NPC> activeNPCs = new List<NPC>();
         
         // initialize each npc key in this scenario
@@ -201,7 +203,9 @@ public class NPCController : MonoBehaviour {
             //Debug.LogFormat("{0} is leaving at {1}", activeNPCs[i].name, hourLeaving);
             activeNPCs[i].hourLeavesTavern = hourLeaving;
         }
+    }
 
+    private void IntroduceNPCs() {
         // introduce the first NPC, if any
         IntroduceNextNPC(null);
     }

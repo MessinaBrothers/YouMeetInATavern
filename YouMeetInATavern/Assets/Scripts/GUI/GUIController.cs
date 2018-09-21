@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GUIController : MonoBehaviour {
 
-    public GameObject hudPanel, dialoguePanel, deckPanel, dayPanel, nightPanel, concludeScenarioPanel, resultsPanel;
+    public GameObject hudPanel, dialoguePanel, deckPanel, nightPanel, concludeScenarioPanel, resultsPanel;
     public ClockGUI clockGUI;
 
     private GameData data;
@@ -72,13 +72,13 @@ public class GUIController : MonoBehaviour {
         hudPanel.SetActive(true);
     }
 
-    public void StartDay() {
-        DeactivateAll();
-        dayPanel.SetActive(true);
+    public void FadeIn() {
+        GetComponentInChildren<FadeImage>().FadeIn();
     }
 
-    public void ContinueDay() {
+    public void LoadTavern() {
         DeactivateAll();
+        //dayPanel.SetActive(true);
         hudPanel.SetActive(true);
         hudPanel.GetComponentInChildren<DeckGUI>().ReloadDeck(data);
     }
@@ -113,7 +113,6 @@ public class GUIController : MonoBehaviour {
         hudPanel.SetActive(false);
         dialoguePanel.SetActive(false);
         deckPanel.SetActive(false);
-        dayPanel.SetActive(false);
         nightPanel.SetActive(false);
         concludeScenarioPanel.SetActive(false);
         resultsPanel.SetActive(false);

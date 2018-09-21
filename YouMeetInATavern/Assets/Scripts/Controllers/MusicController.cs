@@ -7,10 +7,10 @@ public class MusicController : MonoBehaviour {
 
     public AudioMixerSnapshot main, silent;
 
-    private AudioSource audioSource;
+    //private AudioSource audioSource;
 
     void Awake() {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         TransitionMain(0);
     }
 

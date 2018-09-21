@@ -24,11 +24,13 @@ public class GameController : MonoBehaviour {
     void OnEnable() {
         InputController.endResultsEventHandler += LoadScenario;
         InputController.gameModeChangedEventHandler += ChangeMode;
+        InputController.fadedInEventHandler += IntroduceNPCs;
     }
 
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
         InputController.gameModeChangedEventHandler -= ChangeMode;
+        InputController.fadedInEventHandler -= IntroduceNPCs;
     }
 
     private void LoadScenario() {
@@ -49,5 +51,9 @@ public class GameController : MonoBehaviour {
 
     private void ChangeMode(GameData.GameMode mode) {
         data.gameMode = mode;
+    }
+
+    private void IntroduceNPCs() {
+        InputController.IntroduceNPCs();
     }
 }

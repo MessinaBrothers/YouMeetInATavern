@@ -21,6 +21,9 @@ public class InputController : MonoBehaviour {
     public static event StartDayEventHandler startDayEventHandler;
     public delegate void StartDayEventHandler();
 
+    public static event IntroduceNPCsEventHandler introduceNPCsEventHandler;
+    public delegate void IntroduceNPCsEventHandler();
+
     public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
     public delegate void EndDayEarlyEventHandler();
 
@@ -150,14 +153,15 @@ public class InputController : MonoBehaviour {
         guiController.StartScenario(data);
     }
 
-    public static void ContinueDay() {
-        startTavernEventHandler.Invoke();
-        guiController.ContinueDay();
-    }
-
     public static void StartDay() {
         startDayEventHandler.Invoke();
-        guiController.StartDay();
+        startTavernEventHandler.Invoke();
+        guiController.FadeIn();
+        guiController.LoadTavern();
+    }
+
+    public static void IntroduceNPCs() {
+        introduceNPCsEventHandler.Invoke();
     }
 
     public static void ChangeMode(GameData.GameMode mode) {
@@ -324,7 +328,6 @@ public class InputController : MonoBehaviour {
     // since they can't call static methods
     public void HandleStopConverseWrapper() { HandleStopConverse(); }
     public void HandleGoodbyeWrapper() { HandleGoodbye(); }
-    public void ContinueDayWrapper() { ContinueDay(); }
     public void LeaveTavernEarlyWrapper() { LeaveTavernEarly(); }
     public void EndDayWrapper() { EndDay(); }
     public void ConfirmScenarioWrapper() { ConfirmScenario(); }

@@ -38,7 +38,6 @@ public class DayController : MonoBehaviour {
     }
 
     private void NewDay() {
-        InputController.ChangeMode(GameData.GameMode.INTRODUCE);
         data.dayCount += 1;
     }
 
