@@ -25,12 +25,14 @@ public class GameController : MonoBehaviour {
         InputController.endResultsEventHandler += LoadScenario;
         InputController.gameModeChangedEventHandler += ChangeMode;
         InputController.fadedInEventHandler += IntroduceNPCs;
+        InputController.fadedOutEventHandler += EndDay;
     }
 
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
         InputController.gameModeChangedEventHandler -= ChangeMode;
         InputController.fadedInEventHandler -= IntroduceNPCs;
+        InputController.fadedOutEventHandler -= EndDay;
     }
 
     private void LoadScenario() {
@@ -55,5 +57,9 @@ public class GameController : MonoBehaviour {
 
     private void IntroduceNPCs() {
         InputController.IntroduceNPCs();
+    }
+
+    private void EndDay() {
+        InputController.EndDay();
     }
 }

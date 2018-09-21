@@ -329,7 +329,6 @@ public class InputController : MonoBehaviour {
     public void HandleStopConverseWrapper() { HandleStopConverse(); }
     public void HandleGoodbyeWrapper() { HandleGoodbye(); }
     public void LeaveTavernEarlyWrapper() { LeaveTavernEarly(); }
-    public void EndDayWrapper() { EndDay(); }
     public void ConfirmScenarioWrapper() { ConfirmScenario(); }
     public void EndResultsWrapper() { EndResults(); }
     public void StartGameWrapper() { StartGame(); }

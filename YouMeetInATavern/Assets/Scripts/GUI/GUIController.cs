@@ -84,13 +84,15 @@ public class GUIController : MonoBehaviour {
     }
 
     public void EndDay() {
-        DeactivateAll();
-        nightPanel.SetActive(true);
+        //DeactivateAll();
+        //nightPanel.SetActive(true);
+        GetComponentInChildren<FadeImage>().FadeOut();
     }
 
     public void ConcludeScenario() {
         DeactivateAll();
         concludeScenarioPanel.SetActive(true);
+        GetComponentInChildren<FadeImage>().FadeIn();
     }
 
     public void ConfirmScenario() {
