@@ -65,7 +65,7 @@ public class GameData : MonoBehaviour {
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
 
     public enum GameMode {
-        INTRODUCE, CONVERSE, TAVERN, CONCLUDE
+        INTRODUCE, CONVERSE, TAVERN, CONCLUDE, RESULTS
     }
     public GameMode gameMode;
 

@@ -24,15 +24,17 @@ public class GameController : MonoBehaviour {
     void OnEnable() {
         InputController.endResultsEventHandler += LoadScenario;
         InputController.gameModeChangedEventHandler += ChangeMode;
-        InputController.fadedInEventHandler += IntroduceNPCs;
-        InputController.fadedOutEventHandler += EndDay;
+        InputController.answersLockedInEventHandler += LockInAnswers;
+        InputController.fadedInEventHandler += FadedIn;
+        InputController.fadedOutEventHandler += FadedOut;
     }
 
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
         InputController.gameModeChangedEventHandler -= ChangeMode;
-        InputController.fadedInEventHandler -= IntroduceNPCs;
-        InputController.fadedOutEventHandler -= EndDay;
+        InputController.answersLockedInEventHandler -= LockInAnswers;
+        InputController.fadedInEventHandler -= FadedIn;
+        InputController.fadedOutEventHandler -= FadedOut;
     }
 
     private void LoadScenario() {
@@ -44,6 +46,8 @@ public class GameController : MonoBehaviour {
 
             InputController.StartNewScenario();
         }
+
+        InputController.ChangeMode(GameData.GameMode.INTRODUCE);
         
         InputController.StartDay();
 
@@ -55,11 +59,28 @@ public class GameController : MonoBehaviour {
         data.gameMode = mode;
     }
 
-    private void IntroduceNPCs() {
-        InputController.IntroduceNPCs();
+    private void LockInAnswers() {
+        InputController.ChangeMode(GameData.GameMode.RESULTS);
     }
 
-    private void EndDay() {
-        InputController.EndDay();
+    private void FadedIn() {
+        switch (data.gameMode) {
+            case GameData.GameMode.INTRODUCE:
+                InputController.IntroduceNPCs();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void FadedOut() {
+        switch (data.gameMode) {
+            case GameData.GameMode.RESULTS:
+                InputController.ConfirmScenario();
+                break;
+            default:
+                InputController.EndDay();
+                break;
+        }
     }
 }

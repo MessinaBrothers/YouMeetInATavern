@@ -76,6 +76,10 @@ public class GUIController : MonoBehaviour {
         GetComponentInChildren<FadeImage>().FadeIn();
     }
 
+    public void FadeOut() {
+        GetComponentInChildren<FadeImage>().FadeOut();
+    }
+
     public void LoadTavern() {
         DeactivateAll();
         //dayPanel.SetActive(true);
@@ -99,6 +103,7 @@ public class GUIController : MonoBehaviour {
         DeactivateAll();
         resultsPanel.SetActive(true);
         resultsPanel.GetComponentInChildren<UnityEngine.UI.Text>().text = data.resultsDialogue;
+        GetComponentInChildren<FadeImage>().FadeIn();
     }
 
     public void DisplayDeck() {

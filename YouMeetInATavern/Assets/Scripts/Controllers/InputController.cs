@@ -33,6 +33,9 @@ public class InputController : MonoBehaviour {
     public static event StartConcludeScenarioEventHandler startConcludeScenarioEventHandler;
     public delegate void StartConcludeScenarioEventHandler();
 
+    public static event AnswersLockedInEventHandler answersLockedInEventHandler;
+    public delegate void AnswersLockedInEventHandler();
+
     public static event ConfirmScenarioChoicesEventHandler confirmScenarioChoicesEventHandler;
     public delegate void ConfirmScenarioChoicesEventHandler();
 
@@ -175,6 +178,11 @@ public class InputController : MonoBehaviour {
     public static void ConcludeScenario() {
         startConcludeScenarioEventHandler.Invoke();
         guiController.ConcludeScenario();
+    }
+
+    public static void LockInAnswers() {
+        answersLockedInEventHandler.Invoke();
+        guiController.FadeOut();
     }
 
     public static void ConfirmScenario() {
@@ -329,7 +337,7 @@ public class InputController : MonoBehaviour {
     public void HandleStopConverseWrapper() { HandleStopConverse(); }
     public void HandleGoodbyeWrapper() { HandleGoodbye(); }
     public void LeaveTavernEarlyWrapper() { LeaveTavernEarly(); }
-    public void ConfirmScenarioWrapper() { ConfirmScenario(); }
+    public void ConfirmScenarioWrapper() { LockInAnswers(); }
     public void EndResultsWrapper() { EndResults(); }
     public void StartGameWrapper() { StartGame(); }
     public void DeckClickWrapper() { DeckClick(); }
