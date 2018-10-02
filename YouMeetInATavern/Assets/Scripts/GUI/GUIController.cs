@@ -43,19 +43,28 @@ public class GUIController : MonoBehaviour {
         clockGUI.UpdateText(currentHour);
     }
 
+    public void UpdateConverseGUI(Question question) {
+        int endIDIndex = question.text.IndexOf('>');
+        string unlockKey = question.text.Substring("<".Length, endIDIndex - "<".Length);
+        UpdateConverseGUI(unlockKey);
+    }
+
     public void UpdateConverseGUI(string dialogueID) {
         // update dialogue
         NPC npc = data.selectedCard.GetComponent<NPC>();
         string text = data.npc_dialogues[npc.key][dialogueID];
+        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
+            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueID, text);
+        }
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
 
         QuestionGUIController questionGUIController = dialoguePanel.GetComponentInChildren<QuestionGUIController>();
-        if (dialogueID == GameData.DIALOGUE_DEFAULT || dialogueID.StartsWith("SCENARIO_")) {
-            // update questions
-            questionGUIController.LoadQuestions(data.selectedCard);
-        } else {
-            // hide questions
+        // load or hide questions
+        if (data.gameMode == GameData.GameMode.INTRODUCE) {
             questionGUIController.HideQuestions();
+        } else {
+        // if (dialogueID == GameData.DIALOGUE_DEFAULT || dialogueID.StartsWith("SCENARIO_")) {
+            questionGUIController.LoadQuestions(data.selectedCard);
         }
         // update Stop Converse button
         questionGUIController.SetMode(npc.isBeingIntroduced);
