@@ -27,13 +27,16 @@ public class DialogueController : MonoBehaviour {
         InputController.endResultsEventHandler -= ClearQuestions;
     }
 
-    public void HandleQuestion(string key, string unlockKey) {
+    public void HandleQuestion(Question question) {
+        int endIDIndex = question.text.IndexOf('>');
+        string unlockKey = question.text.Substring("<".Length, endIDIndex - "<".Length);
+
         // unlock the dialogue
         DeckController.Add(unlockKey);
         // remove the question from the NPC so it never appears again
         // data.npc_questions[data.selectedCard.GetComponent<NPC>().key].Remove(key);
         // mark the question as asked
-        data.npc_questions[data.selectedCard.GetComponent<NPC>().key][key].isAskedByPlayer = true;
+        question.isAskedByPlayer = true;
     }
 
     public void HandleDialogue(string unlockKey) {
@@ -43,10 +46,9 @@ public class DialogueController : MonoBehaviour {
 
     private void ClearQuestions() {
         // for each NPC
-        foreach (KeyValuePair<string, Dictionary<string, Question>> kvpNPC in data.npc_questions) {
-            // for each question
-            foreach (KeyValuePair<string, Question> kvpQuestions in kvpNPC.Value) {
-                kvpQuestions.Value.isAskedByPlayer = false;
+        foreach (KeyValuePair<string, List<Question>> kvp in data.npc_questions) {
+            foreach (Question question in kvp.Value) {
+                question.isAskedByPlayer = false;
             }
         }
     }

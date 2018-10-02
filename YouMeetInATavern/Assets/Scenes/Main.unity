@@ -17633,6 +17633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG_SPEED_EDITOR: 10
+  DEBUG_IS_PRINT: 0
+  DEBUG_IS_PRINT_PARSER: 0
+  DEBUG_IS_PRINT_DIALOGUE: 1
   dayCount: 0
   currentHour: 0
   tavernOpenHour: 8
@@ -17703,7 +17706,7 @@ MonoBehaviour:
   wanderAreasExit:
   - {fileID: 705292098}
   - {fileID: 200376461}
-  nextScenarioIndex: 2
+  nextScenarioIndex: 0
   nextDialogueIntroKey: 
   buttonItemColor: {r: 0.9411765, g: 0.89411765, b: 0.25882354, a: 1}
   buttonNPCColor: {r: 0, g: 0.5647059, b: 0.69803923, a: 1}

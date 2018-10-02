@@ -12,8 +12,12 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_SCENARIO_SUCCESS = "_CORRECT";
     public static char PARSER_DELIMITER = '-';
 
+    [Header("DEBUG")]
     public float DEBUG_SPEED_EDITOR = 1f;
     public static float DEBUG_SPEED;
+    public bool DEBUG_IS_PRINT;
+    public bool DEBUG_IS_PRINT_PARSER;
+    public bool DEBUG_IS_PRINT_DIALOGUE;
 
     public uint dayCount;
 
@@ -59,7 +63,7 @@ public class GameData : MonoBehaviour {
     [Header("Dialogue")]
     public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
-    public Dictionary<string, Dictionary<string, Question>> npc_questions;
+    public Dictionary<string, List<Question>> npc_questions;
     public HashSet<string> unlockedDialogueKeys, chosenAnswerKeys;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
@@ -90,7 +94,7 @@ public class GameData : MonoBehaviour {
         npcsToReintroduce = new Queue<GameObject>();
 
         npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
-        npc_questions = new Dictionary<string, Dictionary<string, Question>>();
+        npc_questions = new Dictionary<string, List<Question>>();
         unlockedDialogueKeys = new HashSet<string>();
         chosenAnswerKeys = new HashSet<string>();
 

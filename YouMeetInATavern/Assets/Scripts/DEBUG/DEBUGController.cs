@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,9 +14,11 @@ public class DEBUGController : MonoBehaviour {
 
     private GameData data;
 
-    void Start() {
+    void Awake() {
         data = FindObjectOfType<GameData>();
+    }
 
+    void Start() {
         print("PRESS F1 FOR DEBUG COMMANDS");
         
         string s = "***** DEBUG COMMANDS *****";

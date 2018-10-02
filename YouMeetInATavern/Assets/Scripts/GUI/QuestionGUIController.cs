@@ -24,23 +24,19 @@ public class QuestionGUIController : MonoBehaviour {
         if (npc.isBeingIntroduced == true) {
             return;
         }
-
-        // get the list of questions
-        Dictionary<string, Question> questions = data.npc_questions[npc.key];
+        
+        List<Question> questions = data.npc_questions[npc.key];
 
         int buttonIndex = 0;
-        
-        // for each question
-        foreach (KeyValuePair<string, Question> kvp in questions) {
-            // if the question is unlocked and not already asked
-            if (DeckController.Contains(kvp.Key) && kvp.Value.isAskedByPlayer == false) {
+
+        foreach (Question question in questions) {
+            if (DeckController.Contains(question.key) && question.isAskedByPlayer == false) {
                 // activate the next button
                 GameObject button = questionButtons[buttonIndex];
                 button.SetActive(true);
                 buttonIndex += 1;
-
-                // set the button text to the question text
-                SetQuestionText(button, kvp.Key, kvp.Value.text);
+                
+                SetQuestionText(button, question);
 
                 // what happens when you have more questions than buttons available? Escape
                 if (buttonIndex >= questionButtons.Length) {
@@ -67,18 +63,14 @@ public class QuestionGUIController : MonoBehaviour {
         }
     }
 
-    private void SetQuestionText(GameObject button, string key, string text) {
+    private void SetQuestionText(GameObject button, Question question) {
         // set the question id
         QuestionButton questionButton = button.GetComponent<QuestionButton>();
-        questionButton.key = key;
-
-        // set the unlock dialogue id
-        int endIDIndex = text.IndexOf('>');
-        string unlockKey = text.Substring("<".Length, endIDIndex - "<".Length);
-        questionButton.unlockKey = unlockKey;
+        questionButton.question = question;
 
         // set the button text
-        string toDisplay = text.Substring(endIDIndex + ">".Length);
+        int endIDIndex = question.text.IndexOf('>');
+        string toDisplay = question.text.Substring(endIDIndex + ">".Length);
         button.GetComponentInChildren<Text>().text = toDisplay;
     }
 }

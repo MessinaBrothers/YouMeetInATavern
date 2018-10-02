@@ -53,20 +53,28 @@ public class DialogueParser : MonoBehaviour {
 
     private void SaveQuestion(string npcID, string prereqID, string text) {
         // get the npc's list of questions
-        Dictionary<string, Question> questions = GetList(npcID, data.npc_questions);
+        List<Question> questions = GetList(npcID, data.npc_questions);
 
         Question question = new Question();
         question.key = prereqID;
         question.text = text;
         question.isAskedByPlayer = false;
 
-        questions.Add(prereqID, question);
+        questions.Add(question);
+
+        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_PARSER) {
+            print(string.Format("Parsing question: NPC:{0}, prereqID:{1}, text:{2}", npcID, question.key, question.text));
+        }
     }
 
     private void SaveDialogue(string npcID, string dialogueID, string text) {
         // get the npc's list of dialogues
         Dictionary<string, string> dialogues = GetList(npcID, data.npc_dialogues);
         dialogues.Add(dialogueID, text);
+
+        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_PARSER) {
+            print(string.Format("Parsing dialogue: NPC:{0}, dialogueID:{1}, text:{2}", npcID, dialogueID, text));
+        }
     }
 
     private Dictionary<string, string> GetList(string id, Dictionary<string, Dictionary<string, string>> listOfLists) {
@@ -91,6 +99,20 @@ public class DialogueParser : MonoBehaviour {
         } else {
             // create a new list
             list = new Dictionary<string, V>();
+            // add it to the list of lists
+            listOfLists.Add(id, list);
+        }
+        return list;
+    }
+
+    private List<V> GetList<V>(string id, Dictionary<string, List<V>> listOfLists) {
+        List<V> list;
+        if (listOfLists.ContainsKey(id) == true) {
+            // retrieve the existing list
+            list = listOfLists[id];
+        } else {
+            // create a new list
+            list = new List<V>();
             // add it to the list of lists
             listOfLists.Add(id, list);
         }
