@@ -33,10 +33,13 @@ public class DialogueController : MonoBehaviour {
 
         // unlock the dialogue
         DeckController.Add(unlockKey);
-        // remove the question from the NPC so it never appears again
-        // data.npc_questions[data.selectedCard.GetComponent<NPC>().key].Remove(key);
-        // mark the question as asked
-        question.isAskedByPlayer = true;
+
+        // mark as asked all questions containing the question key so they never appear again
+        foreach (Question q in data.npc_questions[data.selectedCard.GetComponent<NPC>().key]) {
+            if (question.key == q.key) {
+                q.isAskedByPlayer = true;
+            }
+        }
     }
 
     public void HandleDialogue(string unlockKey) {

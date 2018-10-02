@@ -17633,7 +17633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG_SPEED_EDITOR: 10
-  DEBUG_IS_PRINT: 0
+  DEBUG_IS_PRINT: 1
   DEBUG_IS_PRINT_PARSER: 0
   DEBUG_IS_PRINT_DIALOGUE: 1
   dayCount: 0
