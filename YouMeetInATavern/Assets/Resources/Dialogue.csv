@@ -8,7 +8,7 @@ NPC,Q?,ID,Text
 NPC_BARTENDER,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
 NPC_BARTENDER,0,intro,<>Sit anywhere you like. It’s pretty slow right now.
 NPC_BARTENDER,0,default,<>ERROR: NO DIALOGUE FOR THIS SCENARIO
-NPC_BARTENDER,0,SCENARIO_5,<DIALOGUE_GRAND_OPENING>You scared me! I wasn’t expecting anyone In here today. The grand opening is tomorrow.
+NPC_BARTENDER,0,SCENARIO_5,<GOODBYE=FALSE-DIALOGUE_GRAND_OPENING>You scared me! I wasn’t expecting anyone In here today. The grand opening is tomorrow.
 NPC_BARTENDER,0,DIALOGUE_GRAND_OPENING,"<>Yup, the grand opening of the Blue Dragon Tavern! Say...are you new in town?"
 NPC_BARTENDER,1,DIALOGUE_GRAND_OPENING,"<DIALOGUE_GRAND_OPENING_OUTSIDER>Yes, I just arrived recently."
 NPC_BARTENDER,1,DIALOGUE_GRAND_OPENING,"<DIALOGUE_GRAND_OPENING_LOCAL>No, I’m a local."
@@ -20,7 +20,7 @@ NPC_BARTENDER,1,DIALOGUE_GRAND_OPENING_OUTSIDER,"<DIALOGUE_GRAND_OPENING_MEETING
 NPC_BARTENDER,1,DIALOGUE_GRAND_OPENING_LOCAL,<DIALOGUE_GRAND_OPENING_MEETING>I’d love to help!
 NPC_BARTENDER,1,DIALOGUE_GRAND_OPENING_LOCAL,"<DIALOGUE_GRAND_OPENING_MEETING>Sure, I have nothing better to do."
 NPC_BARTENDER,1,DIALOGUE_GRAND_OPENING_LOCAL,"<DIALOGUE_GRAND_OPENING_MEETING>No thanks...well, okay!"
-NPC_BARTENDER,0,DIALOGUE_GRAND_OPENING_MEETING,<NPC_BARTENDER>Great! I’m Belle. Nice to meet you! You can meet me in town later tonight. I’ve got to get things ready for tomorrow.
+NPC_BARTENDER,0,DIALOGUE_GRAND_OPENING_MEETING,<GOODBYE=TRUE-NPC_BARTENDER>Great! I’m Belle. Nice to meet you! You can meet me in town later tonight. I’ve got to get things ready for tomorrow.
 NPC_BARTENDER,0,NPC_BARTENDER,<>See you tonight!
 NPC_BARTENDER,0,SCENARIO_1,"Nice to see you! I’m the <NPC_BARTENDER>barkeep.<> If you want some <ITEM_ALE>ale,<> just ask. Or did you want to hear some <LOCATION_FOREST_GENERICLIGHTS>local gossip?"
 NPC_BARTENDER,0,SCENARIO_2,"Nice to see you! I’m the <NPC_BARTENDER>barkeep.<> If you want some <ITEM_ALE>ale,<> just ask. Or did you want to hear some <LOCATION_2_BANDITS>local gossip?"

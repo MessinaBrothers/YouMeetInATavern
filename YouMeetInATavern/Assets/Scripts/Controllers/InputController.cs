@@ -100,6 +100,9 @@ public class InputController : MonoBehaviour {
     public static event DialogueEventHandler dialogueEventHandler;
     public delegate void DialogueEventHandler(string unlockKey);
 
+    public static event DialogueSettingEventHandler dialogueSettingEventHandler;
+    public delegate void DialogueSettingEventHandler(string arg);
+
     public static event StopConverseEventHandler stopConverseEventHandler;
     public delegate void StopConverseEventHandler(GameObject card);
 
@@ -280,6 +283,10 @@ public class InputController : MonoBehaviour {
         guiController.UpdateConverseGUI(unlockKey);
     }
 
+    public static void HandleDialogueSetting(string arg) {
+        dialogueSettingEventHandler.Invoke(arg);
+    }
+
     public static void HandleStopConverse() {
         stopConverseEventHandler.Invoke(data.selectedCard);
         guiController.StopConverse();
@@ -297,7 +304,7 @@ public class InputController : MonoBehaviour {
         guiController.StopConverse();
     }
 
-    public static void npcExitTavern(GameObject card) {
+    public static void NPCExitTavern(GameObject card) {
         npcLeftTavernEventHandler.Invoke(card);
     }
 

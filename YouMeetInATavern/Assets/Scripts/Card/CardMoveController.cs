@@ -182,7 +182,7 @@ public class CardMoveController : MonoBehaviour {
 
     private void ExitTavern(GameObject card) {
         data.npcsInTavern.Remove(card);
-        InputController.npcExitTavern(card);
+        InputController.NPCExitTavern(card);
     }
 
     private void StartDialogue(GameObject card) {

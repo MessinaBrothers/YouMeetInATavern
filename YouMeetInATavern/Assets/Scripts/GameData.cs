@@ -10,6 +10,7 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_INVALID = "";
     public static string DIALOGUE_SCENARIO_PREFIX = "SCENARIO_";
     public static string DIALOGUE_SCENARIO_SUCCESS = "_CORRECT";
+    public static string DIALOGUE_SETTING = "=";
     public static char PARSER_DELIMITER = '-';
 
     [Header("DEBUG")]
@@ -65,6 +66,7 @@ public class GameData : MonoBehaviour {
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
     public Dictionary<string, List<Question>> npc_questions;
     public HashSet<string> unlockedDialogueKeys, chosenAnswerKeys;
+    public bool isGoodbyeEnabled;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
 

@@ -18,13 +18,24 @@ public class DialogueController : MonoBehaviour {
     void OnEnable() {
         InputController.questionEventHandler += HandleQuestion;
         InputController.dialogueEventHandler += HandleDialogue;
+        InputController.dialogueSettingEventHandler += HandleSetting;
         InputController.endResultsEventHandler += ClearQuestions;
     }
 
     void OnDisable() {
         InputController.questionEventHandler -= HandleQuestion;
         InputController.dialogueEventHandler -= HandleDialogue;
+        InputController.dialogueSettingEventHandler -= HandleSetting;
         InputController.endResultsEventHandler -= ClearQuestions;
+    }
+
+    private void HandleSetting(string arg) {
+        print("Handling setting: " + arg);
+        if (arg == "GOODBYE=FALSE") {
+            data.isGoodbyeEnabled = false;
+        } else if (arg == "GOODBYE=TRUE") {
+            data.isGoodbyeEnabled = true;
+        }
     }
 
     public void HandleQuestion(Question question) {

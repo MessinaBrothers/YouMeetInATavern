@@ -116,8 +116,8 @@ Fade out at night
 Bug: game flow doesn't work. NPCs are reintroduced ? Couldn't reproduce 9/25
 Tavern assets
 Dialogue unlocks multiple questions
--Questions remove ALL related questions (that use the same key)
--Goodbye button doesn't show when questions are available
+Questions remove ALL related questions (that use the same key)
+Goodbye button doesn't show when questions are available
 -Tutorial: Explain mechanics, introduce NPCs and locations
 -Flush out / redo Scenarios
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones

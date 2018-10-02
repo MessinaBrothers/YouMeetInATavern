@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class DialogueButton : MonoBehaviour {
 
     private string key;
+    private List<string> keys;
 
-    void Start() {
-
+    void Awake() {
+        keys = new List<string>();
     }
 
     void Update() {
@@ -16,13 +17,25 @@ public class DialogueButton : MonoBehaviour {
     }
 
     public void BroadcastKey() {
-        if (key == "") return;
+        //if (key == "") return;
+        
+        //InputController.HandleDialogue(key);
 
-        InputController.HandleDialogue(key);
+        foreach (string key in keys) {
+            if (key.Contains(GameData.DIALOGUE_SETTING)) {
+                InputController.HandleDialogueSetting(key);
+            } else {
+                InputController.HandleDialogue(key);
+            }
+        }
     }
 
     public void SetKey(GameData data, string key) {
-        this.key = key;
+        //this.key = key;
+
+        foreach (string k in key.Split(GameData.PARSER_DELIMITER)) {
+            keys.Add(k);
+        }
         
         if (key.Contains("ITEM_")) {
             SetTextColor(data.buttonItemColor);

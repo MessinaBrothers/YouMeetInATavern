@@ -17708,6 +17708,7 @@ MonoBehaviour:
   - {fileID: 200376461}
   nextScenarioIndex: 0
   nextDialogueIntroKey: 
+  isGoodbyeEnabled: 0
   buttonItemColor: {r: 0.9411765, g: 0.89411765, b: 0.25882354, a: 1}
   buttonNPCColor: {r: 0, g: 0.5647059, b: 0.69803923, a: 1}
   buttonLocationColor: {r: 0, g: 0.61960787, b: 0.4509804, a: 1}

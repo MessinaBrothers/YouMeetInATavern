@@ -59,15 +59,19 @@ public class GUIController : MonoBehaviour {
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
 
         QuestionGUIController questionGUIController = dialoguePanel.GetComponentInChildren<QuestionGUIController>();
-        // load or hide questions
-        if (data.gameMode == GameData.GameMode.INTRODUCE) {
+        // load or hide questions and Continue/Goodbye button
+        if (npc.isBeingIntroduced == true) {//
+        // if (data.gameMode == GameData.GameMode.INTRODUCE) {
             questionGUIController.HideQuestions();
+            questionGUIController.ShowContinueButton();
         } else {
-        // if (dialogueID == GameData.DIALOGUE_DEFAULT || dialogueID.StartsWith("SCENARIO_")) {
-            questionGUIController.LoadQuestions(data.selectedCard);
+            bool isQuestionsExist = questionGUIController.LoadQuestions(data.selectedCard);
+            if (isQuestionsExist == true || data.isGoodbyeEnabled == false) {
+                questionGUIController.HideGoodbyeButton();
+            } else {
+                questionGUIController.ShowGoodbyeButton();
+            }
         }
-        // update Stop Converse button
-        questionGUIController.SetMode(npc.isBeingIntroduced);
         // activate the panel
         dialoguePanel.SetActive(true);
     }

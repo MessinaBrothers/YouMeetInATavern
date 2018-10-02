@@ -15,22 +15,29 @@ public class QuestionGUIController : MonoBehaviour {
         data = FindObjectOfType<GameData>();
     }
 
-    public void LoadQuestions(GameObject card) {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="card"></param>
+    /// <returns>Returns true if questions exist.</returns>
+    public bool LoadQuestions(GameObject card) {
         NPC npc = card.GetComponent<NPC>();
 
         HideQuestions();
 
         // ignore unlocked questions if NPC is being introduced
         if (npc.isBeingIntroduced == true) {
-            return;
+            return false;
         }
         
         List<Question> questions = data.npc_questions[npc.key];
 
         int buttonIndex = 0;
+        bool isQuestionExist = false;
 
         foreach (Question question in questions) {
             if (DeckController.Contains(question.key) && question.isAskedByPlayer == false) {
+                isQuestionExist = true;
                 // activate the next button
                 GameObject button = questionButtons[buttonIndex];
                 button.SetActive(true);
@@ -40,10 +47,12 @@ public class QuestionGUIController : MonoBehaviour {
 
                 // what happens when you have more questions than buttons available? Escape
                 if (buttonIndex >= questionButtons.Length) {
-                    return;
+                    return true;
                 }
             }
         }
+
+        return isQuestionExist;
     }
 
     public void HideQuestions() {
@@ -53,14 +62,19 @@ public class QuestionGUIController : MonoBehaviour {
         }
     }
 
-    public void SetMode(bool isIntro) {
-        if (isIntro) {
-            continueButton.SetActive(true);
-            goodbyeButton.SetActive(false);
-        } else {
-            continueButton.SetActive(false);
-            goodbyeButton.SetActive(true);
-        }
+    public void ShowContinueButton() {
+        continueButton.SetActive(true);
+        goodbyeButton.SetActive(false);
+    }
+
+    public void ShowGoodbyeButton() {
+        continueButton.SetActive(false);
+        goodbyeButton.SetActive(true);
+    }
+
+    public void HideGoodbyeButton() {
+        continueButton.SetActive(false);
+        goodbyeButton.SetActive(false);
     }
 
     private void SetQuestionText(GameObject button, Question question) {
