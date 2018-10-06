@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour {
         
         InputController.StartDay();
 
+        data.tavernOpenHour = data.tavernCloseHour - data.scenario.openHours;
         data.currentHour = data.tavernOpenHour;
         InputController.TickClock(data.currentHour);
     }

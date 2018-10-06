@@ -33,9 +33,8 @@ public class ScenarioParser : MonoBehaviour {
         int index = 0;
         scenario.id = uint.Parse(lineData[index++]);
         scenario.name = lineData[index++];
-
-        // parse the order the scenario appears in game
         scenario.order = uint.Parse(lineData[index++]);
+        scenario.openHours = int.Parse(lineData[index++]);
 
         // parse NPCs to introduce
         scenario.npcs = new List<string>();

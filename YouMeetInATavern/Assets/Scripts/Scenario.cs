@@ -15,6 +15,11 @@ public class Scenario {
     /// </summary>
     public uint order;
 
+    /// <summary>
+    /// How long the tavern remains open each day
+    /// </summary>
+    public int openHours;
+
     public List<string> npcs;
 
     public Scenario() {
