@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
     void OnEnable() {
         InputController.endResultsEventHandler += LoadScenario;
         InputController.gameModeChangedEventHandler += ChangeMode;
-        InputController.answersLockedInEventHandler += LockInAnswers;
+        InputController.checkAnswersEventHandler += CheckAnswers;
         InputController.fadedInEventHandler += FadedIn;
         InputController.fadedOutEventHandler += FadedOut;
     }
@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour {
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
         InputController.gameModeChangedEventHandler -= ChangeMode;
-        InputController.answersLockedInEventHandler -= LockInAnswers;
+        InputController.checkAnswersEventHandler -= CheckAnswers;
         InputController.fadedInEventHandler -= FadedIn;
         InputController.fadedOutEventHandler -= FadedOut;
     }
@@ -60,8 +60,12 @@ public class GameController : MonoBehaviour {
         data.gameMode = mode;
     }
 
-    private void LockInAnswers() {
-        InputController.ChangeMode(GameData.GameMode.RESULTS);
+    private void CheckAnswers() {
+
+    }
+
+    private void LockAnswers() {
+        
     }
 
     private void FadedIn() {

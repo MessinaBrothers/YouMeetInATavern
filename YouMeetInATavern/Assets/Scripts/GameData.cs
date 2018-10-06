@@ -65,7 +65,7 @@ public class GameData : MonoBehaviour {
     public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
     public Dictionary<string, List<Question>> npc_questions;
-    public HashSet<string> unlockedDialogueKeys, chosenAnswerKeys;
+    public HashSet<string> unlockedDialogueKeys;
     public bool isGoodbyeEnabled;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
@@ -79,6 +79,7 @@ public class GameData : MonoBehaviour {
         NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
     }
     [Header("Conclusion")]
+    public HashSet<string> chosenAnswerKeys;
     public Location[] hexIndex_location;
     public Location chosenLocation;
     public string resultsDialogue;
