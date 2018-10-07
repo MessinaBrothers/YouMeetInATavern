@@ -7,10 +7,18 @@ public class TutorialController : MonoBehaviour {
 
     public Transform midcardTransform;
 
+    public GameObject townHex, forestHex, roadHex, mountainHex, waterHex;
+
     private GameData data;
 
     void Start() {
         data = FindObjectOfType<GameData>();
+
+        townHex.SetActive(false);
+        forestHex.SetActive(false);
+        roadHex.SetActive(false);
+        mountainHex.SetActive(false);
+        waterHex.SetActive(false);
     }
 
     void Update() {
@@ -19,10 +27,22 @@ public class TutorialController : MonoBehaviour {
 
     void OnEnable() {
         InputController.checkAnswersEventHandler += CheckAnswers;
+        InputController.newScenarioStartedEventHandler += LoadHexes;
     }
 
     void OnDisable() {
         InputController.checkAnswersEventHandler -= CheckAnswers;
+        InputController.newScenarioStartedEventHandler -= LoadHexes;
+    }
+
+    private void LoadHexes(GameData data) {
+        switch (data.scenario.id) {
+            case 5:
+                townHex.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     private void CheckAnswers() {
