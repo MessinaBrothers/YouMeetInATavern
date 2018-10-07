@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class TutorialController : MonoBehaviour {
 
+    public GameObject clickBlocker;
+    public GameObject tutorialConcludeHints;
+
     public Transform midcardTransform;
 
     public GameObject townHex, forestHex, roadHex, mountainHex, waterHex;
@@ -26,22 +29,35 @@ public class TutorialController : MonoBehaviour {
     }
 
     void OnEnable() {
+        InputController.newScenarioStartedEventHandler += LoadScenario;
+        InputController.tutorialScreenClickedEventHandler += NextTutorialScreen;
         InputController.checkAnswersEventHandler += CheckAnswers;
-        InputController.newScenarioStartedEventHandler += LoadHexes;
     }
 
     void OnDisable() {
+        InputController.newScenarioStartedEventHandler -= LoadScenario;
+        InputController.tutorialScreenClickedEventHandler -= NextTutorialScreen;
         InputController.checkAnswersEventHandler -= CheckAnswers;
-        InputController.newScenarioStartedEventHandler -= LoadHexes;
     }
 
-    private void LoadHexes(GameData data) {
+    private void LoadScenario(GameData data) {
         switch (data.scenario.id) {
             case 5:
                 townHex.SetActive(true);
+                tutorialConcludeHints.SetActive(true);
+                clickBlocker.SetActive(true);
                 break;
             default:
                 break;
+        }
+    }
+
+    private void NextTutorialScreen(GameObject currentScreen, GameObject nextScreen) {
+        currentScreen.SetActive(false);
+        if (nextScreen == null) {
+            clickBlocker.SetActive(false);
+        } else {
+            nextScreen.SetActive(true);
         }
     }
 

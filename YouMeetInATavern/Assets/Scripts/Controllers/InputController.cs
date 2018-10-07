@@ -136,6 +136,9 @@ public class InputController : MonoBehaviour {
     public static event FadedInEventHandler fadedInEventHandler;
     public delegate void FadedInEventHandler();
 
+    public static event TutorialScreenClickedEventHandler tutorialScreenClickedEventHandler;
+    public delegate void TutorialScreenClickedEventHandler(GameObject currentScreen, GameObject nextScreen);
+
     private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
@@ -340,6 +343,10 @@ public class InputController : MonoBehaviour {
 
     public static void FadedIn() {
         if (fadedInEventHandler != null) fadedInEventHandler.Invoke();
+    }
+
+    public static void ClickTutorialScreen(GameObject currentScreen, GameObject nextScreen) {
+        tutorialScreenClickedEventHandler.Invoke(currentScreen, nextScreen);
     }
     
     // wrapper methods for Unity buttons
