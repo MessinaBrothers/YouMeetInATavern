@@ -68,6 +68,10 @@ public class GameData : MonoBehaviour {
     public HashSet<string> unlockedDialogueKeys;
     public bool isGoodbyeEnabled;
 
+    [Header("PopUps")]
+    public float growTime;
+    public float shrinkTime;
+
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
 
     public enum GameMode {

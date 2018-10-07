@@ -118,6 +118,8 @@ Tavern assets
 Dialogue unlocks multiple questions
 Questions remove ALL related questions (that use the same key)
 Goodbye button doesn't show when questions are available
+USE TRELLO
 -Tutorial: Explain mechanics, introduce NPCs and locations
 -Flush out / redo Scenarios
 -Scenario list: track best day record? Track multiple scenarios. Group scenarios by difficulty. Unlock harder ones
+USE TRELLO
