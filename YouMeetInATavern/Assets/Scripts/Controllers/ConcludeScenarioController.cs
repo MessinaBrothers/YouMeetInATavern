@@ -136,17 +136,19 @@ public class ConcludeScenarioController : MonoBehaviour {
     }
 
     private void UnselectCard(int id) {
-        GameObject card = cardsInSelection[id];
-        if (card != null) {
-            if (IsHandFull() == true) {
-                Discard(card);
-            } else {
-                AddCardToHand(card, true);
-            }
-            cardsInSelection[id] = null;
-            audioSource.Play();
+        if (data.gameMode == GameData.GameMode.CONCLUDE) {
+            GameObject card = cardsInSelection[id];
+            if (card != null) {
+                if (IsHandFull() == true) {
+                    Discard(card);
+                } else {
+                    AddCardToHand(card, true);
+                }
+                cardsInSelection[id] = null;
+                audioSource.Play();
 
-            data.chosenAnswerKeys.Remove(card.GetComponent<Key>().key);
+                data.chosenAnswerKeys.Remove(card.GetComponent<Key>().key);
+            }
         }
     }
 

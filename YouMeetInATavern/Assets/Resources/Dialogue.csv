@@ -5,7 +5,7 @@
 ,Q?,Is it a question?,
 ,,NOTE: No double quotation marks!,
 NPC,Q?,ID,Text
-NPC_BARTENDER,0,,"<>Gonna have to speak up, darling. It’s quite loud in here.<>"
+NPC_BARTENDER,0,,"<>Gonna have to speak up, darling.<>"
 NPC_BARTENDER,0,intro,"<>You scared me! We’re closed today, sorry. Now, where did I put those bottles…"
 NPC_BARTENDER,0,default,<>ERROR: NO DIALOGUE FOR THIS SCENARIO
 NPC_BARTENDER,0,SCENARIO_5,<GOODBYE=FALSE-DIALOGUE_GRAND_OPENING>You still here? Why don’t you come back tomorrow for the grand opening?
