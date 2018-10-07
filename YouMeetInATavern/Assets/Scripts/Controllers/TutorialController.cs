@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class TutorialController : MonoBehaviour {
 
+    public Transform midcardTransform;
+
     private GameData data;
 
-	void Start () {
+    void Start() {
         data = FindObjectOfType<GameData>();
-	}
-	
-	void Update () {
-		
-	}
+    }
+
+    void Update() {
+
+    }
 
     void OnEnable() {
         InputController.checkAnswersEventHandler += CheckAnswers;
@@ -27,7 +29,7 @@ public class TutorialController : MonoBehaviour {
         switch (data.scenario.id) {
             case 5:
                 if (data.chosenAnswerKeys.Contains("NPC_BARTENDER") == false) {
-                    print("no way jose!)");
+                    PopUpDialogueFactory.Create("Don't leave without me!", 3, midcardTransform);
                 } else {
                     LockAnswers();
                 }
