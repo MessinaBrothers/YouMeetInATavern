@@ -7,6 +7,7 @@ public class TutorialController : MonoBehaviour {
 
     public GameObject clickBlocker;
     public GameObject tutorialConcludeHints;
+    public GameObject leaveTavernButton;
 
     public Transform midcardTransform;
 
@@ -46,6 +47,7 @@ public class TutorialController : MonoBehaviour {
                 townHex.SetActive(true);
                 tutorialConcludeHints.SetActive(true);
                 clickBlocker.SetActive(true);
+                leaveTavernButton.SetActive(false);
                 break;
             default:
                 break;
@@ -58,6 +60,7 @@ public class TutorialController : MonoBehaviour {
             clickBlocker.SetActive(false);
         } else {
             nextScreen.SetActive(true);
+            leaveTavernButton.SetActive(true);
         }
     }
 

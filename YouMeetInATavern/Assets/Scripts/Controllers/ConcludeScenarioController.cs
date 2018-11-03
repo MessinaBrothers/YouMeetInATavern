@@ -233,7 +233,7 @@ public class ConcludeScenarioController : MonoBehaviour {
                 handPositions[i].gameObject.SetActive(false);
                 cardsInHand[i + moveCardsBy] = existingCard;
                 handPositions[i + moveCardsBy].gameObject.SetActive(true);
-                existingCard.GetComponent<CardMove>().Set(existingCard.transform, handPositions[i + moveCardsBy], data.cardHoverSpeed, Wait);
+                existingCard.GetComponent<CardMove>().Set(existingCard.transform, handPositions[i + moveCardsBy], data.cardSelectedSpeed, Wait);
                 lastID = i;
             }
         }
@@ -246,7 +246,7 @@ public class ConcludeScenarioController : MonoBehaviour {
         // move the card to the last position, plus 1
         cardsInHand[lastID - moveCardsBy] = card;
         handPositions[lastID - moveCardsBy].gameObject.SetActive(true);
-        card.GetComponent<CardMove>().Set(card.transform, handPositions[lastID - moveCardsBy], data.cardHoverSpeed, Wait);
+        card.GetComponent<CardMove>().Set(card.transform, handPositions[lastID - moveCardsBy], data.cardSelectedSpeed, Wait);
     }
 
     private int GetHandSize() {
