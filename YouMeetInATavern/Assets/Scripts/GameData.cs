@@ -72,6 +72,9 @@ public class GameData : MonoBehaviour {
     public float growTime;
     public float shrinkTime;
 
+    [Header("Tutorial")]
+    public float tutorialTextFadeTime;
+
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
 
     public enum GameMode {
