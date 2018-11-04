@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FadeImage : MonoBehaviour {
 
+    public bool triggerFadeEvents;
+
     public bool fadeIn, fadeOut;
 
     public float fadeTime;
@@ -29,13 +31,13 @@ public class FadeImage : MonoBehaviour {
                 SetAlpha(Mathf.Lerp(1, 0, timer / fadeTime));
                 if (timer >= fadeTime) {
                     fadeIn = false;
-                    InputController.FadedIn();
+                    if (triggerFadeEvents) InputController.FadedIn();
                 }
             } else if (fadeOut == true) {
                 SetAlpha(Mathf.Lerp(0, 1, timer / fadeTime));
                 if (timer >= fadeTime) {
                     fadeOut = false;
-                    InputController.FadedOut();
+                    if (triggerFadeEvents) InputController.FadedOut();
                 }
             }
 

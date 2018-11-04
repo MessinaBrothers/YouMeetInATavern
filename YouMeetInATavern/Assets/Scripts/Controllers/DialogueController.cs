@@ -30,7 +30,7 @@ public class DialogueController : MonoBehaviour {
     }
 
     private void HandleSetting(string arg) {
-        print("Handling setting: " + arg);
+        //print("Handling setting: " + arg);
         if (arg == "GOODBYE=FALSE") {
             data.isGoodbyeEnabled = false;
         } else if (arg == "GOODBYE=TRUE") {

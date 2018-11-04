@@ -6,6 +6,7 @@ using UnityEngine;
 public class GUIController : MonoBehaviour {
 
     public GameObject hudPanel, dialoguePanel, deckPanel, nightPanel, concludeScenarioPanel, resultsPanel;
+    public FadeImage fader, deckCamImage;
     public ClockGUI clockGUI;
 
     private GameData data;
@@ -86,11 +87,12 @@ public class GUIController : MonoBehaviour {
     }
 
     public void FadeIn() {
-        GetComponentInChildren<FadeImage>().FadeIn();
+        fader.FadeIn();
+        deckCamImage.FadeOut();
     }
 
     public void FadeOut() {
-        GetComponentInChildren<FadeImage>().FadeOut();
+        fader.FadeOut();
     }
 
     public void LoadTavern() {
@@ -103,20 +105,22 @@ public class GUIController : MonoBehaviour {
     public void EndDay() {
         //DeactivateAll();
         //nightPanel.SetActive(true);
-        GetComponentInChildren<FadeImage>().FadeOut();
+        fader.FadeOut();
+        deckCamImage.FadeIn();
+
     }
 
     public void ConcludeScenario() {
         DeactivateAll();
         concludeScenarioPanel.SetActive(true);
-        GetComponentInChildren<FadeImage>().FadeIn();
+        fader.FadeIn();
     }
 
     public void ConfirmScenario() {
         DeactivateAll();
         resultsPanel.SetActive(true);
         resultsPanel.GetComponentInChildren<UnityEngine.UI.Text>().text = data.resultsDialogue;
-        GetComponentInChildren<FadeImage>().FadeIn();
+        fader.FadeIn();
     }
 
     public void DisplayDeck() {
