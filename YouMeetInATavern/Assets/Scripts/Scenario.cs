@@ -22,6 +22,15 @@ public class Scenario {
 
     public List<string> npcs;
 
+    /// <summary>
+    /// How long it takes to fade into the scenario
+    /// </summary>
+    public float fadeInTime;
+    /// <summary>
+    /// How long it pauses (after fading) to introduce NPCs
+    /// </summary>
+    public float introPauseTime;
+
     public Scenario() {
         npcs = new List<string>();
     }

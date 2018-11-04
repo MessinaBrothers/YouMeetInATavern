@@ -30,12 +30,12 @@ public class PopUpDialogue : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
             Destroy(gameObject);
-        } else if (timer < data.growTime) {
-            SetSize(Mathf.Lerp(minSize, maxSize, timer / data.growTime));
-        } else if (timer > lifetime + data.shrinkTime) {
+        } else if (timer < data.popupGrowTime) {
+            SetSize(Mathf.Lerp(minSize, maxSize, timer / data.popupGrowTime));
+        } else if (timer > lifetime + data.popupShrinkTime) {
             Destroy(gameObject);
         } else if (timer > lifetime) {
-            SetSize(Mathf.Lerp(maxSize, minSize, (timer - lifetime) / data.shrinkTime));
+            SetSize(Mathf.Lerp(maxSize, minSize, (timer - lifetime) / data.popupShrinkTime));
         } else {
             SetSize(maxSize);
         }

@@ -42,6 +42,9 @@ public class TutorialController : MonoBehaviour {
     }
 
     private void LoadScenario(GameData data) {
+        data.fadeInTime = data.scenario.fadeInTime;
+        data.introPauseTime = data.scenario.introPauseTime;
+
         switch (data.scenario.id) {
             case 5:
                 townHex.SetActive(true);

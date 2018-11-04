@@ -67,13 +67,23 @@ public class GameData : MonoBehaviour {
     public Dictionary<string, List<Question>> npc_questions;
     public HashSet<string> unlockedDialogueKeys;
     public bool isGoodbyeEnabled;
+    
+    public enum Location {
+        NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
+    }
 
-    [Header("PopUps")]
-    public float growTime;
-    public float shrinkTime;
+    public HashSet<string> chosenAnswerKeys;
+    [Header("Conclusion")]
+    public Location[] hexIndex_location;
+    public Location chosenLocation;
+    public string resultsDialogue;
 
-    [Header("Tutorial")]
-    public float tutorialIntroPauseItem;
+    [Header("Misc")]
+    public float fadeInTime;
+    public float fadeOutTime;
+    public float introPauseTime;
+    public float popupGrowTime;
+    public float popupShrinkTime;
     public float tutorialTextFadeTime;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
@@ -82,15 +92,6 @@ public class GameData : MonoBehaviour {
         INTRODUCE, CONVERSE, TAVERN, CONCLUDE, RESULTS
     }
     public GameMode gameMode;
-
-    public enum Location {
-        NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
-    }
-    [Header("Conclusion")]
-    public HashSet<string> chosenAnswerKeys;
-    public Location[] hexIndex_location;
-    public Location chosenLocation;
-    public string resultsDialogue;
 
     void Start() {
         DEBUG_SPEED = DEBUG_SPEED_EDITOR;

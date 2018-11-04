@@ -7,11 +7,16 @@ public class GameController : MonoBehaviour {
 
     private GameData data;
 
+    private MusicController musicController;
+
+    void Awake() {
+        data = FindObjectOfType<GameData>();
+        musicController = FindObjectOfType<MusicController>();
+    }
+
     void Start() {
         // always Starts last. See: Edit > Project Settings > Script Execution Order
         print("Game initialized. Loading scenario...");
-
-        data = FindObjectOfType<GameData>();
         
         data.nextDialogueIntroKey = GameData.DIALOGUE_INTRO;
 
@@ -73,13 +78,16 @@ public class GameController : MonoBehaviour {
             case GameData.GameMode.INTRODUCE:
                 StartCoroutine(StartGame());
                 break;
+            case GameData.GameMode.CONCLUDE:
+                musicController.TransitionConclusion(data.fadeInTime);
+                break;
             default:
                 break;
         }
     }
 
     private IEnumerator StartGame() {
-        yield return new WaitForSeconds(data.tutorialIntroPauseItem / data.DEBUG_SPEED_EDITOR);
+        yield return new WaitForSeconds(data.introPauseTime / data.DEBUG_SPEED_EDITOR);
         InputController.IntroduceNPCs();
     }
 

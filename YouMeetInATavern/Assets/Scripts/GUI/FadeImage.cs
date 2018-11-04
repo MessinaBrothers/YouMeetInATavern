@@ -6,21 +6,19 @@ using UnityEngine.UI;
 public class FadeImage : MonoBehaviour {
 
     public bool triggerFadeEvents;
-
     public bool fadeIn, fadeOut;
 
-    public float fadeTime;
-    private float timer;
-
     private RawImage image;
+
+    private float fadeTime, timer;
 
     void Start() {
         image = GetComponent<RawImage>();
         
         if (fadeIn == true) {
-            FadeIn(fadeTime);
+            FadeIn(FindObjectOfType<GameData>().fadeInTime);
         } else {
-            FadeOut(fadeTime);
+            FadeOut(FindObjectOfType<GameData>().fadeOutTime);
         }
     }
 
@@ -42,14 +40,6 @@ public class FadeImage : MonoBehaviour {
             }
 
         }
-    }
-
-    public void FadeIn() {
-        FadeIn(fadeTime);
-    }
-
-    public void FadeOut() {
-        FadeOut(fadeTime);
     }
 
     public void FadeIn(float time) {

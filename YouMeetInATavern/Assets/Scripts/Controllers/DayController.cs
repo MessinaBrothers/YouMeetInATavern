@@ -7,10 +7,12 @@ public class DayController : MonoBehaviour {
     private GameData data;
 
     private GUIController guiController;
+    private MusicController musicController;
 
     void Start() {
         data = FindObjectOfType<GameData>();
         guiController = FindObjectOfType<GUIController>();
+        musicController = FindObjectOfType<MusicController>();
     }
 
     void OnEnable() {
@@ -34,6 +36,7 @@ public class DayController : MonoBehaviour {
     private void RemoveNPC(GameObject card) {
         if (data.npcsInTavern.Count == 0) {
             guiController.EndDay();
+            musicController.TransitionSilent(data.fadeOutTime);
         }
     }
 

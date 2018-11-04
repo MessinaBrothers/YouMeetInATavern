@@ -42,6 +42,9 @@ public class ScenarioParser : MonoBehaviour {
             scenario.npcs.Add(s.Trim());
         }
 
+        scenario.fadeInTime = float.Parse(lineData[index++]);
+        scenario.introPauseTime = float.Parse(lineData[index++]);
+
         // save scenario to game data
         data.scenarios[scenario.order] = scenario;
     }

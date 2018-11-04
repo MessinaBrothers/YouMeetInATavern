@@ -12,6 +12,7 @@ public class GUIController : MonoBehaviour {
     private GameData data;
 
     void Awake() {
+        data = FindObjectOfType<GameData>();
         clockGUI = GetComponentInChildren<ClockGUI>();
         DeactivateAll();
     }
@@ -19,8 +20,6 @@ public class GUIController : MonoBehaviour {
     void Start() {
         // always Starts last. See: Edit > Project Settings > Script Execution Order
         print("Game initialized. Loading GUI...");
-
-        data = FindObjectOfType<GameData>();
 
         deckPanel.GetComponent<ViewDeckController>().Load(data);
         hudPanel.GetComponentInChildren<DeckGUI>().Load(data);
@@ -87,12 +86,12 @@ public class GUIController : MonoBehaviour {
     }
 
     public void FadeIn() {
-        fader.FadeIn();
-        deckCamImage.FadeOut();
+        fader.FadeIn(data.fadeInTime);
+        deckCamImage.FadeOut(data.fadeInTime);
     }
 
     public void FadeOut() {
-        fader.FadeOut();
+        fader.FadeOut(data.fadeOutTime);
     }
 
     public void LoadTavern() {
@@ -105,22 +104,22 @@ public class GUIController : MonoBehaviour {
     public void EndDay() {
         //DeactivateAll();
         //nightPanel.SetActive(true);
-        fader.FadeOut();
-        deckCamImage.FadeIn();
+        fader.FadeOut(data.fadeOutTime);
+        deckCamImage.FadeIn(data.fadeOutTime);
 
     }
 
     public void ConcludeScenario() {
         DeactivateAll();
         concludeScenarioPanel.SetActive(true);
-        fader.FadeIn();
+        fader.FadeIn(data.fadeInTime);
     }
 
     public void ConfirmScenario() {
         DeactivateAll();
         resultsPanel.SetActive(true);
         resultsPanel.GetComponentInChildren<UnityEngine.UI.Text>().text = data.resultsDialogue;
-        fader.FadeIn();
+        fader.FadeIn(data.fadeOutTime);
     }
 
     public void DisplayDeck() {
