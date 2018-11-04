@@ -71,11 +71,16 @@ public class GameController : MonoBehaviour {
     private void FadedIn() {
         switch (data.gameMode) {
             case GameData.GameMode.INTRODUCE:
-                InputController.IntroduceNPCs();
+                StartCoroutine(StartGame());
                 break;
             default:
                 break;
         }
+    }
+
+    private IEnumerator StartGame() {
+        yield return new WaitForSeconds(data.tutorialIntroPauseItem / data.DEBUG_SPEED_EDITOR);
+        InputController.IntroduceNPCs();
     }
 
     private void FadedOut() {
