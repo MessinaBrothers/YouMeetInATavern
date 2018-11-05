@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FadeImage : MonoBehaviour {
-
-    public bool triggerFadeEvents;
+    
     public bool fadeIn, fadeOut;
 
     private RawImage image;
@@ -29,16 +28,13 @@ public class FadeImage : MonoBehaviour {
                 SetAlpha(Mathf.Lerp(1, 0, timer / fadeTime));
                 if (timer >= fadeTime) {
                     fadeIn = false;
-                    if (triggerFadeEvents) InputController.FadedIn();
                 }
             } else if (fadeOut == true) {
                 SetAlpha(Mathf.Lerp(0, 1, timer / fadeTime));
                 if (timer >= fadeTime) {
                     fadeOut = false;
-                    if (triggerFadeEvents) InputController.FadedOut();
                 }
             }
-
         }
     }
 

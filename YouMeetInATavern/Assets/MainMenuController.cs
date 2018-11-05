@@ -20,20 +20,20 @@ public class MainMenuController : MonoBehaviour {
     
     void OnEnable() {
         InputController.startGameEventHandler += FadeOut;
-        InputController.fadedOutEventHandler += StartGame;
     }
 
     void OnDisable() {
         InputController.startGameEventHandler -= FadeOut;
-        InputController.fadedOutEventHandler -= StartGame;
     }
 
     private void FadeOut() {
         fadeImage.FadeOut(fadeOutTime);
         musicController.TransitionSilent(fadeOutTime);
+        StartCoroutine(LoadMainScene());
     }
 
-    private void StartGame() {
+    private IEnumerator LoadMainScene() {
+        yield return new WaitForSeconds(fadeOutTime);
         loadScreen.SetActive(true);
         SceneManager.LoadScene("Main");
     }

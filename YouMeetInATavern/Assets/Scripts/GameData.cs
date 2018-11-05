@@ -82,6 +82,8 @@ public class GameData : MonoBehaviour {
     public float fadeInTime;
     public float fadeOutTime;
     public float introPauseTime;
+    public float fadeInTimeDefault;
+    public float introPauseTimeDefault;
     public float popupGrowTime;
     public float popupShrinkTime;
     public float tutorialTextFadeTime;

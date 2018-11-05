@@ -30,30 +30,36 @@ public class TutorialController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.newScenarioStartedEventHandler += LoadScenario;
+        InputController.gameflowStartBeginDay += LoadDay;
         InputController.tutorialScreenClickedEventHandler += NextTutorialScreen;
         InputController.checkAnswersEventHandler += CheckAnswers;
     }
 
     void OnDisable() {
-        InputController.newScenarioStartedEventHandler -= LoadScenario;
+        InputController.gameflowStartBeginDay -= LoadDay;
         InputController.tutorialScreenClickedEventHandler -= NextTutorialScreen;
         InputController.checkAnswersEventHandler -= CheckAnswers;
     }
 
-    private void LoadScenario(GameData data) {
-        data.fadeInTime = data.scenario.fadeInTime;
-        data.introPauseTime = data.scenario.introPauseTime;
+    private void LoadDay(GameData data, uint dayCount) {
+        if (dayCount == 0) {
+            data.fadeInTime = data.scenario.fadeInTime;
+            data.introPauseTime = data.scenario.introPauseTime;
+            leaveTavernButton.SetActive(true);
 
-        switch (data.scenario.id) {
-            case 5:
-                townHex.SetActive(true);
-                tutorialConcludeHints.SetActive(true);
-                clickBlocker.SetActive(true);
-                leaveTavernButton.SetActive(false);
-                break;
-            default:
-                break;
+            switch (data.scenario.id) {
+                case 5:
+                    townHex.SetActive(true);
+                    tutorialConcludeHints.SetActive(true);
+                    clickBlocker.SetActive(true);
+                    leaveTavernButton.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            data.fadeInTime = data.fadeInTimeDefault;
+            data.introPauseTime = data.introPauseTimeDefault;
         }
     }
 
@@ -63,7 +69,6 @@ public class TutorialController : MonoBehaviour {
             clickBlocker.SetActive(false);
         } else {
             nextScreen.SetActive(true);
-            leaveTavernButton.SetActive(true);
         }
     }
 

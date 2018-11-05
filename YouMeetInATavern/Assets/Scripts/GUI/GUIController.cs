@@ -32,11 +32,13 @@ public class GUIController : MonoBehaviour {
     void OnEnable() {
         CardMoveController.npcInConversePosEventHandler += Converse;
         InputController.clockTickedEventHandler += UpdateClock;
+        InputController.gameflowStartBeginNight += StartBeginNight;
     }
 
     void OnDisable() {
         CardMoveController.npcInConversePosEventHandler -= Converse;
         InputController.clockTickedEventHandler -= UpdateClock;
+        InputController.gameflowStartBeginNight -= StartBeginNight;
     }
 
     private void UpdateClock(int currentHour) {
@@ -76,8 +78,8 @@ public class GUIController : MonoBehaviour {
         dialoguePanel.SetActive(true);
     }
 
-    public void StartScenario(GameData data) {
-        hudPanel.GetComponentInChildren<DeckGUI>().ResetDeck(data);
+    public void StartScenario(GameData data, uint dayCount) {
+        if (dayCount == 0) hudPanel.GetComponentInChildren<DeckGUI>().ResetDeck(data);
     }
 
     public void StopConverse() {
@@ -101,10 +103,10 @@ public class GUIController : MonoBehaviour {
         hudPanel.GetComponentInChildren<DeckGUI>().ReloadDeck(data);
     }
 
-    public void EndDay() {
+    public void StartBeginNight() {
         //DeactivateAll();
         //nightPanel.SetActive(true);
-        fader.FadeOut(data.fadeOutTime);
+        FadeOut();
         deckCamImage.FadeIn(data.fadeOutTime);
 
     }

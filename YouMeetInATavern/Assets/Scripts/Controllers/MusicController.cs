@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class MusicController : MonoBehaviour {
 
-    public AudioMixerSnapshot main, silent, conclusion;
+    public AudioMixerSnapshot main, silent;
 
     private GameData data;
 
@@ -24,17 +24,13 @@ public class MusicController : MonoBehaviour {
         main.TransitionTo(time);
     }
 
-    public void TransitionConclusion(float time) {
-        conclusion.TransitionTo(time);
-    }
-
     void OnEnable() {
-        InputController.startDayEventHandler += FadeInMusic;
+        InputController.gameflowEndBeginDay += FadeInMusic;
         InputController.startConcludeScenarioEventHandler += StartConclude;
     }
 
     void OnDisable() {
-        InputController.startDayEventHandler -= FadeInMusic;
+        InputController.gameflowEndBeginDay -= FadeInMusic;
         InputController.startConcludeScenarioEventHandler -= StartConclude;
     }
 
@@ -49,6 +45,6 @@ public class MusicController : MonoBehaviour {
     }
 
     private void StartConclude() {
-        TransitionConclusion(data.fadeInTime);
+        
     }
 }

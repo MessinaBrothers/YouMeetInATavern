@@ -15,11 +15,11 @@ public class LeaveTavernEarlyButton : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.gameModeChangedEventHandler += ChangeMode;
+        InputController.gameflowModeChange += ChangeMode;
     }
 
     void OnDisable() {
-        InputController.gameModeChangedEventHandler -= ChangeMode;
+        InputController.gameflowModeChange -= ChangeMode;
     }
 
     private void ChangeMode(GameData.GameMode mode) {

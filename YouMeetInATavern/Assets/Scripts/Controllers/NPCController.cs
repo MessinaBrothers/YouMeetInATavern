@@ -40,8 +40,8 @@ public class NPCController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.gameInitializedEventHandler += CreateCards;
-        InputController.startTavernEventHandler += LoadNPCs;
+        InputController.gameflowEndInitialize += CreateCards;
+        InputController.gameflowEndBeginDay += LoadNPCs;
         InputController.introduceNPCsEventHandler += IntroduceNPCs;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
@@ -49,8 +49,8 @@ public class NPCController : MonoBehaviour {
     }
 
     void OnDisable() {
-        InputController.gameInitializedEventHandler -= CreateCards;
-        InputController.startTavernEventHandler -= LoadNPCs;
+        InputController.gameflowEndInitialize -= CreateCards;
+        InputController.gameflowEndBeginDay -= LoadNPCs;
         InputController.introduceNPCsEventHandler -= IntroduceNPCs;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;

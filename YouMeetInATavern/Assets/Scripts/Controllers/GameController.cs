@@ -28,18 +28,14 @@ public class GameController : MonoBehaviour {
 
     void OnEnable() {
         InputController.endResultsEventHandler += LoadScenario;
-        InputController.gameModeChangedEventHandler += ChangeMode;
-        InputController.checkAnswersEventHandler += CheckAnswers;
-        InputController.fadedInEventHandler += FadedIn;
-        InputController.fadedOutEventHandler += FadedOut;
+        InputController.gameflowModeChange += ModeChanged;
+        InputController.npcLeftTavernEventHandler += CheckEmptyTavern;
     }
 
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
-        InputController.gameModeChangedEventHandler -= ChangeMode;
-        InputController.checkAnswersEventHandler -= CheckAnswers;
-        InputController.fadedInEventHandler -= FadedIn;
-        InputController.fadedOutEventHandler -= FadedOut;
+        InputController.gameflowModeChange -= ModeChanged;
+        InputController.npcLeftTavernEventHandler -= CheckEmptyTavern;
     }
 
     private void LoadScenario() {
@@ -48,57 +44,54 @@ public class GameController : MonoBehaviour {
             data.dayCount = 0;
 
             data.scenario = data.scenarios[data.nextScenarioIndex];
-
-            InputController.StartNewScenario();
+        } else {
+            data.dayCount += 1;
         }
+
+        InputController.StartBeginDay(data.dayCount);
 
         InputController.ChangeMode(GameData.GameMode.INTRODUCE);
         
-        InputController.StartDay();
+        InputController.EndBeginDay();
+
+        StartCoroutine(IntroduceNPCs());
 
         data.tavernOpenHour = data.tavernCloseHour - data.scenario.openHours;
         data.currentHour = data.tavernOpenHour;
         InputController.TickClock(data.currentHour);
     }
 
-    private void ChangeMode(GameData.GameMode mode) {
+    private void ModeChanged(GameData.GameMode mode) {
         data.gameMode = mode;
-    }
 
-    private void CheckAnswers() {
-
-    }
-
-    private void LockAnswers() {
-        
-    }
-
-    private void FadedIn() {
-        switch (data.gameMode) {
-            case GameData.GameMode.INTRODUCE:
-                StartCoroutine(StartGame());
-                break;
-            case GameData.GameMode.CONCLUDE:
-                musicController.TransitionConclusion(data.fadeInTime);
-                break;
-            default:
+        switch (mode) {
+            case GameData.GameMode.RESULTS:
+                StartCoroutine(ConfirmScenario());
                 break;
         }
     }
 
-    private IEnumerator StartGame() {
-        yield return new WaitForSeconds(data.introPauseTime / data.DEBUG_SPEED_EDITOR);
+    private void CheckEmptyTavern(GameObject card) {
+        if (data.npcsInTavern.Count == 0) {
+            InputController.StartBeginNight();
+            musicController.TransitionSilent(data.fadeOutTime);
+            StartCoroutine(ConcludeScenario());
+        }
+    }
+
+    private IEnumerator IntroduceNPCs() {
+        yield return new WaitForSeconds((data.fadeInTime + data.introPauseTime) / data.DEBUG_SPEED_EDITOR);
         InputController.IntroduceNPCs();
     }
 
-    private void FadedOut() {
-        switch (data.gameMode) {
-            case GameData.GameMode.RESULTS:
-                InputController.ConfirmScenario();
-                break;
-            default:
-                InputController.EndDay();
-                break;
-        }
+    private IEnumerator ConcludeScenario() {
+        yield return new WaitForSeconds(data.fadeOutTime / data.DEBUG_SPEED_EDITOR);
+        InputController.EndDay();
+        InputController.ConcludeScenario();
+    }
+
+    private IEnumerator ConfirmScenario() {
+        yield return new WaitForSeconds(data.fadeOutTime / data.DEBUG_SPEED_EDITOR);
+        InputController.ConfirmScenario();
     }
 }

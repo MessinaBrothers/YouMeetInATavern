@@ -6,20 +6,17 @@ using UnityEngine;
 public class InputController : MonoBehaviour {
     
     // GAME FLOW
-    public static event GameInitializedEventHandler gameInitializedEventHandler;
-    public delegate void GameInitializedEventHandler();
+    public static event GameflowEndInitializeEventHandler gameflowEndInitialize;
+    public delegate void GameflowEndInitializeEventHandler();
+    
+    public static event GameflowStartBeginDayEventHandler gameflowStartBeginDay;
+    public delegate void GameflowStartBeginDayEventHandler(GameData data, uint dayCount);
+    
+    public static event GameflowEndBeginDayEventHandler gameflowEndBeginDay;
+    public delegate void GameflowEndBeginDayEventHandler();
 
-    public static event GameModeChangedEventHandler gameModeChangedEventHandler;
-    public delegate void GameModeChangedEventHandler(GameData.GameMode mode);
-
-    public static event StartNewScenarioEventHandler newScenarioStartedEventHandler;
-    public delegate void StartNewScenarioEventHandler(GameData data);
-
-    public static event StartTavernEventHandler startTavernEventHandler;
-    public delegate void StartTavernEventHandler();
-
-    public static event StartDayEventHandler startDayEventHandler;
-    public delegate void StartDayEventHandler();
+    public static event GameflowStartBeginNightEventHandler gameflowStartBeginNight;
+    public delegate void GameflowStartBeginNightEventHandler();
 
     public static event IntroduceNPCsEventHandler introduceNPCsEventHandler;
     public delegate void IntroduceNPCsEventHandler();
@@ -44,6 +41,9 @@ public class InputController : MonoBehaviour {
 
     public static event StartGameEventHandler startGameEventHandler;
     public delegate void StartGameEventHandler();
+    
+    public static event GameflowModeChangeEventHandler gameflowModeChange;
+    public delegate void GameflowModeChangeEventHandler(GameData.GameMode mode);
 
     // CARD INTERACTIONS
     public static event CardClickedEventHandler cardClickedEventHandler;
@@ -130,12 +130,6 @@ public class InputController : MonoBehaviour {
     public static event ClockTickedEventHandler clockTickedEventHandler;
     public delegate void ClockTickedEventHandler(int currentHour);
 
-    public static event FadedOutEventHandler fadedOutEventHandler;
-    public delegate void FadedOutEventHandler();
-
-    public static event FadedInEventHandler fadedInEventHandler;
-    public delegate void FadedInEventHandler();
-
     public static event TutorialScreenClickedEventHandler tutorialScreenClickedEventHandler;
     public delegate void TutorialScreenClickedEventHandler(GameObject currentScreen, GameObject nextScreen);
 
@@ -154,17 +148,16 @@ public class InputController : MonoBehaviour {
     // GAME FLOW
 
     public static void GameInitialized() {
-        gameInitializedEventHandler.Invoke();
+        gameflowEndInitialize.Invoke();
     }
 
-    public static void StartNewScenario() {
-        newScenarioStartedEventHandler.Invoke(data);
-        guiController.StartScenario(data);
+    public static void StartBeginDay(uint dayCount) {
+        gameflowStartBeginDay.Invoke(data, dayCount);
+        guiController.StartScenario(data, dayCount);
     }
 
-    public static void StartDay() {
-        startDayEventHandler.Invoke();
-        startTavernEventHandler.Invoke();
+    public static void EndBeginDay() {
+        gameflowEndBeginDay.Invoke();
         guiController.FadeIn();
         guiController.LoadTavern();
     }
@@ -174,7 +167,11 @@ public class InputController : MonoBehaviour {
     }
 
     public static void ChangeMode(GameData.GameMode mode) {
-        gameModeChangedEventHandler.Invoke(mode);
+        gameflowModeChange.Invoke(mode);
+    }
+
+    public static void StartBeginNight() {
+        gameflowStartBeginNight.Invoke();
     }
 
     public static void EndDay() {
@@ -335,14 +332,6 @@ public class InputController : MonoBehaviour {
 
     public static void TickClock(int currentHour) {
         clockTickedEventHandler.Invoke(currentHour);
-    }
-
-    public static void FadedOut() {
-        if (fadedOutEventHandler != null) fadedOutEventHandler.Invoke();
-    }
-
-    public static void FadedIn() {
-        if (fadedInEventHandler != null) fadedInEventHandler.Invoke();
     }
 
     public static void ClickTutorialScreen(GameObject currentScreen, GameObject nextScreen) {

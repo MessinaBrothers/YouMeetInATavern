@@ -7,12 +7,12 @@ public class TavernController : MonoBehaviour {
     public GameObject tavern;
 
     void OnEnable() {
-        InputController.startTavernEventHandler += ShowTavern;
+        InputController.gameflowEndBeginDay += ShowTavern;
         InputController.endDayEventHandler += HideTavern;
     }
 
     void OnDisable() {
-        InputController.startTavernEventHandler -= ShowTavern;
+        InputController.gameflowEndBeginDay -= ShowTavern;
         InputController.endDayEventHandler -= HideTavern;
     }
 

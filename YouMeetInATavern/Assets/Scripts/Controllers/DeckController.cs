@@ -12,15 +12,15 @@ public class DeckController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.newScenarioStartedEventHandler += ResetDeck;
+        InputController.gameflowEndBeginDay += ResetDeck;
     }
 
     void OnDisable() {
-        InputController.newScenarioStartedEventHandler += ResetDeck;
+        InputController.gameflowEndBeginDay += ResetDeck;
     }
 
-    private void ResetDeck(GameData data) {
-        data.unlockedDialogueKeys.Clear();
+    private void ResetDeck() {
+        if (data.dayCount == 0) data.unlockedDialogueKeys.Clear();
     }
 
     public static void Add(string reward) {

@@ -9470,6 +9470,7 @@ GameObject:
   - component: {fileID: 669052389}
   - component: {fileID: 669052391}
   - component: {fileID: 669052390}
+  - component: {fileID: 669052392}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -9498,7 +9499,7 @@ AudioSource:
   m_GameObject: {fileID: 669052388}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243059446799514106, guid: 0cd6377388f238f48873bf7787742cf2,
+  OutputAudioMixerGroup: {fileID: 243562538526031438, guid: 0cd6377388f238f48873bf7787742cf2,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c9814ebf470f54a48a5435f554f0e1a7, type: 3}
   m_PlayOnAwake: 1
@@ -9599,8 +9600,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 245417244149711904, guid: 0cd6377388f238f48873bf7787742cf2, type: 2}
   silent: {fileID: 245099244748995012, guid: 0cd6377388f238f48873bf7787742cf2, type: 2}
-  conclusion: {fileID: 245429439069506294, guid: 0cd6377388f238f48873bf7787742cf2,
+  conclusion: {fileID: 0}
+--- !u!82 &669052392
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669052388}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243268151732138348, guid: 0cd6377388f238f48873bf7787742cf2,
     type: 2}
+  m_audioClip: {fileID: 8300000, guid: 0c8bd9654813c6145bf544a474ec9bda, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &675112692
 GameObject:
   m_ObjectHideFlags: 0
@@ -18179,7 +18275,6 @@ GameObject:
   - component: {fileID: 1027258104}
   - component: {fileID: 1027258103}
   - component: {fileID: 1027258099}
-  - component: {fileID: 1027258105}
   - component: {fileID: 1027258106}
   - component: {fileID: 1027258107}
   - component: {fileID: 1027258108}
@@ -18343,17 +18438,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 699404589c8029a4c98c754c7a7d9084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1027258105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1027258098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cefcddb1f1dac240bd695cd1fa2b8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1027258106
