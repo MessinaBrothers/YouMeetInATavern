@@ -74,7 +74,6 @@ public class GameController : MonoBehaviour {
     private void CheckEmptyTavern(GameObject card) {
         if (data.npcsInTavern.Count == 0) {
             InputController.StartFinishTavern();
-            musicController.TransitionSilent(data.fadeOutTime);
             StartCoroutine(ConcludeScenario());
         }
     }

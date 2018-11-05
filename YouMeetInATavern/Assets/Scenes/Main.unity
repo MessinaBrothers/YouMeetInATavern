@@ -9600,6 +9600,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 245417244149711904, guid: 0cd6377388f238f48873bf7787742cf2, type: 2}
   silent: {fileID: 245099244748995012, guid: 0cd6377388f238f48873bf7787742cf2, type: 2}
+  tavernAudio:
+  - {fileID: 669052390}
+  - {fileID: 669052392}
 --- !u!82 &669052392
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18327,7 +18330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef7f419a28a794280f6e6ae3dad1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_SPEED_EDITOR: 10
+  DEBUG_SPEED_EDITOR: 1
   DEBUG_IS_PRINT: 0
   DEBUG_IS_PRINT_PARSER: 0
   DEBUG_IS_PRINT_DIALOGUE: 1

@@ -8,6 +8,8 @@ public class MusicController : MonoBehaviour {
 
     public AudioMixerSnapshot main, silent;
 
+    public AudioSource[] tavernAudio;
+
     private GameData data;
 
     void Awake() {
@@ -25,17 +27,15 @@ public class MusicController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.gameflowEndBeginTavern += FadeInMusic;
+        InputController.gameflowEndBeginTavern += BeginTavern;
+        InputController.gameflowStartFinishTavern += FinishTavern;
         InputController.gameflowStartBeginConclusion += StartConclude;
     }
 
     void OnDisable() {
-        InputController.gameflowEndBeginTavern -= FadeInMusic;
+        InputController.gameflowEndBeginTavern -= BeginTavern;
+        InputController.gameflowStartFinishTavern -= FinishTavern;
         InputController.gameflowStartBeginConclusion -= StartConclude;
-    }
-
-    private void FadeInMusic() {
-        StartCoroutine(TransitionSnapshot(silent, main, data.fadeInTime));
     }
 
     private IEnumerator TransitionSnapshot(AudioMixerSnapshot from, AudioMixerSnapshot to, float time) {
@@ -46,5 +46,34 @@ public class MusicController : MonoBehaviour {
 
     private void StartConclude() {
         
+    }
+
+    private void BeginTavern() {
+        foreach (AudioSource source in tavernAudio) {
+            StartCoroutine(FadeIn(source, data.fadeInTime / data.DEBUG_SPEED_EDITOR));
+        }
+    }
+
+    private void FinishTavern() {
+        foreach (AudioSource source in tavernAudio) {
+            StartCoroutine(FadeOut(source, data.fadeOutTime / data.DEBUG_SPEED_EDITOR));
+        }
+    }
+
+    private IEnumerator FadeIn(AudioSource source, float time) {
+        source.volume = 0f;
+
+        while (source.volume < 1) {
+            source.volume += Time.deltaTime / time;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeOut(AudioSource source, float time) {
+        source.volume = 1f;
+        while (source.volume > 0) {
+            source.volume -= Time.deltaTime / time;
+            yield return null;
+        }
     }
 }
