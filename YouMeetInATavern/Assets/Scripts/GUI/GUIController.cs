@@ -33,12 +33,14 @@ public class GUIController : MonoBehaviour {
         CardMoveController.npcInConversePosEventHandler += Converse;
         InputController.clockTickedEventHandler += UpdateClock;
         InputController.gameflowStartFinishTavern += StartFinishTavern;
+        InputController.gameflowStartFinishConclusion += FadeOut;
     }
 
     void OnDisable() {
         CardMoveController.npcInConversePosEventHandler -= Converse;
         InputController.clockTickedEventHandler -= UpdateClock;
         InputController.gameflowStartFinishTavern -= StartFinishTavern;
+        InputController.gameflowStartFinishConclusion -= FadeOut;
     }
 
     private void UpdateClock(int currentHour) {

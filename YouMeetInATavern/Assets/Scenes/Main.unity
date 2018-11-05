@@ -9600,7 +9600,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 245417244149711904, guid: 0cd6377388f238f48873bf7787742cf2, type: 2}
   silent: {fileID: 245099244748995012, guid: 0cd6377388f238f48873bf7787742cf2, type: 2}
-  conclusion: {fileID: 0}
 --- !u!82 &669052392
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18328,7 +18327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef7f419a28a794280f6e6ae3dad1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_SPEED_EDITOR: 1
+  DEBUG_SPEED_EDITOR: 10
   DEBUG_IS_PRINT: 0
   DEBUG_IS_PRINT_PARSER: 0
   DEBUG_IS_PRINT_DIALOGUE: 1
@@ -18411,6 +18410,8 @@ MonoBehaviour:
   fadeInTime: 1
   fadeOutTime: 1
   introPauseTime: 0
+  fadeInTimeDefault: 0
+  introPauseTimeDefault: 0
   popupGrowTime: 0.2
   popupShrinkTime: 0.2
   tutorialTextFadeTime: 0.5
@@ -28973,7 +28974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52449eaa7af2144da10e978b16dff0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerFadeEvents: 1
   fadeIn: 1
   fadeOut: 0
 --- !u!114 &1887476906
@@ -31322,7 +31322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52449eaa7af2144da10e978b16dff0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerFadeEvents: 0
   fadeIn: 0
   fadeOut: 0
 --- !u!1 &2119060185

@@ -26,12 +26,12 @@ public class MusicController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameflowEndBeginTavern += FadeInMusic;
-        InputController.startConcludeScenarioEventHandler += StartConclude;
+        InputController.gameflowStartBeginConclusion += StartConclude;
     }
 
     void OnDisable() {
         InputController.gameflowEndBeginTavern -= FadeInMusic;
-        InputController.startConcludeScenarioEventHandler -= StartConclude;
+        InputController.gameflowStartBeginConclusion -= StartConclude;
     }
 
     private void FadeInMusic() {

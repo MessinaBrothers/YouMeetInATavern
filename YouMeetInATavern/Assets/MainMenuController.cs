@@ -19,11 +19,11 @@ public class MainMenuController : MonoBehaviour {
     }
     
     void OnEnable() {
-        InputController.startGameEventHandler += FadeOut;
+        InputController.gameflowStartGame += FadeOut;
     }
 
     void OnDisable() {
-        InputController.startGameEventHandler -= FadeOut;
+        InputController.gameflowStartGame -= FadeOut;
     }
 
     private void FadeOut() {

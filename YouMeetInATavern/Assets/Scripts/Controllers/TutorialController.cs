@@ -78,17 +78,14 @@ public class TutorialController : MonoBehaviour {
                 if (data.chosenAnswerKeys.Contains("NPC_BARTENDER") == false) {
                     PopUpDialogueFactory.Create("Don't leave without me!", 3, midcardTransform);
                 } else {
-                    LockAnswers();
+                    InputController.ChangeMode(GameData.GameMode.RESULTS);
+                    InputController.FinishConclusion();
                 }
                 break;
             default:
-                LockAnswers();
+                InputController.ChangeMode(GameData.GameMode.RESULTS);
+                InputController.FinishConclusion();
                 break;
         }
-    }
-
-    private void LockAnswers() {
-        InputController.ChangeMode(GameData.GameMode.RESULTS);
-        InputController.LockAnswers();
     }
 }

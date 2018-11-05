@@ -30,12 +30,14 @@ public class GameController : MonoBehaviour {
         InputController.endResultsEventHandler += LoadScenario;
         InputController.gameflowModeChange += ModeChanged;
         InputController.npcLeftTavernEventHandler += CheckEmptyTavern;
+        InputController.gameflowStartFinishConclusion += FinishConclusion;
     }
 
     void OnDisable() {
         InputController.endResultsEventHandler -=  LoadScenario;
         InputController.gameflowModeChange -= ModeChanged;
         InputController.npcLeftTavernEventHandler -= CheckEmptyTavern;
+        InputController.gameflowStartFinishConclusion -= FinishConclusion;
     }
 
     private void LoadScenario() {
@@ -63,12 +65,10 @@ public class GameController : MonoBehaviour {
 
     private void ModeChanged(GameData.GameMode mode) {
         data.gameMode = mode;
+    }
 
-        switch (mode) {
-            case GameData.GameMode.RESULTS:
-                StartCoroutine(ConfirmScenario());
-                break;
-        }
+    private void FinishConclusion() {
+        StartCoroutine(ConfirmScenario());
     }
 
     private void CheckEmptyTavern(GameObject card) {

@@ -58,7 +58,7 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameflowEndInitialize += CreateDeck;
-        InputController.startConcludeScenarioEventHandler += Load;
+        InputController.gameflowStartBeginConclusion += Load;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler += ResetTavern;
         InputController.hoverOverCardHandEventHandler += HighlightCard;
@@ -73,7 +73,7 @@ public class ConcludeScenarioController : MonoBehaviour {
 
     void OnDisable() {
         InputController.gameflowEndInitialize -= CreateDeck;
-        InputController.startConcludeScenarioEventHandler -= Load;
+        InputController.gameflowStartBeginConclusion -= Load;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler -= ResetTavern;
         InputController.hoverOverCardSelectedEventHandler -= Dummy;

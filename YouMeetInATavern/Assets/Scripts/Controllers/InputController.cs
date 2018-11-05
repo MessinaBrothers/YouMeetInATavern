@@ -24,8 +24,14 @@ public class InputController : MonoBehaviour {
     public static event GameflowEndFinishTavernEventHandler gameflowEndFinishTavern;
     public delegate void GameflowEndFinishTavernEventHandler();
 
-    public static event StartConcludeScenarioEventHandler startConcludeScenarioEventHandler;
-    public delegate void StartConcludeScenarioEventHandler();
+    public static event GameflowStartBeginConclusionEventHandler gameflowStartBeginConclusion;
+    public delegate void GameflowStartBeginConclusionEventHandler();
+
+    public static event GameflowStartFinishnConclusionEventHandler gameflowStartFinishConclusion;
+    public delegate void GameflowStartFinishnConclusionEventHandler();
+
+    public static event StartGameEventHandler gameflowStartGame;
+    public delegate void StartGameEventHandler();
 
     public static event CheckAnswersEventHandler checkAnswersEventHandler;
     public delegate void CheckAnswersEventHandler();
@@ -35,9 +41,6 @@ public class InputController : MonoBehaviour {
 
     public static event EndResultsEventHandler endResultsEventHandler;
     public delegate void EndResultsEventHandler();
-
-    public static event StartGameEventHandler startGameEventHandler;
-    public delegate void StartGameEventHandler();
     
     public static event GameflowModeChangeEventHandler gameflowModeChange;
     public delegate void GameflowModeChangeEventHandler(GameData.GameMode mode);
@@ -180,16 +183,16 @@ public class InputController : MonoBehaviour {
     }
 
     public static void ConcludeScenario() {
-        startConcludeScenarioEventHandler.Invoke();
+        gameflowStartBeginConclusion.Invoke();
         guiController.ConcludeScenario();
+    }
+
+    public static void FinishConclusion() {
+        gameflowStartFinishConclusion.Invoke();
     }
 
     public static void CheckAnswers() {
         checkAnswersEventHandler.Invoke();
-    }
-
-    public static void LockAnswers() {
-        guiController.FadeOut();
     }
 
     public static void ConfirmScenario() {
@@ -202,7 +205,7 @@ public class InputController : MonoBehaviour {
     }
 
     public static void StartGame() {
-        startGameEventHandler.Invoke();
+        gameflowStartGame.Invoke();
     }
 
     // CARD INTERACTIONS
