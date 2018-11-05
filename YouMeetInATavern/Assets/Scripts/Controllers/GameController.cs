@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour {
 
     private IEnumerator ConcludeScenario() {
         yield return new WaitForSeconds(data.fadeOutTime / data.DEBUG_SPEED_EDITOR);
-        InputController.EndDay();
+        InputController.EndBeginNight();
         InputController.ConcludeScenario();
     }
 

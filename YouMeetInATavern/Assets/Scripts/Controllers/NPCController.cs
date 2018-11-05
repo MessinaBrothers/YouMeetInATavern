@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class NPCController : MonoBehaviour {
 
-    public static event NPCEnteredTavernEventHandler npcEnteredTavernEventHandler;
-    public delegate void NPCEnteredTavernEventHandler(GameObject card);
-
     public static event NPCIntroduceEventHandler npcIntroStartEventHandler;
     public delegate void NPCIntroduceEventHandler(GameObject card);
 
@@ -42,7 +39,7 @@ public class NPCController : MonoBehaviour {
     void OnEnable() {
         InputController.gameflowEndInitialize += CreateCards;
         InputController.gameflowEndBeginDay += LoadNPCs;
-        InputController.introduceNPCsEventHandler += IntroduceNPCs;
+        InputController.gameflowBeginIntroduceNPCs += IntroduceNPCs;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
         InputController.npcLeavesEventHandler += Goodbye;
@@ -51,7 +48,7 @@ public class NPCController : MonoBehaviour {
     void OnDisable() {
         InputController.gameflowEndInitialize -= CreateCards;
         InputController.gameflowEndBeginDay -= LoadNPCs;
-        InputController.introduceNPCsEventHandler -= IntroduceNPCs;
+        InputController.gameflowBeginIntroduceNPCs -= IntroduceNPCs;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
         InputController.npcLeavesEventHandler -= Goodbye;
@@ -149,8 +146,7 @@ public class NPCController : MonoBehaviour {
 
         // add NPC to tavern list
         data.npcsInTavern.Add(card);
-
-        npcEnteredTavernEventHandler.Invoke(card);
+        
         npcIntroStartEventHandler.Invoke(card);
     }
 
@@ -237,7 +233,5 @@ public class NPCController : MonoBehaviour {
         data.npcsInTavern.Add(card);
         // broadcast that the NPC has entered the tavern
         npcStartInTaverneventHandler.Invoke(card);
-
-        npcEnteredTavernEventHandler.Invoke(card);
     }
 }

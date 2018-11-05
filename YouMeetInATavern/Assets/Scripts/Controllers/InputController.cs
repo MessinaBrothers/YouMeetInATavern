@@ -14,18 +14,15 @@ public class InputController : MonoBehaviour {
     
     public static event GameflowEndBeginDayEventHandler gameflowEndBeginDay;
     public delegate void GameflowEndBeginDayEventHandler();
+    
+    public static event GameflowIntroduceNPCsEventHandler gameflowBeginIntroduceNPCs;
+    public delegate void GameflowIntroduceNPCsEventHandler();
 
     public static event GameflowStartBeginNightEventHandler gameflowStartBeginNight;
     public delegate void GameflowStartBeginNightEventHandler();
-
-    public static event IntroduceNPCsEventHandler introduceNPCsEventHandler;
-    public delegate void IntroduceNPCsEventHandler();
-
-    public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
-    public delegate void EndDayEarlyEventHandler();
-
-    public static event EndDayEventHandler endDayEventHandler;
-    public delegate void EndDayEventHandler();
+    
+    public static event GameflowEndBeginNightEventHandler gameflowEndBeginNight;
+    public delegate void GameflowEndBeginNightEventHandler();
 
     public static event StartConcludeScenarioEventHandler startConcludeScenarioEventHandler;
     public delegate void StartConcludeScenarioEventHandler();
@@ -107,6 +104,10 @@ public class InputController : MonoBehaviour {
     public delegate void StopConverseEventHandler(GameObject card);
 
     // NPCS
+
+    public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
+    public delegate void EndDayEarlyEventHandler();
+
     public static event NPCLeavesEventHandler npcLeavesEventHandler;
     public delegate void NPCLeavesEventHandler();
 
@@ -163,7 +164,7 @@ public class InputController : MonoBehaviour {
     }
 
     public static void IntroduceNPCs() {
-        introduceNPCsEventHandler.Invoke();
+        gameflowBeginIntroduceNPCs.Invoke();
     }
 
     public static void ChangeMode(GameData.GameMode mode) {
@@ -174,8 +175,8 @@ public class InputController : MonoBehaviour {
         gameflowStartBeginNight.Invoke();
     }
 
-    public static void EndDay() {
-        endDayEventHandler.Invoke();
+    public static void EndBeginNight() {
+        gameflowEndBeginNight.Invoke();
     }
 
     public static void ConcludeScenario() {
