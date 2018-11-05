@@ -48,11 +48,11 @@ public class GameController : MonoBehaviour {
             data.dayCount += 1;
         }
 
-        InputController.StartBeginDay(data.dayCount);
+        InputController.StartBeginTavern(data.dayCount);
 
         InputController.ChangeMode(GameData.GameMode.INTRODUCE);
         
-        InputController.EndBeginDay();
+        InputController.EndBeginTavern();
 
         StartCoroutine(IntroduceNPCs());
 
@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour {
 
     private void CheckEmptyTavern(GameObject card) {
         if (data.npcsInTavern.Count == 0) {
-            InputController.StartBeginNight();
+            InputController.StartFinishTavern();
             musicController.TransitionSilent(data.fadeOutTime);
             StartCoroutine(ConcludeScenario());
         }
@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour {
 
     private IEnumerator ConcludeScenario() {
         yield return new WaitForSeconds(data.fadeOutTime / data.DEBUG_SPEED_EDITOR);
-        InputController.EndBeginNight();
+        InputController.EndFinishTavern();
         InputController.ConcludeScenario();
     }
 

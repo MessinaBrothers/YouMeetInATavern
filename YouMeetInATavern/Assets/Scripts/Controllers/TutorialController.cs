@@ -30,13 +30,13 @@ public class TutorialController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.gameflowStartBeginDay += LoadDay;
+        InputController.gameflowStartBeginTavern += LoadDay;
         InputController.tutorialScreenClickedEventHandler += NextTutorialScreen;
         InputController.checkAnswersEventHandler += CheckAnswers;
     }
 
     void OnDisable() {
-        InputController.gameflowStartBeginDay -= LoadDay;
+        InputController.gameflowStartBeginTavern -= LoadDay;
         InputController.tutorialScreenClickedEventHandler -= NextTutorialScreen;
         InputController.checkAnswersEventHandler -= CheckAnswers;
     }

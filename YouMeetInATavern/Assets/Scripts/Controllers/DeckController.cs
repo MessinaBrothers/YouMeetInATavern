@@ -12,11 +12,11 @@ public class DeckController : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.gameflowEndBeginDay += ResetDeck;
+        InputController.gameflowEndBeginTavern += ResetDeck;
     }
 
     void OnDisable() {
-        InputController.gameflowEndBeginDay += ResetDeck;
+        InputController.gameflowEndBeginTavern += ResetDeck;
     }
 
     private void ResetDeck() {

@@ -32,13 +32,13 @@ public class GUIController : MonoBehaviour {
     void OnEnable() {
         CardMoveController.npcInConversePosEventHandler += Converse;
         InputController.clockTickedEventHandler += UpdateClock;
-        InputController.gameflowStartBeginNight += StartBeginNight;
+        InputController.gameflowStartFinishTavern += StartFinishTavern;
     }
 
     void OnDisable() {
         CardMoveController.npcInConversePosEventHandler -= Converse;
         InputController.clockTickedEventHandler -= UpdateClock;
-        InputController.gameflowStartBeginNight -= StartBeginNight;
+        InputController.gameflowStartFinishTavern -= StartFinishTavern;
     }
 
     private void UpdateClock(int currentHour) {
@@ -103,7 +103,7 @@ public class GUIController : MonoBehaviour {
         hudPanel.GetComponentInChildren<DeckGUI>().ReloadDeck(data);
     }
 
-    public void StartBeginNight() {
+    public void StartFinishTavern() {
         //DeactivateAll();
         //nightPanel.SetActive(true);
         FadeOut();

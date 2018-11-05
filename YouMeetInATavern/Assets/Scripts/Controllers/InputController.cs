@@ -9,20 +9,20 @@ public class InputController : MonoBehaviour {
     public static event GameflowEndInitializeEventHandler gameflowEndInitialize;
     public delegate void GameflowEndInitializeEventHandler();
     
-    public static event GameflowStartBeginDayEventHandler gameflowStartBeginDay;
-    public delegate void GameflowStartBeginDayEventHandler(GameData data, uint dayCount);
+    public static event GameflowStartBeginTavernEventHandler gameflowStartBeginTavern;
+    public delegate void GameflowStartBeginTavernEventHandler(GameData data, uint dayCount);
     
-    public static event GameflowEndBeginDayEventHandler gameflowEndBeginDay;
-    public delegate void GameflowEndBeginDayEventHandler();
+    public static event GameflowEndBeginTavernEventHandler gameflowEndBeginTavern;
+    public delegate void GameflowEndBeginTavernEventHandler();
     
     public static event GameflowIntroduceNPCsEventHandler gameflowBeginIntroduceNPCs;
     public delegate void GameflowIntroduceNPCsEventHandler();
 
-    public static event GameflowStartBeginNightEventHandler gameflowStartBeginNight;
-    public delegate void GameflowStartBeginNightEventHandler();
+    public static event GameflowStartFinishTavernEventHandler gameflowStartFinishTavern;
+    public delegate void GameflowStartFinishTavernEventHandler();
     
-    public static event GameflowEndBeginNightEventHandler gameflowEndBeginNight;
-    public delegate void GameflowEndBeginNightEventHandler();
+    public static event GameflowEndFinishTavernEventHandler gameflowEndFinishTavern;
+    public delegate void GameflowEndFinishTavernEventHandler();
 
     public static event StartConcludeScenarioEventHandler startConcludeScenarioEventHandler;
     public delegate void StartConcludeScenarioEventHandler();
@@ -152,13 +152,13 @@ public class InputController : MonoBehaviour {
         gameflowEndInitialize.Invoke();
     }
 
-    public static void StartBeginDay(uint dayCount) {
-        gameflowStartBeginDay.Invoke(data, dayCount);
+    public static void StartBeginTavern(uint dayCount) {
+        gameflowStartBeginTavern.Invoke(data, dayCount);
         guiController.StartScenario(data, dayCount);
     }
 
-    public static void EndBeginDay() {
-        gameflowEndBeginDay.Invoke();
+    public static void EndBeginTavern() {
+        gameflowEndBeginTavern.Invoke();
         guiController.FadeIn();
         guiController.LoadTavern();
     }
@@ -171,12 +171,12 @@ public class InputController : MonoBehaviour {
         gameflowModeChange.Invoke(mode);
     }
 
-    public static void StartBeginNight() {
-        gameflowStartBeginNight.Invoke();
+    public static void StartFinishTavern() {
+        gameflowStartFinishTavern.Invoke();
     }
 
-    public static void EndBeginNight() {
-        gameflowEndBeginNight.Invoke();
+    public static void EndFinishTavern() {
+        gameflowEndFinishTavern.Invoke();
     }
 
     public static void ConcludeScenario() {

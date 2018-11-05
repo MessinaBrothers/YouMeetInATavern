@@ -38,7 +38,7 @@ public class NPCController : MonoBehaviour {
 
     void OnEnable() {
         InputController.gameflowEndInitialize += CreateCards;
-        InputController.gameflowEndBeginDay += LoadNPCs;
+        InputController.gameflowEndBeginTavern += LoadNPCs;
         InputController.gameflowBeginIntroduceNPCs += IntroduceNPCs;
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.stopConverseEventHandler += IntroduceNextNPC;
@@ -47,7 +47,7 @@ public class NPCController : MonoBehaviour {
 
     void OnDisable() {
         InputController.gameflowEndInitialize -= CreateCards;
-        InputController.gameflowEndBeginDay -= LoadNPCs;
+        InputController.gameflowEndBeginTavern -= LoadNPCs;
         InputController.gameflowBeginIntroduceNPCs -= IntroduceNPCs;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.stopConverseEventHandler -= IntroduceNextNPC;
