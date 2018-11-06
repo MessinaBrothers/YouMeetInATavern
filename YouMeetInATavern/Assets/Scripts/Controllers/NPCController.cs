@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class NPCController : MonoBehaviour {
 
-    public static event NPCIntroducedEventHandler npcIntroEndEventHandler;
-    public delegate void NPCIntroducedEventHandler(GameObject card);
-
     public static event NPCStartInTaverneventHandler npcStartInTaverneventHandler;
     public delegate void NPCStartInTaverneventHandler(GameObject card);
 
@@ -88,7 +85,7 @@ public class NPCController : MonoBehaviour {
             case GameData.GameMode.INTRODUCE:
                 if (card.GetComponent<NPC>().isBeingIntroduced == true) {
                     card.GetComponent<CardSFX>().PlayIntro();
-                    npcIntroEndEventHandler.Invoke(card);
+                    InputController.NPCIntroEnd(card);
                     InputController.ChangeMode(GameData.GameMode.CONVERSE);
                     data.selectedCard = card;
                 }
@@ -155,7 +152,7 @@ public class NPCController : MonoBehaviour {
         // add NPC to tavern list
         data.npcsInTavern.Add(card);
         
-        InputController.NPCIntroduced(card);
+        InputController.NPCIntroStart(card);
     }
 
     private void LoadNPCs() {

@@ -108,8 +108,11 @@ public class InputController : MonoBehaviour {
 
     // NPCS
 
-    public static event NPCIntroducedEventHandler npcIntroStartEventHandler;
-    public delegate void NPCIntroducedEventHandler(GameObject card);
+    public static event NPCIntroStartEventHandler npcIntroStartEventHandler;
+    public delegate void NPCIntroStartEventHandler(GameObject card);
+
+    public static event NPCIntroEndEventHandler npcIntroEndEventHandler;
+    public delegate void NPCIntroEndEventHandler(GameObject card);
 
     public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
     public delegate void EndDayEarlyEventHandler();
@@ -213,10 +216,6 @@ public class InputController : MonoBehaviour {
 
     // CARD INTERACTIONS
 
-    public static void NPCIntroduced(GameObject card) {
-        npcIntroStartEventHandler.Invoke(card);
-    }
-
     public static void HandleCardClick(GameObject card) {
         cardClickedEventHandler.Invoke(card);
     }
@@ -312,6 +311,14 @@ public class InputController : MonoBehaviour {
     }
 
     // NPCS
+
+    public static void NPCIntroStart(GameObject card) {
+        npcIntroStartEventHandler.Invoke(card);
+    }
+
+    public static void NPCIntroEnd(GameObject card) {
+        npcIntroEndEventHandler.Invoke(card);
+    }
 
     public static void LeaveTavernEarly() {
         endDayEarlyEventHandler.Invoke();
