@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,14 +18,22 @@ public class SoundController : MonoBehaviour {
     void OnEnable() {
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.npcIntroStartEventHandler += HandleIntroduction;
+        InputController.stopConverseEventHandler += HandleIntroductionEnd;
+        InputController.dialogueCardCreatedEventHandler += HandleCardCreated;
     }
 
     void OnDisable() {
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.npcIntroStartEventHandler -= HandleIntroduction;
+        InputController.stopConverseEventHandler -= HandleIntroductionEnd;
+        InputController.dialogueCardCreatedEventHandler -= HandleCardCreated;
     }
 
     private void HandleIntroduction(GameObject card) {
+        source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
+    }
+
+    private void HandleIntroductionEnd(GameObject card) {
         source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
     }
 
@@ -36,8 +45,12 @@ public class SoundController : MonoBehaviour {
         }
     }
 
+    private void HandleCardCreated(GameObject card) {
+        source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
+    }
+
     private AudioClip GetRandomClip(AudioClip[] clips) {
-        return clips[Random.Range(0, clips.Length)];
+        return clips[UnityEngine.Random.Range(0, clips.Length)];
     }
 
 }
