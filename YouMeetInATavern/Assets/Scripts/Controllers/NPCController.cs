@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class NPCController : MonoBehaviour {
 
-    public static event NPCIntroduceEventHandler npcIntroStartEventHandler;
-    public delegate void NPCIntroduceEventHandler(GameObject card);
-
     public static event NPCIntroducedEventHandler npcIntroEndEventHandler;
     public delegate void NPCIntroducedEventHandler(GameObject card);
 
@@ -121,6 +118,17 @@ public class NPCController : MonoBehaviour {
         }
     }
 
+    private void IntroduceNPC(string npcKey) {
+        // find the corresponding card GameObject
+        foreach (GameObject go in data.npcs) {
+            NPC npc = go.GetComponent<NPC>();
+            if (npcKey == npc.key) {
+                IntroduceNPC(go);
+                break;
+            }
+        }
+    }
+
     private void IntroduceNPC(GameObject card) {
         InputController.ChangeMode(GameData.GameMode.INTRODUCE);
 
@@ -147,18 +155,7 @@ public class NPCController : MonoBehaviour {
         // add NPC to tavern list
         data.npcsInTavern.Add(card);
         
-        npcIntroStartEventHandler.Invoke(card);
-    }
-
-    private void IntroduceNPC(string npcKey) {
-        // find the corresponding card GameObject
-        foreach (GameObject go in data.npcs) {
-            NPC npc = go.GetComponent<NPC>();
-            if (npcKey == npc.key) {
-                IntroduceNPC(go);
-                break;
-            }
-        }
+        InputController.NPCIntroduced(card);
     }
 
     private void LoadNPCs() {

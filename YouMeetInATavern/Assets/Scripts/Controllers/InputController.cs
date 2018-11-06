@@ -108,6 +108,9 @@ public class InputController : MonoBehaviour {
 
     // NPCS
 
+    public static event NPCIntroducedEventHandler npcIntroStartEventHandler;
+    public delegate void NPCIntroducedEventHandler(GameObject card);
+
     public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
     public delegate void EndDayEarlyEventHandler();
 
@@ -209,6 +212,10 @@ public class InputController : MonoBehaviour {
     }
 
     // CARD INTERACTIONS
+
+    public static void NPCIntroduced(GameObject card) {
+        npcIntroStartEventHandler.Invoke(card);
+    }
 
     public static void HandleCardClick(GameObject card) {
         cardClickedEventHandler.Invoke(card);

@@ -41,11 +41,7 @@ public class ConverseNPC : MonoBehaviour {
     private void HandleCardClick(GameObject card) {
         if (data.gameMode == GameData.GameMode.TAVERN) {
             // if in tavern, start any conversation with NPC
-            card.GetComponent<CardSFX>().PlayBeginConverse();
             npcStartConverseEventHandler.Invoke(card);
-        } else if (data.gameMode == GameData.GameMode.CONVERSE) {
-            // if already conversing, play a sound
-            card.GetComponent<CardSFX>().PlayGreeting();
         }
     }
 
