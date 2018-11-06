@@ -67,8 +67,10 @@ public class DEBUGController : MonoBehaviour {
     }
 
     private void ConcludeScenario() {
-
         data.npcsInTavern.Clear();
+        data.npcsToIntroduce.Clear();
+        InputController.StartFinishTavern();
+        InputController.EndFinishTavern();
         InputController.ConcludeScenario();
     }
 
