@@ -29,6 +29,7 @@ public class SoundController : MonoBehaviour {
         InputController.deckClosedEventHander += PlayButtonClick;
         InputController.checkAnswersEventHandler += PlayButtonClick;
         InputController.tavernClicked += PlayTavernClick;
+        InputController.tutorialScreenClickedEventHandler += PlayButtonClick;
     }
 
     void OnDisable() {
@@ -45,6 +46,7 @@ public class SoundController : MonoBehaviour {
         InputController.deckClosedEventHander -= PlayButtonClick;
         InputController.checkAnswersEventHandler -= PlayButtonClick;
         InputController.tavernClicked -= PlayTavernClick;
+        InputController.tutorialScreenClickedEventHandler -= PlayButtonClick;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -76,6 +78,10 @@ public class SoundController : MonoBehaviour {
     }
 
     private void PlayButtonClick(GameObject card) {
+        Play(buttonClickClips);
+    }
+
+    private void PlayButtonClick(GameObject currentScreen, GameObject nextScreen) {
         Play(buttonClickClips);
     }
 
