@@ -7,7 +7,7 @@ public class SoundController : MonoBehaviour {
 
     public AudioSource source;
 
-    public AudioClip[] cardIntroSwooshClips;
+    public AudioClip[] cardIntroSwooshClips, conclusionBackgroundClips;
 
     private GameData data;
 
@@ -20,6 +20,7 @@ public class SoundController : MonoBehaviour {
         InputController.npcIntroStartEventHandler += HandleIntroduction;
         InputController.stopConverseEventHandler += HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler += HandleCardCreated;
+        InputController.conclusionBackgroundClicked += HandleConclusionBackgroundClick;
     }
 
     void OnDisable() {
@@ -27,6 +28,7 @@ public class SoundController : MonoBehaviour {
         InputController.npcIntroStartEventHandler -= HandleIntroduction;
         InputController.stopConverseEventHandler -= HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler -= HandleCardCreated;
+        InputController.conclusionBackgroundClicked -= HandleConclusionBackgroundClick;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -47,6 +49,10 @@ public class SoundController : MonoBehaviour {
 
     private void HandleCardCreated(GameObject card) {
         source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
+    }
+
+    private void HandleConclusionBackgroundClick(Vector3 position) {
+        source.PlayOneShot(GetRandomClip(conclusionBackgroundClips));
     }
 
     private AudioClip GetRandomClip(AudioClip[] clips) {

@@ -76,6 +76,9 @@ public class ConcludeScenarioController : MonoBehaviour {
         InputController.gameflowStartBeginConclusion -= Load;
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.confirmScenarioChoicesEventHandler -= ResetTavern;
+        InputController.hoverOverCardHandEventHandler -= HighlightCard;
+        InputController.hoverExitCardHandEventHandler -= UnhighlightCard;
+        InputController.cardHandClickedEventHandler -= SelectCard;
         InputController.hoverOverCardSelectedEventHandler -= Dummy;
         InputController.hoverExitCardSelectedEventHandler -= Dummy;
         InputController.cardSelectedClickedEventHandler -= UnselectCard;
@@ -111,10 +114,14 @@ public class ConcludeScenarioController : MonoBehaviour {
         card.GetComponent<CardMove>().Set(card.transform, handPositions[id], data.cardHoverExitSpeed, Wait);
     }
 
-    private void SelectCard(int id) {
+    private void SelectCard(Vector3 position, int id) {
+        bool isChosen = false;
+
         for (int i = 0; i < cardsInSelection.Length; i++) {
             GameObject selectedCard = cardsInSelection[i];
             if (selectedCard == null) {
+                isChosen = true;
+
                 GameObject card = cardsInHand[id];
                 card.GetComponent<CardSFX>().PlayGreeting();
                 card.GetComponent<CardMove>().Set(card.transform, selectedPositions[i].transform, data.cardSelectedSpeed, Wait);
@@ -133,9 +140,13 @@ public class ConcludeScenarioController : MonoBehaviour {
                 return;
             }
         }
+
+        if (isChosen == false) {
+            InputController.ClickConclusionBackground(position);
+        }
     }
 
-    private void UnselectCard(int id) {
+    private void UnselectCard(Vector3 position, int id) {
         if (data.gameMode == GameData.GameMode.CONCLUDE) {
             GameObject card = cardsInSelection[id];
             if (card != null) {
@@ -148,11 +159,13 @@ public class ConcludeScenarioController : MonoBehaviour {
                 audioSource.Play();
 
                 data.chosenAnswerKeys.Remove(card.GetComponent<Key>().key);
+            } else {
+                InputController.ClickConclusionBackground(position);
             }
         }
     }
 
-    private void DrawFromUnused() {
+    private void DrawFromUnused(Vector3 position) {
         if (unusedDeck.Count > 0) {
             if (IsHandFull() == true) {
                 Discard(cardsInHand[0]);
@@ -160,10 +173,12 @@ public class ConcludeScenarioController : MonoBehaviour {
             }
             AddCardToHand(unusedDeck.Dequeue(), true);
             audioSource.Play();
+        } else {
+            InputController.ClickConclusionBackground(position);
         }
     }
 
-    private void DrawFromDiscard() {
+    private void DrawFromDiscard(Vector3 position) {
         if (discardDeck.Count > 0) {
             if (IsHandFull() == true) {
                 Return(cardsInHand[cardsInHand.Length - 1]);
@@ -171,6 +186,8 @@ public class ConcludeScenarioController : MonoBehaviour {
             }
             AddCardToHand(discardDeck.Dequeue(), false);
             audioSource.Play();
+        } else {
+            InputController.ClickConclusionBackground(position);
         }
     }
 

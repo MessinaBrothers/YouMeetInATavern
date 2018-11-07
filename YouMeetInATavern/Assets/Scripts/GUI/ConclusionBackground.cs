@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DiscardDeckCollider : MonoBehaviour {
+public class ConclusionBackground : MonoBehaviour {
 
-    private void OnMouseOver() {
+    void Update() {
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit)) {
                 if (hit.collider.gameObject == gameObject) {
-                    InputController.DiscardDeckSelected(hit.point);
+                    InputController.ClickConclusionBackground(hit.point);
                 }
             }
         }

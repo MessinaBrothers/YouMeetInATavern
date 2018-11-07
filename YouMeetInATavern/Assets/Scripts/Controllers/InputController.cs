@@ -63,7 +63,7 @@ public class InputController : MonoBehaviour {
     public delegate void HoverExitCardHandEventHandler(int id);
 
     public static event CardHandClickedEventHandler cardHandClickedEventHandler;
-    public delegate void CardHandClickedEventHandler(int id);
+    public delegate void CardHandClickedEventHandler(Vector3 position, int id);
 
     public static event HoverOverCardSelectedEventHandler hoverOverCardSelectedEventHandler;
     public delegate void HoverOverCardSelectedEventHandler(int id);
@@ -72,13 +72,13 @@ public class InputController : MonoBehaviour {
     public delegate void HoverExitCardSelectedEventHandler(int id);
 
     public static event CardSelectedClickedEventHandler cardSelectedClickedEventHandler;
-    public delegate void CardSelectedClickedEventHandler(int id);
+    public delegate void CardSelectedClickedEventHandler(Vector3 position, int id);
 
     public static event UnusedDeckClickedEventHandler unusedDeckClickedEventHandler;
-    public delegate void UnusedDeckClickedEventHandler();
+    public delegate void UnusedDeckClickedEventHandler(Vector3 position);
 
     public static event DiscardDeckClickedEventHandler discardDeckClickedEventHandler;
-    public delegate void DiscardDeckClickedEventHandler();
+    public delegate void DiscardDeckClickedEventHandler(Vector3 position);
 
     // DECK INTERACTIONS
     public static event DeckHoverEventHandler deckHoverEventHandler;
@@ -142,6 +142,9 @@ public class InputController : MonoBehaviour {
 
     public static event TutorialScreenClickedEventHandler tutorialScreenClickedEventHandler;
     public delegate void TutorialScreenClickedEventHandler(GameObject currentScreen, GameObject nextScreen);
+
+    public static event ClickConclusionBackgroundEventHandler conclusionBackgroundClicked;
+    public delegate void ClickConclusionBackgroundEventHandler(Vector3 position);
 
     private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
@@ -240,8 +243,8 @@ public class InputController : MonoBehaviour {
         hoverExitCardHandEventHandler.Invoke(id);
     }
 
-    public static void ClickCardHand(int id) {
-        cardHandClickedEventHandler.Invoke(id);
+    public static void ClickCardHand(Vector3 position, int id) {
+        cardHandClickedEventHandler.Invoke(position, id);
     }
 
     public static void HoverOverCardSelected(int id) {
@@ -252,16 +255,16 @@ public class InputController : MonoBehaviour {
         hoverExitCardSelectedEventHandler.Invoke(id);
     }
 
-    public static void ClickCardSelected(int id) {
-        cardSelectedClickedEventHandler.Invoke(id);
+    public static void ClickCardSelected(Vector3 position, int id) {
+        cardSelectedClickedEventHandler.Invoke(position, id);
     }
 
-    public static void UnusedDeckSelected() {
-        unusedDeckClickedEventHandler.Invoke();
+    public static void UnusedDeckSelected(Vector3 position) {
+        unusedDeckClickedEventHandler.Invoke(position);
     }
 
-    public static void DiscardDeckSelected() {
-        discardDeckClickedEventHandler.Invoke();
+    public static void DiscardDeckSelected(Vector3 position) {
+        discardDeckClickedEventHandler.Invoke(position);
     }
 
     // DECK INTERACTIONS
@@ -327,6 +330,10 @@ public class InputController : MonoBehaviour {
 
     public static void NPCExitTavern(GameObject card) {
         npcLeftTavernEventHandler.Invoke(card);
+    }
+
+    public static void ClickConclusionBackground(Vector3 position) {
+        conclusionBackgroundClicked.Invoke(position);
     }
 
     // HEXES
