@@ -9871,6 +9871,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7bed4ad889537e54aa015ce0bfe91554, type: 3}
   - {fileID: 8300000, guid: 40d82e3b5708d9b46848bf375081e20e, type: 3}
   - {fileID: 8300000, guid: c18d8fda43258c14f8a28e18b03a9ed9, type: 3}
+  buttonClickClips:
+  - {fileID: 8300000, guid: bb96bed5ea56ce04bb7ec37995b60897, type: 3}
 --- !u!1 &675112692
 GameObject:
   m_ObjectHideFlags: 0

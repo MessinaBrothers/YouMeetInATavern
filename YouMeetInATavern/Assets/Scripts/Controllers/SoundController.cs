@@ -7,7 +7,7 @@ public class SoundController : MonoBehaviour {
 
     public AudioSource source;
 
-    public AudioClip[] cardIntroSwooshClips, conclusionBackgroundClips;
+    public AudioClip[] cardIntroSwooshClips, conclusionBackgroundClips, buttonClickClips;
 
     private GameData data;
 
@@ -21,6 +21,13 @@ public class SoundController : MonoBehaviour {
         InputController.stopConverseEventHandler += HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler += HandleCardCreated;
         InputController.conclusionBackgroundClicked += HandleConclusionBackgroundClick;
+        InputController.questionEventHandler += PlayButtonClick;
+        InputController.stopConverseEventHandler += PlayButtonClick;
+        InputController.npcLeavesEventHandler += PlayButtonClick;
+        InputController.endDayEarlyEventHandler += PlayButtonClick;
+        InputController.deckClickedEventHander += PlayButtonClick;
+        InputController.deckClosedEventHander += PlayButtonClick;
+        InputController.checkAnswersEventHandler += PlayButtonClick;
     }
 
     void OnDisable() {
@@ -29,14 +36,21 @@ public class SoundController : MonoBehaviour {
         InputController.stopConverseEventHandler -= HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler -= HandleCardCreated;
         InputController.conclusionBackgroundClicked -= HandleConclusionBackgroundClick;
+        InputController.questionEventHandler -= PlayButtonClick;
+        InputController.stopConverseEventHandler -= PlayButtonClick;
+        InputController.npcLeavesEventHandler -= PlayButtonClick;
+        InputController.endDayEarlyEventHandler -= PlayButtonClick;
+        InputController.deckClickedEventHander -= PlayButtonClick;
+        InputController.deckClosedEventHander -= PlayButtonClick;
+        InputController.checkAnswersEventHandler -= PlayButtonClick;
     }
 
     private void HandleIntroduction(GameObject card) {
-        source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
+        Play(cardIntroSwooshClips);
     }
 
     private void HandleIntroductionEnd(GameObject card) {
-        source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
+        Play(cardIntroSwooshClips);
     }
 
     private void HandleCardClick(GameObject card) {
@@ -48,11 +62,27 @@ public class SoundController : MonoBehaviour {
     }
 
     private void HandleCardCreated(GameObject card) {
-        source.PlayOneShot(GetRandomClip(cardIntroSwooshClips));
+        Play(cardIntroSwooshClips);
     }
 
     private void HandleConclusionBackgroundClick(Vector3 position) {
-        source.PlayOneShot(GetRandomClip(conclusionBackgroundClips));
+        Play(conclusionBackgroundClips);
+    }
+
+    private void PlayButtonClick() {
+        Play(buttonClickClips);
+    }
+
+    private void PlayButtonClick(GameObject card) {
+        Play(buttonClickClips);
+    }
+
+    private void PlayButtonClick(Question question) {
+        Play(buttonClickClips);
+    }
+
+    private void Play(AudioClip[] clips) {
+        source.PlayOneShot(GetRandomClip(clips));
     }
 
     private AudioClip GetRandomClip(AudioClip[] clips) {
