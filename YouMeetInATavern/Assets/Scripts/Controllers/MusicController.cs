@@ -8,7 +8,7 @@ public class MusicController : MonoBehaviour {
 
     public AudioMixerSnapshot main, silent;
 
-    public AudioSource[] tavernAudio;
+    public AudioSource[] tavernAudio, conclusionAudio;
 
     private GameData data;
 
@@ -30,12 +30,14 @@ public class MusicController : MonoBehaviour {
         InputController.gameflowEndBeginTavern += BeginTavern;
         InputController.gameflowStartFinishTavern += FinishTavern;
         InputController.gameflowStartBeginConclusion += StartConclude;
+        InputController.gameflowStartFinishConclusion += FinishConclude;
     }
 
     void OnDisable() {
         InputController.gameflowEndBeginTavern -= BeginTavern;
         InputController.gameflowStartFinishTavern -= FinishTavern;
         InputController.gameflowStartBeginConclusion -= StartConclude;
+        InputController.gameflowStartFinishConclusion -= FinishConclude;
     }
 
     private IEnumerator TransitionSnapshot(AudioMixerSnapshot from, AudioMixerSnapshot to, float time) {
@@ -45,7 +47,15 @@ public class MusicController : MonoBehaviour {
     }
 
     private void StartConclude() {
-        
+        foreach (AudioSource source in conclusionAudio) {
+            StartCoroutine(FadeIn(source, data.fadeInTime / data.DEBUG_SPEED_EDITOR));
+        }
+    }
+
+    private void FinishConclude() {
+        foreach (AudioSource source in conclusionAudio) {
+            StartCoroutine(FadeOut(source, data.fadeOutTime / data.DEBUG_SPEED_EDITOR));
+        }
     }
 
     private void BeginTavern() {
