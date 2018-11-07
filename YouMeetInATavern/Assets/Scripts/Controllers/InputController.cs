@@ -146,6 +146,9 @@ public class InputController : MonoBehaviour {
     public static event ClickConclusionBackgroundEventHandler conclusionBackgroundClicked;
     public delegate void ClickConclusionBackgroundEventHandler(Vector3 position);
 
+    public static event ClickTavernEventHandler tavernClicked;
+    public delegate void ClickTavernEventHandler(Vector3 position);
+
     private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
@@ -334,6 +337,10 @@ public class InputController : MonoBehaviour {
 
     public static void ClickConclusionBackground(Vector3 position) {
         conclusionBackgroundClicked.Invoke(position);
+    }
+
+    public static void ClickTavern(Vector3 position) {
+        tavernClicked.Invoke(position);
     }
 
     // HEXES

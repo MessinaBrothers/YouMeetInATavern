@@ -8,14 +8,16 @@ public class CloudPuffController : MonoBehaviour {
     public GameObject puffPrefab;
 
     void OnEnable() {
-        InputController.conclusionBackgroundClicked += HandleConclusionBackgroundClick;
+        InputController.conclusionBackgroundClicked += CreatePuff;
+        InputController.tavernClicked += CreatePuff;
     }
 
     void OnDisable() {
-        InputController.conclusionBackgroundClicked -= HandleConclusionBackgroundClick;
+        InputController.conclusionBackgroundClicked -= CreatePuff;
+        InputController.tavernClicked -= CreatePuff;
     }
 
-    private void HandleConclusionBackgroundClick(Vector3 position) {
+    private void CreatePuff(Vector3 position) {
         GameObject puff = Instantiate(puffPrefab, position, Quaternion.identity, transform);
         puff.transform.LookAt(Camera.main.transform);
     }

@@ -7,7 +7,7 @@ public class SoundController : MonoBehaviour {
 
     public AudioSource source;
 
-    public AudioClip[] cardIntroSwooshClips, conclusionBackgroundClips, buttonClickClips;
+    public AudioClip[] cardIntroSwooshClips, conclusionBackgroundClips, buttonClickClips, tavernClickClips;
 
     private GameData data;
 
@@ -28,6 +28,7 @@ public class SoundController : MonoBehaviour {
         InputController.deckClickedEventHander += PlayButtonClick;
         InputController.deckClosedEventHander += PlayButtonClick;
         InputController.checkAnswersEventHandler += PlayButtonClick;
+        InputController.tavernClicked += PlayTavernClick;
     }
 
     void OnDisable() {
@@ -43,6 +44,7 @@ public class SoundController : MonoBehaviour {
         InputController.deckClickedEventHander -= PlayButtonClick;
         InputController.deckClosedEventHander -= PlayButtonClick;
         InputController.checkAnswersEventHandler -= PlayButtonClick;
+        InputController.tavernClicked -= PlayTavernClick;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -79,6 +81,10 @@ public class SoundController : MonoBehaviour {
 
     private void PlayButtonClick(Question question) {
         Play(buttonClickClips);
+    }
+
+    private void PlayTavernClick(Vector3 position) {
+        Play(tavernClickClips);
     }
 
     private void Play(AudioClip[] clips) {
