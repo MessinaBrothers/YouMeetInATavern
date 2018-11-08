@@ -134,7 +134,7 @@ public class NPCController : MonoBehaviour {
         introducedNPCs.Add(card);
 
         // move it anywhere offscreen so it doesn't appear at the beginning
-        card.transform.position = new Vector3(0, 10, 0);
+        card.transform.position = new Vector3(0, -10, 0);
 
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = true;
