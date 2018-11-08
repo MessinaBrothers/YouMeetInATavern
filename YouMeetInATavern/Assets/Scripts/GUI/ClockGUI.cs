@@ -17,6 +17,20 @@ public class ClockGUI : MonoBehaviour {
 
     public void UpdateText(int currentHour) {
         int hoursRemaining = data.tavernCloseHour - currentHour;
-        text.text = string.Format("{0} hour{1} until close", hoursRemaining, hoursRemaining == 1 ? "" : "s");
+        
+        string s = "";
+        switch (hoursRemaining) {
+            case 0:
+                s = "Closing tavern...";
+                break;
+            case 1:
+                s = "1 hour remaining.";
+                break;
+            default:
+                s = hoursRemaining + " hours remaining.";
+                break;
+        }
+
+        text.text = s;
     }
 }
