@@ -73,19 +73,21 @@ public class TutorialController : MonoBehaviour {
     }
 
     private void CheckAnswers() {
-        switch (data.scenario.id) {
-            case 5:
-                if (data.chosenAnswerKeys.Contains("NPC_BARTENDER") == false) {
-                    PopUpDialogueFactory.Create("Don't leave without me!", 3, midcardTransform);
-                } else {
+        if (data.gameMode == GameData.GameMode.CONCLUDE) {
+            switch (data.scenario.id) {
+                case 5:
+                    if (data.chosenAnswerKeys.Contains("NPC_BARTENDER") == false) {
+                        PopUpDialogueFactory.Create("Don't leave without me!", 3, midcardTransform);
+                    } else {
+                        InputController.ChangeMode(GameData.GameMode.RESULTS);
+                        InputController.FinishConclusion();
+                    }
+                    break;
+                default:
                     InputController.ChangeMode(GameData.GameMode.RESULTS);
                     InputController.FinishConclusion();
-                }
-                break;
-            default:
-                InputController.ChangeMode(GameData.GameMode.RESULTS);
-                InputController.FinishConclusion();
-                break;
+                    break;
+            }
         }
     }
 }
