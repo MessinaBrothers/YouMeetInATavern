@@ -10048,6 +10048,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bb96bed5ea56ce04bb7ec37995b60897, type: 3}
   tavernClickClips:
   - {fileID: 8300000, guid: 26eb4726f42811d449d5cfe8a74a9528, type: 3}
+  grandfatherclockClickClips:
+  - {fileID: 8300000, guid: d13ad7e1cd8952c4891a66dba663a1d7, type: 3}
+  grandfatherclock: {fileID: 1330942690}
 --- !u!82 &669052395
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20748,6 +20751,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1330942691}
   - component: {fileID: 1330942692}
+  - component: {fileID: 1330942693}
+  - component: {fileID: 1330942694}
   m_Layer: 0
   m_Name: GrandfatherClock
   m_TagString: Untagged
@@ -20783,10 +20788,33 @@ MonoBehaviour:
   minuteHand: {fileID: 614773182}
   hourHand: {fileID: 614773183}
   degreesPerHour: 30
-  secondsToUpdateOneHour: 2
   midnightRotX: 270
   midnightRotY: 90
   midnightRotZ: 90
+  secondsToUpdateOneHour: 2
+--- !u!114 &1330942693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1330942690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2613fc318a222794c911093bc9f98553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1330942694
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1330942690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1331556515
 GameObject:
   m_ObjectHideFlags: 0

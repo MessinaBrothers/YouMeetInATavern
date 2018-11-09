@@ -149,6 +149,9 @@ public class InputController : MonoBehaviour {
     public static event ClickTavernEventHandler tavernClicked;
     public delegate void ClickTavernEventHandler(Vector3 position);
 
+    public static event ClickItemEventHandler itemClicked;
+    public delegate void ClickItemEventHandler(GameObject item, Vector3 position);
+
     private static GameData data;
     private static GUIController guiController; //TODO instead call updateGUIEventHandler for all GUIs to update themselves
 
@@ -335,14 +338,6 @@ public class InputController : MonoBehaviour {
         npcLeftTavernEventHandler.Invoke(card);
     }
 
-    public static void ClickConclusionBackground(Vector3 position) {
-        conclusionBackgroundClicked.Invoke(position);
-    }
-
-    public static void ClickTavern(Vector3 position) {
-        tavernClicked.Invoke(position);
-    }
-
     // HEXES
 
     public static void HoverOverHex(int id) {
@@ -369,7 +364,20 @@ public class InputController : MonoBehaviour {
     public static void ClickTutorialScreen(GameObject currentScreen, GameObject nextScreen) {
         tutorialScreenClickedEventHandler.Invoke(currentScreen, nextScreen);
     }
-    
+
+    public static void ClickConclusionBackground(Vector3 position) {
+        conclusionBackgroundClicked.Invoke(position);
+    }
+
+    public static void ClickTavern(Vector3 position) {
+        tavernClicked.Invoke(position);
+    }
+
+    internal static void ClickItem(GameObject gameObject, Vector3 point) {
+        itemClicked.Invoke(gameObject, point);
+    }
+
+
     // wrapper methods for Unity buttons
     // since they can't call static methods
     public void HandleStopConverseWrapper() { HandleStopConverse(); }
