@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CardHandCollider : MonoBehaviour {
 
@@ -20,7 +21,7 @@ public class CardHandCollider : MonoBehaviour {
     }
 
     void OnMouseEnter() {
-        InputController.HoverOverCardHand(id);
+        if (EventSystem.current.IsPointerOverGameObject() == false) InputController.HoverOverCardHand(id);
     }
 
     void OnMouseExit() {
