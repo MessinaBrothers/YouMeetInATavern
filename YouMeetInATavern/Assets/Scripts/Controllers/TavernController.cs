@@ -7,12 +7,12 @@ public class TavernController : MonoBehaviour {
     public GameObject tavern;
 
     void OnEnable() {
-        InputController.gameflowEndBeginTavern += ShowTavern;
+        InputController.gameflowStartBeginTavern += ShowTavern;
         InputController.gameflowEndFinishTavern += HideTavern;
     }
 
     void OnDisable() {
-        InputController.gameflowEndBeginTavern -= ShowTavern;
+        InputController.gameflowStartBeginTavern -= ShowTavern;
         InputController.gameflowEndFinishTavern -= HideTavern;
     }
 
@@ -20,7 +20,7 @@ public class TavernController : MonoBehaviour {
         tavern.SetActive(false);
     }
 
-    private void ShowTavern() {
+    private void ShowTavern(GameData data, uint dayCount) {
         tavern.SetActive(true);
     }
 }

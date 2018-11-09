@@ -53,13 +53,14 @@ public class GameController : MonoBehaviour {
         InputController.StartBeginTavern(data.dayCount);
 
         InputController.ChangeMode(GameData.GameMode.INTRODUCE);
-        
+
+        data.tavernOpenHour = data.tavernCloseHour - data.scenario.openHours;
+        data.currentHour = data.tavernOpenHour;
+
         InputController.EndBeginTavern();
 
         StartCoroutine(IntroduceNPCs());
 
-        data.tavernOpenHour = data.tavernCloseHour - data.scenario.openHours;
-        data.currentHour = data.tavernOpenHour;
         InputController.TickClock(data.currentHour);
     }
 
