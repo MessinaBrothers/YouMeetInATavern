@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class UnityUtility : MonoBehaviour {
@@ -8,6 +9,8 @@ public class UnityUtility : MonoBehaviour {
 
     void Awake() {
         rng = new System.Random();
+
+        PreBuild();
     }
     
     //recursive
@@ -26,5 +29,18 @@ public class UnityUtility : MonoBehaviour {
             list[k] = list[n];
             list[n] = value;
         }
+    }
+
+    /// <summary>
+    /// replicates pre-build functionality of Assets/Misc/build_script.bat
+    /// </summary>
+    private static void PreBuild() {
+        #if UNITY_EDITOR
+            string filePath = "Assets/Resources/dialogue_xml.txt";
+            if (File.Exists(filePath)) {
+                File.Delete(filePath);
+            }
+            File.Copy("Assets/Resources/dialogue_xml.graphml", filePath);
+        #endif
     }
 }
