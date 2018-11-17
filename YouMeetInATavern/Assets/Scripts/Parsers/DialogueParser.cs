@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class DialogueParser : MonoBehaviour {
@@ -14,6 +18,61 @@ public class DialogueParser : MonoBehaviour {
     }
 
     private void Parse() {
+        TextAsset xmlRawFile = (TextAsset)Resources.Load("dialogue_xml");
+        XDocument xmlDoc = XDocument.Load(new StringReader(xmlRawFile.text));
+
+        string yedBullcrap = "{http://graphml.graphdrawing.org/xmlns}";
+
+        XElement root = xmlDoc.Element(yedBullcrap + "graphml");
+        XElement graph = root.Element(yedBullcrap + "graph");
+        
+        foreach (XElement graphNodes in graph.Elements(yedBullcrap + "node")) {
+            // get the NPC key
+            string npcKey = "";
+            foreach (XElement xe in graphNodes.Elements(yedBullcrap + "data")) {
+                if (npcKey.Length == 0 && xe.Value.StartsWith("nodetype=")) {
+                    npcKey = xe.Value.Replace("nodetype=", "");
+                    print("npcKey: " + npcKey);
+                }
+            }
+
+            // for each NPC
+            XElement npcGraph = graphNodes.Element(yedBullcrap + "graph");
+            foreach (XElement npcScenarioGraph in npcGraph.Elements(yedBullcrap + "node")) {
+                // for each scenario in NPC
+                XElement xe = npcScenarioGraph.Element(yedBullcrap + "graph");
+                foreach (XElement npcScenarioDialogue in xe.Elements(yedBullcrap + "node")) {
+                    // parse the dialogue ID
+                    string dialogueID = "";
+                    dialogueID = npcScenarioDialogue.Attribute("id").ToString().Replace("id=", "");
+                    print("id: " + dialogueID);
+
+                    // parse the dialogue type and text
+                    string dialogueText = "";
+                    string dialogueType = "";
+                    foreach (XElement xe1 in npcScenarioDialogue.Elements(yedBullcrap + "data")) {
+                        if (xe1.Value.StartsWith("nodetype=")) {
+                            dialogueType = xe1.Value.Replace("nodetype=", "");
+                        } else {
+                            dialogueText = xe1.Value;
+                        }
+                    }
+                    print("type: " + dialogueType);
+                    print("text: " + dialogueText);
+                }
+            }
+        }
+        
+        // parse dialogue edges
+        print("PARSING EDGES");
+        foreach (XElement xe in xmlDoc.Descendants(yedBullcrap + "edge")) {
+            foreach (XAttribute xa in xe.Attributes()) {
+                Debug.LogFormat("{0}", xa.ToString());
+            }
+        }
+
+
+
         TextAsset file = (TextAsset)Resources.Load("Dialogue");
 
         string[] lines = file.text.Split("\n"[0]);
