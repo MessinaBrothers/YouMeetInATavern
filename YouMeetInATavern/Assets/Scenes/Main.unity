@@ -10842,6 +10842,7 @@ GameObject:
   - component: {fileID: 737547661}
   - component: {fileID: 737547660}
   - component: {fileID: 737547664}
+  - component: {fileID: 737547665}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -10954,6 +10955,23 @@ MonoBehaviour:
   fader: {fileID: 1887476905}
   deckCamImage: {fileID: 2115781612}
   clockGUI: {fileID: 0}
+--- !u!114 &737547665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737547659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877d07c257b5e4f4ba65b275c7ea56b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continueButton: {fileID: 2053634713}
+  goodbyeButton: {fileID: 1107405609}
+  questionButtons:
+  - {fileID: 1850122631}
+  - {fileID: 1499150717}
+  - {fileID: 495767401}
 --- !u!1 &737982942
 GameObject:
   m_ObjectHideFlags: 0
@@ -32071,7 +32089,6 @@ GameObject:
   - component: {fileID: 2119060189}
   - component: {fileID: 2119060188}
   - component: {fileID: 2119060187}
-  - component: {fileID: 2119060190}
   m_Layer: 5
   m_Name: ButtonsPanel
   m_TagString: Untagged
@@ -32159,23 +32176,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2119060185}
   m_CullTransparentMesh: 0
---- !u!114 &2119060190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2119060185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 877d07c257b5e4f4ba65b275c7ea56b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  continueButton: {fileID: 2053634713}
-  goodbyeButton: {fileID: 1107405609}
-  questionButtons:
-  - {fileID: 1850122631}
-  - {fileID: 1499150717}
-  - {fileID: 495767401}
 --- !u!1 &2140054291
 GameObject:
   m_ObjectHideFlags: 0

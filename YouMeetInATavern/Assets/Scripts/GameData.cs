@@ -64,12 +64,10 @@ public class GameData : MonoBehaviour {
     [Header("Dialogue")]
     public string nextDialogueIntroKey;
     public Dictionary<string, Dictionary<string, string>> npc_dialogues;
-    public Dictionary<string, List<Question>> npc_questions;
     public HashSet<string> unlockedDialogueKeys;
     public bool isGoodbyeEnabled;
     
     public Dictionary<string, Dialogue> key_dialoguesNEW;
-    public Dictionary<string, Question> key_questionsNEW;
     public Dictionary<string, string> npcKey_introKey;
     public Dictionary<string, string> npcKey_scenarioKey;
 
@@ -113,12 +111,10 @@ public class GameData : MonoBehaviour {
         npcsToReintroduce = new Queue<GameObject>();
         
         key_dialoguesNEW = new Dictionary<string, Dialogue>();
-        key_questionsNEW = new Dictionary<string, Question>();
         npcKey_introKey = new Dictionary<string, string>();
         npcKey_scenarioKey = new Dictionary<string, string>();
 
         npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
-        npc_questions = new Dictionary<string, List<Question>>();
         unlockedDialogueKeys = new HashSet<string>();
         chosenAnswerKeys = new HashSet<string>();
 

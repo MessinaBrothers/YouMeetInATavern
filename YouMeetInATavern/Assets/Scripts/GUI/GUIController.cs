@@ -47,35 +47,56 @@ public class GUIController : MonoBehaviour {
         clockGUI.UpdateText(currentHour);
     }
 
-    public void UpdateConverseGUI(Question question) {
-        int endIDIndex = question.text.IndexOf('>');
-        string unlockKey = question.text.Substring("<".Length, endIDIndex - "<".Length);
-        UpdateConverseGUI(unlockKey);
+    public void UpdateConverseGUI(Dialogue question) {
+        UpdateConverseGUI(question.nextDialogueKey);
     }
 
     public void UpdateConverseGUI(string dialogueID) {
-        // update dialogue
+        // get the NPC
         NPC npc = data.selectedCard.GetComponent<NPC>();
-        string text = data.npc_dialogues[npc.key][dialogueID];
-        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
-            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueID, text);
-        }
-        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(text);
 
-        QuestionGUIController questionGUIController = dialoguePanel.GetComponentInChildren<QuestionGUIController>();
-        // load or hide questions and Continue/Goodbye button
-        if (npc.isBeingIntroduced == true) {//
-        // if (data.gameMode == GameData.GameMode.INTRODUCE) {
-            questionGUIController.HideQuestions();
-            questionGUIController.ShowContinueButton();
-        } else {
-            bool isQuestionsExist = questionGUIController.LoadQuestions(data.selectedCard);
-            if (isQuestionsExist == true || data.isGoodbyeEnabled == false) {
-                questionGUIController.HideGoodbyeButton();
-            } else {
-                questionGUIController.ShowGoodbyeButton();
-            }
+        // get the Dialogue
+        Dialogue dialogue = data.key_dialoguesNEW[dialogueID];
+
+        // set the text
+        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(dialogue.text);
+        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
+            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueID, dialogue.text);
         }
+
+        // load or hide questions and Continue/Goodbye button
+        PlayerResponseGUIController questionGUIController = GetComponent<PlayerResponseGUIController>();
+        questionGUIController.HideAllButtons();
+
+        switch (dialogue.type) {
+            case Dialogue.TYPE.INTRO:
+                questionGUIController.LoadQuestions(dialogue);
+                break;
+            case Dialogue.TYPE.START:
+                questionGUIController.ShowGoodbyeButton();
+                break;
+            default:
+                questionGUIController.ShowGoodbyeButton();
+                break;
+        }
+
+        if (dialogue.nextDialogueKey == "" && dialogue.playerResponseKeys.Count == 0) {
+            questionGUIController.ShowContinueButton();
+        }
+
+        //if (npc.isBeingIntroduced == true) {//
+        //// if (data.gameMode == GameData.GameMode.INTRODUCE) {
+        //    questionGUIController.HideQuestions();
+        //    questionGUIController.ShowContinueButton();
+        //} else {
+        //    bool isQuestionsExist = questionGUIController.LoadQuestions(data.selectedCard);
+        //    if (isQuestionsExist == true || data.isGoodbyeEnabled == false) {
+        //        questionGUIController.HideGoodbyeButton();
+        //    } else {
+        //        questionGUIController.ShowGoodbyeButton();
+        //    }
+        //}
+
         // activate the panel
         dialoguePanel.SetActive(true);
     }

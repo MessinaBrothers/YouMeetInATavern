@@ -141,13 +141,21 @@ public class NPCController : MonoBehaviour {
         npc.isUnintroduced = false;
 
         // set the next dialogue
-        if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
-            // if the NPC has dialogue specific to LAST result, use it
-            npc.nextDialogueID = data.nextDialogueIntroKey;
+        if (data.npcKey_introKey.ContainsKey(npc.key + data.scenario.order)) {
+            //print(data.key_dialoguesNEW[data.npcKey_introKey[npc.key + data.scenario.order]].text);
+            npc.nextDialogueID = data.npcKey_introKey[npc.key + data.scenario.order];
         } else {
-            // otherwise, use the default intro dialogue
-            npc.nextDialogueID = GameData.DIALOGUE_INTRO;
+            // set default intro dialogue here
+            throw new NotImplementedException();
         }
+
+        //if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
+        //    // if the NPC has dialogue specific to LAST result, use it
+        //    npc.nextDialogueID = data.nextDialogueIntroKey;
+        //} else {
+        //    // otherwise, use the default intro dialogue
+        //    npc.nextDialogueID = GameData.DIALOGUE_INTRO;
+        //}
 
         // add NPC to tavern list
         data.npcsInTavern.Add(card);

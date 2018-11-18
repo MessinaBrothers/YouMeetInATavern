@@ -95,7 +95,7 @@ public class InputController : MonoBehaviour {
 
     // DIALOGUE
     public static event QuestionEventHandler questionEventHandler;
-    public delegate void QuestionEventHandler(Question question);
+    public delegate void QuestionEventHandler(Dialogue question);
 
     public static event DialogueEventHandler dialogueEventHandler;
     public delegate void DialogueEventHandler(string unlockKey);
@@ -295,7 +295,7 @@ public class InputController : MonoBehaviour {
 
     // DIALOGUE
 
-    public static void HandleQuestion(Question question) {
+    public static void HandleQuestion(Dialogue question) {
         questionEventHandler.Invoke(question);
         guiController.UpdateConverseGUI(question);
     }

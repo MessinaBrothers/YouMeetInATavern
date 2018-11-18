@@ -66,11 +66,11 @@ public class DialogueParser : MonoBehaviour {
                     data.key_dialoguesNEW.Add(dialogueKey, dialogue);
 
                     // if intro or starting dialogue, add it to the respective lists
-                    if (dialogueType.StartsWith("scenario_")) {
-                        data.npcKey_scenarioKey.Add(npcKey, dialogueKey);
-                        dialogue.type = Dialogue.TYPE.START;
-                    } else if (dialogueType.StartsWith("intro_")) {
-                        data.npcKey_introKey.Add(npcKey, dialogueKey);
+                    if (dialogueType.StartsWith("intro_")) {
+                        data.npcKey_introKey.Add(npcKey + dialogueType.Replace("intro_", ""), dialogueKey);
+                        dialogue.type = Dialogue.TYPE.INTRO;
+                    } else if (dialogueType.StartsWith("scenario_")) {
+                        data.npcKey_scenarioKey.Add(npcKey + dialogueType.Replace("scenario_", ""), dialogueKey);
                         dialogue.type = Dialogue.TYPE.START;
                     } else {
                         switch (dialogueType) {
@@ -130,68 +130,68 @@ public class DialogueParser : MonoBehaviour {
 
 
         // OLD PARSER
-        TextAsset file = (TextAsset)Resources.Load("Dialogue");
+        //TextAsset file = (TextAsset)Resources.Load("Dialogue");
 
-        string[] lines = file.text.Split("\n"[0]);
+        //string[] lines = file.text.Split("\n"[0]);
 
-        bool startParse = false;
-        for (int i = 0; i < lines.Length; i++) {
-            if (startParse && lines[i].Length > 0) {
-                ParseLine(lines[i]);
-            // don't start parsing until we've reached the NPC table
-            } else if (lines[i].StartsWith("NPC,Q")) {
-                startParse = true;
-            }
-        }
+        //bool startParse = false;
+        //for (int i = 0; i < lines.Length; i++) {
+        //    if (startParse && lines[i].Length > 0) {
+        //        ParseLine(lines[i]);
+        //    // don't start parsing until we've reached the NPC table
+        //    } else if (lines[i].StartsWith("NPC,Q")) {
+        //        startParse = true;
+        //    }
+        //}
     }
 
-    private void ParseLine(string line) {
-        string[] data = line.Split(',');
+    //private void ParseLine(string line) {
+    //    string[] data = line.Split(',');
         
-        string npcID = data[0];
-        bool isQuestion = int.Parse(data[1]) == 0 ? false : true;
-        string dialogueID = data[2];
+    //    string npcID = data[0];
+    //    bool isQuestion = int.Parse(data[1]) == 0 ? false : true;
+    //    string dialogueID = data[2];
 
-        string dialogue = "";
-        for (int i = 3; i < data.Length; i++) {
-            dialogue += data[i] + ",";
-        }
-        dialogue = dialogue.Replace("\"", "");
-        dialogue = dialogue.Substring(0, dialogue.Length - ",".Length);
+    //    string dialogue = "";
+    //    for (int i = 3; i < data.Length; i++) {
+    //        dialogue += data[i] + ",";
+    //    }
+    //    dialogue = dialogue.Replace("\"", "");
+    //    dialogue = dialogue.Substring(0, dialogue.Length - ",".Length);
 
-        //Debug.LogFormat("NPC={0}, Q={1}, ID={2}, \"{3}\"", npcID, isQuestion, dialogueID, dialogue);
-        if (isQuestion == true) {
-            SaveQuestion(npcID, dialogueID, dialogue);
-        } else {
-            SaveDialogue(npcID, dialogueID, dialogue);
-        }
-    }
+    //    //Debug.LogFormat("NPC={0}, Q={1}, ID={2}, \"{3}\"", npcID, isQuestion, dialogueID, dialogue);
+    //    if (isQuestion == true) {
+    //        SaveQuestion(npcID, dialogueID, dialogue);
+    //    } else {
+    //        SaveDialogue(npcID, dialogueID, dialogue);
+    //    }
+    //}
 
-    private void SaveQuestion(string npcID, string prereqID, string text) {
-        // get the npc's list of questions
-        List<Question> questions = GetList(npcID, data.npc_questions);
+    //private void SaveQuestion(string npcID, string prereqID, string text) {
+    //    // get the npc's list of questions
+    //    List<Question> questions = GetList(npcID, data.npc_questions);
 
-        Question question = new Question();
-        question.key = prereqID;
-        question.text = text;
-        question.isAskedByPlayer = false;
+    //    Question question = new Question();
+    //    question.key = prereqID;
+    //    question.text = text;
+    //    question.isAskedByPlayer = false;
 
-        questions.Add(question);
+    //    questions.Add(question);
 
-        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_PARSER) {
-            print(string.Format("Parsing question: NPC:{0}, prereqID:{1}, text:{2}", npcID, question.key, question.text));
-        }
-    }
+    //    if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_PARSER) {
+    //        print(string.Format("Parsing question: NPC:{0}, prereqID:{1}, text:{2}", npcID, question.key, question.text));
+    //    }
+    //}
 
-    private void SaveDialogue(string npcID, string dialogueID, string text) {
-        // get the npc's list of dialogues
-        Dictionary<string, string> dialogues = GetList(npcID, data.npc_dialogues);
-        dialogues.Add(dialogueID, text);
+    //private void SaveDialogue(string npcID, string dialogueID, string text) {
+    //    // get the npc's list of dialogues
+    //    Dictionary<string, string> dialogues = GetList(npcID, data.npc_dialogues);
+    //    dialogues.Add(dialogueID, text);
 
-        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_PARSER) {
-            print(string.Format("Parsing dialogue: NPC:{0}, dialogueID:{1}, text:{2}", npcID, dialogueID, text));
-        }
-    }
+    //    if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_PARSER) {
+    //        print(string.Format("Parsing dialogue: NPC:{0}, dialogueID:{1}, text:{2}", npcID, dialogueID, text));
+    //    }
+    //}
 
     private Dictionary<string, string> GetList(string id, Dictionary<string, Dictionary<string, string>> listOfLists) {
         Dictionary<string, string> list;

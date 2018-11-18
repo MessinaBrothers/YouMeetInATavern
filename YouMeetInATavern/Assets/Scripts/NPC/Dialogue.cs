@@ -15,7 +15,7 @@ public class Dialogue {
     public bool isEndOfConversation;
 
     public enum TYPE {
-        START, NPC_SAYS, CLICKABLE_TEXT, PLAYER_RESPONSE, STOP
+        INTRO, START, NPC_SAYS, CLICKABLE_TEXT, PLAYER_RESPONSE, STOP
     }
     public TYPE type;
 

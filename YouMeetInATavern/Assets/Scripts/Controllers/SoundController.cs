@@ -89,7 +89,7 @@ public class SoundController : MonoBehaviour {
         Play(buttonClickClips);
     }
 
-    private void PlayButtonClick(Question question) {
+    private void PlayButtonClick(Dialogue question) {
         Play(buttonClickClips);
     }
 
