@@ -32,7 +32,7 @@ public class DialogueParser : MonoBehaviour {
             foreach (XElement xe in graphNodes.Elements(yedBullcrap + "data")) {
                 if (npcKey.Length == 0 && xe.Value.StartsWith("nodetype=")) {
                     npcKey = xe.Value.Replace("nodetype=", "");
-                    print("npcKey: " + npcKey);
+                    //print("npcKey: " + npcKey);
                 }
             }
 
@@ -43,9 +43,9 @@ public class DialogueParser : MonoBehaviour {
                 XElement xe = npcScenarioGraph.Element(yedBullcrap + "graph");
                 foreach (XElement npcScenarioDialogue in xe.Elements(yedBullcrap + "node")) {
                     // parse the dialogue ID
-                    string dialogueID = "";
-                    dialogueID = npcScenarioDialogue.Attribute("id").ToString().Replace("id=", "");
-                    print("id: " + dialogueID);
+                    string dialogueKey = "";
+                    dialogueKey = npcScenarioDialogue.Attribute("id").ToString().Replace("id=", "");
+                    //print("id: " + dialogueID);
 
                     // parse the dialogue type and text
                     string dialogueText = "";
@@ -57,22 +57,79 @@ public class DialogueParser : MonoBehaviour {
                             dialogueText = xe1.Value;
                         }
                     }
-                    print("type: " + dialogueType);
-                    print("text: " + dialogueText);
+                    //print("type: " + dialogueType);
+                    //print("text: " + dialogueText);
+
+                    // create the new Dialogue
+                    Dialogue dialogue = new Dialogue(dialogueKey, dialogueText);
+
+                    data.key_dialoguesNEW.Add(dialogueKey, dialogue);
+
+                    // if intro or starting dialogue, add it to the respective lists
+                    if (dialogueType.StartsWith("scenario_")) {
+                        data.npcKey_scenarioKey.Add(npcKey, dialogueKey);
+                        dialogue.type = Dialogue.TYPE.START;
+                    } else if (dialogueType.StartsWith("intro_")) {
+                        data.npcKey_introKey.Add(npcKey, dialogueKey);
+                        dialogue.type = Dialogue.TYPE.START;
+                    } else {
+                        switch (dialogueType) {
+                            case "player_response":
+                                dialogue.type = Dialogue.TYPE.PLAYER_RESPONSE;
+                                break;
+                            case "npc_says":
+                                dialogue.type = Dialogue.TYPE.NPC_SAYS;
+                                break;
+                            case "stop":
+                                dialogue.type = Dialogue.TYPE.STOP;
+                                break;
+                            case "dialogue_text":
+                                dialogue.type = Dialogue.TYPE.CLICKABLE_TEXT;
+                                break;
+                            default:
+                                print("ERROR: No such dialogue type exists: " + dialogueType);
+                                break;
+                        }
+                    }
                 }
             }
         }
         
         // parse dialogue edges
-        print("PARSING EDGES");
         foreach (XElement xe in xmlDoc.Descendants(yedBullcrap + "edge")) {
+            // parse source and target
+            string source = "";
+            string target = "";
             foreach (XAttribute xa in xe.Attributes()) {
-                Debug.LogFormat("{0}", xa.ToString());
+                if (xa.ToString().StartsWith("source=")) {
+                    source = xa.ToString().Replace("source=", "");
+                } else if (xa.ToString().StartsWith("target=")) {
+                    target = xa.ToString().Replace("target=", "");
+                } else {
+                    //ignore id
+                }
+            }
+
+            // save target in source, depending on target's type
+            switch (data.key_dialoguesNEW[target].type) {
+                case Dialogue.TYPE.NPC_SAYS:
+                    data.key_dialoguesNEW[source].nextDialogueKey = target;
+                    break;
+                case Dialogue.TYPE.PLAYER_RESPONSE:
+                    data.key_dialoguesNEW[source].playerResponseKeys.Add(target);
+                    break;
+                case Dialogue.TYPE.STOP:
+                    data.key_dialoguesNEW[source].isEndOfConversation = true;
+                    break;
             }
         }
 
 
 
+
+
+
+        // OLD PARSER
         TextAsset file = (TextAsset)Resources.Load("Dialogue");
 
         string[] lines = file.text.Split("\n"[0]);

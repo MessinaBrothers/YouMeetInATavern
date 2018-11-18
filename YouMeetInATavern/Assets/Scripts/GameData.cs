@@ -68,6 +68,11 @@ public class GameData : MonoBehaviour {
     public HashSet<string> unlockedDialogueKeys;
     public bool isGoodbyeEnabled;
     
+    public Dictionary<string, Dialogue> key_dialoguesNEW;
+    public Dictionary<string, Question> key_questionsNEW;
+    public Dictionary<string, string> npcKey_introKey;
+    public Dictionary<string, string> npcKey_scenarioKey;
+
     public enum Location {
         NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
     }
@@ -106,6 +111,11 @@ public class GameData : MonoBehaviour {
         npcs = new List<GameObject>();
         npcsToIntroduce = new Queue<string>();
         npcsToReintroduce = new Queue<GameObject>();
+        
+        key_dialoguesNEW = new Dictionary<string, Dialogue>();
+        key_questionsNEW = new Dictionary<string, Question>();
+        npcKey_introKey = new Dictionary<string, string>();
+        npcKey_scenarioKey = new Dictionary<string, string>();
 
         npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
         npc_questions = new Dictionary<string, List<Question>>();
