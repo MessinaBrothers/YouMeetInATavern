@@ -51,12 +51,12 @@ public class GUIController : MonoBehaviour {
         UpdateConverseGUI(question.nextDialogueKey);
     }
 
-    public void UpdateConverseGUI(string dialogueID) {
+    public void UpdateConverseGUI(string dialogueKey) {
         // get the NPC
         NPC npc = data.selectedCard.GetComponent<NPC>();
 
         // get the Dialogue
-        Dialogue dialogue = data.key_dialoguesNEW[dialogueID];
+        Dialogue dialogue = data.key_dialoguesNEW[dialogueKey];
 
         // set the text
         string formattedText = dialogue.text;
@@ -64,19 +64,23 @@ public class GUIController : MonoBehaviour {
         //    formattedText = string.Format("<{0}>{1}", data.npcKey_defaultDialogueKey[npc.key], formattedText);
         //} else {
         //}
+        string defaultDialogueKey = data.npcKey_defaultDialogueKey[npc.key];
+        string toInsertAfter = string.Format("<{0}>", defaultDialogueKey);
         foreach (string clickableKey in dialogue.clickableDialogueKeys) {
             string clickableText = data.key_dialoguesNEW[clickableKey].text;
-            int clickableIndex = formattedText.IndexOf(clickableText);
+            int clickableStartIndex = formattedText.IndexOf(clickableText);
+            int clickableEndIndex = clickableStartIndex + clickableText.Length;
             string toInsert = string.Format("<{0}>", clickableKey);
-            formattedText = dialogue.text.Insert(clickableIndex, toInsert);
+            formattedText = dialogue.text.Insert(clickableEndIndex, toInsertAfter);
+            formattedText = dialogue.text.Insert(clickableStartIndex, toInsert);
         }
         if (formattedText.StartsWith("<") == false) {
-            formattedText = string.Format("<{0}>{1}", data.npcKey_defaultDialogueKey[npc.key], formattedText);
+            formattedText = toInsertAfter + formattedText;
         }
         print(formattedText);
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(formattedText);
         if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
-            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueID, formattedText);
+            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueKey, formattedText);
         }
 
         // load or hide questions and Continue/Goodbye button
@@ -85,33 +89,26 @@ public class GUIController : MonoBehaviour {
 
         switch (dialogue.type) {
             case Dialogue.TYPE.INTRO:
-                questionGUIController.LoadQuestions(dialogue);
                 break;
             case Dialogue.TYPE.START:
                 questionGUIController.ShowGoodbyeButton();
                 break;
             default:
-                
-                questionGUIController.ShowGoodbyeButton();
+                print(dialogue.nextDialogueKey);
+                if (dialogue.isEndOfConversation) {
+                    questionGUIController.ShowGoodbyeButton();
+                }
                 break;
         }
+        questionGUIController.LoadQuestions(dialogue);
 
-        if (dialogue.nextDialogueKey == "" && dialogue.playerResponseKeys.Count == 0) {
-            questionGUIController.ShowContinueButton();
+        // preserve player responses for default dialogue
+        if (dialogueKey != defaultDialogueKey) {
+            Dialogue defaultDialogue = data.key_dialoguesNEW[defaultDialogueKey];
+
+            defaultDialogue.playerResponseKeys = dialogue.playerResponseKeys;
+            defaultDialogue.isEndOfConversation = dialogue.isEndOfConversation;
         }
-
-        //if (npc.isBeingIntroduced == true) {//
-        //// if (data.gameMode == GameData.GameMode.INTRODUCE) {
-        //    questionGUIController.HideQuestions();
-        //    questionGUIController.ShowContinueButton();
-        //} else {
-        //    bool isQuestionsExist = questionGUIController.LoadQuestions(data.selectedCard);
-        //    if (isQuestionsExist == true || data.isGoodbyeEnabled == false) {
-        //        questionGUIController.HideGoodbyeButton();
-        //    } else {
-        //        questionGUIController.ShowGoodbyeButton();
-        //    }
-        //}
 
         // activate the panel
         dialoguePanel.SetActive(true);
