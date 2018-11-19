@@ -66,19 +66,33 @@ public class GUIController : MonoBehaviour {
         //}
         string defaultDialogueKey = data.npcKey_defaultDialogueKey[npc.key];
         string toInsertAfter = string.Format("<{0}>", defaultDialogueKey);
+        // for each clickable dialogue
         foreach (string clickableKey in dialogue.clickableDialogueKeys) {
-            string clickableText = data.key_dialoguesNEW[clickableKey].text;
-            int clickableStartIndex = formattedText.IndexOf(clickableText);
-            int clickableEndIndex = clickableStartIndex + clickableText.Length;
-            string toInsert = string.Format("<{0}>", clickableKey);
+            Dialogue clickableDialogue = data.key_dialoguesNEW[clickableKey];
+
+            // get indices
+            int clickableStartIndex = formattedText.IndexOf(clickableDialogue.text);
+            int clickableEndIndex = clickableStartIndex + clickableDialogue.text.Length;
+
+            // insert default key after clickable key
             formattedText = dialogue.text.Insert(clickableEndIndex, toInsertAfter);
+
+            // prepare the next dialogue key to go to after clicking on the keywords
+            string nextKey = clickableDialogue.nextDialogueKey;
+            string toInsert = string.Format("<{0}>", nextKey);
+
+            // insert the keyword key
             formattedText = dialogue.text.Insert(clickableStartIndex, toInsert);
         }
-        if (formattedText.StartsWith("<") == false) {
+
+        // make sure the text starts with a key
+        if (formattedText[0] != '<') {
             formattedText = toInsertAfter + formattedText;
         }
+
         print(formattedText);
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(formattedText);
+
         if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
             Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueKey, formattedText);
         }
