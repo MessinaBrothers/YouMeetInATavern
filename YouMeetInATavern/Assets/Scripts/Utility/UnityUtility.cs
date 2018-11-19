@@ -35,12 +35,26 @@ public class UnityUtility : MonoBehaviour {
     /// replicates pre-build functionality of Assets/Misc/build_script.bat
     /// </summary>
     private static void PreBuild() {
+        System.DateTime time = System.DateTime.Now;
         #if UNITY_EDITOR
             string filePath = "Assets/Resources/dialogue_xml.txt";
             if (File.Exists(filePath)) {
                 File.Delete(filePath);
             }
+
+            // wait until file is deleted
+            while (File.Exists(filePath)) { }
+
             File.Copy("Assets/Resources/dialogue_xml.graphml", filePath);
+
+            // wait until file exists
+            while (File.Exists(filePath) == false) { }
+
+            UnityEditor.AssetDatabase.ImportAsset("dialogue_xml.txt");
+            UnityEditor.AssetDatabase.Refresh();
         #endif
+
+        System.DateTime now = System.DateTime.Now;
+        print(now - time);
     }
 }
