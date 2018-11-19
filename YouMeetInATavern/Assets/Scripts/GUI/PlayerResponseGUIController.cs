@@ -94,8 +94,6 @@ public class PlayerResponseGUIController : MonoBehaviour {
     }
 
     private void SetQuestionText(GameObject button, string key) {
-        print(key);
-        print(data);
         Dialogue dialogue = data.key_dialoguesNEW[key];
 
         // set the question dialogue

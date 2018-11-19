@@ -20,12 +20,12 @@ public class SoundController : MonoBehaviour {
     void OnEnable() {
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.npcIntroStartEventHandler += HandleIntroduction;
-        InputController.stopConverseEventHandler += HandleIntroductionEnd;
+        InputController.continueDialogueEventHandler += HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler += HandleCardCreated;
         InputController.conclusionBackgroundClicked += HandleConclusionBackgroundClick;
         InputController.questionEventHandler += PlayButtonClick;
-        InputController.stopConverseEventHandler += PlayButtonClick;
-        InputController.npcLeavesEventHandler += PlayButtonClick;
+        InputController.continueDialogueEventHandler += PlayButtonClick;
+        InputController.endDialogueEventHandler += PlayButtonClick;
         InputController.endDayEarlyEventHandler += PlayButtonClick;
         InputController.deckClickedEventHander += PlayButtonClick;
         InputController.deckClosedEventHander += PlayButtonClick;
@@ -38,12 +38,12 @@ public class SoundController : MonoBehaviour {
     void OnDisable() {
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.npcIntroStartEventHandler -= HandleIntroduction;
-        InputController.stopConverseEventHandler -= HandleIntroductionEnd;
+        InputController.continueDialogueEventHandler -= HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler -= HandleCardCreated;
         InputController.conclusionBackgroundClicked -= HandleConclusionBackgroundClick;
         InputController.questionEventHandler -= PlayButtonClick;
-        InputController.stopConverseEventHandler -= PlayButtonClick;
-        InputController.npcLeavesEventHandler -= PlayButtonClick;
+        InputController.continueDialogueEventHandler -= PlayButtonClick;
+        InputController.endDialogueEventHandler -= PlayButtonClick;
         InputController.endDayEarlyEventHandler -= PlayButtonClick;
         InputController.deckClickedEventHander -= PlayButtonClick;
         InputController.deckClosedEventHander -= PlayButtonClick;

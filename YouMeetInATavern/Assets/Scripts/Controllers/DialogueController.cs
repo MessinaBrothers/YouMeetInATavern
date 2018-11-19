@@ -37,11 +37,11 @@ public class DialogueController : MonoBehaviour {
     }
 
     public void HandleQuestion(Dialogue question) {
-        int endIDIndex = question.text.IndexOf('>');
-        string unlockKey = question.text.Substring("<".Length, endIDIndex - "<".Length);
+        //int endIDIndex = question.text.IndexOf('>');
+        //string unlockKey = question.text.Substring("<".Length, endIDIndex - "<".Length);
 
-        // unlock the dialogue
-        DeckController.Add(unlockKey);
+        //// unlock the dialogue
+        //DeckController.Add(unlockKey);
     }
 
     public void HandleDialogue(string unlockKey) {

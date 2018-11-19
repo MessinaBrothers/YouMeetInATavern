@@ -103,8 +103,11 @@ public class InputController : MonoBehaviour {
     public static event DialogueSettingEventHandler dialogueSettingEventHandler;
     public delegate void DialogueSettingEventHandler(string arg);
 
-    public static event StopConverseEventHandler stopConverseEventHandler;
-    public delegate void StopConverseEventHandler(GameObject card);
+    public static event ContinueDialogueEventHandler continueDialogueEventHandler;
+    public delegate void ContinueDialogueEventHandler(GameObject card);
+    
+    public static event EndDialogueEventHandler endDialogueEventHandler;
+    public delegate void EndDialogueEventHandler(GameObject card);
 
     // NPCS
 
@@ -116,9 +119,6 @@ public class InputController : MonoBehaviour {
 
     public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
     public delegate void EndDayEarlyEventHandler();
-
-    public static event NPCLeavesEventHandler npcLeavesEventHandler;
-    public delegate void NPCLeavesEventHandler();
 
     public static event NPCRemovedEventHandler npcLeftTavernEventHandler;
     public delegate void NPCRemovedEventHandler(GameObject card);
@@ -309,14 +309,14 @@ public class InputController : MonoBehaviour {
         dialogueSettingEventHandler.Invoke(arg);
     }
 
-    public static void HandleStopConverse() {
-        stopConverseEventHandler.Invoke(data.selectedCard);
-        guiController.StopConverse();
+    public static void HandleContinueDialogue() {
+        continueDialogueEventHandler.Invoke(data.selectedCard);
+        guiController.EndDialogue();
     }
 
-    public static void HandleGoodbye() {
-        npcLeavesEventHandler.Invoke();
-        guiController.StopConverse();
+    public static void HandleEndDialogue() {
+        endDialogueEventHandler.Invoke(data.selectedCard);
+        guiController.EndDialogue();
     }
 
     // NPCS
@@ -331,7 +331,7 @@ public class InputController : MonoBehaviour {
 
     public static void LeaveTavernEarly() {
         endDayEarlyEventHandler.Invoke();
-        guiController.StopConverse();
+        guiController.EndDialogue();
     }
 
     public static void NPCExitTavern(GameObject card) {
@@ -380,8 +380,8 @@ public class InputController : MonoBehaviour {
 
     // wrapper methods for Unity buttons
     // since they can't call static methods
-    public void HandleStopConverseWrapper() { HandleStopConverse(); }
-    public void HandleGoodbyeWrapper() { HandleGoodbye(); }
+    public void HandleContinueDialogueWrapper() { HandleContinueDialogue(); }
+    public void HandleEndDialogueWrapper() { HandleEndDialogue(); }
     public void LeaveTavernEarlyWrapper() { LeaveTavernEarly(); }
     public void ConfirmScenarioWrapper() { CheckAnswers(); }
     public void EndResultsWrapper() { EndResults(); }

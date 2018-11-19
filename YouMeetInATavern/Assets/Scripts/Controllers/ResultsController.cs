@@ -45,8 +45,8 @@ public class ResultsController : MonoBehaviour {
         };
 
         // iterate through results list
-        for (int i = 0; i < data.scenarioResultsData[data.scenario.id].Count; i++) {
-            ScenarioResult result = data.scenarioResultsData[data.scenario.id][i];
+        for (int i = 0; i < data.scenarioKey_scenarioResult[data.scenario.id].Count; i++) {
+            ScenarioResult result = data.scenarioKey_scenarioResult[data.scenario.id][i];
 
             if (IsUnlocked(result, chosenAnswers) == true) {
                 // result is unlocked!

@@ -76,6 +76,7 @@ public class GUIController : MonoBehaviour {
                 questionGUIController.ShowGoodbyeButton();
                 break;
             default:
+                
                 questionGUIController.ShowGoodbyeButton();
                 break;
         }
@@ -105,7 +106,7 @@ public class GUIController : MonoBehaviour {
         if (dayCount == 0) hudPanel.GetComponentInChildren<DeckGUI>().ResetDeck(data);
     }
 
-    public void StopConverse() {
+    public void EndDialogue() {
         DeactivateAll();
         hudPanel.SetActive(true);
     }

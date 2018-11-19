@@ -51,7 +51,6 @@ public class GrandfatherClock : MonoBehaviour {
     }
 
     private void SetClockHands() {
-        print("Setting clock hands");
         oldHour = data.currentHour;
         newHour = data.currentHour;
         SetClockHand(hourHand, newHour * degreesPerHour);
