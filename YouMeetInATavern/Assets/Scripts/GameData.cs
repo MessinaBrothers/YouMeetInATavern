@@ -28,7 +28,7 @@ public class GameData : MonoBehaviour {
     public int tavernCloseHour;
     public Dictionary<string, CardData> cardData;
     //public Dictionary<string, CardData> itemData;
-    public Dictionary<uint, List<ScenarioResult>> scenarioResultsData;
+    public Dictionary<string, List<ScenarioResult>> scenarioKey_scenarioResult;
 
     [Header("NPCs")]
     public GameObject selectedCard;
@@ -104,7 +104,7 @@ public class GameData : MonoBehaviour {
         gameMode = GameMode.INTRODUCE;
         
         cardData = new Dictionary<string, CardData>();
-        scenarioResultsData = new Dictionary<uint, List<ScenarioResult>>();
+        scenarioKey_scenarioResult = new Dictionary<string, List<ScenarioResult>>();
 
         npcs = new List<GameObject>();
         npcsToIntroduce = new Queue<string>();

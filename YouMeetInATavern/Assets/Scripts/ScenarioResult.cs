@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScenarioResult {
 
-    public uint scenarioKey;
+    public string scenarioKey;
 
     public List<string> unlocks;
 

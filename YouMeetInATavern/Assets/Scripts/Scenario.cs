@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scenario {
 
-    public uint id;
+    public string id;
 
     public string name;
     

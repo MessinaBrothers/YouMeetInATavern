@@ -33,7 +33,7 @@ public class ScenarioResultsParser : MonoBehaviour {
         ScenarioResult scenarioResult = new ScenarioResult();
 
         int index = 0;
-        scenarioResult.scenarioKey = uint.Parse(lineData[index++]);
+        scenarioResult.scenarioKey = lineData[index++];
 
         // parse unlocks
         //string unlocks = lineData[index++];
@@ -59,11 +59,11 @@ public class ScenarioResultsParser : MonoBehaviour {
 
         // save results to game data
         List<ScenarioResult> results;
-        if (data.scenarioResultsData.ContainsKey(scenarioResult.scenarioKey)) {
-            results = data.scenarioResultsData[scenarioResult.scenarioKey];
+        if (data.scenarioKey_scenarioResult.ContainsKey(scenarioResult.scenarioKey)) {
+            results = data.scenarioKey_scenarioResult[scenarioResult.scenarioKey];
         } else {
             results = new List<ScenarioResult>();
-            data.scenarioResultsData.Add(scenarioResult.scenarioKey, results);
+            data.scenarioKey_scenarioResult.Add(scenarioResult.scenarioKey, results);
         }
         results.Add(scenarioResult);
 

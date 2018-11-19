@@ -48,7 +48,7 @@ public class TutorialController : MonoBehaviour {
             leaveTavernButton.SetActive(true);
 
             switch (data.scenario.id) {
-                case 5:
+                case "introduction":
                     townHex.SetActive(true);
                     tutorialConcludeHints.SetActive(true);
                     clickBlocker.SetActive(true);
@@ -75,7 +75,7 @@ public class TutorialController : MonoBehaviour {
     private void CheckAnswers() {
         if (data.gameMode == GameData.GameMode.CONCLUDE) {
             switch (data.scenario.id) {
-                case 5:
+                case "introduction":
                     if (data.chosenAnswerKeys.Contains("NPC_BARTENDER") == false) {
                         PopUpDialogueFactory.Create("Don't leave without me!", 3, midcardTransform);
                     } else {
