@@ -20,19 +20,20 @@ public class Dialogue {
     public TYPE type;
 
     public Dialogue(string key, string text) {
-        this.key = key;
-        this.text = text;
-
-        Initialize();
+        Initialize(key, text);
     }
 
     public Dialogue() {
-        Initialize();
+        Initialize("", "");
     }
 
-    private void Initialize() {
+    private void Initialize(string key, string text) {
+        this.key = key;
+        this.text = text;
+
         playerResponseKeys = new List<string>();
         clickableDialogueKeys = new List<string>();
+        nextDialogueKey = "";
 
         isEndOfConversation = false;
     }
