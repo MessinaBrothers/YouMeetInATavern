@@ -86,6 +86,10 @@ public class DialogueParser : MonoBehaviour {
                             case "dialogue_text":
                                 dialogue.type = Dialogue.TYPE.CLICKABLE_TEXT;
                                 break;
+                            case "dialogue_default":
+                                dialogue.type = Dialogue.TYPE.NPC_SAYS;
+                                data.npcKey_defaultDialogueKey.Add(npcKey, dialogueKey);
+                                break;
                             default:
                                 print("ERROR: No such dialogue type exists: " + dialogueType);
                                 break;
@@ -120,6 +124,9 @@ public class DialogueParser : MonoBehaviour {
                     break;
                 case Dialogue.TYPE.STOP:
                     data.key_dialoguesNEW[source].isEndOfConversation = true;
+                    break;
+                case Dialogue.TYPE.CLICKABLE_TEXT:
+                    data.key_dialoguesNEW[source].clickableDialogueKeys.Add(target);
                     break;
             }
         }

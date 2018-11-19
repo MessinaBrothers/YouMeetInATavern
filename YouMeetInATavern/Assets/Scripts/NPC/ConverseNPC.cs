@@ -70,7 +70,7 @@ public class ConverseNPC : MonoBehaviour {
                 Debug.LogFormat("An NPC has scenario-specific dialogue: NPC:{0}, scenario id:{1}", npc.key, data.scenario.id);
             }
         } else {
-            npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
+            npc.nextDialogueID = npc.key + GameData.DIALOGUE_DEFAULT;
         }
     }
 
@@ -105,7 +105,7 @@ public class ConverseNPC : MonoBehaviour {
             }
         } else {
             // set generic dialogue
-            npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
+            npc.nextDialogueID = npc.key + GameData.DIALOGUE_DEFAULT;
         }
     }
 }

@@ -76,7 +76,7 @@ public class ResultsController : MonoBehaviour {
     // if above example was reversed, former result would never appear, as latter result would always trigger first
     private bool IsUnlocked(ScenarioResult result, List<string> chosenAnswers) {
         // if result is the default result, always return true
-        if (result.unlocks[0] == GameData.DIALOGUE_DEFAULT) {
+        if (result.unlocks[0] == GameData.SCENARIO_RESULT_DEFAULT) {
             return true;
         }
         

@@ -11,6 +11,7 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_SCENARIO_PREFIX = "SCENARIO_";
     public static string DIALOGUE_SCENARIO_SUCCESS = "_CORRECT";
     public static string DIALOGUE_SETTING = "=";
+    public static string SCENARIO_RESULT_DEFAULT = "default";
     public static char PARSER_DELIMITER = '-';
 
     [Header("DEBUG")]
@@ -70,6 +71,7 @@ public class GameData : MonoBehaviour {
     public Dictionary<string, Dialogue> key_dialoguesNEW;
     public Dictionary<string, string> npcKey_introKey;
     public Dictionary<string, string> npcKey_scenarioKey;
+    public Dictionary<string, string> npcKey_defaultDialogueKey;
 
     public enum Location {
         NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
@@ -113,12 +115,10 @@ public class GameData : MonoBehaviour {
         key_dialoguesNEW = new Dictionary<string, Dialogue>();
         npcKey_introKey = new Dictionary<string, string>();
         npcKey_scenarioKey = new Dictionary<string, string>();
+        npcKey_defaultDialogueKey = new Dictionary<string, string>();
 
         npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
         unlockedDialogueKeys = new HashSet<string>();
         chosenAnswerKeys = new HashSet<string>();
-
-        // DEBUG
-        unlockedDialogueKeys.Add(GameData.DIALOGUE_DEFAULT);
     }
 }

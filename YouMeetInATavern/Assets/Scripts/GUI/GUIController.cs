@@ -59,9 +59,24 @@ public class GUIController : MonoBehaviour {
         Dialogue dialogue = data.key_dialoguesNEW[dialogueID];
 
         // set the text
-        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(dialogue.text);
+        string formattedText = dialogue.text;
+        //if (dialogue.clickableDialogueKeys.Count == 0) {
+        //    formattedText = string.Format("<{0}>{1}", data.npcKey_defaultDialogueKey[npc.key], formattedText);
+        //} else {
+        //}
+        foreach (string clickableKey in dialogue.clickableDialogueKeys) {
+            string clickableText = data.key_dialoguesNEW[clickableKey].text;
+            int clickableIndex = formattedText.IndexOf(clickableText);
+            string toInsert = string.Format("<{0}>", clickableKey);
+            formattedText = dialogue.text.Insert(clickableIndex, toInsert);
+        }
+        if (formattedText.StartsWith("<") == false) {
+            formattedText = string.Format("<{0}>{1}", data.npcKey_defaultDialogueKey[npc.key], formattedText);
+        }
+        print(formattedText);
+        dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(formattedText);
         if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
-            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueID, dialogue.text);
+            Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueID, formattedText);
         }
 
         // load or hide questions and Continue/Goodbye button

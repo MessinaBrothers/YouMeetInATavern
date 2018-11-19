@@ -110,7 +110,6 @@ public class CardMoveController : MonoBehaviour {
 
     private void EndDialogue(GameObject card) {
         NPC npc = card.GetComponent<NPC>();
-        print(npc.name);
 
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;

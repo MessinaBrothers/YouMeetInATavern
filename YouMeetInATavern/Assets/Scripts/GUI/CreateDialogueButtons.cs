@@ -28,10 +28,10 @@ public class CreateDialogueButtons : MonoBehaviour {
 
     void Start() {
         data = FindObjectOfType<GameData>();
-        // if the dialogue lacks an index at the start, append one
-        if (dialogue.Length > 0 && dialogue[0] != '<') {
-            dialogue = "<>" + dialogue;
-        }
+        //// if the dialogue lacks an index at the start, append one
+        //if (dialogue.Length > 0 && dialogue[0] != '<') {
+        //    dialogue = "<" + data.selectedCard.GetComponent<NPC>().key + GameData.DIALOGUE_DEFAULT + ">" + dialogue;
+        //}
         
         //rectTransform = GetComponent<RectTransform>();
     }
