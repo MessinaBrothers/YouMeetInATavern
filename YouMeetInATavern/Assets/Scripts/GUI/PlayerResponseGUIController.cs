@@ -20,39 +20,6 @@ public class PlayerResponseGUIController : MonoBehaviour {
     /// </summary>
     /// <param name="card"></param>
     /// <returns>Returns true if questions exist.</returns>
-    //public bool LoadQuestions(GameObject card) {
-    //    NPC npc = card.GetComponent<NPC>();
-
-    //    // ignore unlocked questions if NPC is being introduced
-    //    if (npc.isBeingIntroduced == true) {
-    //        return false;
-    //    }
-        
-    //    List<Question> questions = data.npc_questions[npc.key];
-
-    //    int buttonIndex = 0;
-    //    bool isQuestionExist = false;
-
-    //    foreach (Question question in questions) {
-    //        if (DeckController.Contains(question.key) && question.isAskedByPlayer == false) {
-    //            isQuestionExist = true;
-    //            // activate the next button
-    //            GameObject button = questionButtons[buttonIndex];
-    //            button.SetActive(true);
-    //            buttonIndex += 1;
-                
-    //            SetQuestionText(button, question);
-
-                
-    //            if (buttonIndex >= questionButtons.Length) {
-    //                return true;
-    //            }
-    //        }
-    //    }
-
-    //    return isQuestionExist;
-    //}
-
     public bool LoadQuestions(Dialogue dialogue) {
         bool isQuestionExist = false;
 

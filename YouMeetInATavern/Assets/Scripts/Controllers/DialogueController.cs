@@ -17,13 +17,13 @@ public class DialogueController : MonoBehaviour {
 
     void OnEnable() {
         InputController.questionEventHandler += HandleQuestion;
-        InputController.dialogueEventHandler += HandleDialogue;
+        InputController.createCardEventHandler += CreateCard;
         InputController.dialogueSettingEventHandler += HandleSetting;
     }
 
     void OnDisable() {
         InputController.questionEventHandler -= HandleQuestion;
-        InputController.dialogueEventHandler -= HandleDialogue;
+        InputController.createCardEventHandler -= CreateCard;
         InputController.dialogueSettingEventHandler -= HandleSetting;
     }
 
@@ -44,7 +44,7 @@ public class DialogueController : MonoBehaviour {
         //DeckController.Add(unlockKey);
     }
 
-    public void HandleDialogue(string unlockKey) {
+    public void CreateCard(string unlockKey) {
         // unlock the dialogue
         DeckController.Add(unlockKey);
     }

@@ -66,14 +66,14 @@ public class DeckGUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        InputController.dialogueEventHandler += HandleDialogue;
+        InputController.createCardEventHandler += CreateCard;
         InputController.cardEnteredDeckEventHandler += EnterDeck;
         InputController.deckHoverEventHandler += ToggleSpreading;
         InputController.deckClickedEventHander += DisplayDeck;
     }
 
     void OnDisable() {
-        InputController.dialogueEventHandler -= HandleDialogue;
+        InputController.createCardEventHandler -= CreateCard;
         InputController.cardEnteredDeckEventHandler -= EnterDeck;
         InputController.deckHoverEventHandler -= ToggleSpreading;
         InputController.deckClickedEventHander -= DisplayDeck;
@@ -102,20 +102,20 @@ public class DeckGUI : MonoBehaviour {
         }
     }
 
-    private void HandleDialogue(string unlockKey) {
-        //if (alreadyUnlockedKeywords.Contains(unlockKey) == false && (unlockKey.StartsWith("NPC_") || unlockKey.StartsWith("ITEM_"))) {
-        //    alreadyUnlockedKeywords.Add(unlockKey);
+    private void CreateCard(string unlockKey) {
+        if (alreadyUnlockedKeywords.Contains(unlockKey) == false && (unlockKey.StartsWith("NPC_") || unlockKey.StartsWith("ITEM_"))) {
+            alreadyUnlockedKeywords.Add(unlockKey);
 
-        //    GameObject card = CardFactory.CreateCard(unlockKey);
+            GameObject card = CardFactory.CreateCard(unlockKey);
 
-        //    // move offscreen
-        //    card.transform.position = new Vector3(0, 10, 0);
+            // move offscreen
+            card.transform.position = new Vector3(0, 10, 0);
 
-        //    // apply Deck layer to card
-        //    UnityUtility.MoveToLayer(card.transform, LayerMask.NameToLayer("Deck"));
+            // apply Deck layer to card
+            UnityUtility.MoveToLayer(card.transform, LayerMask.NameToLayer("Deck"));
 
-        //    InputController.DialogueCardCreated(card);
-        //}
+            InputController.DialogueCardCreated(card);
+        }
     }
 
     /// <summary>

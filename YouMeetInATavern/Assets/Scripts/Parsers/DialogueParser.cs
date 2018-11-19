@@ -32,7 +32,6 @@ public class DialogueParser : MonoBehaviour {
             foreach (XElement xe in graphNodes.Elements(yedBullcrap + "data")) {
                 if (npcKey.Length == 0 && xe.Value.StartsWith("nodetype=")) {
                     npcKey = xe.Value.Replace("nodetype=", "");
-                    //print("npcKey: " + npcKey);
                 }
             }
 
@@ -45,7 +44,6 @@ public class DialogueParser : MonoBehaviour {
                     // parse the dialogue ID
                     string dialogueKey = "";
                     dialogueKey = npcScenarioDialogue.Attribute("id").ToString().Replace("id=", "");
-                    //print("id: " + dialogueID);
 
                     // parse the dialogue type and text
                     string dialogueText = "";
@@ -57,8 +55,6 @@ public class DialogueParser : MonoBehaviour {
                             dialogueText = xe1.Value;
                         }
                     }
-                    //print("type: " + dialogueType);
-                    //print("text: " + dialogueText);
 
                     // create the new Dialogue
                     Dialogue dialogue = new Dialogue(dialogueKey, dialogueText);
@@ -90,6 +86,9 @@ public class DialogueParser : MonoBehaviour {
                                 dialogue.type = Dialogue.TYPE.NPC_SAYS;
                                 data.npcKey_defaultDialogueKey.Add(npcKey, dialogueKey);
                                 break;
+                            case "card":
+                                dialogue.type = Dialogue.TYPE.CARD;
+                                break;
                             default:
                                 print("ERROR: No such dialogue type exists: " + dialogueType);
                                 break;
@@ -115,18 +114,23 @@ public class DialogueParser : MonoBehaviour {
             }
 
             // save target in source, depending on target's type
-            switch (data.key_dialoguesNEW[target].type) {
+            Dialogue sourceDialogue = data.key_dialoguesNEW[source];
+            Dialogue targetDialogue = data.key_dialoguesNEW[target];
+            switch (targetDialogue.type) {
                 case Dialogue.TYPE.NPC_SAYS:
-                    data.key_dialoguesNEW[source].nextDialogueKey = target;
+                    sourceDialogue.nextDialogueKey = target;
                     break;
                 case Dialogue.TYPE.PLAYER_RESPONSE:
-                    data.key_dialoguesNEW[source].playerResponseKeys.Add(target);
+                    sourceDialogue.playerResponseKeys.Add(target);
                     break;
                 case Dialogue.TYPE.STOP:
-                    data.key_dialoguesNEW[source].isEndOfConversation = true;
+                    sourceDialogue.isEndOfConversation = true;
                     break;
                 case Dialogue.TYPE.CLICKABLE_TEXT:
-                    data.key_dialoguesNEW[source].clickableDialogueKeys.Add(target);
+                    sourceDialogue.clickableDialogueKeys.Add(target);
+                    break;
+                case Dialogue.TYPE.CARD:
+                    sourceDialogue.unlockCardKeys.Add(targetDialogue.text);
                     break;
             }
         }
@@ -200,45 +204,45 @@ public class DialogueParser : MonoBehaviour {
     //    }
     //}
 
-    private Dictionary<string, string> GetList(string id, Dictionary<string, Dictionary<string, string>> listOfLists) {
-        Dictionary<string, string> list;
-        if (listOfLists.ContainsKey(id) == true) {
-            // retrieve the existing list
-            list = listOfLists[id];
-        } else {
-            // create a new list
-            list = new Dictionary<string, string>();
-            // add it to the list of lists
-            listOfLists.Add(id, list);
-        }
-        return list;
-    }
+    //private Dictionary<string, string> GetList(string id, Dictionary<string, Dictionary<string, string>> listOfLists) {
+    //    Dictionary<string, string> list;
+    //    if (listOfLists.ContainsKey(id) == true) {
+    //        // retrieve the existing list
+    //        list = listOfLists[id];
+    //    } else {
+    //        // create a new list
+    //        list = new Dictionary<string, string>();
+    //        // add it to the list of lists
+    //        listOfLists.Add(id, list);
+    //    }
+    //    return list;
+    //}
 
-    private Dictionary<string, V> GetList<V>(string id, Dictionary<string, Dictionary<string, V>> listOfLists) {
-        Dictionary<string, V> list;
-        if (listOfLists.ContainsKey(id) == true) {
-            // retrieve the existing list
-            list = listOfLists[id];
-        } else {
-            // create a new list
-            list = new Dictionary<string, V>();
-            // add it to the list of lists
-            listOfLists.Add(id, list);
-        }
-        return list;
-    }
+    //private Dictionary<string, V> GetList<V>(string id, Dictionary<string, Dictionary<string, V>> listOfLists) {
+    //    Dictionary<string, V> list;
+    //    if (listOfLists.ContainsKey(id) == true) {
+    //        // retrieve the existing list
+    //        list = listOfLists[id];
+    //    } else {
+    //        // create a new list
+    //        list = new Dictionary<string, V>();
+    //        // add it to the list of lists
+    //        listOfLists.Add(id, list);
+    //    }
+    //    return list;
+    //}
 
-    private List<V> GetList<V>(string id, Dictionary<string, List<V>> listOfLists) {
-        List<V> list;
-        if (listOfLists.ContainsKey(id) == true) {
-            // retrieve the existing list
-            list = listOfLists[id];
-        } else {
-            // create a new list
-            list = new List<V>();
-            // add it to the list of lists
-            listOfLists.Add(id, list);
-        }
-        return list;
-    }
+    //private List<V> GetList<V>(string id, Dictionary<string, List<V>> listOfLists) {
+    //    List<V> list;
+    //    if (listOfLists.ContainsKey(id) == true) {
+    //        // retrieve the existing list
+    //        list = listOfLists[id];
+    //    } else {
+    //        // create a new list
+    //        list = new List<V>();
+    //        // add it to the list of lists
+    //        listOfLists.Add(id, list);
+    //    }
+    //    return list;
+    //}
 }

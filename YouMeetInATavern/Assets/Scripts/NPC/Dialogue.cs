@@ -10,12 +10,13 @@ public class Dialogue {
 
     public List<string> playerResponseKeys;
     public List<string> clickableDialogueKeys;
+    public List<string> unlockCardKeys;
     public string nextDialogueKey;
 
     public bool isEndOfConversation;
 
     public enum TYPE {
-        INTRO, START, NPC_SAYS, CLICKABLE_TEXT, PLAYER_RESPONSE, STOP
+        INTRO, START, NPC_SAYS, CLICKABLE_TEXT, PLAYER_RESPONSE, CARD, STOP
     }
     public TYPE type;
 
@@ -33,6 +34,7 @@ public class Dialogue {
 
         playerResponseKeys = new List<string>();
         clickableDialogueKeys = new List<string>();
+        unlockCardKeys = new List<string>();
         nextDialogueKey = "";
 
         isEndOfConversation = false;

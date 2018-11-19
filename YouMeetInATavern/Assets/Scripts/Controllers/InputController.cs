@@ -49,6 +49,9 @@ public class InputController : MonoBehaviour {
     public static event CardClickedEventHandler cardClickedEventHandler;
     public delegate void CardClickedEventHandler(GameObject card);
 
+    public static event CreateCardEventHandler createCardEventHandler;
+    public delegate void CreateCardEventHandler(string id);
+
     public static event DialogueCardCreatedEventHandler dialogueCardCreatedEventHandler;
     public delegate void DialogueCardCreatedEventHandler(GameObject card);
 
@@ -227,6 +230,10 @@ public class InputController : MonoBehaviour {
 
     public static void HandleCardClick(GameObject card) {
         cardClickedEventHandler.Invoke(card);
+    }
+
+    public static void CreateCard(string id) {
+        createCardEventHandler.Invoke(id);
     }
 
     public static void DialogueCardCreated(GameObject card) {
