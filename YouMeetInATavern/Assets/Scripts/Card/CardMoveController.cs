@@ -29,8 +29,8 @@ public class CardMoveController : MonoBehaviour {
         InputController.npcIntroStartEventHandler += Introduce;
         InputController.npcIntroEndEventHandler += Converse;
         ConverseNPC.npcStartConverseEventHandler += Converse;
-        InputController.stopConverseEventHandler += EnterTavern;
-        InputController.clockTickedEventHandler += Goodbye;
+        InputController.endDialogueEventHandler += CheckNPCLeavingTavern;
+        InputController.clockTickedEventHandler += CheckNPCsLeavingTavern;
         NPCController.npcStartInTaverneventHandler += PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler += LeaveTavern;
         InputController.endDayEarlyEventHandler += LeaveTavernAll;
@@ -41,8 +41,8 @@ public class CardMoveController : MonoBehaviour {
         InputController.npcIntroStartEventHandler -= Introduce;
         InputController.npcIntroEndEventHandler -= Converse;
         ConverseNPC.npcStartConverseEventHandler -= Converse;
-        InputController.stopConverseEventHandler -= EnterTavern;
-        InputController.clockTickedEventHandler -= Goodbye;
+        InputController.endDialogueEventHandler -= CheckNPCLeavingTavern;
+        InputController.clockTickedEventHandler -= CheckNPCsLeavingTavern;
         NPCController.npcStartInTaverneventHandler -= PlaceInTavern;
         NPCController.npcRandomlyLeavesEventHandler -= LeaveTavern;
         InputController.endDayEarlyEventHandler -= LeaveTavernAll;
@@ -108,8 +108,9 @@ public class CardMoveController : MonoBehaviour {
         InputController.CardEnteredDeck(card);
     }
 
-    private void EnterTavern(GameObject card) {
+    private void EndDialogue(GameObject card) {
         NPC npc = card.GetComponent<NPC>();
+        print(npc.name);
 
         CardMove move = card.GetComponent<CardMove>();
         move.enabled = true;
@@ -139,19 +140,26 @@ public class CardMoveController : MonoBehaviour {
         }
     }
 
-    private void Goodbye(int currentHour) {
-        foreach (GameObject card in data.npcsInTavern) {
-            NPC npc = card.GetComponent<NPC>();
-            if (npc.hourLeavesTavern == currentHour) {
-                LeaveTavern(card);
-            } else if (npc.hourLeavesTavern - 1 == currentHour) {
-                // NPCs about to leave go to exit area
-                EnterTavern(card);
-            } else if (card == data.selectedCard) {
-                // return selected card to tavern
-                EnterTavern(card);
-            }
+    private void CheckNPCLeavingTavern(GameObject card) {
+        CheckNPCLeavingTavern(card, data.currentHour);
+    }
 
+    private void CheckNPCsLeavingTavern(int currentHour) {
+        foreach (GameObject card in data.npcsInTavern) {
+            CheckNPCLeavingTavern(card, currentHour);
+        }
+    }
+
+    private void CheckNPCLeavingTavern(GameObject card, int currentHour) {
+        NPC npc = card.GetComponent<NPC>();
+        if (npc.hourLeavesTavern == currentHour) {
+            LeaveTavern(card);
+        } else if (npc.hourLeavesTavern - 1 == currentHour) {
+            // NPCs about to leave go to exit area
+            EndDialogue(card);
+        } else if (card == data.selectedCard) {
+            // return selected card to tavern
+            EndDialogue(card);
         }
     }
 
@@ -167,7 +175,7 @@ public class CardMoveController : MonoBehaviour {
     private void PlaceInTavern(GameObject card) {
         card.transform.position = enterTavernPos.position;
         card.transform.rotation = enterTavernPos.rotation;
-        EnterTavern(card);
+        EndDialogue(card);
         Wander(card);
     }
 

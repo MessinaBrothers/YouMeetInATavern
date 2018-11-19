@@ -35,8 +35,8 @@ public class NPCController : MonoBehaviour {
         InputController.gameflowEndBeginTavern += LoadNPCs;
         InputController.gameflowBeginIntroduceNPCs += IntroduceNPCs;
         InputController.cardClickedEventHandler += HandleCardClick;
-        InputController.stopConverseEventHandler += IntroduceNextNPC;
-        InputController.npcLeavesEventHandler += Goodbye;
+        InputController.continueDialogueEventHandler += IntroduceNextNPC;
+        InputController.endDialogueEventHandler += Goodbye;
     }
 
     void OnDisable() {
@@ -44,8 +44,8 @@ public class NPCController : MonoBehaviour {
         InputController.gameflowEndBeginTavern -= LoadNPCs;
         InputController.gameflowBeginIntroduceNPCs -= IntroduceNPCs;
         InputController.cardClickedEventHandler -= HandleCardClick;
-        InputController.stopConverseEventHandler -= IntroduceNextNPC;
-        InputController.npcLeavesEventHandler -= Goodbye;
+        InputController.continueDialogueEventHandler -= IntroduceNextNPC;
+        InputController.endDialogueEventHandler -= Goodbye;
     }
 
     private void CreateCards() {
@@ -65,12 +65,8 @@ public class NPCController : MonoBehaviour {
         }
     }
 
-    private void Goodbye() {
-        InputController.ChangeMode(GameData.GameMode.TAVERN);
+    private void Goodbye(GameObject card) {
 
-        // increment clock
-        data.currentHour += 1;
-        InputController.TickClock(data.currentHour);
 
         //// remove a remaining NPC
         //if (data.npcsInTavern.Count > 0) {
@@ -141,9 +137,9 @@ public class NPCController : MonoBehaviour {
         npc.isUnintroduced = false;
 
         // set the next dialogue
-        if (data.npcKey_introKey.ContainsKey(npc.key + data.scenario.order)) {
+        if (data.npcKey_introKey.ContainsKey(npc.key + data.scenario.id)) {
             //print(data.key_dialoguesNEW[data.npcKey_introKey[npc.key + data.scenario.order]].text);
-            npc.nextDialogueID = data.npcKey_introKey[npc.key + data.scenario.order];
+            npc.nextDialogueID = data.npcKey_introKey[npc.key + data.scenario.id];
         } else {
             // set default intro dialogue here
             throw new NotImplementedException();

@@ -21,16 +21,16 @@ public class ConverseNPC : MonoBehaviour {
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.npcIntroEndEventHandler += HandleIntroduction;
         InputController.dialogueEventHandler += HandleDialogue;
-        InputController.stopConverseEventHandler += Stop;
-        InputController.npcLeavesEventHandler += Goodbye;
+        InputController.continueDialogueEventHandler += ContinueDialogue;
+        InputController.endDialogueEventHandler += EndDialogue;
     }
 
     void OnDisable() {
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.npcIntroEndEventHandler -= HandleIntroduction;
         InputController.dialogueEventHandler -= HandleDialogue;
-        InputController.stopConverseEventHandler -= Stop;
-        InputController.npcLeavesEventHandler -= Goodbye;
+        InputController.continueDialogueEventHandler -= ContinueDialogue;
+        InputController.endDialogueEventHandler -= EndDialogue;
     }
 
     private void HandleIntroduction(GameObject card) {
@@ -52,7 +52,7 @@ public class ConverseNPC : MonoBehaviour {
     private void Converse(GameObject card) {
     }
 
-    private void Stop(GameObject card) {
+    private void ContinueDialogue(GameObject card) {
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = false;
 
@@ -69,14 +69,43 @@ public class ConverseNPC : MonoBehaviour {
             if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
                 Debug.LogFormat("An NPC has scenario-specific dialogue: NPC:{0}, scenario id:{1}", npc.key, data.scenario.id);
             }
-
         } else {
             npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
         }
     }
 
-    private void Goodbye() {
-        GameObject card = data.selectedCard;
+    private void EndDialogue(GameObject card) {
+        NPC npc = card.GetComponent<NPC>();
+
+        // play the goodbye clip
         card.GetComponent<CardSFX>().PlayGoodbye();
+        
+        if (npc.isBeingIntroduced) {
+            npc.isBeingIntroduced = false;
+        } else {
+            // increment clock
+            data.currentHour += 1;
+            InputController.TickClock(data.currentHour);
+        }
+        InputController.ChangeMode(GameData.GameMode.TAVERN);
+
+
+        if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
+            Debug.LogFormat("Checking scenario-specific dialogue: NPC:{0}, scenario id:{1}", npc.key, data.scenario.id);
+        }
+
+        // check for specific scenario dialogue
+        string specificDialogueKey = npc.key + data.scenario.id;
+        if (data.npcKey_scenarioKey.ContainsKey(specificDialogueKey)) {
+            // set the specific scenario dialogue
+            npc.nextDialogueID = data.npcKey_scenarioKey[specificDialogueKey];
+
+            if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
+                Debug.LogFormat("An NPC has scenario-specific dialogue: NPC:{0}, scenario id:{1}", npc.key, data.scenario.id);
+            }
+        } else {
+            // set generic dialogue
+            npc.nextDialogueID = GameData.DIALOGUE_DEFAULT;
+        }
     }
 }
