@@ -35,8 +35,7 @@ public class NPCController : MonoBehaviour {
         InputController.gameflowEndBeginTavern += LoadNPCs;
         InputController.gameflowBeginIntroduceNPCs += IntroduceNPCs;
         InputController.cardClickedEventHandler += HandleCardClick;
-        InputController.continueDialogueEventHandler += IntroduceNextNPC;
-        InputController.endDialogueEventHandler += Goodbye;
+        InputController.endDialogueEventHandler += IntroduceNextNPC;
     }
 
     void OnDisable() {
@@ -44,8 +43,7 @@ public class NPCController : MonoBehaviour {
         InputController.gameflowEndBeginTavern -= LoadNPCs;
         InputController.gameflowBeginIntroduceNPCs -= IntroduceNPCs;
         InputController.cardClickedEventHandler -= HandleCardClick;
-        InputController.continueDialogueEventHandler -= IntroduceNextNPC;
-        InputController.endDialogueEventHandler -= Goodbye;
+        InputController.endDialogueEventHandler -= IntroduceNextNPC;
     }
 
     private void CreateCards() {
@@ -63,16 +61,6 @@ public class NPCController : MonoBehaviour {
                 card.SetActive(false);  
             }
         }
-    }
-
-    private void Goodbye(GameObject card) {
-
-
-        //// remove a remaining NPC
-        //if (data.npcsInTavern.Count > 0) {
-        //    GameObject rngCard = data.npcsInTavern[UnityEngine.Random.Range(0, data.npcsInTavern.Count)];
-        //    npcRandomlyLeavesEventHandler.Invoke(rngCard);
-        //}
     }
 
     private void HandleCardClick(GameObject card) {

@@ -75,6 +75,11 @@ public class PlayerResponseGUIController : MonoBehaviour {
         return isQuestionExist;
     }
 
+    public void ShowContinueButton(Dialogue dialogue) {
+        continueButton.GetComponent<QuestionButton>().dialogue = dialogue;
+        ShowContinueButton();
+    }
+
     public void ShowContinueButton() {
         continueButton.SetActive(true);
         goodbyeButton.SetActive(false);

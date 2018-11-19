@@ -89,32 +89,29 @@ public class GUIController : MonoBehaviour {
         if (formattedText[0] != '<') {
             formattedText = toInsertAfter + formattedText;
         }
-
-        print(formattedText);
+        
         dialoguePanel.GetComponentInChildren<DialoguePanel>().SetDialogue(formattedText);
 
         if (data.DEBUG_IS_PRINT && data.DEBUG_IS_PRINT_DIALOGUE) {
             Debug.LogFormat("Showing dialogue: NPC:{0}, dialogueID:{1}, dialogue:{2}", npc.key, dialogueKey, formattedText);
         }
 
-        // load or hide questions and Continue/Goodbye button
-        PlayerResponseGUIController questionGUIController = GetComponent<PlayerResponseGUIController>();
-        questionGUIController.HideAllButtons();
+        // load or hide questions
+        PlayerResponseGUIController playerResponseGUIController = GetComponent<PlayerResponseGUIController>();
+        playerResponseGUIController.HideAllButtons();
+        playerResponseGUIController.LoadQuestions(dialogue);
 
-        switch (dialogue.type) {
-            case Dialogue.TYPE.INTRO:
-                break;
-            case Dialogue.TYPE.START:
-                questionGUIController.ShowGoodbyeButton();
-                break;
-            default:
-                print(dialogue.nextDialogueKey);
-                if (dialogue.isEndOfConversation) {
-                    questionGUIController.ShowGoodbyeButton();
-                }
-                break;
+        // if starting or ending a conversation, show goodbye
+        if (dialogue.isEndOfConversation) {
+            playerResponseGUIController.ShowGoodbyeButton();
+        // if no options, show continue
+        } else if (dialogue.playerResponseKeys.Count == 0) {
+            if (dialogueKey == defaultDialogueKey) {
+                playerResponseGUIController.ShowContinueButton();
+            } else {
+                playerResponseGUIController.ShowContinueButton(dialogue);
+            }
         }
-        questionGUIController.LoadQuestions(dialogue);
 
         // preserve player responses for default dialogue
         if (dialogueKey != defaultDialogueKey) {
