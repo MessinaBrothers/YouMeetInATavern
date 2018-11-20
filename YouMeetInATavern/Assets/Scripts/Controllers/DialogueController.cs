@@ -19,7 +19,6 @@ public class DialogueController : MonoBehaviour {
         InputController.endDialogueEventHandler += EndDialogue;
         InputController.dialogueEventHandler += HandleDialogue;
         InputController.cardClickedEventHandler += HandleCardClick;
-        InputController.questionEventHandler += HandleQuestion;
         InputController.createCardEventHandler += CreateCard;
         InputController.dialogueSettingEventHandler += HandleSetting;
     }
@@ -28,7 +27,6 @@ public class DialogueController : MonoBehaviour {
         InputController.endDialogueEventHandler -= EndDialogue;
         InputController.dialogueEventHandler -= HandleDialogue;
         InputController.cardClickedEventHandler -= HandleCardClick;
-        InputController.questionEventHandler -= HandleQuestion;
         InputController.createCardEventHandler -= CreateCard;
         InputController.dialogueSettingEventHandler -= HandleSetting;
     }
@@ -57,14 +55,6 @@ public class DialogueController : MonoBehaviour {
         } else if (arg == "GOODBYE=TRUE") {
             data.isGoodbyeEnabled = true;
         }
-    }
-
-    public void HandleQuestion(Dialogue question) {
-        //int endIDIndex = question.text.IndexOf('>');
-        //string unlockKey = question.text.Substring("<".Length, endIDIndex - "<".Length);
-
-        //// unlock the dialogue
-        //DeckController.Add(unlockKey);
     }
 
     public void CreateCard(string unlockKey) {

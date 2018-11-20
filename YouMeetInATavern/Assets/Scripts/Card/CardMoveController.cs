@@ -28,7 +28,7 @@ public class CardMoveController : MonoBehaviour {
     void OnEnable() {
         InputController.npcIntroStartEventHandler += Introduce;
         InputController.npcIntroEndEventHandler += Converse;
-        ConverseNPC.npcStartConverseEventHandler += Converse;
+        InputController.npcConverseStartEventHandler += Converse;
         InputController.endDialogueEventHandler += CheckNPCLeavingTavern;
         InputController.clockTickedEventHandler += CheckNPCsLeavingTavern;
         NPCController.npcStartInTaverneventHandler += PlaceInTavern;
@@ -40,7 +40,7 @@ public class CardMoveController : MonoBehaviour {
     void OnDisable() {
         InputController.npcIntroStartEventHandler -= Introduce;
         InputController.npcIntroEndEventHandler -= Converse;
-        ConverseNPC.npcStartConverseEventHandler -= Converse;
+        InputController.npcConverseStartEventHandler -= Converse;
         InputController.endDialogueEventHandler -= CheckNPCLeavingTavern;
         InputController.clockTickedEventHandler -= CheckNPCsLeavingTavern;
         NPCController.npcStartInTaverneventHandler -= PlaceInTavern;

@@ -105,9 +105,6 @@ public class InputController : MonoBehaviour {
 
     public static event DialogueSettingEventHandler dialogueSettingEventHandler;
     public delegate void DialogueSettingEventHandler(string arg);
-
-    public static event ContinueDialogueEventHandler continueDialogueEventHandler;
-    public delegate void ContinueDialogueEventHandler(GameObject card);
     
     public static event EndDialogueEventHandler endDialogueEventHandler;
     public delegate void EndDialogueEventHandler(GameObject card);
@@ -119,6 +116,9 @@ public class InputController : MonoBehaviour {
 
     public static event NPCIntroEndEventHandler npcIntroEndEventHandler;
     public delegate void NPCIntroEndEventHandler(GameObject card);
+
+    public static event NPCConverseStartEventHandler npcConverseStartEventHandler;
+    public delegate void NPCConverseStartEventHandler(GameObject card);
 
     public static event EndDayEarlyEventHandler endDayEarlyEventHandler;
     public delegate void EndDayEarlyEventHandler();
@@ -214,6 +214,7 @@ public class InputController : MonoBehaviour {
     }
 
     public static void ConfirmScenario() {
+        print("ADSf");
         confirmScenarioChoicesEventHandler.Invoke();
         guiController.ConfirmScenario();
     }
@@ -304,7 +305,7 @@ public class InputController : MonoBehaviour {
 
     public static void HandleQuestion(Dialogue question) {
         questionEventHandler.Invoke(question);
-        guiController.UpdateConverseGUI(question);
+        HandleDialogue(question.nextDialogueKey);
     }
 
     public static void HandleDialogue(string unlockKey) {
@@ -314,11 +315,6 @@ public class InputController : MonoBehaviour {
 
     public static void HandleDialogueSetting(string arg) {
         dialogueSettingEventHandler.Invoke(arg);
-    }
-
-    public static void HandleContinueDialogue() {
-        continueDialogueEventHandler.Invoke(data.selectedCard);
-        guiController.EndDialogue();
     }
 
     public static void HandleEndDialogue() {
@@ -334,6 +330,10 @@ public class InputController : MonoBehaviour {
 
     public static void NPCIntroEnd(GameObject card) {
         npcIntroEndEventHandler.Invoke(card);
+    }
+
+    public static void NPCConverseStart(GameObject card) {
+        npcConverseStartEventHandler.Invoke(card);
     }
 
     public static void LeaveTavernEarly() {
@@ -387,7 +387,6 @@ public class InputController : MonoBehaviour {
 
     // wrapper methods for Unity buttons
     // since they can't call static methods
-    public void HandleContinueDialogueWrapper() { HandleContinueDialogue(); }
     public void HandleEndDialogueWrapper() { HandleEndDialogue(); }
     public void LeaveTavernEarlyWrapper() { LeaveTavernEarly(); }
     public void ConfirmScenarioWrapper() { CheckAnswers(); }

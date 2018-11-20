@@ -20,11 +20,10 @@ public class SoundController : MonoBehaviour {
     void OnEnable() {
         InputController.cardClickedEventHandler += HandleCardClick;
         InputController.npcIntroStartEventHandler += HandleIntroduction;
-        InputController.continueDialogueEventHandler += HandleIntroductionEnd;
+        //InputController.continueDialogueEventHandler += HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler += HandleCardCreated;
         InputController.conclusionBackgroundClicked += HandleConclusionBackgroundClick;
         InputController.questionEventHandler += PlayButtonClick;
-        InputController.continueDialogueEventHandler += PlayButtonClick;
         InputController.endDialogueEventHandler += PlayButtonClick;
         InputController.endDayEarlyEventHandler += PlayButtonClick;
         InputController.deckClickedEventHander += PlayButtonClick;
@@ -38,11 +37,10 @@ public class SoundController : MonoBehaviour {
     void OnDisable() {
         InputController.cardClickedEventHandler -= HandleCardClick;
         InputController.npcIntroStartEventHandler -= HandleIntroduction;
-        InputController.continueDialogueEventHandler -= HandleIntroductionEnd;
+        //InputController.continueDialogueEventHandler -= HandleIntroductionEnd;
         InputController.dialogueCardCreatedEventHandler -= HandleCardCreated;
         InputController.conclusionBackgroundClicked -= HandleConclusionBackgroundClick;
         InputController.questionEventHandler -= PlayButtonClick;
-        InputController.continueDialogueEventHandler -= PlayButtonClick;
         InputController.endDialogueEventHandler -= PlayButtonClick;
         InputController.endDayEarlyEventHandler -= PlayButtonClick;
         InputController.deckClickedEventHander -= PlayButtonClick;

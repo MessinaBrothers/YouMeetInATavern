@@ -58,11 +58,6 @@ public class GUIController : MonoBehaviour {
         // get the Dialogue
         Dialogue dialogue = data.key_dialoguesNEW[dialogueKey];
 
-        foreach (string cardID in dialogue.unlockCardKeys) {
-            print("unlocking: " + cardID);
-            InputController.CreateCard(cardID);
-        }
-
         // set the text
         string formattedText = dialogue.text;
         string defaultDialogueKey = data.npcKey_defaultDialogueKey[npc.key];
