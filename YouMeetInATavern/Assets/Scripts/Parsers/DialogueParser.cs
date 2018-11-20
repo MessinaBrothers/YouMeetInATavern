@@ -38,6 +38,7 @@ public class DialogueParser : MonoBehaviour {
             // for each NPC
             XElement npcGraph = graphNodes.Element(yedBullcrap + "graph");
 
+            // for each scenario in NPC
             foreach (XElement npcScenarioGraph in npcGraph.Elements(yedBullcrap + "node")) {
 
                 // get the scenario key
@@ -48,8 +49,9 @@ public class DialogueParser : MonoBehaviour {
                     }
                 }
 
-                // for each scenario in NPC
                 XElement xe = npcScenarioGraph.Element(yedBullcrap + "graph");
+
+                // for each node element in the scenario
                 foreach (XElement npcScenarioDialogue in xe.Elements(yedBullcrap + "node")) {
                     // parse the dialogue ID
                     string dialogueKey = "";
@@ -89,6 +91,10 @@ public class DialogueParser : MonoBehaviour {
                             data.npcKey_scenarioKey.Add(npcKey + scenarioKey, dialogueKey);
                             dialogue.type = Dialogue.TYPE.START;
                             break;
+                        case "results_start":
+                            data.npcKey_resultsKey.Add(npcKey + scenarioKey, dialogueKey);
+                            dialogue.type = Dialogue.TYPE.INQUIRY;
+                            break;
                         case "player_response":
                             dialogue.type = Dialogue.TYPE.PLAYER_RESPONSE;
                             break;
@@ -107,10 +113,6 @@ public class DialogueParser : MonoBehaviour {
                             break;
                         case "card":
                             dialogue.type = Dialogue.TYPE.CARD;
-                            break;
-                        case "results_start":
-                            data.npcKey_resultsKey.Add(npcKey + scenarioKey, dialogueKey);
-                            dialogue.type = Dialogue.TYPE.INQUIRY;
                             break;
                         case "inquiry":
                             dialogue.type = Dialogue.TYPE.INQUIRY;

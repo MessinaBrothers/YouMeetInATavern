@@ -37,23 +37,27 @@ public class UnityUtility : MonoBehaviour {
     private static void PreBuild() {
         System.DateTime startPreBuildTime = System.DateTime.Now;
         #if UNITY_EDITOR
-            string filePath = "Assets/Resources/dialogue_xml.txt";
-            if (File.Exists(filePath)) {
-                File.Delete(filePath);
-            }
-
-            // wait until file is deleted
-            while (File.Exists(filePath)) { }
-
-            File.Copy("Assets/Resources/dialogue_xml.graphml", filePath);
-
-            // wait until file exists
-            while (File.Exists(filePath) == false) { }
+            CreateTxt("Assets/Resources/dialogue_xml");
+            CreateTxt("Assets/Resources/results");
             
             UnityEditor.AssetDatabase.Refresh();
         #endif
 
         int preBuildTime = (System.DateTime.Now - startPreBuildTime).Milliseconds;
         Debug.LogFormat("Prebuild time: {0} ms", preBuildTime);
+    }
+
+    private static void CreateTxt(string filePath) {
+        if (File.Exists(filePath + ".txt")) {
+            File.Delete(filePath + ".txt");
+        }
+
+        // wait until file is deleted
+        while (File.Exists(filePath + ".txt")) { }
+
+        File.Copy(filePath + ".graphml", filePath + ".txt");
+
+        // wait until file exists
+        while (File.Exists(filePath + ".txt") == false) { }
     }
 }

@@ -13,6 +13,7 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_SETTING = "=";
     public static string SCENARIO_RESULT_DEFAULT = "default";
     public static char PARSER_DELIMITER = '-';
+    public static string YED_BULLCRAP = "{http://graphml.graphdrawing.org/xmlns}";
 
     [Header("DEBUG")]
     public float DEBUG_SPEED_EDITOR = 1f;
@@ -28,8 +29,6 @@ public class GameData : MonoBehaviour {
     public int tavernOpenHour;
     public int tavernCloseHour;
     public Dictionary<string, CardData> cardData;
-    //public Dictionary<string, CardData> itemData;
-    public Dictionary<string, List<ScenarioResult>> scenarioKey_scenarioResult;
 
     [Header("NPCs")]
     public GameObject selectedCard;
@@ -68,10 +67,12 @@ public class GameData : MonoBehaviour {
     public bool isGoodbyeEnabled;
     
     public Dictionary<string, Dialogue> key_dialoguesNEW;
+    public Dictionary<string, Dialogue> key_results;
     public Dictionary<string, string> npcKey_introKey;
     public Dictionary<string, string> npcKey_scenarioKey;
     public Dictionary<string, string> npcKey_resultsKey;
     public Dictionary<string, string> npcKey_defaultDialogueKey;
+    public Dictionary<string, string> scenarioKey_resultsKey;
 
     public enum Location {
         NONE, LOCATION_ROAD, LOCATION_MOUNTAIN, LOCATION_TOWN, LOCATION_FOREST, LOCATION_DOCKS
@@ -106,17 +107,18 @@ public class GameData : MonoBehaviour {
         gameMode = GameMode.INTRODUCE;
         
         cardData = new Dictionary<string, CardData>();
-        scenarioKey_scenarioResult = new Dictionary<string, List<ScenarioResult>>();
 
         npcs = new List<GameObject>();
         npcsToIntroduce = new Queue<string>();
         npcsToReintroduce = new Queue<GameObject>();
         
         key_dialoguesNEW = new Dictionary<string, Dialogue>();
+        key_results = new Dictionary<string, Dialogue>();
         npcKey_introKey = new Dictionary<string, string>();
         npcKey_scenarioKey = new Dictionary<string, string>();
         npcKey_resultsKey = new Dictionary<string, string>();
         npcKey_defaultDialogueKey = new Dictionary<string, string>();
+        scenarioKey_resultsKey = new Dictionary<string, string>();
 
         unlockedDialogueKeys = new HashSet<string>();
         chosenAnswerKeys = new HashSet<string>();
