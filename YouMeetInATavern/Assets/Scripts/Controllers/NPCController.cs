@@ -199,12 +199,12 @@ public class NPCController : MonoBehaviour {
             data.npcsToIntroduce.Enqueue(npc.key);
             //print("Going to introduce " + npc.key);
         // if the NPC has something to say about the last scenario result
-        } else if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
-            // set their next dialogue
-            npc.nextDialogueID = data.nextDialogueIntroKey;
-            // reintroduce them
-            data.npcsToReintroduce.Enqueue(npc.gameObject);
-            //print("Going to reintroduce " + npc.key);
+        //} else if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
+        //    // set their next dialogue
+        //    npc.nextDialogueID = data.nextDialogueIntroKey;
+        //    // reintroduce them
+        //    data.npcsToReintroduce.Enqueue(npc.gameObject);
+        //    //print("Going to reintroduce " + npc.key);
         } else {
             // activate the NPC in the tavern
             ActivateNPC(npc.gameObject);

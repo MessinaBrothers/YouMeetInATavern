@@ -12,11 +12,12 @@ public class Dialogue {
     public List<string> clickableDialogueKeys;
     public List<string> unlockCardKeys;
     public string nextDialogueKey;
+    public string nextInquiryKey;
 
     public bool isEndOfConversation;
 
     public enum TYPE {
-        INTRO, START, NPC_SAYS, CLICKABLE_TEXT, PLAYER_RESPONSE, CARD, STOP
+        INTRO, START, NPC_SAYS, CLICKABLE_TEXT, PLAYER_RESPONSE, CARD, INQUIRY, STOP
     }
     public TYPE type;
 

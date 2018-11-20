@@ -64,13 +64,13 @@ public class GameData : MonoBehaviour {
 
     [Header("Dialogue")]
     public string nextDialogueIntroKey;
-    public Dictionary<string, Dictionary<string, string>> npc_dialogues;
     public HashSet<string> unlockedDialogueKeys;
     public bool isGoodbyeEnabled;
     
     public Dictionary<string, Dialogue> key_dialoguesNEW;
     public Dictionary<string, string> npcKey_introKey;
     public Dictionary<string, string> npcKey_scenarioKey;
+    public Dictionary<string, string> npcKey_resultsKey;
     public Dictionary<string, string> npcKey_defaultDialogueKey;
 
     public enum Location {
@@ -115,9 +115,9 @@ public class GameData : MonoBehaviour {
         key_dialoguesNEW = new Dictionary<string, Dialogue>();
         npcKey_introKey = new Dictionary<string, string>();
         npcKey_scenarioKey = new Dictionary<string, string>();
+        npcKey_resultsKey = new Dictionary<string, string>();
         npcKey_defaultDialogueKey = new Dictionary<string, string>();
 
-        npc_dialogues = new Dictionary<string, Dictionary<string, string>>();
         unlockedDialogueKeys = new HashSet<string>();
         chosenAnswerKeys = new HashSet<string>();
     }

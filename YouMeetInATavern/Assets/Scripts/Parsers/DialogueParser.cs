@@ -37,7 +37,17 @@ public class DialogueParser : MonoBehaviour {
 
             // for each NPC
             XElement npcGraph = graphNodes.Element(yedBullcrap + "graph");
+
             foreach (XElement npcScenarioGraph in npcGraph.Elements(yedBullcrap + "node")) {
+
+                // get the scenario key
+                string scenarioKey = "";
+                foreach (XElement data in npcScenarioGraph.Elements(yedBullcrap + "data")) {
+                    if (scenarioKey.Length == 0 && data.Value.StartsWith("nodetype=scenario_")) {
+                        scenarioKey = data.Value.Replace("nodetype=scenario_", "");
+                    }
+                }
+
                 // for each scenario in NPC
                 XElement xe = npcScenarioGraph.Element(yedBullcrap + "graph");
                 foreach (XElement npcScenarioDialogue in xe.Elements(yedBullcrap + "node")) {
@@ -62,37 +72,52 @@ public class DialogueParser : MonoBehaviour {
                     data.key_dialoguesNEW.Add(dialogueKey, dialogue);
 
                     // if intro or starting dialogue, add it to the respective lists
-                    if (dialogueType.StartsWith("intro_")) {
-                        data.npcKey_introKey.Add(npcKey + dialogueType.Replace("intro_", ""), dialogueKey);
-                        dialogue.type = Dialogue.TYPE.INTRO;
-                    } else if (dialogueType.StartsWith("scenario_")) {
-                        data.npcKey_scenarioKey.Add(npcKey + dialogueType.Replace("scenario_", ""), dialogueKey);
-                        dialogue.type = Dialogue.TYPE.START;
-                    } else {
-                        switch (dialogueType) {
-                            case "player_response":
-                                dialogue.type = Dialogue.TYPE.PLAYER_RESPONSE;
-                                break;
-                            case "npc_says":
-                                dialogue.type = Dialogue.TYPE.NPC_SAYS;
-                                break;
-                            case "stop":
-                                dialogue.type = Dialogue.TYPE.STOP;
-                                break;
-                            case "dialogue_text":
-                                dialogue.type = Dialogue.TYPE.CLICKABLE_TEXT;
-                                break;
-                            case "dialogue_default":
-                                dialogue.type = Dialogue.TYPE.NPC_SAYS;
-                                data.npcKey_defaultDialogueKey.Add(npcKey, dialogueKey);
-                                break;
-                            case "card":
-                                dialogue.type = Dialogue.TYPE.CARD;
-                                break;
-                            default:
-                                print("ERROR: No such dialogue type exists: " + dialogueType);
-                                break;
-                        }
+                    //if (dialogueType.StartsWith("intro_")) {
+                    //    data.npcKey_introKey.Add(npcKey + dialogueType.Replace("intro_", ""), dialogueKey);
+                    //    dialogue.type = Dialogue.TYPE.INTRO;
+                    //} else if (dialogueType.StartsWith("scenario_")) {
+                    //    data.npcKey_scenarioKey.Add(npcKey + dialogueType.Replace("scenario_", ""), dialogueKey);
+                    //    dialogue.type = Dialogue.TYPE.START;
+                    //} else {
+                    //}
+                    switch (dialogueType) {
+                        case "intro_start":
+                            data.npcKey_introKey.Add(npcKey + scenarioKey, dialogueKey);
+                            dialogue.type = Dialogue.TYPE.INTRO;
+                            break;
+                        case "scenario_start":
+                            data.npcKey_scenarioKey.Add(npcKey + scenarioKey, dialogueKey);
+                            dialogue.type = Dialogue.TYPE.START;
+                            break;
+                        case "player_response":
+                            dialogue.type = Dialogue.TYPE.PLAYER_RESPONSE;
+                            break;
+                        case "npc_says":
+                            dialogue.type = Dialogue.TYPE.NPC_SAYS;
+                            break;
+                        case "stop":
+                            dialogue.type = Dialogue.TYPE.STOP;
+                            break;
+                        case "dialogue_text":
+                            dialogue.type = Dialogue.TYPE.CLICKABLE_TEXT;
+                            break;
+                        case "dialogue_default":
+                            dialogue.type = Dialogue.TYPE.NPC_SAYS;
+                            data.npcKey_defaultDialogueKey.Add(npcKey, dialogueKey);
+                            break;
+                        case "card":
+                            dialogue.type = Dialogue.TYPE.CARD;
+                            break;
+                        case "results_start":
+                            data.npcKey_resultsKey.Add(npcKey + scenarioKey, dialogueKey);
+                            dialogue.type = Dialogue.TYPE.INQUIRY;
+                            break;
+                        case "inquiry":
+                            dialogue.type = Dialogue.TYPE.INQUIRY;
+                            break;
+                        default:
+                            print("ERROR: No such dialogue type exists: " + dialogueType);
+                            break;
                     }
                 }
             }
@@ -131,6 +156,9 @@ public class DialogueParser : MonoBehaviour {
                     break;
                 case Dialogue.TYPE.CARD:
                     sourceDialogue.unlockCardKeys.Add(targetDialogue.text);
+                    break;
+                case Dialogue.TYPE.INQUIRY:
+                    sourceDialogue.nextInquiryKey = target;
                     break;
             }
         }
