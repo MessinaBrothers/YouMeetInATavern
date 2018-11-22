@@ -101,7 +101,7 @@ public class ScenarioResultsParser : MonoBehaviour {
                 dialogue.type = Dialogue.TYPE.CARD;
                 break;
             default:
-                print("ERROR: No such dialogue type exists: " + nodeType);
+                print("PARSE ERROR: No such dialogue type exists: " + nodeType);
                 break;
         }
 
@@ -128,14 +128,22 @@ public class ScenarioResultsParser : MonoBehaviour {
 
         switch (sourceDialogue.type) {
             case Dialogue.TYPE.CARD:
-                targetDialogue.unlockCardKeys.Add(sourceDialogue.text);
                 break;
             case Dialogue.TYPE.TAG:
-                sourceDialogue.tags.Add(targetDialogue.text);
                 break;
             default:
-                sourceDialogue.nextDialogueKey = target;
                 break;
+        }
+
+        if (sourceDialogue.type == Dialogue.TYPE.CARD) {
+            targetDialogue.unlockCardKeys.Add(sourceDialogue.text);
+        } else if (targetDialogue.type == Dialogue.TYPE.TAG) {
+            print("Adding tag:" + targetDialogue.text);
+            sourceDialogue.tags.Add(targetDialogue.text);
+        } else if (targetDialogue.type == Dialogue.TYPE.INQUIRY) {
+            sourceDialogue.nextDialogueKey = target;
+        } else {
+            print("PARSE ERROR: edge unaccounted for: " + sourceDialogue.text);
         }
     }
 }
