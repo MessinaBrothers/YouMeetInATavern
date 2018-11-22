@@ -9,7 +9,6 @@ public class GameData : MonoBehaviour {
     public static string DIALOGUE_DEFAULT = "default";
     public static string DIALOGUE_INVALID = "";
     public static string DIALOGUE_SCENARIO_PREFIX = "SCENARIO_";
-    public static string DIALOGUE_SCENARIO_SUCCESS = "_CORRECT";
     public static string DIALOGUE_SETTING = "=";
     public static string SCENARIO_RESULT_DEFAULT = "default";
     public static char PARSER_DELIMITER = '-';

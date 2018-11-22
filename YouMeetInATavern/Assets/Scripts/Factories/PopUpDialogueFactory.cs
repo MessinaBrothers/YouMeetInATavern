@@ -5,13 +5,10 @@ using UnityEngine;
 public class PopUpDialogueFactory : MonoBehaviour {
 
     public GameObject popupDialoguePrefab;
-
-    private static GameData data;
+    
     private static GameObject popupDialoguePrefabWrapper;
 
     void Start() {
-        data = FindObjectOfType<GameData>();
-
         // set static variablesd
         popupDialoguePrefabWrapper = popupDialoguePrefab;
     }

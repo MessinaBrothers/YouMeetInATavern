@@ -214,7 +214,6 @@ public class InputController : MonoBehaviour {
     }
 
     public static void ConfirmScenario() {
-        print("ADSf");
         confirmScenarioChoicesEventHandler.Invoke();
         guiController.ConfirmScenario();
     }

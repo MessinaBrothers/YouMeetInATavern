@@ -7,11 +7,8 @@ public class GameController : MonoBehaviour {
 
     private GameData data;
 
-    private MusicController musicController;
-
     void Awake() {
         data = FindObjectOfType<GameData>();
-        musicController = FindObjectOfType<MusicController>();
     }
 
     void Start() {

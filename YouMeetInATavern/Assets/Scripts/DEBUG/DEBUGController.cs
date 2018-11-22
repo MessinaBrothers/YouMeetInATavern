@@ -82,8 +82,8 @@ public class DEBUGController : MonoBehaviour {
 
     public void UnlockScenarioKeys() {
         // unlock the cards used to beat the scenario
-        string scenarioID = data.scenario.id;
         throw new NotImplementedException();
+        //string scenarioID = data.scenario.id;
         //ScenarioResult result = data.scenarioKey_scenarioResult[scenarioID][0];
         //foreach (string key in result.unlocks) {
         //    if (key.StartsWith("LOCATION_") == false) {
