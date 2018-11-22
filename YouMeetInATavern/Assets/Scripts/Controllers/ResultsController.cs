@@ -21,54 +21,67 @@ public class ResultsController : MonoBehaviour {
 
     private void DisplayResults() {
         // get the applicable result
-        ScenarioResult result = GetResult();
+        Dialogue result = GetResult();
 
-        // if CORRECT, increment scenario
-        if (result.nextDialoguesKey.Contains(GameData.DIALOGUE_SCENARIO_SUCCESS)) {
+        // if success, increment scenario
+        if (result.tags.Contains("FULL_SUCCESS") || result.tags.Contains("PARTIAL_SUCCESS")) {
             data.nextScenarioIndex += 1;
         }
 
         // set dialogue based on selections
-        SetResultsDescription(result);
+        SetResultsDescription(result.text);
         // set next NPC intro dialogues based on selections
-        data.nextDialogueIntroKey = result.nextDialoguesKey;
+
         // handle rewards, if any
 
         // reset answers
         data.chosenAnswerKeys.Clear();
+        // TODO reset answers at beginning of scenario results screen
+        // use answers to get NPCs to respond
     }
 
-    private ScenarioResult GetResult() {
+    private Dialogue GetResult() {
         // add location to answers
         List<string> chosenAnswers = new List<string>(data.chosenAnswerKeys) {
             data.chosenLocation.ToString()
         };
 
-        // iterate through results list
-        throw new NotImplementedException();
-        //for (int i = 0; i < data.scenarioKey_scenarioResult[data.scenario.id].Count; i++) {
-        //    ScenarioResult result = data.scenarioKey_scenarioResult[data.scenario.id][i];
+        string resultsID = data.scenarioKey_resultsKey[data.scenario.id];
 
-        //    if (IsUnlocked(result, chosenAnswers) == true) {
-        //        // result is unlocked!
-        //        return result;
-        //    }
-        //}
-
-        //return null;
+        return GetResult(data.key_results[resultsID].nextDialogueKey, chosenAnswers);
     }
 
-    private void SetResultsDescription(ScenarioResult result) {
-        // parse the reward
-        int endIndex = result.description.IndexOf('>');
-        string reward = result.description.Substring(1, endIndex - 1);
-        if (reward.Length > 0) {
-            //data.npcsToIntroduce.Enqueue(reward);
-            DeckController.Add(reward);
+    private Dialogue GetResult(string dialogueKey, List<string> chosenAnswers) {
+        Dialogue dialogue = data.key_results[dialogueKey];
+
+        // if this dialogue is the last in line, return it
+        if (dialogue.nextDialogueKey == null) {
+            return dialogue;
+        } else {
+            // if all unlocks appear in the answer, return the dialogue
+            foreach (string cardKey in chosenAnswers) {
+                // if answer does NOT appear in the dialogue card list, go to the next dialogue
+                if (dialogue.unlockCardKeys.Contains(cardKey) == false) {
+                    return GetResult(dialogue.nextDialogueKey, chosenAnswers);
+                }
+            }
+            // if all answers were in the dialogue, return the dialogue
+            return dialogue;
         }
-        string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
-        // save the results
-        data.resultsDialogue = dialogue;
+    }
+
+    private void SetResultsDescription(string result) {
+        data.resultsDialogue = result;
+        //// parse the reward
+        //int endIndex = result.description.IndexOf('>');
+        //string reward = result.description.Substring(1, endIndex - 1);
+        //if (reward.Length > 0) {
+        //    //data.npcsToIntroduce.Enqueue(reward);
+        //    DeckController.Add(reward);
+        //}
+        //string dialogue = result.description.Substring(endIndex + 1, result.description.Length - endIndex - 1);
+        //// save the results
+        //data.resultsDialogue = dialogue;
     }
 
     // if ANY unlock key does not exist in the unlocked keys, returns false. Otherwise, returns true

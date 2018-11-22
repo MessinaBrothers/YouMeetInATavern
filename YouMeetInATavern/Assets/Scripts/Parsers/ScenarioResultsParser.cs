@@ -94,6 +94,9 @@ public class ScenarioResultsParser : MonoBehaviour {
             case "result":
                 dialogue.type = Dialogue.TYPE.INQUIRY;
                 break;
+            case "tag":
+                dialogue.type = Dialogue.TYPE.TAG;
+                break;
             case "card":
                 dialogue.type = Dialogue.TYPE.CARD;
                 break;
@@ -123,10 +126,16 @@ public class ScenarioResultsParser : MonoBehaviour {
         Dialogue sourceDialogue = data.key_results[source];
         Dialogue targetDialogue = data.key_results[target];
 
-        if (sourceDialogue.type == Dialogue.TYPE.CARD) {
-            targetDialogue.unlockCardKeys.Add(sourceDialogue.text);
-        } else {
-            sourceDialogue.nextDialogueKey = target;
+        switch (sourceDialogue.type) {
+            case Dialogue.TYPE.CARD:
+                targetDialogue.unlockCardKeys.Add(sourceDialogue.text);
+                break;
+            case Dialogue.TYPE.TAG:
+                sourceDialogue.tags.Add(targetDialogue.text);
+                break;
+            default:
+                sourceDialogue.nextDialogueKey = target;
+                break;
         }
     }
 }
