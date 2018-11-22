@@ -130,7 +130,7 @@ public class NPCController : MonoBehaviour {
             npc.nextDialogueID = data.npcKey_introKey[npc.key + data.scenario.id];
         } else {
             // set default intro dialogue here
-            throw new NotImplementedException();
+            
         }
 
         //if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
@@ -206,9 +206,39 @@ public class NPCController : MonoBehaviour {
         //    data.npcsToReintroduce.Enqueue(npc.gameObject);
         //    //print("Going to reintroduce " + npc.key);
         } else {
-            // activate the NPC in the tavern
-            ActivateNPC(npc.gameObject);
-            //print("Going to activate " + npc.key);
+            // check if NPC has any result responses for this scenario
+            string lastScenarioID = data.scenarios[data.nextScenarioIndex - 1].id;
+            if (data.npcKey_resultsKey.ContainsKey(npc.key + lastScenarioID)) {
+                string resultsKey = data.npcKey_resultsKey[npc.key + lastScenarioID];
+                // check for an appropriate response based on previous answers
+                Dialogue inquiry = GetSuccessfulInquiry(data.key_dialoguesNEW[resultsKey].nextInquiryKey);
+                
+                // if an appropriate response has been found
+                if (inquiry != null) {
+                    // set the NPC's next dialogue
+                    npc.nextDialogueID = inquiry.nextDialogueKey;
+                    // reintroduce the NPC
+                    data.npcsToReintroduce.Enqueue(npc.gameObject);
+                } else {
+                    // activate the NPC in the tavern
+                    ActivateNPC(npc.gameObject);
+                }
+            } else {
+                // activate the NPC in the tavern
+                ActivateNPC(npc.gameObject);
+            }
+        }
+    }
+
+    private Dialogue GetSuccessfulInquiry(string inquiryKey) {
+        string nextInquiryKey = data.key_dialoguesNEW[inquiryKey].nextInquiryKey;
+
+        if (GraphUtility.DoesInquiryPass(data, inquiryKey)) {
+            return data.key_dialoguesNEW[inquiryKey];
+        } else if (nextInquiryKey != "") {
+            return GetSuccessfulInquiry(nextInquiryKey);
+        } else {
+            return null;
         }
     }
 

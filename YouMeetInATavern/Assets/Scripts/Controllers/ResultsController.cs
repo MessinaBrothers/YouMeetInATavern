@@ -33,11 +33,6 @@ public class ResultsController : MonoBehaviour {
         // set next NPC intro dialogues based on selections
 
         // handle rewards, if any
-
-        // reset answers
-        data.chosenAnswerKeys.Clear();
-        // TODO reset answers at beginning of scenario results screen
-        // use answers to get NPCs to respond
     }
 
     private Dialogue GetResult() {

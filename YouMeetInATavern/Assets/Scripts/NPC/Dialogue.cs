@@ -40,6 +40,7 @@ public class Dialogue {
         unlockCardKeys = new List<string>();
         tags = new List<string>();
         nextDialogueKey = "";
+        nextInquiryKey = "";
 
         isEndOfConversation = false;
     }

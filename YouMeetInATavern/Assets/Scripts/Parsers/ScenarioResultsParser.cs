@@ -138,7 +138,6 @@ public class ScenarioResultsParser : MonoBehaviour {
         if (sourceDialogue.type == Dialogue.TYPE.CARD) {
             targetDialogue.unlockCardKeys.Add(sourceDialogue.text);
         } else if (targetDialogue.type == Dialogue.TYPE.TAG) {
-            print("Adding tag:" + targetDialogue.text);
             sourceDialogue.tags.Add(targetDialogue.text);
         } else if (targetDialogue.type == Dialogue.TYPE.INQUIRY) {
             sourceDialogue.nextDialogueKey = target;

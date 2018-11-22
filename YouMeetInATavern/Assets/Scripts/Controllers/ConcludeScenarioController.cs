@@ -295,6 +295,8 @@ public class ConcludeScenarioController : MonoBehaviour {
         
         ResetCards();
 
+        data.chosenAnswerKeys.Clear();
+
         // create a list of unlocked cards
         List<GameObject> cards = new List<GameObject>();
         foreach (string key in data.unlockedDialogueKeys) {
