@@ -71,14 +71,14 @@ public class GUIController : MonoBehaviour {
             int clickableEndIndex = clickableStartIndex + clickableDialogue.text.Length;
 
             // insert default key after clickable key
-            formattedText = dialogue.text.Insert(clickableEndIndex, toInsertAfter);
+            formattedText = formattedText.Insert(clickableEndIndex, toInsertAfter);
 
             // prepare the next dialogue key to go to after clicking on the keywords
             string nextKey = clickableDialogue.nextDialogueKey;
             string toInsert = string.Format("<{0}>", nextKey);
 
             // insert the keyword key
-            formattedText = dialogue.text.Insert(clickableStartIndex, toInsert);
+            formattedText = formattedText.Insert(clickableStartIndex, toInsert);
         }
 
         // make sure the text starts with a key
@@ -97,7 +97,7 @@ public class GUIController : MonoBehaviour {
         playerResponseGUIController.HideAllButtons();
         playerResponseGUIController.LoadQuestions(dialogue);
 
-        // if starting or ending a conversation, show goodbye
+        // if ending a conversation, show goodbye
         if (dialogue.isEndOfConversation) {
             playerResponseGUIController.ShowGoodbyeButton();
         // if no options, show continue

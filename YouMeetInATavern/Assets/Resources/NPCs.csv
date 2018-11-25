@@ -19,6 +19,7 @@ NPC_SMUGGLER,Smuggler,Marin_the_Fox,VO_CS2_161_Play_01,VO_CS2_161_Death_03,VO_CS
 NPC_FOREIGNER,Foreigner,Sandbinder,VO_CS2_179_Play_01,VO_CS2_179_Death_03,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,VO_CS2_179_Attack_02,,
 NPC_KNIGHT,Knight,Lynessa_Sunsorrow,VO_EX1_008_Play_01,VO_EX1_008_Death_03,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,VO_EX1_008_Attack_02,,
 NPC_PRINCESS,Princess,Swift_Messenger,VO_EX1_004_Play_01,VO_EX1_004_Death_03,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,VO_EX1_004_Attack_02,,
+NPC_KOBOLD,Kobold,Winslow_Tobtock,VO_HERO_08_Thinking3_69,VO_HERO_08_Thanks_60,VO_HERO_08_ERROR12_86,VO_HERO_08_Start_64,VO_HERO_08_Greetings_56,VO_HERO_08_Thinking2_68,,
 ,,,,,,,,,,
 Play Sound,Attack Sound,NA,Play,Death,Attack,Attack2,Attack3,Attack4,Female?,Used?
 "One shot, one kill.",I’ll give it a shot.,Beastly_Beauty,VO_CS2_189_Play_01,VO_CS2_189_Death_03,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,VO_CS2_189_Attack_02,f,x

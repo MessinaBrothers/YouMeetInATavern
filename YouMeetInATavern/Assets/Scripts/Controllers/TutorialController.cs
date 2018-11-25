@@ -54,6 +54,9 @@ public class TutorialController : MonoBehaviour {
                     clickBlocker.SetActive(true);
                     leaveTavernButton.SetActive(false);
                     break;
+                case "kobolds":
+                    townHex.SetActive(true);
+                    break;
                 default:
                     break;
             }

@@ -89,7 +89,6 @@ public class NPCController : MonoBehaviour {
         if (data.npcsToReintroduce.Count > 0) {
             GameObject card = data.npcsToReintroduce.Dequeue();
             IntroduceNPC(card);
-            //print("Reintroducing " + card);
         } else if (data.npcsToIntroduce.Count > 0) {
             string key = data.npcsToIntroduce.Dequeue();
             IntroduceNPC(key);
@@ -123,23 +122,6 @@ public class NPCController : MonoBehaviour {
         NPC npc = card.GetComponent<NPC>();
         npc.isBeingIntroduced = true;
         npc.isUnintroduced = false;
-
-        // set the next dialogue
-        if (data.npcKey_introKey.ContainsKey(npc.key + data.scenario.id)) {
-            //print(data.key_dialoguesNEW[data.npcKey_introKey[npc.key + data.scenario.order]].text);
-            npc.nextDialogueID = data.npcKey_introKey[npc.key + data.scenario.id];
-        } else {
-            // set default intro dialogue here
-            
-        }
-
-        //if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
-        //    // if the NPC has dialogue specific to LAST result, use it
-        //    npc.nextDialogueID = data.nextDialogueIntroKey;
-        //} else {
-        //    // otherwise, use the default intro dialogue
-        //    npc.nextDialogueID = GameData.DIALOGUE_INTRO;
-        //}
 
         // add NPC to tavern list
         data.npcsInTavern.Add(card);
@@ -197,14 +179,13 @@ public class NPCController : MonoBehaviour {
         if (npc.isUnintroduced == true) {
             // introduce the NPC
             data.npcsToIntroduce.Enqueue(npc.key);
-            //print("Going to introduce " + npc.key);
-        // if the NPC has something to say about the last scenario result
-        //} else if (data.npc_dialogues[npc.key].ContainsKey(data.nextDialogueIntroKey)) {
-        //    // set their next dialogue
-        //    npc.nextDialogueID = data.nextDialogueIntroKey;
-        //    // reintroduce them
-        //    data.npcsToReintroduce.Enqueue(npc.gameObject);
-        //    //print("Going to reintroduce " + npc.key);
+
+            if (data.npcKey_introKey.ContainsKey(npc.key + data.scenario.id)) {
+                //print(data.key_dialoguesNEW[data.npcKey_introKey[npc.key + data.scenario.order]].text);
+                npc.nextDialogueID = data.npcKey_introKey[npc.key + data.scenario.id];
+            } else {
+                npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + GameData.DIALOGUE_DEFAULT];
+            }
         } else {
             // check if NPC has any result responses for this scenario
             string lastScenarioID = data.scenarios[data.nextScenarioIndex - 1].id;
@@ -221,10 +202,12 @@ public class NPCController : MonoBehaviour {
                     data.npcsToReintroduce.Enqueue(npc.gameObject);
                 } else {
                     // activate the NPC in the tavern
+                    npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + GameData.DIALOGUE_DEFAULT];
                     ActivateNPC(npc.gameObject);
                 }
             } else {
                 // activate the NPC in the tavern
+                npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + GameData.DIALOGUE_DEFAULT];
                 ActivateNPC(npc.gameObject);
             }
         }

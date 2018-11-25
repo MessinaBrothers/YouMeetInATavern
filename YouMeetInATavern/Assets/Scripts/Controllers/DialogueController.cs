@@ -93,7 +93,7 @@ public class DialogueController : MonoBehaviour {
             }
         } else {
             // set generic dialogue
-            npc.nextDialogueID = npc.key + GameData.DIALOGUE_DEFAULT;
+            npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + GameData.DIALOGUE_DEFAULT];
         }
     }
 }
