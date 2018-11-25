@@ -100,13 +100,13 @@ public class GUIController : MonoBehaviour {
         // if ending a conversation, show goodbye
         if (dialogue.isEndOfConversation) {
             playerResponseGUIController.ShowGoodbyeButton();
-        // if no options, show continue
-        } else if (dialogue.playerResponseKeys.Count == 0) {
-            if (dialogueKey == defaultDialogueKey) {
-                playerResponseGUIController.ShowContinueButton();
-            } else {
-                playerResponseGUIController.ShowContinueButton(dialogue);
-            }
+        }
+        // if there's more conversation, show continue button
+        if (GraphUtility.IsType(data, dialogue.nextDialogueKey, Dialogue.TYPE.NPC_SAYS)) {
+            playerResponseGUIController.ShowContinueButton(dialogue);
+        // if it's default dialogue, say goodbye
+        } else if (dialogueKey == defaultDialogueKey) {
+            playerResponseGUIController.ShowGoodbyeButton();
         }
 
         // preserve player responses for default dialogue

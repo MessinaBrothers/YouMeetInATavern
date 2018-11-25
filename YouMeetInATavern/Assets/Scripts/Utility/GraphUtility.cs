@@ -36,4 +36,14 @@ public class GraphUtility {
         
         return true;
     }
+
+    public static bool IsType(GameData data, string dialogueKey, Dialogue.TYPE type) {
+        if (dialogueKey == null || dialogueKey.Length == 0) {
+            return false;
+        } else if (data.key_dialoguesNEW.ContainsKey(dialogueKey)) {
+            return data.key_dialoguesNEW[dialogueKey].type.Equals(type);
+        } else {
+            return false;
+        }
+    }
 }
