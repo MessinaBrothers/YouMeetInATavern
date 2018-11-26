@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class GraphUtility {
 
-    public static bool DoesInquiryPass(GameData data, string inquiryKey) {
+    public static bool IsTagInquiryPass(GameData data, string inquiryKey) {
+        return IsInquiryPass(data, inquiryKey, data.unlockedDialogueKeys);
+    }
+
+    public static bool IsResultInquiryPass(GameData data, string inquiryKey) {
+        // add location to answers
+        List<string> chosenAnswers = new List<string>(data.chosenAnswerKeys) {
+                data.chosenLocation.ToString()
+            };
+        return IsInquiryPass(data, inquiryKey, chosenAnswers);
+    }
+
+    private static bool IsInquiryPass(GameData data, string inquiryKey, ICollection<string> list) {
 
         Dialogue inquiry = data.key_dialoguesNEW[inquiryKey];
         string commands = inquiry.text;
 
         foreach (string command in commands.Split(' ')) {
+            Debug.Log("Checking: " + command);
             string[] commandSplit = command.Split(':');
-
-            // add location to answers
-            List<string> chosenAnswers = new List<string>(data.chosenAnswerKeys) {
-                data.chosenLocation.ToString()
-            };
 
             switch (commandSplit[0]) {
                 case "MISSING":
-                    if (chosenAnswers.Contains(commandSplit[1])) {
+                    if (list.Contains(commandSplit[1])) {
                         return false;
                     }
                     break;
                 case "HAS":
-                    if (chosenAnswers.Contains(commandSplit[1]) == false) {
+                    if (list.Contains(commandSplit[1]) == false) {
                         return false;
                     }
                     break;

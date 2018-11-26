@@ -192,7 +192,7 @@ public class NPCController : MonoBehaviour {
             if (data.npcKey_resultsKey.ContainsKey(npc.key + lastScenarioID)) {
                 string resultsKey = data.npcKey_resultsKey[npc.key + lastScenarioID];
                 // check for an appropriate response based on previous answers
-                Dialogue inquiry = GetSuccessfulInquiry(data.key_dialoguesNEW[resultsKey].nextInquiryKey);
+                Dialogue inquiry = GetSuccessfulInquiry(data.key_dialoguesNEW[resultsKey].inquiryKeys[0]);
                 
                 // if an appropriate response has been found
                 if (inquiry != null) {
@@ -214,9 +214,9 @@ public class NPCController : MonoBehaviour {
     }
 
     private Dialogue GetSuccessfulInquiry(string inquiryKey) {
-        string nextInquiryKey = data.key_dialoguesNEW[inquiryKey].nextInquiryKey;
+        string nextInquiryKey = data.key_dialoguesNEW[inquiryKey].inquiryKeys[0];
 
-        if (GraphUtility.DoesInquiryPass(data, inquiryKey)) {
+        if (GraphUtility.IsResultInquiryPass(data, inquiryKey)) {
             return data.key_dialoguesNEW[inquiryKey];
         } else if (nextInquiryKey != "") {
             return GetSuccessfulInquiry(nextInquiryKey);

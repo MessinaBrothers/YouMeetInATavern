@@ -25,14 +25,30 @@ public class PlayerResponseGUIController : MonoBehaviour {
 
         int buttonIndex = questionButtons.Length - 1;
 
+        // check inquiries for any questions
+        foreach (string inquiryKey in dialogue.inquiryKeys) {
+            foreach (string responseKey in data.key_dialoguesNEW[inquiryKey].playerResponseKeys) {
+                if (GraphUtility.IsTagInquiryPass(data, inquiryKey)) {
+                    isQuestionExist = true;
+
+                    ShowQuestionButton(buttonIndex, responseKey);
+                    buttonIndex -= 1;
+
+                    // what happens when you have more questions than buttons available? Escape
+                    if (buttonIndex < 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // show default questions
         foreach (String responseKey in dialogue.playerResponseKeys) {
             isQuestionExist = true;
-
-            GameObject button = questionButtons[buttonIndex];
-            button.SetActive(true);
+            
+            ShowQuestionButton(buttonIndex, responseKey);
             buttonIndex -= 1;
 
-            SetQuestionText(button, responseKey);
             // what happens when you have more questions than buttons available? Escape
             if (buttonIndex < 0) {
                 return true;
@@ -40,6 +56,19 @@ public class PlayerResponseGUIController : MonoBehaviour {
         }
 
         return isQuestionExist;
+    }
+
+    public void ShowQuestionButton(int index, string key) {
+        GameObject button = questionButtons[index];
+        button.SetActive(true);
+        
+        Dialogue dialogue = data.key_dialoguesNEW[key];
+
+        // set the question dialogue
+        QuestionButton questionButton = button.GetComponent<QuestionButton>();
+        questionButton.dialogue = dialogue;
+
+        button.GetComponentInChildren<Text>().text = dialogue.text;
     }
 
     public void ShowContinueButton(Dialogue dialogue) {
@@ -63,15 +92,5 @@ public class PlayerResponseGUIController : MonoBehaviour {
         }
         continueButton.SetActive(false);
         goodbyeButton.SetActive(false);
-    }
-
-    private void SetQuestionText(GameObject button, string key) {
-        Dialogue dialogue = data.key_dialoguesNEW[key];
-
-        // set the question dialogue
-        QuestionButton questionButton = button.GetComponent<QuestionButton>();
-        questionButton.dialogue = dialogue;
-
-        button.GetComponentInChildren<Text>().text = dialogue.text;
     }
 }

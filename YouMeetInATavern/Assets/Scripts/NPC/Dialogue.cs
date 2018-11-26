@@ -12,8 +12,8 @@ public class Dialogue {
     public List<string> clickableDialogueKeys;
     public List<string> unlockCardKeys;
     public List<string> tags;
+    public List<string> inquiryKeys;
     public string nextDialogueKey;
-    public string nextInquiryKey;
 
     public bool isEndOfConversation;
 
@@ -39,8 +39,8 @@ public class Dialogue {
         clickableDialogueKeys = new List<string>();
         unlockCardKeys = new List<string>();
         tags = new List<string>();
+        inquiryKeys = new List<string>();
         nextDialogueKey = "";
-        nextInquiryKey = "";
 
         isEndOfConversation = false;
     }

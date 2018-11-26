@@ -117,9 +117,11 @@ public class DialogueParser : MonoBehaviour {
                         case "inquiry":
                             dialogue.type = Dialogue.TYPE.INQUIRY;
                             break;
-                        default:
-                            print("ERROR: No such dialogue type exists: " + dialogueType);
+                        case "tag":
+                            dialogue.type = Dialogue.TYPE.TAG;
                             break;
+                        default:
+                            throw new ArgumentException("ERROR: No such dialogue type exists: " + dialogueType);
                     }
                 }
             }
@@ -160,7 +162,10 @@ public class DialogueParser : MonoBehaviour {
                     sourceDialogue.unlockCardKeys.Add(targetDialogue.text);
                     break;
                 case Dialogue.TYPE.INQUIRY:
-                    sourceDialogue.nextInquiryKey = target;
+                    sourceDialogue.inquiryKeys.Add(target);
+                    break;
+                case Dialogue.TYPE.TAG:
+                    sourceDialogue.tags.Add(target);
                     break;
             }
         }

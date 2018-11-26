@@ -46,6 +46,11 @@ public class DialogueController : MonoBehaviour {
             print("unlocking: " + cardID);
             InputController.CreateCard(cardID);
         }
+
+        foreach (string tagKey in dialogue.tags) {
+            print("resolving tag: " + data.key_dialoguesNEW[tagKey].text);
+            data.unlockedDialogueKeys.Add(data.key_dialoguesNEW[tagKey].text);
+        }
     }
 
     private void HandleSetting(string arg) {
