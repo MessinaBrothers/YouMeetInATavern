@@ -29267,6 +29267,7 @@ GameObject:
   - component: {fileID: 1887476907}
   - component: {fileID: 1887476906}
   - component: {fileID: 1887476905}
+  - component: {fileID: 1887476908}
   m_Layer: 13
   m_Name: FadeImage
   m_TagString: Untagged
@@ -29338,6 +29339,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1887476903}
   m_CullTransparentMesh: 0
+--- !u!114 &1887476908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1887476903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2b48c51b36380408f20a0ea37f2b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1900577748
 GameObject:
   m_ObjectHideFlags: 0
@@ -31574,6 +31586,7 @@ GameObject:
   - component: {fileID: 2115781611}
   - component: {fileID: 2115781610}
   - component: {fileID: 2115781612}
+  - component: {fileID: 2115781613}
   m_Layer: 5
   m_Name: DeckCamImage
   m_TagString: Untagged
@@ -31645,6 +31658,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeIn: 0
   fadeOut: 0
+--- !u!114 &2115781613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115781608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3efe070e70cb0419821bb8e29862c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119060185
 GameObject:
   m_ObjectHideFlags: 0

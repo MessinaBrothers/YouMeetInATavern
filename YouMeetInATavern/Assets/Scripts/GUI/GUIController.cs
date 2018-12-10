@@ -6,7 +6,6 @@ using UnityEngine;
 public class GUIController : MonoBehaviour {
 
     public GameObject hudPanel, dialoguePanel, deckPanel, nightPanel, concludeScenarioPanel, resultsPanel;
-    public FadeImage fader, deckCamImage;
     public ClockGUI clockGUI;
 
     private GameData data;
@@ -32,15 +31,11 @@ public class GUIController : MonoBehaviour {
     void OnEnable() {
         CardMoveController.npcInConversePosEventHandler += Converse;
         InputController.clockTickedEventHandler += UpdateClock;
-        InputController.gameflowStartFinishTavern += StartFinishTavern;
-        InputController.gameflowStartFinishConclusion += FadeOut;
     }
 
     void OnDisable() {
         CardMoveController.npcInConversePosEventHandler -= Converse;
         InputController.clockTickedEventHandler -= UpdateClock;
-        InputController.gameflowStartFinishTavern -= StartFinishTavern;
-        InputController.gameflowStartFinishConclusion -= FadeOut;
     }
 
     private void UpdateClock(int currentHour) {
@@ -130,15 +125,6 @@ public class GUIController : MonoBehaviour {
         hudPanel.SetActive(true);
     }
 
-    public void FadeIn() {
-        fader.FadeIn(data.fadeInTime);
-        deckCamImage.FadeOut(data.fadeInTime);
-    }
-
-    public void FadeOut() {
-        fader.FadeOut(data.fadeOutTime);
-    }
-
     public void LoadTavern() {
         DeactivateAll();
         //dayPanel.SetActive(true);
@@ -146,25 +132,15 @@ public class GUIController : MonoBehaviour {
         hudPanel.GetComponentInChildren<DeckGUI>().ReloadDeck(data);
     }
 
-    public void StartFinishTavern() {
-        //DeactivateAll();
-        //nightPanel.SetActive(true);
-        //FadeIn();
-        deckCamImage.FadeIn(data.fadeOutTime);
-
-    }
-
     public void ConcludeScenario() {
         DeactivateAll();
         concludeScenarioPanel.SetActive(true);
-        fader.FadeIn(data.fadeInTime);
     }
 
     public void ConfirmScenario() {
         DeactivateAll();
         resultsPanel.SetActive(true);
         resultsPanel.GetComponentInChildren<UnityEngine.UI.Text>().text = data.resultsDialogue;
-        fader.FadeIn(data.fadeOutTime);
     }
 
     public void DisplayDeck() {

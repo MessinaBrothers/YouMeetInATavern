@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FadeImage : MonoBehaviour {
-    
+
     public bool fadeIn, fadeOut;
 
     private RawImage image;
@@ -13,12 +13,6 @@ public class FadeImage : MonoBehaviour {
 
     void Start() {
         image = GetComponent<RawImage>();
-        
-        if (fadeIn == true) {
-            FadeIn(FindObjectOfType<GameData>().fadeInTime);
-        } else {
-            FadeOut(FindObjectOfType<GameData>().fadeOutTime);
-        }
     }
 
     void Update() {

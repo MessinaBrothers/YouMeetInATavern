@@ -180,7 +180,6 @@ public class InputController : MonoBehaviour {
 
     public static void EndBeginTavern() {
         gameflowEndBeginTavern.Invoke();
-        guiController.FadeIn();
         guiController.LoadTavern();
     }
 

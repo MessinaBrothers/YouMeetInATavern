@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameData : MonoBehaviour {
+
+    private static GameData instance;
     
     public static string DIALOGUE_INTRO = "intro";
     public static string DIALOGUE_DEFAULT = "default";
@@ -103,7 +105,9 @@ public class GameData : MonoBehaviour {
     }
     public GameMode gameMode;
 
-    void Start() {
+    void Awake() {
+        instance = this;
+
         DEBUG_SPEED = DEBUG_SPEED_EDITOR;
 
         gameMode = GameMode.INTRODUCE;
@@ -124,5 +128,13 @@ public class GameData : MonoBehaviour {
 
         unlockedDialogueKeys = new HashSet<string>();
         chosenAnswerKeys = new HashSet<string>();
+    }
+
+    public static GameData GetInstance() {
+        if (instance == null) {
+            throw new Exception("GameData has not been initialized!");
+        }
+
+        return instance;
     }
 }
