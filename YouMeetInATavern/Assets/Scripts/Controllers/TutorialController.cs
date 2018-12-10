@@ -7,7 +7,6 @@ public class TutorialController : MonoBehaviour {
 
     public GameObject clickBlocker;
     public GameObject tutorialConcludeHints;
-    public GameObject leaveTavernButton;
 
     public Transform midcardTransform;
 
@@ -45,14 +44,17 @@ public class TutorialController : MonoBehaviour {
         if (dayCount == 0) {
             data.fadeInTime = data.scenario.fadeInTime;
             data.introPauseTime = data.scenario.introPauseTime;
-            leaveTavernButton.SetActive(true);
+            data.isLeaveButtonEnabled = true;
 
             switch (data.scenario.id) {
                 case "introduction":
                     townHex.SetActive(true);
                     tutorialConcludeHints.SetActive(true);
                     clickBlocker.SetActive(true);
-                    leaveTavernButton.SetActive(false);
+                    data.isLeaveButtonEnabled = false;
+                    break;
+                case "stolen_necklace":
+                    townHex.SetActive(true);
                     break;
                 case "kobolds":
                     townHex.SetActive(true);

@@ -8,8 +8,11 @@ public class LeaveTavernEarlyButton : MonoBehaviour {
     
     private Button button;
 
+    private GameData data;
+
     void Start() {
         button = GetComponent<Button>();
+        data = FindObjectOfType<GameData>();
         
         button.interactable = false;
     }
@@ -23,6 +26,10 @@ public class LeaveTavernEarlyButton : MonoBehaviour {
     }
 
     private void ChangeMode(GameData.GameMode mode) {
-        button.interactable = mode == GameData.GameMode.TAVERN;
+        if ((mode == GameData.GameMode.TAVERN) && (data.isLeaveButtonEnabled == true)) {
+            button.interactable = true;
+        } else {
+            button.interactable = false;
+        }
     }
 }
