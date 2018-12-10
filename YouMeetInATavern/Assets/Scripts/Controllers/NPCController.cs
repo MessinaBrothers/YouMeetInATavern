@@ -110,8 +110,6 @@ public class NPCController : MonoBehaviour {
     }
 
     private void IntroduceNPC(GameObject card) {
-        InputController.ChangeMode(GameData.GameMode.INTRODUCE);
-
         card.SetActive(true);
 
         introducedNPCs.Add(card);
@@ -170,6 +168,8 @@ public class NPCController : MonoBehaviour {
     }
 
     private void IntroduceNPCs() {
+        InputController.ChangeMode(GameData.GameMode.INTRODUCE);
+
         // introduce the first NPC, if any
         IntroduceNextNPC(null);
     }
@@ -193,7 +193,7 @@ public class NPCController : MonoBehaviour {
                 string resultsKey = data.npcKey_resultsKey[npc.key + lastScenarioID];
                 // check for an appropriate response based on previous answers
                 Dialogue inquiry = GetSuccessfulInquiry(data.key_dialoguesNEW[resultsKey].inquiryKeys[0]);
-                
+
                 // if an appropriate response has been found
                 if (inquiry != null) {
                     // set the NPC's next dialogue
@@ -206,8 +206,12 @@ public class NPCController : MonoBehaviour {
                     ActivateNPC(npc.gameObject);
                 }
             } else {
+                if (data.npcKey_introKey.ContainsKey(npc.key + data.scenario.id)) {
+                    npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + data.scenario.id];
+                } else {
+                    npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + GameData.DIALOGUE_DEFAULT];
+                }
                 // activate the NPC in the tavern
-                npc.nextDialogueID = data.npcKey_scenarioKey[npc.key + GameData.DIALOGUE_DEFAULT];
                 ActivateNPC(npc.gameObject);
             }
         }

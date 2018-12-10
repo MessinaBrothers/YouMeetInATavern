@@ -1385,6 +1385,7 @@ GameObject:
   - component: {fileID: 179848304}
   - component: {fileID: 179848303}
   - component: {fileID: 179848302}
+  - component: {fileID: 179848305}
   m_Layer: 5
   m_Name: EndDayButton
   m_TagString: Untagged
@@ -1497,6 +1498,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 179848300}
   m_CullTransparentMesh: 0
+--- !u!114 &179848305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179848300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb6a2c2bb88b244ba6bf71c1d0f0987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &187362138
 GameObject:
   m_ObjectHideFlags: 0
@@ -18687,7 +18699,7 @@ MonoBehaviour:
   wanderAreasExit:
   - {fileID: 705292098}
   - {fileID: 200376461}
-  nextScenarioIndex: 1
+  nextScenarioIndex: 2
   nextDialogueIntroKey: 
   isGoodbyeEnabled: 0
   hexIndex_location: 03000000000000000500000001000000000000000400000002000000
@@ -18696,11 +18708,12 @@ MonoBehaviour:
   fadeInTime: 1
   fadeOutTime: 1
   introPauseTime: 0
-  fadeInTimeDefault: 0
+  fadeInTimeDefault: 1
   introPauseTimeDefault: 0
   popupGrowTime: 0.2
   popupShrinkTime: 0.2
   tutorialTextFadeTime: 0.5
+  isLeaveButtonEnabled: 0
   buttonItemColor: {r: 0.9411765, g: 0.89411765, b: 0.25882354, a: 1}
   buttonNPCColor: {r: 0, g: 0.5647059, b: 0.69803923, a: 1}
   buttonLocationColor: {r: 0, g: 0.61960787, b: 0.4509804, a: 1}
@@ -18796,7 +18809,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickBlocker: {fileID: 1820025426}
   tutorialConcludeHints: {fileID: 1574653638}
-  leaveTavernButton: {fileID: 179848300}
   midcardTransform: {fileID: 175017038}
   townHex: {fileID: 1653419438}
   forestHex: {fileID: 1197171981}

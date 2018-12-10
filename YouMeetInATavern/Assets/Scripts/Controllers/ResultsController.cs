@@ -54,13 +54,14 @@ public class ResultsController : MonoBehaviour {
             return dialogue;
         } else {
             // if all unlocks appear in the answer, return the dialogue
-            foreach (string cardKey in chosenAnswers) {
+            foreach (string cardKey in dialogue.unlockCardKeys) {
                 // if answer does NOT appear in the dialogue card list, go to the next dialogue
-                if (dialogue.unlockCardKeys.Contains(cardKey) == false) {
+                if (chosenAnswers.Contains(cardKey) == false) {
                     return GetResult(dialogue.nextDialogueKey, chosenAnswers);
                 }
             }
             // if all answers were in the dialogue, return the dialogue
+
             return dialogue;
         }
     }

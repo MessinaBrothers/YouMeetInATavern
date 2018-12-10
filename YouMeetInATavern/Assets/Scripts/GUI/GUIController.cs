@@ -149,7 +149,7 @@ public class GUIController : MonoBehaviour {
     public void StartFinishTavern() {
         //DeactivateAll();
         //nightPanel.SetActive(true);
-        FadeOut();
+        //FadeIn();
         deckCamImage.FadeIn(data.fadeOutTime);
 
     }

@@ -21,9 +21,9 @@ public class GraphUtility {
         Dialogue inquiry = data.key_dialoguesNEW[inquiryKey];
         string commands = inquiry.text;
 
-        foreach (string command in commands.Split(' ')) {
+        foreach (string command in commands.Split(GameData.GRAPH_DELIMITER)) {
             Debug.Log("Checking: " + command);
-            string[] commandSplit = command.Split(':');
+            string[] commandSplit = command.Split(GameData.GRAPH_INQUIRY_SPLIT);
 
             switch (commandSplit[0]) {
                 case "MISSING":

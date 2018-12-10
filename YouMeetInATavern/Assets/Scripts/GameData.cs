@@ -13,6 +13,8 @@ public class GameData : MonoBehaviour {
     public static string SCENARIO_RESULT_DEFAULT = "default";
     public static char PARSER_DELIMITER = '-';
     public static string YED_BULLCRAP = "{http://graphml.graphdrawing.org/xmlns}";
+    public static char GRAPH_INQUIRY_SPLIT = ':';
+    public static char GRAPH_DELIMITER = ' ';
 
     [Header("DEBUG")]
     public float DEBUG_SPEED_EDITOR = 1f;
@@ -92,6 +94,7 @@ public class GameData : MonoBehaviour {
     public float popupGrowTime;
     public float popupShrinkTime;
     public float tutorialTextFadeTime;
+    public bool isLeaveButtonEnabled;
 
     public Color buttonItemColor, buttonNPCColor, buttonLocationColor;
 
